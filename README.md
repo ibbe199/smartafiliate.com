@@ -70,6 +70,8 @@ of this software to use, copy, modify, merge, publish, and distribute it.
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND.
 
+---
+
 ## 🤝 Contributing
 
 Contributions, issues, and feature requests are welcome!
