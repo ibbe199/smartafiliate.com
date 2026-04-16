@@ -61,9 +61,14 @@ To simplify AI tools and affiliate marketing concepts into **clear, actionable s
 
 ## 📄 License
 
-This project is licensed under the MIT License – see the [LICENSE](./LICENSE) file for details.
+MIT License
 
----
+Copyright (c) 2026 Smartafiliate
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software to use, copy, modify, merge, publish, and distribute it.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND.
 
 ## 🤝 Contributing
 
