@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>شكراً لتواصلك | smartafiliate</title>
+  <meta name="description" content="شكراً لتواصلك مع smartafiliate. سنرد على رسالتك خلال 48 ساعة." />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ea580c'%3E%3Cpath d='M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5'/%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .thankyou-section {
+      text-align: center;
+      padding: 4rem 2rem;
+      background: white;
+      border-radius: 24px;
+      margin: 2rem 0;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+    .thankyou-icon {
+      font-size: 5rem;
+      margin-bottom: 1rem;
+    }
+    .thankyou-title {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: var(--navy-2);
+    }
+    .thankyou-text {
+      color: var(--muted);
+      margin-bottom: 1rem;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .thankyou-btn {
+      display: inline-block;
+      background: var(--primary);
+      color: white;
+      padding: 0.8rem 1.8rem;
+      border-radius: 40px;
+      font-weight: bold;
+      margin-top: 1rem;
+      transition: all 0.3s ease;
+    }
+    .thankyou-btn:hover {
+      background: var(--primary-dark);
+      transform: translateY(-2px);
+    }
+    .countdown {
+      color: var(--primary);
+      font-weight: bold;
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="logo">
+        <span class="logo-text logo-text-light">smart</span>
+        <span class="logo-text logo-text-accent">afiliate</span>
+      </div>
+      <nav class="main-nav">
+        <a href="index.html">الرئيسية</a>
+        <a href="best-ai-tools.html">أفضل أدوات AI</a>
+        <a href="ai-articles.html">مكتبة AI</a>
+        <a href="learn-ai.html">تعلم AI</a>
+        <a href="open-source.html">أدوات مفتوحة المصدر</a>
+        <a href="articles.html">المقالات</a>
+        <a href="posts.html">جميع المقالات</a>
+        <a href="blog.html">المدونة</a>
+        <a href="about.html">من نحن</a>
+        <a href="contact.html">تواصل</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="thankyou-section">
+      <div class="thankyou-icon">📨✨</div>
+      <h1 class="thankyou-title">شكراً لتواصلك معنا!</h1>
+      <p class="thankyou-text">تم استلام رسالتك بنجاح. سنقوم بمراجعتها والرد عليك خلال <strong>48 ساعة</strong> كحد أقصى.</p>
+      <p class="thankyou-text">في غضون ذلك، يمكنك تصفح مقالاتنا أو الاطلاع على أحدث أدوات الذكاء الاصطناعي.</p>
+      <div class="countdown" id="countdown"></div>
+      <a href="index.html" class="thankyou-btn">🏠 العودة إلى الرئيسية</a>
+    </div>
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-col">
+        <div class="logo">
+          <span class="logo-text logo-text-light">smart</span>
+          <span class="logo-text logo-text-accent">afiliate</span>
+        </div>
+        <p class="footer-description">منصة عربية تساعدك على فهم الذكاء الاصطناعي، التسويق بالعمولة، وبناء مشروع رقمي أوضح وأكثر قابلية للنمو.</p>
+      </div>
+      <div class="footer-col">
+        <h4>من نحن</h4>
+        <a href="about.html">من نحن</a>
+        <a href="contact.html">تواصل معنا</a>
+      </div>
+      <div class="footer-col">
+        <h4>سياسة الخصوصية</h4>
+        <a href="privacy.html">سياسة الخصوصية</a>
+        <a href="terms.html">الشروط والأحكام</a>
+      </div>
+      <div class="footer-col">
+        <h4>روابط سريعة</h4>
+        <a href="sitemap.xml">خريطة الموقع</a>
+        <a href="disclosure.html">الإفصاح</a>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <span>smartafiliate © 2026 – جميع الحقوق محفوظة</span>
+      <span>🌐 بناء محتوى عربي عملي للمستقبل</span>
+    </div>
+  </footer>
+
+  <script>
+    // مؤقت لإعادة التوجيه إلى الصفحة الرئيسية بعد 10 ثوانٍ (اختياري)
+    let seconds = 10;
+    const countdownElement = document.getElementById('countdown');
+    
+    if (countdownElement) {
+      countdownElement.innerHTML = `سيتم توجيهك إلى الرئيسية تلقائياً خلال ${seconds} ثانية...`;
+      
+      const interval = setInterval(function() {
+        seconds--;
+        if (seconds >= 0) {
+          countdownElement.innerHTML = `سيتم توجيهك إلى الرئيسية تلقائياً خلال ${seconds} ثانية...`;
+        }
+        if (seconds < 0) {
+          clearInterval(interval);
+          window.location.href = 'index.html';
+        }
+      }, 1000);
+    }
+    
+    window.onscroll = function() {
+      const header = document.querySelector('.site-header');
+      if (window.scrollY > 50) {
+        header.classList.add('header-scrolled');
+      } else {
+        header.classList.remove('header-scrolled');
+      }
+    };
+  </script>
+</body>
+</html>
