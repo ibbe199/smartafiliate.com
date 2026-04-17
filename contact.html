@@ -4,9 +4,53 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>تواصل معنا | smartafiliate</title>
-  <meta name="description" content="تواصل مع smartafiliate للاستفسارات، الملاحظات، اقتراحات الأدوات، أو فرص التعاون." />
+  <meta name="description" content="تواصل مع smartafiliate للاستفسارات، الملاحظات، اقتراحات الأدوات، أو فرص التعاون. نرد خلال 48 ساعة." />
+  <meta name="keywords" content="تواصل, اتصل بنا, استفسار, تعاون, شراكة, اقتراحات" />
+  <link rel="canonical" href="https://smartafiliate.com/contact.html" />
+  <meta property="og:title" content="تواصل معنا | smartafiliate" />
+  <meta property="og:description" content="تواصل مع smartafiliate للاستفسارات، الملاحظات، اقتراحات الأدوات، أو فرص التعاون." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://smartafiliate.com/contact.html" />
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ea580c'%3E%3Cpath d='M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5'/%3E%3C/svg%3E" />
   <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* تحسينات إضافية لنموذج الاتصال */
+    .form-group input, .form-group select, .form-group textarea {
+      transition: all 0.3s ease;
+    }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(234,88,12,0.1);
+      outline: none;
+    }
+    @media (max-width: 768px) {
+      .form-group input, .form-group textarea {
+        font-size: 16px; /* لمنع الزووم التلقائي في الآيفون */
+        width: 100%;
+      }
+      .contact-form {
+        padding: 1.2rem;
+      }
+    }
+    .submit-btn {
+      position: relative;
+      transition: all 0.3s ease;
+    }
+    .submit-btn.loading {
+      opacity: 0.7;
+      pointer-events: none;
+    }
+    .submit-btn.loading::after {
+      content: "⏳";
+      margin-right: 0.5rem;
+      animation: spin 1s linear infinite;
+      display: inline-block;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+  </style>
 </head>
 <body>
 
@@ -25,6 +69,10 @@
         <a href="learn-ai.html">تعلم AI</a>
         <a href="open-source.html">أدوات مفتوحة المصدر</a>
         <a href="articles.html">المقالات</a>
+        <a href="posts.html">جميع المقالات</a>
+        <a href="blog.html">المدونة</a>
+        <a href="about.html">من نحن</a>
+        <a href="contact.html">تواصل</a>
       </nav>
       <div class="header-actions">
         <a href="ai-articles.html" class="btn-outline-light">مكتبة AI</a>
@@ -38,7 +86,7 @@
       <div class="container">
         <span class="page-badge">📬 تواصل معنا</span>
         <h1>تواصل معنا</h1>
-        <p>إذا كان لديك استفسار، اقتراح، ملاحظة على المحتوى، أو رغبة في التعاون، يمكنك التواصل معنا عبر البريد الإلكتروني أو نموذج الاتصال.</p>
+        <p>نرحب باستفساراتكم واقتراحاتكم. سنرد عليكم خلال 48 ساعة كحد أقصى.</p>
       </div>
     </section>
 
@@ -62,9 +110,23 @@
           </div>
         </div>
 
+        <!-- نموذج الاتصال المحسن -->
         <div class="contact-form">
           <h2 style="margin-bottom: 1.5rem;">✉️ أرسل لنا رسالة</h2>
-          <form action="https://formspree.io/f/xgvogdkn" method="POST">
+          <form action="https://formspree.io/f/xgvogdkn" method="POST" id="contactForm">
+            
+            <!-- حقل Honeypot (مخفي – للحماية من السبام) -->
+            <input type="text" name="_gotcha" style="display:none" />
+            
+            <!-- توجيه المستخدم إلى صفحة الشكر بعد الإرسال -->
+            <input type="hidden" name="_next" value="https://smartafiliate.com/thanks.html" />
+            
+            <!-- عنوان الرسالة (لتنظيم البريد الوارد) -->
+            <input type="hidden" name="_subject" value="رسالة جديدة من smartafiliate" />
+            
+            <!-- لغة الرسالة -->
+            <input type="hidden" name="_language" value="ar" />
+            
             <div class="form-group">
               <label>الاسم الكامل</label>
               <input type="text" name="name" placeholder="أدخل اسمك" required>
@@ -80,17 +142,18 @@
                 <option value="tool">اقتراح أداة</option>
                 <option value="feedback">ملاحظة على محتوى</option>
                 <option value="collab">تعاون وشراكة</option>
+                <option value="advertising">إعلان ورعاية</option>
               </select>
             </div>
             <div class="form-group">
               <label>الرسالة</label>
               <textarea name="message" rows="5" placeholder="اكتب رسالتك هنا..." required></textarea>
             </div>
-            <input type="hidden" name="_subject" value="رسالة جديدة من smartafiliate">
-            <input type="hidden" name="_language" value="ar">
-            <button type="submit" class="submit-btn">إرسال الرسالة</button>
+            <button type="submit" class="submit-btn" id="submitBtn">إرسال الرسالة</button>
           </form>
-          <p style="font-size: 0.8rem; color: #475569; margin-top: 1rem;">🔒 لن يتم مشاركة بريدك الإلكتروني مع أي طرف ثالث. سنرد عليك خلال 48 ساعة.</p>
+          <p style="font-size: 0.8rem; color: #475569; margin-top: 1rem;">
+            🔒 لن يتم مشاركة بريدك الإلكتروني مع أي طرف ثالث. سنرد عليك خلال 48 ساعة.
+          </p>
         </div>
       </div>
     </section>
@@ -141,6 +204,35 @@
         header.classList.remove('header-scrolled');
       }
     };
+    
+    // تحسين تجربة النموذج: منع الإرسال المتعدد وإظهار حالة التحميل
+    const form = document.getElementById('contactForm');
+    const submitBtn = document.getElementById('submitBtn');
+    
+    if (form) {
+      form.addEventListener('submit', function(e) {
+        // تغيير مظهر الزر أثناء الإرسال
+        submitBtn.innerHTML = 'جاري الإرسال...';
+        submitBtn.classList.add('loading');
+        
+        // إضافة حماية إضافية: منع الإرسال المتعدد
+        let submitted = false;
+        if (submitted) {
+          e.preventDefault();
+          return;
+        }
+        submitted = true;
+        
+        // إعادة تعيين الزر بعد 10 ثوانٍ (في حالة حدوث خطأ)
+        setTimeout(function() {
+          if (submitBtn.classList.contains('loading')) {
+            submitBtn.innerHTML = 'إرسال الرسالة';
+            submitBtn.classList.remove('loading');
+            submitted = false;
+          }
+        }, 10000);
+      });
+    }
   </script>
 </body>
 </html>
