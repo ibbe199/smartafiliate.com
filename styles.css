@@ -176,7 +176,21 @@ img { max-width: 100%; display: block; height: auto; }
   border: 1px solid var(--line);
 }
 .card:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); }
-.card-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+.card-icon {
+  width: 56px;
+  height: 56px;
+  margin-bottom: 1rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--primary-soft);
+  border-radius: 16px;
+}
+.card-icon img {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+}
 .card h3 { margin-bottom: 0.8rem; color: var(--navy-2); }
 .card p { color: var(--muted); font-size: 0.9rem; }
 
@@ -232,7 +246,22 @@ img { max-width: 100%; display: block; height: auto; }
   border: 1px solid var(--line);
 }
 .tool-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); }
-.tool-icon { font-size: 3rem; margin-bottom: 1rem; }
+.tool-icon {
+  width: 72px;
+  height: 72px;
+  margin: 0 auto 1rem;
+  padding: 18px;
+  border-radius: 20px;
+  background: var(--primary-soft);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.tool-icon img {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+}
 .tool-card h3 { margin-bottom: 0.5rem; color: var(--navy-2); }
 .tool-card p { color: var(--muted); font-size: 0.85rem; margin-bottom: 1.2rem; }
 .tool-link {
