@@ -2,91 +2,45 @@
 
 [![Website](https://img.shields.io/badge/website-smartafiliate.com-orange)](https://smartafiliate.com)
 [![License](https://img.shields.io/badge/license-MIT-blue)](./LICENSE)
-[![Status](https://img.shields.io/badge/status-active-brightgreen)]()
 
-**Smartafiliate** is an Arabic content platform focused on **AI tools**, **affiliate marketing**, and building **practical digital projects**.
+**Smartafiliate** - منصة عربية للذكاء الاصطناعي والتسويق بالعمولة.
 
 ---
 
-## 🌐 Live Website
+## 🌐 الموقع
 
 👉 [smartafiliate.com](https://smartafiliate.com)
 
 ---
 
-## 📖 What the site offers
+## 📖 المحتوى
 
-- 🤖 **AI tools guides** – reviews and comparisons of the best AI tools
-- 📚 **structured articles** – organized content for easy learning
-- 🎯 **curated resources** – hand-picked tools and platforms
-- 🛠️ **practical learning paths** – step-by-step guides for beginners
-
----
-
-## 🎯 Project goal
-
-To simplify AI tools and affiliate marketing concepts into **clear, actionable steps** for creators, freelancers, and digital builders in the **Arabic-speaking world**.
+- 🤖 أفضل أدوات AI
+- 📚 مكتبة مقالات الذكاء الاصطناعي
+- 📈 شرح التسويق بالعمولة
+- 🛠️ أدوات مفتوحة المصدر
+- 📖 مسارات تعلم منظمة
 
 ---
 
-## 📁 Project structure
+## 🛠️ التقنيات المستخدمة
+
+- HTML5 / CSS3
+- تصميم متجاوب (RTL)
+- Formspree للتواصل
 
 ---
 
-## 🚀 Features
-
-- ✅ Fully responsive design (mobile + desktop)
-- ✅ SEO optimized (meta tags, sitemap, robots.txt)
-- ✅ RTL support (Arabic language)
-- ✅ Clean and modern UI
-- ✅ Working contact form (Formspree)
-- ✅ Fast loading with optimized CSS
-
----
-
-## 🛠️ Technologies used
-
-- HTML5
-- CSS3 (Custom properties + Flexbox + Grid)
-- No JavaScript frameworks (lightweight)
-- Formspree for contact forms
-
----
-
-## 📈 Status
-
-**Active** — continuously improving content, structure, and monetization systems.
-
----
-
-## 📄 License
+## 📄 الترخيص
 
 MIT License
 
-Copyright (c) 2026 Smartafiliate
+---
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software to use, copy, modify, merge, publish, and distribute it.
+## 📧 التواصل
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND.
+contact@smartafiliate.com
 
 ---
 
-## 🤝 Contributing
-
-Contributions, issues, and feature requests are welcome!
-
-Feel free to check the [issues page](https://github.com/your-username/smartafiliate/issues).
-
----
-
-## 📧 Contact
-
-For any inquiries, please reach out at: **contact@smartafiliate.com**
-
----
-
-## 🌟 Show your support
-
-If you find this project helpful, please give it a ⭐️ on GitHub!
-
+⭐ **لا تنسى وضع نجمة إذا أعجبك المشروع!**
