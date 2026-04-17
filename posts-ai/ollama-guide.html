@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>دليل Ollama: تشغيل النماذج المحلية بسهولة | smartafiliate</title>
+  <meta name="description" content="دليل شامل لـ Ollama: أداة مجانية لتشغيل النماذج اللغوية المحلية (Llama, Mistral, Falcon) بسهولة على جهازك." />
+  <link rel="stylesheet" href="../styles.css" />
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="logo">
+        <span class="logo-text logo-text-light">smart</span>
+        <span class="logo-text logo-text-accent">afiliate</span>
+      </div>
+      <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+      <nav class="main-nav" id="mainNav">
+        <a href="../index.html">الرئيسية</a>
+        <a href="../best-ai-tools.html">أفضل أدوات AI</a>
+        <a href="../ai-articles.html">مكتبة AI</a>
+        <a href="../learn-ai.html">تعلم AI</a>
+        <a href="../open-source.html">أدوات مفتوحة المصدر</a>
+        <a href="../articles.html">المقالات</a>
+        <a href="../blog.html">المدونة</a>
+        <a href="../about.html">من نحن</a>
+        <a href="../contact.html">تواصل</a>
+      </nav>
+      <div class="header-actions">
+        <a href="../ai-articles.html" class="btn-outline-light">مكتبة AI</a>
+        <a href="../best-ai-tools.html" class="btn-primary-light">أفضل أدوات AI</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <div class="container">
+        <span class="page-badge">🧠 دليل أداة</span>
+        <h1>دليل Ollama: تشغيل النماذج المحلية بسهولة</h1>
+        <p>تعرف على Ollama – أسهل طريقة لتشغيل نماذج Llama و Mistral و Falcon محلياً على جهازك</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="article-container">
+          <div class="article-body" style="padding: 2rem;">
+            
+            <div class="toc">
+              <h3>📑 في هذا المقال</h3>
+              <ul>
+                <li><a href="#intro">ما هو Ollama؟</a></li>
+                <li><a href="#installation">تثبيت Ollama على Windows و Mac و Linux</a></li>
+                <li><a href="#basic-commands">الأوامر الأساسية</a></li>
+                <li><a href="#models">النماذج المتاحة (Llama, Mistral, Falcon, Gemma)</a></li>
+                <li><a href="#custom-models">إنشاء نماذج مخصصة (Modelfiles)</a></li>
+                <li><a href="#api">استخدام Ollama كـ API</a></li>
+                <li><a href="#ui">واجهات مستخدم رسومية لـ Ollama</a></li>
+                <li><a href="#tips">نصائح وحيل متقدمة</a></li>
+                <li><a href="#pros-cons">الإيجابيات والسلبيات</a></li>
+                <li><a href="#conclusion">الخلاصة</a></li>
+              </ul>
+            </div>
+
+            <h2 id="intro">🧠 ما هو Ollama؟</h2>
+            <p><strong>Ollama</strong> هو أداة مجانية ومفتوحة المصدر تتيح لك <strong>تشغيل نماذج اللغة الكبيرة (LLMs) محلياً على جهازك</strong> بسهولة شديدة. قبل Ollama، كان تشغيل نموذج مثل Llama 3 يتطلب خبرة تقنية عالية. مع Ollama، الأمر بسيط مثل كتابة أمر واحد في الطرفية.</p>
+            <p>Ollama متوفر على Windows و Mac و Linux، ويدعم أشهر النماذج مفتوحة المصدر: Llama 3، Mistral، Falcon، Gemma، Phi-3، وغيرها.</p>
+
+            <div class="info-box">
+              <strong>📌 معلومة مهمة:</strong> Ollama مجاني بالكامل ولا يحتوي على أي قيود أو حدود استخدام. كل شيء يعمل محلياً على جهازك.
+            </div>
+
+            <h2 id="installation">📥 تثبيت Ollama</h2>
+            
+            <p><strong>Windows:</strong></p>
+            <pre style="background:#0b1f3a; color:#fff; padding:1rem; border-radius:12px; direction:ltr; text-align:left;">
+# اذهب إلى https://ollama.ai/download
+# حمّل ملف OllamaSetup.exe
+# شغّله واتبع التعليمات (التالي → التالي → إنهاء)
+            </pre>
+            
+            <p><strong>Mac:</strong></p>
+            <pre style="background:#0b1f3a; color:#fff; padding:1rem; border-radius:12px; direction:ltr; text-align:left;">
+# تحميل Ollama-darwin.dmg من الموقع
+# اسحب Ollama إلى مجلد Applications
+# افتح التطبيق
+            </pre>
+            
+            <p><strong>Linux:</strong></p>
+            <pre style="background:#0b1f3a; color:#fff; padding:1rem; border-radius:12px; direction:ltr; text-align:left;">
+curl -fsSL https://ollama.ai/install.sh | sh
+            </pre>
+
+            <h2 id="basic-commands">⚙️ الأوامر الأساسية</h2>
+            
+            <p><strong>تشغيل نموذج:</strong></p>
+            <pre style="background:#0b1f3a; color:#fff; padding:1rem; border-radius:12px; direction:ltr; text-align:left;">
+ollama run llama3
+            </pre>
+            
+            <p><strong>قائمة النماذج المحملة:</strong></p>
+            <pre style="background:#0b1f3a; color:#fff; padding:1rem; border-radius:12px; direction:ltr; text-align:left;">
+ollama list
+            </pre>
+            
+            <p><strong>تحميل نموذج بدون تشغيل:</strong></p>
+            <pre style="background:#0b1f3a; color:#fff; padding:1rem; border-radius:12px; direction:ltr; text-align:left;">
+ollama pull mistral
+            </pre>
+            
+            <p><strong>حذف نموذج:</strong></p>
+            <pre style="background:#0b1f3a; color:#fff; padding:1rem; border-radius:12px; direction:ltr; text-align:left;">
+ollama rm falcon
+            </pre>
+            
+            <p><strong>عرض معلومات النموذج:</strong></p>
+            <pre style="background:#0b1f3a; color:#fff; padding:1rem; border-radius:12px; direction:ltr; text-align:left;">
+ollama show llama3
+            </pre>
+
+            <h2 id="models">📦 النماذج المتاحة</h2>
+            <p>Ollama يدعم العشرات من النماذج. إليك أشهرها:</p>
+            <ul>
+              <li><strong>llama3 (8B, 70B):</strong> من Meta – أفضل أداء عام.</li>
+              <li><strong>mistral (7B):</strong> من Mistral AI – صغير وسريع.</li>
+              <li><strong>mixtral (8x7B):</strong> إصدار الخبراء – أداء قريب من GPT-3.5.</li>
+              <li><strong>falcon (7B, 40B):</strong> من TII الإمارات – دعم ممتاز للعربية.</li>
+              <li><strong>gemma (2B, 7B):</strong> من Google – صغير جداً.</li>
+              <li><strong>phi3 (3.8B):</strong> من Microsoft – صغير جداً، أداء جيد.</li>
+              <li><strong>codellama (7B, 34B, 70B):</strong> متخصص في البرمجة.</li>
+              <li><strong>llama2 (7B, 13B, 70B):</strong> الإصدار السابق.</li>
+            </ul>
+
+            <h2 id="custom-models">🛠️ إنشاء نماذج مخصصة (Modelfiles)</h2>
+            <p>يمكنك إنشاء نموذج مخصص بإعداداتك الخاصة (مثل نظام التعليمات). أنشئ ملف `Modelfile` بالمحتوى:</p>
+            <pre style="background:#0b1f3a; color:#fff; padding:1rem; border-radius:12px; direction:ltr; text-align:left;">
+FROM llama3
+
+# تعيين نظام التعليمات (System Prompt)
+SYSTEM أنت مساعد عربي متخصص في التسويق بالعمولة. أجب باختصار ووضوح.
+
+# تعيين إعدادات الحرارة (الإبداع)
+PARAMETER temperature 0.7
+PARAMETER top_p 0.9
+
+# تعيين قالب المحادثة
+TEMPLATE """{{ if .System }}<|start_header_id|>system<|end_header_id|>
+
+{{ .System }}<|eot_id|>{{ end }}{{ if .Prompt }}<|start_header_id|>user<|end_header_id|>
+
+{{ .Prompt }}<|eot_id|>{{ end }}<|start_header_id|>assistant<|end_header_id|>
+
+{{ .Response }}<|eot_id|>"""
+            </pre>
+            <p>ثم أنشئ النموذج:</p>
+            <pre style="background:#0b1f3a; color:#fff; padding:1rem; border-radius:12px; direction:ltr; text-align:left;">
+ollama create my-affiliate-assistant -f ./Modelfile
+ollama run my-affiliate-assistant
+            </pre>
+
+            <h2 id="api">🔌 استخدام Ollama كـ API</h2>
+            <p>Ollama يشغل خادم API تلقائياً على المنفذ 11434. يمكنك استخدامه من أي تطبيق:</p>
+            <pre style="background:#0b1f3a; color:#fff; padding:1rem; border-radius:12px; direction:ltr; text-align:left;">
+# توليد نص (Generate)
+curl http://localhost:11434/api/generate -d '{
+  "model": "llama3",
+  "prompt": "مرحباً، كيف حالك؟"
+}'
+
+# محادثة (Chat)
+curl http://localhost:11434/api/chat -d '{
+  "model": "llama3",
+  "messages": [
+    {"role": "user", "content": "ما هو التسويق بالعمولة؟"}
+  ]
+}'
+            </pre>
+
+            <h2 id="ui">🖥️ واجهات مستخدم رسومية لـ Ollama</h2>
+            <p>إذا كنت لا تفضل سطر الأوامر، هناك واجهات رسومية تعمل مع Ollama:</p>
+            <ul>
+              <li><strong>Open WebUI (أفضل خيار):</strong> واجهة ويب جميلة تشبه ChatGPT. تثبيت سهل باستخدام Docker.</li>
+              <li><strong>Ollama Web UI:</strong> واجهة بسيطة وخفيفة.</li>
+              <li><strong>Continue (لـ VS Code):</strong> مكمل ذكاء اصطناعي للمبرمجين.</li>
+              <li><strong>Enchanted (لـ Mac):</strong> تطبيق سطح مكتب أنيق.</li>
+            </ul>
+
+            <h2 id="tips">💡 نصائح وحيل متقدمة</h2>
+            <ul>
+              <li><strong>تغيير عدد الخيوط (Threads):</strong> لزيادة السرعة، استخدم <code>--num-thread</code>. مثال: <code>ollama run llama3 --num-thread 8</code></li>
+              <li><strong>تغيير حجم السياق (Context Size):</strong> لزيادة طول المحادثة، استخدم <code>--ctx-size</code>. مثال: <code>ollama run llama3 --ctx-size 8192</code></li>
+              <li><strong>حفظ المحادثة:</strong> استخدم إعادة التوجيه لحفظ الردود: <code>ollama run llama3 > conversation.txt</code></li>
+              <li><strong>تشغيل Ollama كخدمة:</strong> على Linux، يمكنك تشغيله في الخلفية باستخدام <code>systemctl</code>.</li>
+            </ul>
+
+            <h2 id="pros-cons">✅ الإيجابيات / ❌ السلبيات</h2>
+            
+            <p><strong>✅ الإيجابيات:</strong></p>
+            <ul>
+              <li>مجاني بالكامل</li>
+              <li>سهل الاستخدام (أمر واحد لتشغيل النماذج)</li>
+              <li>يدعم أشهر النماذج مفتوحة المصدر</li>
+              <li>يعمل على Windows و Mac و Linux</li>
+              <li>يقدم API للتكامل مع التطبيقات</li>
+            </ul>
+            
+            <p><strong>❌ السلبيات:</strong></p>
+            <ul>
+              <li>النماذج الكبيرة تحتاج أجهزة قوية</li>
+              <li>لا يدعم التعديل (Fine-tuning) مباشرة</li>
+              <li>بعض النماذج غير متوفرة (مثل GPT-4)</li>
+            </ul>
+
+            <h2 id="conclusion">🎯 الخلاصة</h2>
+            <p>Ollama هو <strong>أسهل وأسرع طريقة</strong> لتشغيل نماذج الذكاء الاصطناعي محلياً على جهازك. إذا كنت تريد تجربة Llama 3 أو Mistral أو Falcon دون تعقيدات، ابدأ بـ Ollama.</p>
+            <p><strong>نصيحتي:</strong> ابدأ بتشغيل Llama 3 8B. إنه نموذج قوي ويعمل على معظم أجهزة الكمبيوتر الحديثة. إذا أعجبتك التجربة، جرّب نماذج أخرى.</p>
+
+            <div class="info-box">
+              <strong>🔗 روابط مهمة:</strong><br />
+              <a href="https://ollama.ai" target="_blank" rel="noopener noreferrer nofollow" style="color:#ea580c;">الموقع الرسمي لـ Ollama</a><br />
+              <a href="https://github.com/ollama/ollama" target="_blank" rel="noopener noreferrer nofollow" style="color:#ea580c;">GitHub - Ollama</a><br />
+              <a href="https://ollama.ai/library" target="_blank" rel="noopener noreferrer nofollow" style="color:#ea580c;">مكتبة النماذج</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-col">
+        <div class="logo"><span class="logo-text logo-text-light">smart</span><span class="logo-text logo-text-accent">afiliate</span></div>
+        <p class="footer-description">منصة عربية تساعدك على فهم الذكاء الاصطناعي، التسويق بالعمولة، وبناء مشروع رقمي أوضح وأكثر قابلية للنمو.</p>
+      </div>
+      <div class="footer-col">
+        <h4>استكشف</h4>
+        <a href="../best-ai-tools.html">⭐ أفضل أدوات AI</a>
+        <a href="../ai-articles.html">📚 مكتبة AI</a>
+        <a href="../learn-ai.html">📖 تعلم AI</a>
+      </div>
+      <div class="footer-col">
+        <h4>المساعدة</h4>
+        <a href="../about.html">من نحن</a>
+        <a href="../contact.html">اتصل بنا</a>
+        <a href="../privacy.html">سياسة الخصوصية</a>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <span>smartafiliate © 2026 – جميع الحقوق محفوظة</span>
+      <span>🌐 بناء محتوى عربي عملي للمستقبل</span>
+    </div>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById('mainNav').classList.toggle('active');
+    }
+    
+    window.onscroll = function() {
+      const header = document.querySelector('.site-header');
+      if (window.scrollY > 50) {
+        header.classList.add('header-scrolled');
+      } else {
+        header.classList.remove('header-scrolled');
+      }
+    };
+  </script>
+</body>
+</html>
