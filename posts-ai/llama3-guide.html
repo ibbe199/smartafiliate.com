@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>دليل Llama 3 | smartafiliate</title>
-  <meta name="description" content="دليل شامل لـ Llama 3: نموذج ميتا القوي مفتوح المصدر. كيفية التثبيت والاستخدام والتشغيل المحلي." />
+  <title>دليل Llama 3: نموذج ميتا القوي مفتوح المصدر | smartafiliate</title>
+  <meta name="description" content="دليل شامل لـ Llama 3 من Meta: كيفية التثبيت، التشغيل المحلي، المميزات، ودعم اللغة العربية." />
   <link rel="stylesheet" href="../styles.css" />
 </head>
 <body>
@@ -23,7 +23,7 @@
         <a href="../learn-ai.html">تعلم AI</a>
         <a href="../open-source.html">أدوات مفتوحة المصدر</a>
         <a href="../articles.html">المقالات</a>
-        <a href="../blog.html">المدونة</a>
+        <a href="../posts.html">جميع المقالات</a>
         <a href="../about.html">من نحن</a>
         <a href="../contact.html">تواصل</a>
       </nav>
@@ -37,7 +37,7 @@
   <main>
     <section class="page-hero">
       <div class="container">
-        <span class="page-badge">🦙 دليل أداة</span>
+        <span class="page-badge">🦙 دليل أداة مفتوحة المصدر</span>
         <h1>دليل Llama 3: نموذج ميتا القوي مفتوح المصدر</h1>
         <p>تعرف على إمكانيات Llama 3، كيفية تثبيته، واستخدامه في مشاريعك مجاناً</p>
       </div>
@@ -49,10 +49,11 @@
           <div class="article-body" style="padding: 2rem;">
             
             <div class="toc">
-              <h3>📑 محتوى المقال</h3>
+              <h3>📑 في هذا المقال</h3>
               <ul>
                 <li><a href="#intro">ما هو Llama 3؟</a></li>
-                <li><a href="#features">المميزات</a></li>
+                <li><a href="#versions">الإصدارات المتاحة (8B, 70B)</a></li>
+                <li><a href="#features">المميزات الرئيسية</a></li>
                 <li><a href="#installation">كيف تثبته وتشغله؟</a></li>
                 <li><a href="#arabic">دعم اللغة العربية</a></li>
                 <li><a href="#conclusion">الخلاصة</a></li>
@@ -60,40 +61,33 @@
             </div>
 
             <h2 id="intro">🦙 ما هو Llama 3؟</h2>
-            <p>Llama 3 هو نموذج لغوي كبير مفتوح المصدر من Meta (شركة Facebook). متوفر بأحجام مختلفة (8B و 70B معلمة)، ويعتبر من أقوى النماذج المجانية المتاحة. يمكن تشغيله محلياً على جهازك دون الحاجة إلى إنترنت.</p>
+            <p><strong>Llama 3</strong> هو نموذج لغوي كبير مفتوح المصدر طورته شركة <strong>Meta (فيسبوك سابقاً)</strong>. تم إطلاقه في أبريل 2024 ويعتبر من أقوى النماذج مفتوحة المصدر المتاحة حالياً.</p>
 
-            <h2 id="features">✨ المميزات</h2>
+            <h2 id="versions">📦 الإصدارات المتاحة</h2>
             <ul>
-              <li><strong>مفتوح المصدر بالكامل:</strong> مجاني للاستخدام التجاري والأكاديمي.</li>
-              <li><strong>أداء ممتاز:</strong> ينافس GPT-3.5 في معظم المهام.</li>
-              <li><strong>دعم اللغة العربية:</strong> أداء جيد جداً بعد التعديل.</li>
-              <li><strong>يعمل محلياً:</strong> خصوصية كاملة، لا حاجة للإنترنت.</li>
+              <li><strong>Llama 3 8B (8 مليار معلمة):</strong> حجم صغير، يعمل على أجهزة متوسطة (8-16GB RAM).</li>
+              <li><strong>Llama 3 70B (70 مليار معلمة):</strong> حجم كبير، يحتاج أجهزة قوية (32GB+ RAM).</li>
+            </ul>
+
+            <h2 id="features">✨ المميزات الرئيسية</h2>
+            <ul>
+              <li>مفتوح المصدر بالكامل – مجاني للاستخدام التجاري</li>
+              <li>يعمل محلياً – خصوصية كاملة</li>
+              <li>أداء ممتاز (يتفوق على GPT-3.5)</li>
+              <li>دعم اللغة العربية بشكل جيد</li>
             </ul>
 
             <h2 id="installation">📥 كيف تثبته وتشغله؟</h2>
-            <p><strong>الطريقة الأسهل: استخدام Ollama</strong></p>
-            <ul>
-              <li>حمّل Ollama من <a href="https://ollama.ai" target="_blank">ollama.ai</a></li>
-              <li>نفذ الأمر: <code>ollama run llama3</code></li>
-              <li>سيتم تحميل النموذج تلقائياً ويمكنك البدء فوراً.</li>
-            </ul>
-            <p><strong>الطريقة المتقدمة: من GitHub</strong></p>
-            <ul>
-              <li>استنسخ المستودع: <code>git clone https://github.com/meta-llama/llama3</code></li>
-              <li>اتبع تعليمات التثبيت في ملف README.</li>
-            </ul>
+            <p><strong>باستخدام Ollama (الأسهل):</strong></p>
+            <pre style="background:#0b1f3a; color:#fff; padding:1rem; border-radius:12px;">ollama run llama3</pre>
 
             <h2 id="arabic">🌐 دعم اللغة العربية</h2>
-            <p>Llama 3 الأساسي يدعم العربية بشكل مقبول. لكن توجد إصدارات معدلة (Fine-tuned) مثل "Llama 3 Arabic" تقدم أداء ممتازاً. يمكنك البحث عنها في Hugging Face.</p>
-
-            <h2 id="conclusion">🎯 الخلاصة</h2>
-            <p>Llama 3 هو الخيار الأمثل لمن يريد نموذج لغوي قوي ومجاني ويعمل محلياً. مثالي للمطورين والباحثين والشركات التي تهتم بالخصوصية.</p>
+            <p>Llama 3 الأساسي يدعم العربية بشكل مقبول. توجد إصدارات معدلة مثل "Llama 3 Arabic" تقدم أداءً ممتازاً.</p>
 
             <div class="info-box">
-              <strong>🔗 روابط مهمة:</strong><br />
-              <a href="https://github.com/meta-llama/llama3" target="_blank" style="color:#ea580c;">GitHub - Llama 3</a><br />
-              <a href="https://ollama.ai" target="_blank" style="color:#ea580c;">Ollama - لتشغيل النماذج بسهولة</a>
+              <strong>💡 نصيحة:</strong> ابدأ بـ Llama 3 8B باستخدام Ollama. إنه سهل التثبيت ويعمل على معظم الأجهزة.
             </div>
+
           </div>
         </div>
       </div>
@@ -102,29 +96,20 @@
 
   <footer class="site-footer">
     <div class="container footer-grid">
-      <div class="footer-col">
-        <div class="logo"><span class="logo-text logo-text-light">smart</span><span class="logo-text logo-text-accent">afiliate</span></div>
-        <p class="footer-description">منصة عربية تساعدك على فهم الذكاء الاصطناعي، التسويق بالعمولة، وبناء مشروع رقمي.</p>
-      </div>
-      <div class="footer-col">
-        <h4>استكشف</h4>
-        <a href="../best-ai-tools.html">⭐ أفضل أدوات AI</a>
-        <a href="../ai-articles.html">📚 مكتبة AI</a>
-        <a href="../learn-ai.html">📖 تعلم AI</a>
-      </div>
-      <div class="footer-col">
-        <h4>المساعدة</h4>
-        <a href="../about.html">من نحن</a>
-        <a href="../contact.html">اتصل بنا</a>
-        <a href="../privacy.html">سياسة الخصوصية</a>
-      </div>
+      <div class="footer-col"><div class="logo"><span class="logo-text logo-text-light">smart</span><span class="logo-text logo-text-accent">afiliate</span></div></div>
+      <div class="footer-col"><h4>من نحن</h4><a href="../about.html">من نحن</a><a href="../contact.html">تواصل</a></div>
+      <div class="footer-col"><h4>سياسة الخصوصية</h4><a href="../privacy.html">الخصوصية</a><a href="../terms.html">الشروط</a></div>
     </div>
-    <div class="container footer-bottom">
-      <span>smartafiliate © 2026 – جميع الحقوق محفوظة</span>
-      <span>🌐 بناء محتوى عربي عملي للمستقبل</span>
-    </div>
+    <div class="container footer-bottom"><span>smartafiliate © 2026</span></div>
   </footer>
 
-  <script>function toggleMenu(){document.getElementById('mainNav').classList.toggle('active');}</script>
+  <script>
+    function toggleMenu() { document.getElementById('mainNav').classList.toggle('active'); }
+    window.onscroll = function() {
+      const header = document.querySelector('.site-header');
+      if (window.scrollY > 50) header.classList.add('header-scrolled');
+      else header.classList.remove('header-scrolled');
+    };
+  </script>
 </body>
 </html>
