@@ -3,13 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>تواصل | smartafiliate</title>
+  <title>تواصل معنا | smartafiliate</title>
   <meta name="description" content="تواصل مع smartafiliate للاستفسارات، الملاحظات، اقتراحات الأدوات، أو فرص التعاون." />
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ea580c'%3E%3Cpath d='M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5'/%3E%3C/svg%3E" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
+  <!-- ===== HEADER ===== -->
   <header class="site-header">
     <div class="container header-inner">
       <div class="logo">
@@ -24,9 +25,6 @@
         <a href="learn-ai.html">تعلم AI</a>
         <a href="open-source.html">أدوات مفتوحة المصدر</a>
         <a href="articles.html">المقالات</a>
-        <a href="blog.html">المدونة</a>
-        <a href="about.html">من نحن</a>
-        <a href="contact.html">تواصل</a>
       </nav>
       <div class="header-actions">
         <a href="ai-articles.html" class="btn-outline-light">مكتبة AI</a>
@@ -98,23 +96,23 @@
     </section>
   </main>
 
+  <!-- ===== FOOTER ===== -->
   <footer class="site-footer">
     <div class="container footer-grid">
       <div class="footer-col">
-        <div class="logo"><span class="logo-text logo-text-light">smart</span><span class="logo-text logo-text-accent">afiliate</span></div>
+        <div class="logo">
+          <span class="logo-text logo-text-light">smart</span>
+          <span class="logo-text logo-text-accent">afiliate</span>
+        </div>
         <p class="footer-description">منصة عربية تساعدك على فهم الذكاء الاصطناعي، التسويق بالعمولة، وبناء مشروع رقمي أوضح وأكثر قابلية للنمو.</p>
       </div>
       <div class="footer-col">
-        <h4>استكشف</h4>
-        <a href="best-ai-tools.html">⭐ أفضل أدوات AI</a>
-        <a href="ai-articles.html">📚 مكتبة AI</a>
-        <a href="learn-ai.html">📖 تعلم AI</a>
-        <a href="open-source.html">🛠️ أدوات مفتوحة المصدر</a>
+        <h4>من نحن</h4>
+        <a href="about.html">من نحن</a>
+        <a href="contact.html">تواصل معنا</a>
       </div>
       <div class="footer-col">
-        <h4>المساعدة</h4>
-        <a href="about.html">من نحن</a>
-        <a href="contact.html">اتصل بنا</a>
+        <h4>سياسة الخصوصية</h4>
         <a href="privacy.html">سياسة الخصوصية</a>
         <a href="terms.html">الشروط والأحكام</a>
       </div>
@@ -130,6 +128,19 @@
     </div>
   </footer>
 
-  <script>function toggleMenu(){document.getElementById('mainNav').classList.toggle('active');}</script>
+  <script>
+    function toggleMenu() {
+      document.getElementById('mainNav').classList.toggle('active');
+    }
+    
+    window.onscroll = function() {
+      const header = document.querySelector('.site-header');
+      if (window.scrollY > 50) {
+        header.classList.add('header-scrolled');
+      } else {
+        header.classList.remove('header-scrolled');
+      }
+    };
+  </script>
 </body>
 </html>
