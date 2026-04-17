@@ -10,6 +10,7 @@
 </head>
 <body>
 
+  <!-- ===== HEADER ===== -->
   <header class="site-header">
     <div class="container header-inner">
       <div class="logo">
@@ -24,9 +25,6 @@
         <a href="learn-ai.html">تعلم AI</a>
         <a href="open-source.html">أدوات مفتوحة المصدر</a>
         <a href="articles.html">المقالات</a>
-        <a href="blog.html">المدونة</a>
-        <a href="about.html">من نحن</a>
-        <a href="contact.html">تواصل</a>
       </nav>
       <div class="header-actions">
         <a href="ai-articles.html" class="btn-outline-light">مكتبة AI</a>
@@ -60,30 +58,30 @@
             <p>نحتفظ بالحق في تعديل هذه الشروط في أي وقت. سيتم نشر أي تغييرات على هذه الصفحة.</p>
             <h2>اتصل بنا</h2>
             <p>إذا كان لديك أي أسئلة حول هذه الشروط، يرجى <a href="contact.html" style="color: #ea580c;">التواصل معنا</a>.</p>
-            <p style="margin-top: 2rem; font-size: 0.85rem;">آخر تحديث: 15 أبريل 2026</p>
+            <p style="margin-top: 2rem; font-size: 0.85rem;">آخر تحديث: 17 أبريل 2026</p>
           </div>
         </div>
       </div>
     </section>
   </main>
 
+  <!-- ===== FOOTER ===== -->
   <footer class="site-footer">
     <div class="container footer-grid">
       <div class="footer-col">
-        <div class="logo"><span class="logo-text logo-text-light">smart</span><span class="logo-text logo-text-accent">afiliate</span></div>
+        <div class="logo">
+          <span class="logo-text logo-text-light">smart</span>
+          <span class="logo-text logo-text-accent">afiliate</span>
+        </div>
         <p class="footer-description">منصة عربية تساعدك على فهم الذكاء الاصطناعي، التسويق بالعمولة، وبناء مشروع رقمي أوضح وأكثر قابلية للنمو.</p>
       </div>
       <div class="footer-col">
-        <h4>استكشف</h4>
-        <a href="best-ai-tools.html">⭐ أفضل أدوات AI</a>
-        <a href="ai-articles.html">📚 مكتبة AI</a>
-        <a href="learn-ai.html">📖 تعلم AI</a>
-        <a href="open-source.html">🛠️ أدوات مفتوحة المصدر</a>
+        <h4>من نحن</h4>
+        <a href="about.html">من نحن</a>
+        <a href="contact.html">تواصل معنا</a>
       </div>
       <div class="footer-col">
-        <h4>المساعدة</h4>
-        <a href="about.html">من نحن</a>
-        <a href="contact.html">اتصل بنا</a>
+        <h4>سياسة الخصوصية</h4>
         <a href="privacy.html">سياسة الخصوصية</a>
         <a href="terms.html">الشروط والأحكام</a>
       </div>
@@ -99,6 +97,19 @@
     </div>
   </footer>
 
-  <script>function toggleMenu(){document.getElementById('mainNav').classList.toggle('active');}</script>
+  <script>
+    function toggleMenu() {
+      document.getElementById('mainNav').classList.toggle('active');
+    }
+    
+    window.onscroll = function() {
+      const header = document.querySelector('.site-header');
+      if (window.scrollY > 50) {
+        header.classList.add('header-scrolled');
+      } else {
+        header.classList.remove('header-scrolled');
+      }
+    };
+  </script>
 </body>
 </html>
