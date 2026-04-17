@@ -10,6 +10,7 @@
 </head>
 <body>
 
+  <!-- ===== HEADER ===== -->
   <header class="site-header">
     <div class="container header-inner">
       <div class="logo">
@@ -24,9 +25,6 @@
         <a href="learn-ai.html">تعلم AI</a>
         <a href="open-source.html">أدوات مفتوحة المصدر</a>
         <a href="articles.html">المقالات</a>
-        <a href="blog.html">المدونة</a>
-        <a href="about.html">من نحن</a>
-        <a href="contact.html">تواصل</a>
       </nav>
       <div class="header-actions">
         <a href="ai-articles.html" class="btn-outline-light">مكتبة AI</a>
@@ -47,29 +45,13 @@
     <section class="section">
       <div class="container">
         <div class="section-header">
-          <span class="section-tag">🔍 استكشف المحتوى</span>
-          <h2>مسارات التعلم السريعة</h2>
-          <p>اختر المسار الذي يناسب احتياجك الحالي وابدأ مباشرة</p>
-        </div>
-        <div class="cards-grid">
-          <a href="ai-articles.html" class="card"><div class="card-icon">🤖</div><h3>مكتبة AI</h3><p>الدخول إلى الفهرس المنظم للمقالات المستقلة في الذكاء الاصطناعي.</p></a>
-          <a href="open-source.html" class="card"><div class="card-icon">🛠️</div><h3>أدوات مفتوحة المصدر</h3><p>دليل الأدوات المحلية والمفتوحة المصدر مع روابطها الرسمية.</p></a>
-          <a href="best-ai-tools.html" class="card"><div class="card-icon">⭐</div><h3>أفضل أدوات AI</h3><p>ابدأ من الأدوات إذا كنت تريد أسرع طريق للتطبيق العملي.</p></a>
-          <a href="contact.html" class="card"><div class="card-icon">💬</div><h3>التعليقات والتواصل</h3><p>يمكنك إرسال الملاحظات والاقتراحات عبر صفحة التواصل.</p></a>
-        </div>
-      </div>
-    </section>
-
-    <section class="section section-alt">
-      <div class="container">
-        <div class="section-header">
           <span class="section-tag">🆕 جديد المدونة</span>
           <h2>أحدث التدوينات</h2>
           <p>آخر المقالات الحصرية المنشورة على المدونة</p>
         </div>
         <div class="articles-grid">
           <article class="article-card">
-            <div class="article-image"><img src="https://placehold.co/600x400/12305a/ffffff?text=AI+Strategy"></div>
+            <div class="article-image"><img src="assets/images/blog-90-day-plan.jpg" alt="خطة 90 يوم مع الذكاء الاصطناعي" loading="lazy"></div>
             <div class="article-content">
               <span class="article-category">🤖 استراتيجيات AI</span>
               <h3><a href="posts-ai/29-90-day-ai-plan.html">خطة 90 يومًا مع الذكاء الاصطناعي</a></h3>
@@ -78,7 +60,7 @@
             </div>
           </article>
           <article class="article-card">
-            <div class="article-image"><img src="https://placehold.co/600x400/0b1f3a/ffffff?text=Personal+Brand"></div>
+            <div class="article-image"><img src="assets/images/blog-personal-brand.jpg" alt="الذكاء الاصطناعي والعلامة الشخصية" loading="lazy"></div>
             <div class="article-content">
               <span class="article-category">👤 العلامة الشخصية</span>
               <h3><a href="posts-ai/27-ai-and-personal-brand.html">الذكاء الاصطناعي والعلامة الشخصية</a></h3>
@@ -87,7 +69,7 @@
             </div>
           </article>
           <article class="article-card">
-            <div class="article-image"><img src="https://placehold.co/600x400/ea580c/ffffff?text=SEO+Guide"></div>
+            <div class="article-image"><img src="assets/images/blog-seo.jpg" alt="SEO لمواقع الأفلييت" loading="lazy"></div>
             <div class="article-content">
               <span class="article-category">🔍 SEO</span>
               <h3><a href="articles/seo-for-affiliate-sites.html">كيف تهيئ موقع الأفلييت للسيو بشكل صحيح</a></h3>
@@ -98,38 +80,25 @@
         </div>
       </div>
     </section>
-
-    <section class="section">
-      <div class="container">
-        <div class="newsletter">
-          <h3>📧 اشترك في النشرة البريدية</h3>
-          <p>احصل على أحدث المقالات والنصائح الحصرية مباشرة إلى بريدك الإلكتروني</p>
-          <form class="newsletter-form" onsubmit="alert('شكراً لاشتراكك!'); return false;">
-            <input type="email" class="newsletter-input" placeholder="بريدك الإلكتروني" required>
-            <button type="submit" class="newsletter-btn">اشترك الآن</button>
-          </form>
-        </div>
-      </div>
-    </section>
   </main>
 
+  <!-- ===== FOOTER ===== -->
   <footer class="site-footer">
     <div class="container footer-grid">
       <div class="footer-col">
-        <div class="logo"><span class="logo-text logo-text-light">smart</span><span class="logo-text logo-text-accent">afiliate</span></div>
+        <div class="logo">
+          <span class="logo-text logo-text-light">smart</span>
+          <span class="logo-text logo-text-accent">afiliate</span>
+        </div>
         <p class="footer-description">منصة عربية تساعدك على فهم الذكاء الاصطناعي، التسويق بالعمولة، وبناء مشروع رقمي أوضح وأكثر قابلية للنمو.</p>
       </div>
       <div class="footer-col">
-        <h4>استكشف</h4>
-        <a href="best-ai-tools.html">⭐ أفضل أدوات AI</a>
-        <a href="ai-articles.html">📚 مكتبة AI</a>
-        <a href="learn-ai.html">📖 تعلم AI</a>
-        <a href="open-source.html">🛠️ أدوات مفتوحة المصدر</a>
+        <h4>من نحن</h4>
+        <a href="about.html">من نحن</a>
+        <a href="contact.html">تواصل معنا</a>
       </div>
       <div class="footer-col">
-        <h4>المساعدة</h4>
-        <a href="about.html">من نحن</a>
-        <a href="contact.html">اتصل بنا</a>
+        <h4>سياسة الخصوصية</h4>
         <a href="privacy.html">سياسة الخصوصية</a>
         <a href="terms.html">الشروط والأحكام</a>
       </div>
@@ -145,6 +114,19 @@
     </div>
   </footer>
 
-  <script>function toggleMenu(){document.getElementById('mainNav').classList.toggle('active');}</script>
+  <script>
+    function toggleMenu() {
+      document.getElementById('mainNav').classList.toggle('active');
+    }
+    
+    window.onscroll = function() {
+      const header = document.querySelector('.site-header');
+      if (window.scrollY > 50) {
+        header.classList.add('header-scrolled');
+      } else {
+        header.classList.remove('header-scrolled');
+      }
+    };
+  </script>
 </body>
 </html>
