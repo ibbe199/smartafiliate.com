@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>دليل Llama 3: نموذج ميتا القوي مفتوح المصدر | smartafiliate</title>
+  <meta name="description" content="دليل شامل لـ Llama 3 من Meta: كيفية التثبيت، التشغيل المحلي، المميزات، ودعم اللغة العربية. نموذج مجاني وقوي ينافس GPT-3.5." />
+  <link rel="stylesheet" href="../styles.css" />
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="logo">
+        <span class="logo-text logo-text-light">smart</span>
+        <span class="logo-text logo-text-accent">afiliate</span>
+      </div>
+      <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+      <nav class="main-nav" id="mainNav">
+        <a href="../index.html">الرئيسية</a>
+        <a href="../best-ai-tools.html">أفضل أدوات AI</a>
+        <a href="../ai-articles.html">مكتبة AI</a>
+        <a href="../learn-ai.html">تعلم AI</a>
+        <a href="../open-source.html">أدوات مفتوحة المصدر</a>
+        <a href="../articles.html">المقالات</a>
+        <a href="../blog.html">المدونة</a>
+        <a href="../about.html">من نحن</a>
+        <a href="../contact.html">تواصل</a>
+      </nav>
+      <div class="header-actions">
+        <a href="../ai-articles.html" class="btn-outline-light">مكتبة AI</a>
+        <a href="../best-ai-tools.html" class="btn-primary-light">أفضل أدوات AI</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <div class="container">
+        <span class="page-badge">🦙 دليل أداة مفتوحة المصدر</span>
+        <h1>دليل Llama 3: نموذج ميتا القوي مفتوح المصدر</h1>
+        <p>تعرف على إمكانيات Llama 3، كيفية تثبيته، واستخدامه في مشاريعك مجاناً – نموذج ينافس GPT-3.5</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="article-container">
+          <div class="article-body" style="padding: 2rem;">
+            
+            <div class="toc">
+              <h3>📑 في هذا المقال</h3>
+              <ul>
+                <li><a href="#intro">ما هو Llama 3؟</a></li>
+                <li><a href="#versions">الإصدارات المتاحة (8B, 70B)</a></li>
+                <li><a href="#features">المميزات الرئيسية</a></li>
+                <li><a href="#installation">كيف تثبته وتشغله؟ (3 طرق)</a></li>
+                <li><a href="#ollama">تشغيل Llama 3 باستخدام Ollama (الأسهل)</a></li>
+                <li><a href="#arabic">دعم اللغة العربية في Llama 3</a></li>
+                <li><a href="#comparison">مقارنة Llama 3 vs ChatGPT</a></li>
+                <li><a href="#use-cases">استخدامات Llama 3 العملية</a></li>
+                <li><a href="#hardware">متطلبات الأجهزة (RAM, GPU)</a></li>
+                <li><a href="#pros-cons">الإيجابيات والسلبيات</a></li>
+                <li><a href="#conclusion">الخلاصة</a></li>
+              </ul>
+            </div>
+
+            <h2 id="intro">🦙 ما هو Llama 3؟</h2>
+            <p><strong>Llama 3</strong> هو نموذج لغوي كبير (Large Language Model) مفتوح المصدر طورته شركة <strong>Meta (فيسبوك سابقاً)</strong>. تم إطلاقه في أبريل 2024 ويعتبر نقلة نوعية في عالم النماذج مفتوحة المصدر.</p>
+            <p>يتميز Llama 3 بأنه <strong>مجاني تماماً للاستخدام التجاري والأكاديمي</strong>، ويمكن تشغيله محلياً على جهازك دون الحاجة إلى إنترنت. هذا يجعله خياراً ممتازاً للمطورين والشركات التي تهتم بالخصوصية.</p>
+
+            <div class="info-box">
+              <strong>📌 معلومة مهمة:</strong> Llama 3 يتفوق على GPT-3.5 في العديد من المعايير، ويقترب من GPT-4 في بعض المهام. وهو مجاني بالكامل!
+            </div>
+
+            <h2 id="versions">📦 الإصدارات المتاحة (8B, 70B)</h2>
+            <p>Llama 3 متوفر بحجمين رئيسيين:</p>
+            <ul>
+              <li><strong>Llama 3 8B (8 مليار معلمة):</strong> حجم أصغر، يعمل على أجهزة متوسطة (8-16GB RAM). مناسب للمبتدئين والاستخدام اليومي.</li>
+              <li><strong>Llama 3 70B (70 مليار معلمة):</strong> حجم أكبر، يحتاج أجهزة قوية (32GB+ RAM، GPU قوي). أداء قريب من GPT-4.</li>
+            </ul>
+            <p>هناك أيضاً إصدارات معدلة (Fine-tuned) من المجتمع مثل "Llama 3 Arabic" التي تقدم أداءً ممتازاً في اللغة العربية.</p>
+
+            <h2 id="features">✨ المميزات الرئيسية</h2>
+            <ul>
+              <li><strong>مفتوح المصدر بالكامل:</strong> مجاني للاستخدام التجاري والأكاديمي – لا تدفع أي شيء.</li>
+              <li><strong>أداء ممتاز:</strong> يتفوق على GPT-3.5 في معظم المعايير.</li>
+              <li><strong>يعمل محلياً:</strong> خصوصية كاملة – بياناتك لا تغادر جهازك.</li>
+              <li><strong>دعم اللغة العربية:</strong> أداء جيد جداً بعد التعديل (Fine-tuning).</li>
+              <li><strong>متعدد الاستخدامات:</strong> كتابة، برمجة، ترجمة، تحليل، تلخيص.</li>
+              <li><strong>مجتمع ضخم:</strong> آلاف المطورين يطورون إصدارات محسنة.</li>
+            </ul>
+
+            <h2 id="installation">📥 كيف تثبته وتشغله؟ (3 طرق)</h2>
+            
+            <p><strong>الطريقة 1: باستخدام Ollama (الأسهل للمبتدئين)</strong><br />
+            Ollama هي أداة مجانية تتيح لك تشغيل النماذج المحلية بضغطة زر.</p>
+            <pre style="background:#0b1f3a; color:#fff; padding:1rem; border-radius:12px; direction:ltr; text-align:left;">
+# تحميل Ollama من الموقع الرسمي
+https://ollama.ai/download
+
+# بعد التثبيت، افتح terminal وشغل الأمر
+ollama run llama3
+
+# سيتم تحميل النموذج تلقائياً (حوالي 4.7GB)
+# بعد التحميل، يمكنك البدء في المحادثة فوراً
+            </pre>
+            
+            <p><strong>الطريقة 2: باستخدام Hugging Face (للمطورين)</strong><br />
+            إذا كنت مطوراً وترغب في دمج Llama 3 في تطبيقك:</p>
+            <pre style="background:#0b1f3a; color:#fff; padding:1rem; border-radius:12px; direction:ltr; text-align:left;">
+from transformers import AutoTokenizer, AutoModelForCausalLM
+
+tokenizer = AutoTokenizer.from_pretrained("meta-llama/Llama-3-8B")
+model = AutoModelForCausalLM.from_pretrained("meta-llama/Llama-3-8B")
+
+inputs = tokenizer("مرحباً، كيف حالك؟", return_tensors="pt")
+outputs = model.generate(**inputs)
+print(tokenizer.decode(outputs[0]))
+            </pre>
+            
+            <p><strong>الطريقة 3: استخدام واجهات جاهزة (LM Studio, GPT4All)</strong><br />
+            تطبيقات سطح المكتب توفر واجهة مستخدم جميلة لتشغيل Llama 3 دون الحاجة إلى سطر أوامر.</p>
+
+            <h2 id="ollama">🦙 تشغيل Llama 3 باستخدام Ollama (شرح مفصل)</h2>
+            <p>Ollama هي أسهل طريقة لتشغيل Llama 3 على جهازك. إليك الخطوات بالتفصيل:</p>
+            <ol>
+              <li><strong>تحميل Ollama:</strong> اذهب إلى <a href="https://ollama.ai" target="_blank">ollama.ai</a> وحمّل الإصدار المناسب لنظامك (Windows، Mac، Linux).</li>
+              <li><strong>تثبيت Ollama:</strong> اتبع التعليمات (التالي، التالي، إنهاء).</li>
+              <li><strong>فتح Terminal / CMD:</strong> اكتب الأمر <code>ollama run llama3</code>.</li>
+              <li><strong>الانتظار:</strong> سيتم تحميل النموذج (حوالي 4.7GB). سرعة التحميل حسب سرعة إنترنتك.</li>
+              <li><strong>ابدأ المحادثة:</strong> بعد التحميل، يمكنك كتابة رسالتك الأولى. مثال: "مرحباً، أخبرني عن نفسك".</li>
+              <li><strong>لإنهاء الجلسة:</strong> اكتب <code>/bye</code>.</li>
+            </ol>
+            <div class="info-box">
+              <strong>💡 نصيحة:</strong> إذا كان جهازك محدود الذاكرة، استخدم Llama 3 8B (8 مليار معلمة). إذا كان لديك جهاز قوي (32GB+ RAM)، جرب Llama 3 70B.
+            </div>
+
+            <h2 id="arabic">🌐 دعم اللغة العربية في Llama 3</h2>
+            <p>Llama 3 الأساسي يدعم اللغة العربية بشكل مقبول (أفضل من Llama 2). لكن توجد إصدارات معدلة (Fine-tuned) من المجتمع تقدم أداءً ممتازاً:</p>
+            <ul>
+              <li><strong>Llama 3 Arabic (من Arabic-LLM):</strong> تم تدريبه على كميات كبيرة من النصوص العربية. أداء ممتاز في الفصحى والعامية.</li>
+              <li><strong>Jais (من G42 و Cerebras):</strong> نموذج عربي قوي مبني على Llama architecture.</li>
+              <li><strong>AceGPT:</strong> نموذج عربي آخر ممتاز.</li>
+            </ul>
+            <p>لتشغيل النسخة العربية المحسنة:</p>
+            <pre style="background:#0b1f3a; color:#fff; padding:1rem; border-radius:12px; direction:ltr; text-align:left;">
+ollama run llama3-arabic
+            </pre>
+
+            <h2 id="comparison">⚖️ مقارنة Llama 3 vs ChatGPT (GPT-3.5)</h2>
+            
+            <p><strong>Llama 3 (مفتوح المصدر):</strong></p>
+            <ul>
+              <li>✅ مجاني بالكامل (للأبد)</li>
+              <li>✅ يعمل محلياً (خصوصية كاملة)</li>
+              <li>✅ يمكن تخصيصه وتعديله</li>
+              <li>❌ يحتاج أجهزة قوية للتشغيل</li>
+              <li>❌ دعم العربية أقل من ChatGPT (قبل التعديل)</li>
+            </ul>
+            
+            <p><strong>ChatGPT (GPT-3.5):</strong></p>
+            <ul>
+              <li>✅ مجاني (لكن محدود)</li>
+              <li>✅ يعمل من أي متصفح (لا يحتاج أجهزة قوية)</li>
+              <li>✅ دعم ممتاز للعربية</li>
+              <li>❌ يحتاج إنترنت دائم</li>
+              <li>❌ لا يمكن تخصيصه</li>
+              <li>❌ البيانات ترسل إلى OpenAI (خصوصية أقل)</li>
+            </ul>
+
+            <h2 id="use-cases">💼 استخدامات Llama 3 العملية</h2>
+            <ul>
+              <li><strong>للمطورين:</strong> دمج نموذج محلي في تطبيقك دون تكاليف API.</li>
+              <li><strong>للشركات:</strong> استخدام نموذج داخلي للحفاظ على سرية البيانات.</li>
+              <li><strong>للباحثين:</strong> دراسة وتعديل النموذج للأغراض الأكاديمية.</li>
+              <li><strong>للكتّاب:</strong> كتابة المحتوى دون قيود أو رقابة.</li>
+              <li><strong>للمترجمين:</strong> ترجمة المستندات الحساسة محلياً.</li>
+            </ul>
+
+            <h2 id="hardware">💻 متطلبات الأجهزة (RAM, GPU)</h2>
+            <ul>
+              <li><strong>Llama 3 8B (8 مليار معلمة):</strong>
+                <ul>
+                  <li>RAM: 8-16GB</li>
+                  <li>GPU: غير مطلوب (يعمل على CPU)</li>
+                  <li>مساحة تخزين: ~5GB</li>
+                </ul>
+              </li>
+              <li><strong>Llama 3 70B (70 مليار معلمة):</strong>
+                <ul>
+                  <li>RAM: 32GB+ (يفضل 64GB)</li>
+                  <li>GPU: مطلوب (يفضل RTX 3090 أو أفضل)</li>
+                  <li>مساحة تخزين: ~40GB</li>
+                </ul>
+              </li>
+            </ul>
+
+            <h2 id="pros-cons">✅ الإيجابيات / ❌ السلبيات</h2>
+            
+            <p><strong>✅ الإيجابيات:</strong></p>
+            <ul>
+              <li>مجاني بالكامل (للأبد)</li>
+              <li>مفتوح المصدر – يمكن تخصيصه</li>
+              <li>يعمل محلياً – خصوصية كاملة</li>
+              <li>أداء ممتاز (ينافس GPT-3.5)</li>
+              <li>مجتمع ضخم ومتنامي</li>
+            </ul>
+            
+            <p><strong>❌ السلبيات:</strong></p>
+            <ul>
+              <li>يحتاج أجهزة قوية (خاصة الإصدار 70B)</li>
+              <li>دعم العربية يحتاج إلى تعديل (Fine-tuning)</li>
+              <li>تثبيته قد يكون صعباً للمبتدئين</li>
+            </ul>
+
+            <h2 id="conclusion">🎯 الخلاصة</h2>
+            <p>Llama 3 هو الخيار الأمثل لمن يريد نموذج لغوي قوي ومجاني ويعمل محلياً. مناسب للمطورين والشركات والباحثين الذين يهتمون بالخصوصية.</p>
+            <p><strong>نصيحتي:</strong> ابدأ بـ Llama 3 8B باستخدام Ollama. إنه سهل التثبيت ويعمل على معظم أجهزة الكمبيوتر الحديثة. إذا احتجت أداء أفضل، جرّب الإصدار 70B (إذا كان لديك جهاز قوي).</p>
+
+            <div class="info-box">
+              <strong>🔗 روابط مهمة:</strong><br />
+              <a href="https://github.com/meta-llama/llama3" target="_blank" rel="noopener noreferrer nofollow" style="color:#ea580c;">GitHub - Llama 3</a><br />
+              <a href="https://ollama.ai" target="_blank" rel="noopener noreferrer nofollow" style="color:#ea580c;">Ollama - لتشغيل النماذج بسهولة</a><br />
+              <a href="https://huggingface.co/meta-llama" target="_blank" rel="noopener noreferrer nofollow" style="color:#ea580c;">Hugging Face - نماذج Meta</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-col">
+        <div class="logo"><span class="logo-text logo-text-light">smart</span><span class="logo-text logo-text-accent">afiliate</span></div>
+        <p class="footer-description">منصة عربية تساعدك على فهم الذكاء الاصطناعي، التسويق بالعمولة، وبناء مشروع رقمي أوضح وأكثر قابلية للنمو.</p>
+      </div>
+      <div class="footer-col">
+        <h4>استكشف</h4>
+        <a href="../best-ai-tools.html">⭐ أفضل أدوات AI</a>
+        <a href="../ai-articles.html">📚 مكتبة AI</a>
+        <a href="../learn-ai.html">📖 تعلم AI</a>
+      </div>
+      <div class="footer-col">
+        <h4>المساعدة</h4>
+        <a href="../about.html">من نحن</a>
+        <a href="../contact.html">اتصل بنا</a>
+        <a href="../privacy.html">سياسة الخصوصية</a>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <span>smartafiliate © 2026 – جميع الحقوق محفوظة</span>
+      <span>🌐 بناء محتوى عربي عملي للمستقبل</span>
+    </div>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById('mainNav').classList.toggle('active');
+    }
+    
+    window.onscroll = function() {
+      const header = document.querySelector('.site-header');
+      if (window.scrollY > 50) {
+        header.classList.add('header-scrolled');
+      } else {
+        header.classList.remove('header-scrolled');
+      }
+    };
+  </script>
+</body>
+</html>
