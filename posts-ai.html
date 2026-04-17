@@ -3,18 +3,149 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Posts AI | smartafiliate</title>
-  <meta name="description" content="صفحة موحدة تجمع أهم مقالات الذكاء الاصطناعي في smartafiliate داخل ملف واحد منظم وسهل التصفح." />
-  <link rel="canonical" href="https://smartafiliate.com/posts-ai.html" />
-  <meta property="og:title" content="Posts AI | smartafiliate" />
-  <meta property="og:description" content="ملف موحد يجمع أهم مقالات الذكاء الاصطناعي داخل smartafiliate." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://smartafiliate.com/posts-ai.html" />
-  <meta name="twitter:card" content="summary_large_image" />
+  <title>جميع المقالات | smartafiliate</title>
+  <meta name="description" content="جميع المقالات المنشورة على smartafiliate: مقالات الذكاء الاصطناعي، أدوات AI، التسويق بالعمولة، ومسارات التعلم." />
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ea580c'%3E%3Cpath d='M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5'/%3E%3C/svg%3E" />
   <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* تنسيقات إضافية لصفحة جميع المقالات */
+    .filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.8rem;
+      margin-bottom: 2rem;
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .filter-btn {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      padding: 0.5rem 1.2rem;
+      border-radius: 30px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--muted);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .filter-btn:hover, .filter-btn.active {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+    }
+    .posts-count {
+      text-align: center;
+      margin-bottom: 1.5rem;
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+    .post-card {
+      background: var(--surface);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.3s ease;
+      border: 1px solid var(--line);
+      display: flex;
+      flex-direction: column;
+    }
+    .post-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-md);
+    }
+    .post-image {
+      height: 200px;
+      overflow: hidden;
+    }
+    .post-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    .post-card:hover .post-image img {
+      transform: scale(1.05);
+    }
+    .post-content {
+      padding: 1.2rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .post-category {
+      display: inline-block;
+      background: var(--primary-soft);
+      color: var(--primary);
+      padding: 0.2rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      margin-bottom: 0.8rem;
+      align-self: flex-start;
+    }
+    .post-title {
+      margin-bottom: 0.5rem;
+      font-size: 1.1rem;
+      line-height: 1.4;
+    }
+    .post-title a {
+      color: var(--text);
+    }
+    .post-title a:hover {
+      color: var(--primary);
+    }
+    .post-excerpt {
+      color: var(--muted);
+      font-size: 0.85rem;
+      margin-bottom: 1rem;
+      line-height: 1.6;
+      flex: 1;
+    }
+    .post-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--muted);
+      font-size: 0.75rem;
+      padding-top: 0.8rem;
+      border-top: 1px solid var(--line);
+      margin-top: auto;
+    }
+    .read-more-btn {
+      color: var(--primary);
+      font-weight: 700;
+      font-size: 0.8rem;
+    }
+    .pagination {
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-top: 3rem;
+    }
+    .page-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 40px;
+      height: 40px;
+      padding: 0 0.75rem;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+    .page-link:hover, .page-link.active {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+    }
+  </style>
 </head>
 <body>
+
+  <!-- ===== HEADER ===== -->
   <header class="site-header">
     <div class="container header-inner">
       <div class="logo">
@@ -27,13 +158,16 @@
         <a href="best-ai-tools.html">أفضل أدوات AI</a>
         <a href="ai-articles.html">مكتبة AI</a>
         <a href="learn-ai.html">تعلم AI</a>
-        <a href="posts-ai.html">Posts AI</a>
+        <a href="open-source.html">أدوات مفتوحة المصدر</a>
+        <a href="articles.html">المقالات</a>
+        <a href="posts.html">جميع المقالات</a>
         <a href="blog.html">المدونة</a>
+        <a href="about.html">من نحن</a>
         <a href="contact.html">تواصل</a>
       </nav>
       <div class="header-actions">
         <a href="ai-articles.html" class="btn-outline-light">مكتبة AI</a>
-        <a href="posts-ai.html" class="btn-primary-light">Posts AI</a>
+        <a href="best-ai-tools.html" class="btn-primary-light">أفضل أدوات AI</a>
       </div>
     </div>
   </header>
@@ -41,82 +175,367 @@
   <main>
     <section class="page-hero">
       <div class="container">
-        <span class="page-badge">🤖 ملف موحد</span>
-        <h1>Posts AI</h1>
-        <p>صفحة واحدة منظمة تجمع أهم مقالات الذكاء الاصطناعي والمراجعات والمسارات التعليمية في مكان واحد.</p>
+        <span class="page-badge">📚 جميع المقالات</span>
+        <h1>جميع المقالات</h1>
+        <p>استعرض جميع المقالات المنشورة على smartafiliate – مقالات الذكاء الاصطناعي، أدوات AI، التسويق بالعمولة، ومسارات التعلم</p>
       </div>
     </section>
 
     <section class="section">
       <div class="container">
-        <div class="section-header">
-          <span class="section-tag">⭐ مقالات أساسية</span>
-          <h2>ابدأ من هنا</h2>
-          <p>هذه أهم الصفحات للدخول السريع إلى المحتوى الأساسي داخل قسم الذكاء الاصطناعي.</p>
+        
+        <!-- فلتر التصنيفات -->
+        <div class="filter-bar">
+          <button class="filter-btn active" data-filter="all">الكل</button>
+          <button class="filter-btn" data-filter="ai-tools">أدوات AI</button>
+          <button class="filter-btn" data-filter="affiliate">التسويق بالعمولة</button>
+          <button class="filter-btn" data-filter="learn-ai">تعلم الذكاء الاصطناعي</button>
+          <button class="filter-btn" data-filter="open-source">مفتوحة المصدر</button>
+          <button class="filter-btn" data-filter="reviews">مراجعات</button>
         </div>
-        <div class="cards-grid">
-          <a href="posts-ai/what-is-ai-beginners.html" class="card"><div class="card-icon">📘</div><h3>ما هو الذكاء الاصطناعي؟</h3><p>شرح مبسط جداً للمبتدئين مع أمثلة واضحة من الحياة اليومية.</p></a>
-          <a href="posts-ai/python-for-ai-beginners.html" class="card"><div class="card-icon">🐍</div><h3>بايثون للذكاء الاصطناعي</h3><p>نقطة بداية مناسبة لتعلم البرمجة اللازمة لمجال AI.</p></a>
-          <a href="posts-ai/complete-ai-learning-path.html" class="card"><div class="card-icon">🗺️</div><h3>المسار الكامل</h3><p>خطة تعلم منظمة تساعدك على الانتقال من البداية إلى التطبيق.</p></a>
-          <a href="posts-ai/ai-projects-for-beginners.html" class="card"><div class="card-icon">🛠️</div><h3>مشاريع للمبتدئين</h3><p>أفكار مشاريع عملية لبناء خبرة وبورتفوليو قوي.</p></a>
-        </div>
-      </div>
-    </section>
+        
+        <!-- عدد المقالات -->
+        <div class="posts-count" id="postsCount"></div>
+        
+        <!-- شبكة المقالات -->
+        <div class="articles-grid" id="postsGrid">
+          
+          <!-- مقالات الذكاء الاصطناعي (مكتبة AI) -->
+          <article class="post-card" data-category="ai-tools">
+            <div class="post-image"><img src="assets/images/ai-writing-tools.jpg" alt="أفضل أدوات الكتابة بالذكاء الاصطناعي" loading="lazy"></div>
+            <div class="post-content">
+              <span class="post-category">🤖 أدوات AI</span>
+              <h3 class="post-title"><a href="posts-ai/30-best-ai-writing-tools.html">أفضل أدوات الكتابة بالذكاء الاصطناعي</a></h3>
+              <p class="post-excerpt">مقارنة عملية بين ChatGPT وJasper وCopy.ai وWritesonic. تعرف على strengths لكل أداة ومهامها المثالية.</p>
+              <div class="post-meta"><span>📅 17 أبريل 2026</span><a href="posts-ai/30-best-ai-writing-tools.html" class="read-more-btn">اقرأ المقال →</a></div>
+            </div>
+          </article>
 
-    <section class="section section-alt">
-      <div class="container">
-        <div class="section-header">
-          <span class="section-tag">📝 مراجعات أدوات</span>
-          <h2>أشهر أدوات الذكاء الاصطناعي</h2>
-          <p>روابط مباشرة إلى مراجعات ومقارنات الأدوات الأكثر استخداماً.</p>
+          <article class="post-card" data-category="ai-tools">
+            <div class="post-image"><img src="assets/images/90-day-ai-plan.jpg" alt="خطة 90 يوم مع الذكاء الاصطناعي" loading="lazy"></div>
+            <div class="post-content">
+              <span class="post-category">📅 خطط تعلم</span>
+              <h3 class="post-title"><a href="posts-ai/29-90-day-ai-plan.html">خطة 90 يومًا مع الذكاء الاصطناعي</a></h3>
+              <p class="post-excerpt">خطة عملية منظمة لبناء عادة يومية مع الذكاء الاصطناعي، وتنفيذ مشروع رقمي واضح خلال 3 أشهر.</p>
+              <div class="post-meta"><span>📅 12 أبريل 2026</span><a href="posts-ai/29-90-day-ai-plan.html" class="read-more-btn">اقرأ المقال →</a></div>
+            </div>
+          </article>
+
+          <article class="post-card" data-category="ai-tools">
+            <div class="post-image"><img src="assets/images/ai-newsletters.jpg" alt="الذكاء الاصطناعي والنشرات البريدية" loading="lazy"></div>
+            <div class="post-content">
+              <span class="post-category">📧 تطبيقات عملية</span>
+              <h3 class="post-title"><a href="posts-ai/28-ai-newsletters.html">الذكاء الاصطناعي والنشرات البريدية</a></h3>
+              <p class="post-excerpt">كيف تستخدم AI لتحسين عناوين النشرات، تنظيم المحتوى، وبناء علاقة أفضل مع المشتركين.</p>
+              <div class="post-meta"><span>📅 10 أبريل 2026</span><a href="posts-ai/28-ai-newsletters.html" class="read-more-btn">اقرأ المقال →</a></div>
+            </div>
+          </article>
+
+          <article class="post-card" data-category="ai-tools">
+            <div class="post-image"><img src="assets/images/ai-personal-brand.jpg" alt="الذكاء الاصطناعي والعلامة الشخصية" loading="lazy"></div>
+            <div class="post-content">
+              <span class="post-category">👤 العلامة الشخصية</span>
+              <h3 class="post-title"><a href="posts-ai/27-ai-and-personal-brand.html">الذكاء الاصطناعي والعلامة الشخصية</a></h3>
+              <p class="post-excerpt">كيف تستخدم AI لدعم حضورك الرقمي دون فقدان صوتك الشخصي وأسلوبك المميز.</p>
+              <div class="post-meta"><span>📅 8 أبريل 2026</span><a href="posts-ai/27-ai-and-personal-brand.html" class="read-more-btn">اقرأ المقال →</a></div>
+            </div>
+          </article>
+
+          <!-- مقالات التسويق بالعمولة -->
+          <article class="post-card" data-category="affiliate">
+            <div class="post-image"><img src="assets/images/what-is-affiliate.jpg" alt="ما هو التسويق بالعمولة" loading="lazy"></div>
+            <div class="post-content">
+              <span class="post-category">📈 التسويق بالعمولة</span>
+              <h3 class="post-title"><a href="articles/what-is-affiliate-marketing.html">ما هو التسويق بالعمولة؟ شرح مبسط للمبتدئين</a></h3>
+              <p class="post-excerpt">تعرف على مفهوم الأفلييت، كيف تبدأ خطوة بخطوة، وأهم الأخطاء التي يجب تجنبها.</p>
+              <div class="post-meta"><span>📅 14 أبريل 2026</span><a href="articles/what-is-affiliate-marketing.html" class="read-more-btn">اقرأ المقال →</a></div>
+            </div>
+          </article>
+
+          <article class="post-card" data-category="affiliate">
+            <div class="post-image"><img src="assets/images/seo-for-affiliate-sites.jpg" alt="SEO لمواقع الأفلييت" loading="lazy"></div>
+            <div class="post-content">
+              <span class="post-category">🔍 SEO</span>
+              <h3 class="post-title"><a href="articles/seo-for-affiliate-sites.html">كيف تهيئ موقع الأفلييت للسيو بشكل صحيح</a></h3>
+              <p class="post-excerpt">خطوات عملية لتحسين العناوين والوصف الداخلي والروابط وبنية المقال.</p>
+              <div class="post-meta"><span>📅 13 أبريل 2026</span><a href="articles/seo-for-affiliate-sites.html" class="read-more-btn">اقرأ المقال →</a></div>
+            </div>
+          </article>
+
+          <article class="post-card" data-category="affiliate">
+            <div class="post-image"><img src="assets/images/best-content-structure.jpg" alt="بنية المحتوى التحويلي" loading="lazy"></div>
+            <div class="post-content">
+              <span class="post-category">✍️ كتابة المحتوى</span>
+              <h3 class="post-title"><a href="articles/best-content-structure.html">أفضل بنية محتوى للمقالات التحويلية</a></h3>
+              <p class="post-excerpt">كيف تنظم مقالاتك لتحصل على أعلى نسبة نقر على روابط الأفلييت وتحويل الزوار.</p>
+              <div class="post-meta"><span>📅 12 أبريل 2026</span><a href="articles/best-content-structure.html" class="read-more-btn">اقرأ المقال →</a></div>
+            </div>
+          </article>
+
+          <article class="post-card" data-category="affiliate">
+            <div class="post-image"><img src="assets/images/affiliate-mistakes.jpg" alt="أخطاء التسويق بالعمولة" loading="lazy"></div>
+            <div class="post-content">
+              <span class="post-category">⚠️ نصائح مهمة</span>
+              <h3 class="post-title"><a href="articles/affiliate-marketing-mistakes.html">أخطاء قاتلة في التسويق بالعمولة تجنبها</a></h3>
+              <p class="post-excerpt">تعرف على أكثر 10 أخطاء يرتكبها المبتدئين في الأفلييت وكيف تتجنبها.</p>
+              <div class="post-meta"><span>📅 11 أبريل 2026</span><a href="articles/affiliate-marketing-mistakes.html" class="read-more-btn">اقرأ المقال →</a></div>
+            </div>
+          </article>
+
+          <article class="post-card" data-category="affiliate">
+            <div class="post-image"><img src="assets/images/arab-affiliate-programs.jpg" alt="برامج الأفلييت العربية" loading="lazy"></div>
+            <div class="post-content">
+              <span class="post-category">🇸🇦 برامج عربية</span>
+              <h3 class="post-title"><a href="articles/best-affiliate-programs-arab-world.html">أفضل برامج الأفلييت في العالم العربي</a></h3>
+              <p class="post-excerpt">تعرف على منصات محلية تدفع بالعملة العربية وتناسب الجمهور الخليجي والمصري.</p>
+              <div class="post-meta"><span>📅 10 أبريل 2026</span><a href="articles/best-affiliate-programs-arab-world.html" class="read-more-btn">اقرأ المقال →</a></div>
+            </div>
+          </article>
+
+          <article class="post-card" data-category="affiliate">
+            <div class="post-image"><img src="assets/images/ai-affiliate-tools.jpg" alt="أدوات الذكاء الاصطناعي للمسوق بالعمولة" loading="lazy"></div>
+            <div class="post-content">
+              <span class="post-category">🤖 الذكاء الاصطناعي</span>
+              <h3 class="post-title"><a href="articles/ai-tools-for-affiliate-marketing.html">أفضل أدوات الذكاء الاصطناعي للمسوق بالعمولة</a></h3>
+              <p class="post-excerpt">استخدم الذكاء الاصطناعي لكتابة المحتوى، تحليل البيانات، وتحسين أرباحك.</p>
+              <div class="post-meta"><span>📅 9 أبريل 2026</span><a href="articles/ai-tools-for-affiliate-marketing.html" class="read-more-btn">اقرأ المقال →</a></div>
+            </div>
+          </article>
+
+          <!-- مقالات تعلم الذكاء الاصطناعي -->
+          <article class="post-card" data-category="learn-ai">
+            <div class="post-image"><img src="assets/images/what-is-ai.jpg" alt="ما هو الذكاء الاصطناعي" loading="lazy"></div>
+            <div class="post-content">
+              <span class="post-category">📘 مقدمة</span>
+              <h3 class="post-title"><a href="posts-ai/what-is-ai-beginners.html">ما هو الذكاء الاصطناعي؟ شرح مبسط جداً للمبتدئين</a></h3>
+              <p class="post-excerpt">شرح بسيط لمفهوم الذكاء الاصطناعي، أنواعه، وأمثلة من حياتنا اليومية.</p>
+              <div class="post-meta"><span>📅 15 أبريل 2026</span><a href="posts-ai/what-is-ai-beginners.html" class="read-more-btn">اقرأ المقال →</a></div>
+            </div>
+          </article>
+
+          <article class="post-card" data-category="learn-ai">
+            <div class="post-image"><img src="assets/images/python-for-ai.jpg" alt="تعلم بايثون" loading="lazy"></div>
+            <div class="post-content">
+              <span class="post-category">🐍 لغة البرمجة</span>
+              <h3 class="post-title"><a href="posts-ai/python-for-ai-beginners.html">تعلم بايثون من الصفر للذكاء الاصطناعي</a></h3>
+              <p class="post-excerpt">أساسيات بايثون التي تحتاجها فقط للبدء في الذكاء الاصطناعي.</p>
+              <div class="post-meta"><span>📅 14 أبريل 2026</span><a href="posts-ai/python-for-ai-beginners.html" class="read-more-btn">اقرأ المقال →</a></div>
+            </div>
+          </article>
+
+          <article class="post-card" data-category="learn-ai">
+            <div class="post-image"><img src="assets/images/math-for-ai.jpg" alt="رياضيات الذكاء الاصطناعي" loading="lazy"></div>
+            <div class="post-content">
+              <span class="post-category">📊 رياضيات</span>
+              <h3 class="post-title"><a href="posts-ai/math-for-ai-beginners.html">الرياضيات التي تحتاجها للذكاء الاصطناعي (شرح مبسط)</a></h3>
+              <p class="post-excerpt">الإحصاء، الجبر الخطي، والاحتمالات – كل ما تحتاجه كمبتدئ.</p>
+              <div class="post-meta"><span>📅 13 أبريل 2026</span><a href="posts-ai/math-for-ai-beginners.html" class="read-more-btn">اقرأ المقال →</a></div>
+            </div>
+          </article>
+
+          <article class="post-card" data-category="learn-ai">
+            <div class="post-image"><img src="assets/images/complete-ai-path.jpg" alt="مسار تعلم الذكاء الاصطناعي" loading="lazy"></div>
+            <div class="post-content">
+              <span class="post-category">🎯 مسار متكامل</span>
+              <h3 class="post-title"><a href="posts-ai/complete-ai-learning-path.html">الطريق الكامل لتعلم الذكاء الاصطناعي (خطة 6 أشهر)</a></h3>
+              <p class="post-excerpt">خطة متكاملة مدتها 6 أشهر لتعلم الذكاء الاصطناعي من الصفر.</p>
+              <div class="post-meta"><span>📅 12 أبريل 2026</span><a href="posts-ai/complete-ai-learning-path.html" class="read-more-btn">اقرأ المقال →</a></div>
+            </div>
+          </article>
+
+          <article class="post-card" data-category="learn-ai">
+            <div class="post-image"><img src="assets/images/free-ai-courses.jpg" alt="كورسات مجانية" loading="lazy"></div>
+            <div class="post-content">
+              <span class="post-category">🎓 كورسات مجانية</span>
+              <h3 class="post-title"><a href="posts-ai/free-ai-courses-arabic.html">أفضل الكورسات المجانية لتعلم الذكاء الاصطناعي (عربية وأجنبية)</a></h3>
+              <p class="post-excerpt">قائمة منظمة بأفضل الكورسات المجانية من جامعات عالمية وقنوات عربية.</p>
+              <div class="post-meta"><span>📅 11 أبريل 2026</span><a href="posts-ai/free-ai-courses-arabic.html" class="read-more-btn">اقرأ المقال →</a></div>
+            </div>
+          </article>
+
+          <article class="post-card" data-category="learn-ai">
+            <div class="post-image"><img src="assets/images/ai-projects.jpg" alt="مشاريع عملية" loading="lazy"></div>
+            <div class="post-content">
+              <span class="post-category">🛠️ مشاريع عملية</span>
+              <h3 class="post-title"><a href="posts-ai/ai-projects-for-beginners.html">أفكار مشاريع ذكاء اصطناعي للمبتدئين (مع شرح خطوة بخطوة)</a></h3>
+              <p class="post-excerpt">5 مشاريع كاملة لبناء بورتفوليو قوي لسيرتك الذاتية.</p>
+              <div class="post-meta"><span>📅 10 أبريل 2026</span><a href="posts-ai/ai-projects-for-beginners.html" class="read-more-btn">اقرأ المقال →</a></div>
+            </div>
+          </article>
+
+          <article class="post-card" data-category="learn-ai">
+            <div class="post-image"><img src="assets/images/ai-learning-tips.jpg" alt="نصائح التعلم" loading="lazy"></div>
+            <div class="post-content">
+              <span class="post-category">💎 نصائح ذهبية</span>
+              <h3 class="post-title"><a href="posts-ai/learning-tips-for-ai.html">10 نصائح ذهبية لتعلم الذكاء الاصطناعي (من واقع تجربة)</a></h3>
+              <p class="post-excerpt">نصائح عملية ستوفر عليك سنوات من التجربة والخطأ.</p>
+              <div class="post-meta"><span>📅 9 أبريل 2026</span><a href="posts-ai/learning-tips-for-ai.html" class="read-more-btn">اقرأ المقال →</a></div>
+            </div>
+          </article>
+
+          <article class="post-card" data-category="learn-ai">
+            <div class="post-image"><img src="assets/images/best-ai-books.jpg" alt="كتب تعلم الذكاء الاصطناعي" loading="lazy"></div>
+            <div class="post-content">
+              <span class="post-category">📚 كتب موصى بها</span>
+              <h3 class="post-title"><a href="posts-ai/best-books-to-learn-ai.html">أفضل الكتب لتعلم الذكاء الاصطناعي (للمبتدئين والمحترفين)</a></h3>
+              <p class="post-excerpt">قائمة منظمة بأفضل الكتب مع روابط للتحميل المجاني إن وُجد.</p>
+              <div class="post-meta"><span>📅 8 أبريل 2026</span><a href="posts-ai/best-books-to-learn-ai.html" class="read-more-btn">اقرأ المقال →</a></div>
+            </div>
+          </article>
+
+          <article class="post-card" data-category="learn-ai">
+            <div class="post-image"><img src="assets/images/ai-communities.jpg" alt="مجتمعات تعلم الذكاء الاصطناعي" loading="lazy"></div>
+            <div class="post-content">
+              <span class="post-category">👥 مجتمعات</span>
+              <h3 class="post-title"><a href="posts-ai/ai-learning-communities.html">أفضل المجتمعات العربية والعالمية لتعلم الذكاء الاصطناعي</a></h3>
+              <p class="post-excerpt">انضم إلى هذه المجتمعات لطرح الأسئلة والحصول على المساعدة.</p>
+              <div class="post-meta"><span>📅 7 أبريل 2026</span><a href="posts-ai/ai-learning-communities.html" class="read-more-btn">اقرأ المقال →</a></div>
+            </div>
+          </article>
+
+          <!-- مقالات مراجعات الأدوات -->
+          <article class="post-card" data-category="reviews">
+            <div class="post-image"><img src="assets/images/ai-writing-tools-cover.jpg" alt="مراجعة ChatGPT" loading="lazy"></div>
+            <div class="post-content">
+              <span class="post-category">🤖 مراجعة</span>
+              <h3 class="post-title"><a href="posts-ai/chatgpt-review.html">مراجعة شاملة لـ ChatGPT: كل ما تحتاج معرفته</a></h3>
+              <p class="post-excerpt">مراجعة كاملة لـ ChatGPT: المميزات، العيوب، الخطط السعرية، وكيفية استخدامه بفعالية.</p>
+              <div class="post-meta"><span>📅 17 أبريل 2026</span><a href="posts-ai/chatgpt-review.html" class="read-more-btn">اقرأ المقال →</a></div>
+            </div>
+          </article>
+
+          <article class="post-card" data-category="reviews">
+            <div class="post-image"><img src="assets/images/ai-writing-tools-cover.jpg" alt="مراجعة Jasper AI" loading="lazy"></div>
+            <div class="post-content">
+              <span class="post-category">📝 مراجعة</span>
+              <h3 class="post-title"><a href="posts-ai/jasper-ai-review.html">مراجعة Jasper AI: هل يستحق السعر؟</a></h3>
+              <p class="post-excerpt">تحليل شامل لأداة Jasper AI المتخصصة في كتابة المحتوى التسويقي.</p>
+              <div class="post-meta"><span>📅 16 أبريل 2026</span><a href="posts-ai/jasper-ai-review.html" class="read-more-btn">اقرأ المقال →</a></div>
+            </div>
+          </article>
+
+          <article class="post-card" data-category="reviews">
+            <div class="post-image"><img src="assets/images/ai-writing-tools-cover.jpg" alt="مراجعة Copy.ai" loading="lazy"></div>
+            <div class="post-content">
+              <span class="post-category">⚡ مراجعة</span>
+              <h3 class="post-title"><a href="posts-ai/copyai-review.html">مراجعة Copy.ai: أداة الكتابة السريعة والمجانية</a></h3>
+              <p class="post-excerpt">مراجعة Copy.ai: مميزاتها، عيوبها، وهل تناسب احتياجاتك؟</p>
+              <div class="post-meta"><span>📅 15 أبريل 2026</span><a href="posts-ai/copyai-review.html" class="read-more-btn">اقرأ المقال →</a></div>
+            </div>
+          </article>
+
+          <article class="post-card" data-category="reviews">
+            <div class="post-image"><img src="assets/images/ai-writing-tools-cover.jpg" alt="مراجعة Writesonic" loading="lazy"></div>
+            <div class="post-content">
+              <span class="post-category">🚀 مراجعة</span>
+              <h3 class="post-title"><a href="posts-ai/writesonic-review.html">مراجعة Writesonic: منصة متكاملة للمحتوى</a></h3>
+              <p class="post-excerpt">مراجعة كاملة لأداة Writesonic وميزاتها في كتابة المقالات الطويلة وتحسين SEO.</p>
+              <div class="post-meta"><span>📅 14 أبريل 2026</span><a href="posts-ai/writesonic-review.html" class="read-more-btn">اقرأ المقال →</a></div>
+            </div>
+          </article>
+
+          <article class="post-card" data-category="reviews open-source">
+            <div class="post-image"><img src="assets/images/ai-writing-tools-cover.jpg" alt="دليل Midjourney" loading="lazy"></div>
+            <div class="post-content">
+              <span class="post-category">🎨 دليل</span>
+              <h3 class="post-title"><a href="posts-ai/midjourney-guide.html">دليل شامل لـ Midjourney: توليد صور احترافية بالذكاء الاصطناعي</a></h3>
+              <p class="post-excerpt">تعلم如何使用 Midjourney لإنشاء صور فائقة الجودة، أفضل الإعدادات، والنصائح العملية.</p>
+              <div class="post-meta"><span>📅 13 أبريل 2026</span><a href="posts-ai/midjourney-guide.html" class="read-more-btn">اقرأ المقال →</a></div>
+            </div>
+          </article>
+
+          <article class="post-card" data-category="reviews">
+            <div class="post-image"><img src="assets/images/ai-writing-tools-cover.jpg" alt="مراجعة DALL-E 3" loading="lazy"></div>
+            <div class="post-content">
+              <span class="post-category">🖼️ مراجعة</span>
+              <h3 class="post-title"><a href="posts-ai/dalle3-review.html">مراجعة DALL-E 3: ثورة في توليد الصور</a></h3>
+              <p class="post-excerpt">تعرف على إمكانيات DALL-E 3 من OpenAI وكيفية استخدامه في مشاريعك.</p>
+              <div class="post-meta"><span>📅 12 أبريل 2026</span><a href="posts-ai/dalle3-review.html" class="read-more-btn">اقرأ المقال →</a></div>
+            </div>
+          </article>
+
+          <article class="post-card" data-category="reviews">
+            <div class="post-image"><img src="assets/images/ai-writing-tools-cover.jpg" alt="مراجعة Canva AI" loading="lazy"></div>
+            <div class="post-content">
+              <span class="post-category">🎨 مراجعة</span>
+              <h3 class="post-title"><a href="posts-ai/canva-ai-review.html">مراجعة Canva AI: تصميم احترافي للجميع</a></h3>
+              <p class="post-excerpt">كيف تستخدم ميزات الذكاء الاصطناعي في Canva لإنشاء تصاميم رائعة بسرعة.</p>
+              <div class="post-meta"><span>📅 11 أبريل 2026</span><a href="posts-ai/canva-ai-review.html" class="read-more-btn">اقرأ المقال →</a></div>
+            </div>
+          </article>
+
+          <!-- مقالات الأدوات مفتوحة المصدر -->
+          <article class="post-card" data-category="open-source">
+            <div class="post-image"><img src="assets/images/ai-writing-tools-cover.jpg" alt="Llama 3" loading="lazy"></div>
+            <div class="post-content">
+              <span class="post-category">🦙 مفتوح المصدر</span>
+              <h3 class="post-title"><a href="posts-ai/llama3-guide.html">دليل Llama 3: نموذج ميتا القوي مفتوح المصدر</a></h3>
+              <p class="post-excerpt">تعرف على إمكانيات Llama 3، كيفية تثبيته، واستخدامه في مشاريعك مجاناً.</p>
+              <div class="post-meta"><span>📅 10 أبريل 2026</span><a href="posts-ai/llama3-guide.html" class="read-more-btn">اقرأ المقال →</a></div>
+            </div>
+          </article>
+
+          <article class="post-card" data-category="open-source">
+            <div class="post-image"><img src="assets/images/ai-writing-tools-cover.jpg" alt="Mistral" loading="lazy"></div>
+            <div class="post-content">
+              <span class="post-category">🐫 مفتوح المصدر</span>
+              <h3 class="post-title"><a href="posts-ai/mistral-guide.html">دليل Mistral: نموذج فرنسي متميز مفتوح المصدر</a></h3>
+              <p class="post-excerpt">نموذج لغوي فرنسي متميز مفتوح المصدر. حجم صغير، أداء استثنائي، ومجاني للاستخدام التجاري.</p>
+              <div class="post-meta"><span>📅 9 أبريل 2026</span><a href="posts-ai/mistral-guide.html" class="read-more-btn">اقرأ المقال →</a></div>
+            </div>
+          </article>
+
+          <article class="post-card" data-category="open-source">
+            <div class="post-image"><img src="assets/images/ai-writing-tools-cover.jpg" alt="Falcon" loading="lazy"></div>
+            <div class="post-content">
+              <span class="post-category">🌟 مفتوح المصدر</span>
+              <h3 class="post-title"><a href="posts-ai/falcon-guide.html">دليل Falcon: نموذج إماراتي للذكاء الاصطناعي</a></h3>
+              <p class="post-excerpt">نموذج من معهد TII الإماراتي – دعم ممتاز للغة العربية ومجاني للاستخدام.</p>
+              <div class="post-meta"><span>📅 8 أبريل 2026</span><a href="posts-ai/falcon-guide.html" class="read-more-btn">اقرأ المقال →</a></div>
+            </div>
+          </article>
+
+          <article class="post-card" data-category="open-source">
+            <div class="post-image"><img src="assets/images/ai-writing-tools-cover.jpg" alt="Ollama" loading="lazy"></div>
+            <div class="post-content">
+              <span class="post-category">🧠 مفتوح المصدر</span>
+              <h3 class="post-title"><a href="posts-ai/ollama-guide.html">دليل Ollama: تشغيل النماذج المحلية بسهولة</a></h3>
+              <p class="post-excerpt">أسهل طريقة لتشغيل نماذج Llama و Mistral و Falcon محلياً على جهازك.</p>
+              <div class="post-meta"><span>📅 7 أبريل 2026</span><a href="posts-ai/ollama-guide.html" class="read-more-btn">اقرأ المقال →</a></div>
+            </div>
+          </article>
+
         </div>
-        <div class="articles-grid">
-          <article class="article-card">
-            <div class="article-content">
-              <span class="article-category">🤖 مراجعة</span>
-              <h3><a href="posts-ai/chatgpt-review.html">مراجعة شاملة لـ ChatGPT</a></h3>
-              <p class="article-excerpt">نظرة عملية على الاستخدامات، الخطط، والمزايا والقيود.</p>
-              <div class="article-meta"><span>أداة محورية</span><a href="posts-ai/chatgpt-review.html" class="read-more">اقرأ →</a></div>
-            </div>
-          </article>
-          <article class="article-card">
-            <div class="article-content">
-              <span class="article-category">✍️ مقارنة</span>
-              <h3><a href="posts-ai/30-best-ai-writing-tools.html">أفضل أدوات الكتابة بالذكاء الاصطناعي</a></h3>
-              <p class="article-excerpt">مقارنة بين الأدوات المناسبة للكتابة، التسويق، وصناعة المحتوى.</p>
-              <div class="article-meta"><span>مفيد للمحتوى</span><a href="posts-ai/30-best-ai-writing-tools.html" class="read-more">اقرأ →</a></div>
-            </div>
-          </article>
-          <article class="article-card">
-            <div class="article-content">
-              <span class="article-category">🎨 صور</span>
-              <h3><a href="posts-ai/dalle3-review.html">مراجعة DALL·E 3</a></h3>
-              <p class="article-excerpt">مدخل سريع لفهم الأداة واستخدامها في توليد الصور.</p>
-              <div class="article-meta"><span>للصور</span><a href="posts-ai/dalle3-review.html" class="read-more">اقرأ →</a></div>
-            </div>
-          </article>
-        </div>
+        
+        <!-- ترقيم الصفحات -->
+        <nav class="pagination">
+          <a href="#" class="page-link active">1</a>
+          <a href="#" class="page-link">2</a>
+          <a href="#" class="page-link">3</a>
+          <a href="#" class="page-link">← التالي</a>
+        </nav>
+        
       </div>
     </section>
   </main>
 
+  <!-- ===== FOOTER ===== -->
   <footer class="site-footer">
     <div class="container footer-grid">
       <div class="footer-col">
-        <div class="logo"><span class="logo-text logo-text-light">smart</span><span class="logo-text logo-text-accent">afiliate</span></div>
+        <div class="logo">
+          <span class="logo-text logo-text-light">smart</span>
+          <span class="logo-text logo-text-accent">afiliate</span>
+        </div>
         <p class="footer-description">منصة عربية تساعدك على فهم الذكاء الاصطناعي، التسويق بالعمولة، وبناء مشروع رقمي أوضح وأكثر قابلية للنمو.</p>
       </div>
       <div class="footer-col">
-        <h4>استكشف</h4>
-        <a href="best-ai-tools.html">⭐ أفضل أدوات AI</a>
-        <a href="ai-articles.html">📚 مكتبة AI</a>
-        <a href="learn-ai.html">📖 تعلم AI</a>
-        <a href="posts-ai.html">🤖 Posts AI</a>
+        <h4>من نحن</h4>
+        <a href="about.html">من نحن</a>
+        <a href="contact.html">تواصل معنا</a>
       </div>
       <div class="footer-col">
-        <h4>المساعدة</h4>
-        <a href="about.html">من نحن</a>
-        <a href="contact.html">اتصل بنا</a>
+        <h4>سياسة الخصوصية</h4>
         <a href="privacy.html">سياسة الخصوصية</a>
         <a href="terms.html">الشروط والأحكام</a>
       </div>
@@ -136,6 +555,50 @@
     function toggleMenu() {
       document.getElementById('mainNav').classList.toggle('active');
     }
+    
+    window.onscroll = function() {
+      const header = document.querySelector('.site-header');
+      if (window.scrollY > 50) {
+        header.classList.add('header-scrolled');
+      } else {
+        header.classList.remove('header-scrolled');
+      }
+    };
+    
+    // فلتر المقالات
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const posts = document.querySelectorAll('.post-card');
+    const postsCount = document.getElementById('postsCount');
+    
+    function updatePostsCount(visibleCount) {
+      postsCount.textContent = `📄 ${visibleCount} مقال`;
+    }
+    
+    function filterPosts(category) {
+      let visibleCount = 0;
+      posts.forEach(post => {
+        const categories = post.dataset.category;
+        if (category === 'all' || categories.includes(category)) {
+          post.style.display = 'flex';
+          visibleCount++;
+        } else {
+          post.style.display = 'none';
+        }
+      });
+      updatePostsCount(visibleCount);
+    }
+    
+    filterButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterButtons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const category = btn.dataset.filter;
+        filterPosts(category);
+      });
+    });
+    
+    // تشغيل الفلتر عند تحميل الصفحة
+    filterPosts('all');
   </script>
 </body>
 </html>
