@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>دليل Llama 3: نموذج ميتا القوي مفتوح المصدر | smartafiliate</title>
-  <meta name="description" content="دليل شامل لـ Llama 3 من Meta: كيفية التثبيت، التشغيل المحلي، المميزات، ودعم اللغة العربية." />
+  <title>دليل Ollama: تشغيل النماذج المحلية بسهولة | smartafiliate</title>
+  <meta name="description" content="دليل شامل لـ Ollama: أداة مجانية لتشغيل النماذج اللغوية المحلية بسهولة على جهازك." />
   <link rel="stylesheet" href="../styles.css" />
 </head>
 <body>
@@ -37,9 +37,9 @@
   <main>
     <section class="page-hero">
       <div class="container">
-        <span class="page-badge">🦙 دليل أداة مفتوحة المصدر</span>
-        <h1>دليل Llama 3: نموذج ميتا القوي مفتوح المصدر</h1>
-        <p>تعرف على إمكانيات Llama 3، كيفية تثبيته، واستخدامه في مشاريعك مجاناً</p>
+        <span class="page-badge">🧠 دليل أداة</span>
+        <h1>دليل Ollama: تشغيل النماذج المحلية بسهولة</h1>
+        <p>أسهل طريقة لتشغيل نماذج Llama و Mistral و Falcon محلياً على جهازك</p>
       </div>
     </section>
 
@@ -51,42 +51,32 @@
             <div class="toc">
               <h3>📑 في هذا المقال</h3>
               <ul>
-                <li><a href="#intro">ما هو Llama 3؟</a></li>
-                <li><a href="#versions">الإصدارات المتاحة (8B, 70B)</a></li>
-                <li><a href="#features">المميزات الرئيسية</a></li>
-                <li><a href="#installation">كيف تثبته وتشغله؟</a></li>
-                <li><a href="#arabic">دعم اللغة العربية</a></li>
+                <li><a href="#intro">ما هو Ollama؟</a></li>
+                <li><a href="#installation">التثبيت</a></li>
+                <li><a href="#commands">الأوامر الأساسية</a></li>
+                <li><a href="#models">النماذج المتاحة</a></li>
                 <li><a href="#conclusion">الخلاصة</a></li>
               </ul>
             </div>
 
-            <h2 id="intro">🦙 ما هو Llama 3؟</h2>
-            <p><strong>Llama 3</strong> هو نموذج لغوي كبير مفتوح المصدر طورته شركة <strong>Meta (فيسبوك سابقاً)</strong>. تم إطلاقه في أبريل 2024 ويعتبر من أقوى النماذج مفتوحة المصدر المتاحة حالياً.</p>
+            <h2 id="intro">🧠 ما هو Ollama؟</h2>
+            <p><strong>Ollama</strong> هو أداة مجانية ومفتوحة المصدر تتيح لك تشغيل نماذج اللغة الكبيرة محلياً على جهازك بسهولة.</p>
 
-            <h2 id="versions">📦 الإصدارات المتاحة</h2>
-            <ul>
-              <li><strong>Llama 3 8B (8 مليار معلمة):</strong> حجم صغير، يعمل على أجهزة متوسطة (8-16GB RAM).</li>
-              <li><strong>Llama 3 70B (70 مليار معلمة):</strong> حجم كبير، يحتاج أجهزة قوية (32GB+ RAM).</li>
-            </ul>
+            <h2 id="installation">📥 التثبيت</h2>
+            <p>حمّل Ollama من <a href="https://ollama.ai" target="_blank">ollama.ai</a> لنظامك (Windows، Mac، Linux).</p>
 
-            <h2 id="features">✨ المميزات الرئيسية</h2>
-            <ul>
-              <li>مفتوح المصدر بالكامل – مجاني للاستخدام التجاري</li>
-              <li>يعمل محلياً – خصوصية كاملة</li>
-              <li>أداء ممتاز (يتفوق على GPT-3.5)</li>
-              <li>دعم اللغة العربية بشكل جيد</li>
-            </ul>
+            <h2 id="commands">⚙️ الأوامر الأساسية</h2>
+            <pre style="background:#0b1f3a; color:#fff; padding:1rem; border-radius:12px;"># تشغيل Llama 3
+ollama run llama3
 
-            <h2 id="installation">📥 كيف تثبته وتشغله؟</h2>
-            <p><strong>باستخدام Ollama (الأسهل):</strong></p>
-            <pre style="background:#0b1f3a; color:#fff; padding:1rem; border-radius:12px;">ollama run llama3</pre>
+# تشغيل Mistral
+ollama run mistral
 
-            <h2 id="arabic">🌐 دعم اللغة العربية</h2>
-            <p>Llama 3 الأساسي يدعم العربية بشكل مقبول. توجد إصدارات معدلة مثل "Llama 3 Arabic" تقدم أداءً ممتازاً.</p>
+# تشغيل Falcon
+ollama run falcon
 
-            <div class="info-box">
-              <strong>💡 نصيحة:</strong> ابدأ بـ Llama 3 8B باستخدام Ollama. إنه سهل التثبيت ويعمل على معظم الأجهزة.
-            </div>
+# قائمة النماذج المحملة
+ollama list</pre>
 
           </div>
         </div>
