@@ -14,47 +14,20 @@
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ea580c'%3E%3Cpath d='M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5'/%3E%3C/svg%3E" />
   <link rel="stylesheet" href="styles.css" />
   <style>
-    /* تحسينات إضافية لنموذج الاتصال */
-    .form-group input, .form-group select, .form-group textarea {
-      transition: all 0.3s ease;
-    }
-    .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
-      border-color: var(--primary);
-      box-shadow: 0 0 0 3px rgba(234,88,12,0.1);
-      outline: none;
-    }
+    .form-group input, .form-group select, .form-group textarea { transition: all 0.3s ease; }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(234,88,12,0.1); outline: none; }
     @media (max-width: 768px) {
-      .form-group input, .form-group textarea {
-        font-size: 16px; /* لمنع الزووم التلقائي في الآيفون */
-        width: 100%;
-      }
-      .contact-form {
-        padding: 1.2rem;
-      }
+      .form-group input, .form-group textarea { font-size: 16px; width: 100%; }
+      .contact-form { padding: 1.2rem; }
     }
-    .submit-btn {
-      position: relative;
-      transition: all 0.3s ease;
-    }
-    .submit-btn.loading {
-      opacity: 0.7;
-      pointer-events: none;
-    }
-    .submit-btn.loading::after {
-      content: "⏳";
-      margin-right: 0.5rem;
-      animation: spin 1s linear infinite;
-      display: inline-block;
-    }
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
+    .submit-btn { position: relative; transition: all 0.3s ease; }
+    .submit-btn.loading { opacity: 0.7; pointer-events: none; }
+    .submit-btn.loading::after { content: "⏳"; margin-right: 0.5rem; animation: spin 1s linear infinite; display: inline-block; }
+    @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
   </style>
 </head>
 <body>
 
-  <!-- ===== HEADER ===== -->
   <header class="site-header">
     <div class="container header-inner">
       <div class="logo">
@@ -69,7 +42,7 @@
         <a href="learn-ai.html">تعلم AI</a>
         <a href="open-source.html">أدوات مفتوحة المصدر</a>
         <a href="articles.html">المقالات</a>
-        <a href="posts.html">جميع المقالات</a>
+        <a href="posts-ai.html">جميع المقالات</a>
         <a href="blog.html">المدونة</a>
         <a href="about.html">من نحن</a>
         <a href="contact.html">تواصل</a>
@@ -110,23 +83,13 @@
           </div>
         </div>
 
-        <!-- نموذج الاتصال المحسن -->
         <div class="contact-form">
           <h2 style="margin-bottom: 1.5rem;">✉️ أرسل لنا رسالة</h2>
           <form action="https://formspree.io/f/xgvogdkn" method="POST" id="contactForm">
-            
-            <!-- حقل Honeypot (مخفي – للحماية من السبام) -->
             <input type="text" name="_gotcha" style="display:none" />
-            
-            <!-- توجيه المستخدم إلى صفحة الشكر بعد الإرسال -->
             <input type="hidden" name="_next" value="https://smartafiliate.com/thanks.html" />
-            
-            <!-- عنوان الرسالة (لتنظيم البريد الوارد) -->
             <input type="hidden" name="_subject" value="رسالة جديدة من smartafiliate" />
-            
-            <!-- لغة الرسالة -->
             <input type="hidden" name="_language" value="ar" />
-            
             <div class="form-group">
               <label>الاسم الكامل</label>
               <input type="text" name="name" placeholder="أدخل اسمك" required>
@@ -151,15 +114,12 @@
             </div>
             <button type="submit" class="submit-btn" id="submitBtn">إرسال الرسالة</button>
           </form>
-          <p style="font-size: 0.8rem; color: #475569; margin-top: 1rem;">
-            🔒 لن يتم مشاركة بريدك الإلكتروني مع أي طرف ثالث. سنرد عليك خلال 48 ساعة.
-          </p>
+          <p style="font-size: 0.8rem; color: #475569; margin-top: 1rem;">🔒 لن يتم مشاركة بريدك الإلكتروني مع أي طرف ثالث. سنرد عليك خلال 48 ساعة.</p>
         </div>
       </div>
     </section>
   </main>
 
-  <!-- ===== FOOTER ===== -->
   <footer class="site-footer">
     <div class="container footer-grid">
       <div class="footer-col">
@@ -192,38 +152,20 @@
   </footer>
 
   <script>
-    function toggleMenu() {
-      document.getElementById('mainNav').classList.toggle('active');
-    }
-    
+    function toggleMenu() { document.getElementById('mainNav').classList.toggle('active'); }
     window.onscroll = function() {
       const header = document.querySelector('.site-header');
-      if (window.scrollY > 50) {
-        header.classList.add('header-scrolled');
-      } else {
-        header.classList.remove('header-scrolled');
-      }
+      if (window.scrollY > 50) { header.classList.add('header-scrolled'); } else { header.classList.remove('header-scrolled'); }
     };
-    
-    // تحسين تجربة النموذج: منع الإرسال المتعدد وإظهار حالة التحميل
     const form = document.getElementById('contactForm');
     const submitBtn = document.getElementById('submitBtn');
-    
     if (form) {
       form.addEventListener('submit', function(e) {
-        // تغيير مظهر الزر أثناء الإرسال
         submitBtn.innerHTML = 'جاري الإرسال...';
         submitBtn.classList.add('loading');
-        
-        // إضافة حماية إضافية: منع الإرسال المتعدد
         let submitted = false;
-        if (submitted) {
-          e.preventDefault();
-          return;
-        }
+        if (submitted) { e.preventDefault(); return; }
         submitted = true;
-        
-        // إعادة تعيين الزر بعد 10 ثوانٍ (في حالة حدوث خطأ)
         setTimeout(function() {
           if (submitBtn.classList.contains('loading')) {
             submitBtn.innerHTML = 'إرسال الرسالة';
