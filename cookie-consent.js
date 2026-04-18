@@ -1,8 +1,27 @@
 (function () {
   const STORAGE_KEY = 'smartafiliate_cookie_consent';
+  const GA_ID = 'G-9T2MP7F5T2';
 
   function saveConsent(value) {
     localStorage.setItem(STORAGE_KEY, value);
+  }
+
+  function hasAnalyticsLoaded() {
+    return !!window.__smartafiliateAnalyticsLoaded;
+  }
+
+  function loadAnalytics() {
+    if (hasAnalyticsLoaded()) return;
+    window.__smartafiliateAnalyticsLoaded = true;
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function(){ window.dataLayer.push(arguments); };
+    window.gtag('js', new Date());
+    window.gtag('config', GA_ID);
+
+    const s = document.createElement('script');
+    s.async = true;
+    s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
+    document.head.appendChild(s);
   }
 
   function removeBanner() {
@@ -48,6 +67,7 @@
 
     document.getElementById('cookie-accept-btn').addEventListener('click', function () {
       saveConsent('accepted');
+      loadAnalytics();
       removeBanner();
     });
 
@@ -59,6 +79,10 @@
 
   document.addEventListener('DOMContentLoaded', function () {
     const saved = localStorage.getItem(STORAGE_KEY);
+    if (saved === 'accepted') {
+      loadAnalytics();
+      return;
+    }
     if (!saved) buildBanner();
   });
 })();
