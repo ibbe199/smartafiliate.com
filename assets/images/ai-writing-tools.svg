@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" role="img" aria-labelledby="title desc">
+  <title id="title">AI Writing Tools</title>
+  <desc id="desc">Decorative featured illustration for AI writing tools article.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0b1f3a"/>
+      <stop offset="100%" stop-color="#12305a"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f59e0b"/>
+      <stop offset="100%" stop-color="#ea580c"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="675" fill="url(#bg)"/>
+  <circle cx="1030" cy="110" r="130" fill="#ffffff" opacity="0.05"/>
+  <circle cx="170" cy="560" r="160" fill="#ffffff" opacity="0.04"/>
+  <rect x="120" y="120" width="620" height="390" rx="28" fill="#ffffff" opacity="0.08"/>
+  <rect x="160" y="160" width="540" height="310" rx="22" fill="#0f2748" stroke="#ffffff" opacity="0.9"/>
+  <rect x="200" y="210" width="210" height="28" rx="14" fill="#ffffff" opacity="0.16"/>
+  <rect x="200" y="270" width="340" height="18" rx="9" fill="#ffffff" opacity="0.10"/>
+  <rect x="200" y="310" width="410" height="18" rx="9" fill="#ffffff" opacity="0.10"/>
+  <rect x="200" y="350" width="300" height="18" rx="9" fill="#ffffff" opacity="0.10"/>
+  <rect x="200" y="395" width="170" height="34" rx="17" fill="url(#accent)"/>
+  <g transform="translate(780 145)">
+    <rect width="260" height="330" rx="28" fill="#ffffff" opacity="0.95"/>
+    <rect x="26" y="30" width="208" height="18" rx="9" fill="#dbe4f0"/>
+    <rect x="26" y="74" width="170" height="12" rx="6" fill="#dbe4f0"/>
+    <rect x="26" y="100" width="190" height="12" rx="6" fill="#dbe4f0"/>
+    <rect x="26" y="126" width="140" height="12" rx="6" fill="#dbe4f0"/>
+    <rect x="26" y="172" width="208" height="108" rx="18" fill="#f8fafc" stroke="#e2e8f0"/>
+    <path d="M70 223h120" stroke="#ea580c" stroke-width="10" stroke-linecap="round"/>
+    <path d="M70 198h70" stroke="#f59e0b" stroke-width="10" stroke-linecap="round"/>
+    <path d="M70 248h86" stroke="#12305a" stroke-width="10" stroke-linecap="round"/>
+  </g>
+  <g fill="none" stroke="url(#accent)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" opacity="0.95">
+    <path d="M870 530c24-40 74-62 118-52 35 8 63 36 72 71"/>
+    <path d="M905 566h174"/>
+    <path d="M970 498v136"/>
+  </g>
+</svg>
