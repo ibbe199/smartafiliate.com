@@ -5,48 +5,160 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>المدونة | smartafiliate</title>
   <meta name="description" content="مدونة smartafiliate للمحتوى العربي حول الذكاء الاصطناعي، التسويق بالعمولة، والنمو الرقمي." />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ea580c'%3E%3Cpath d='M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5'/%3E%3C/svg%3E" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
-<header class="site-header">
-  <div class="container header-inner">
-    <div class="logo">
-      <span class="logo-text logo-text-light">smart</span>
-      <span class="logo-text logo-text-accent">afiliate</span>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="logo">
+        <span class="logo-text logo-text-light">smart</span>
+        <span class="logo-text logo-text-accent">afiliate</span>
+      </div>
+      <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+      <nav class="main-nav" id="mainNav">
+        <a href="index.html">الرئيسية</a>
+        <a href="best-ai-tools.html">أفضل أدوات AI</a>
+        <a href="ai-articles.html">مكتبة AI</a>
+        <a href="learn-ai.html">تعلم AI</a>
+        <a href="open-source.html">أدوات مفتوحة المصدر</a>
+        <a href="articles.html">المقالات</a>
+        <a href="blog.html">المدونة</a>
+      </nav>
+      <div class="header-actions">
+        <a href="ai-articles.html" class="btn-outline-light">مكتبة AI</a>
+        <a href="best-ai-tools.html" class="btn-primary-light">أفضل أدوات AI</a>
+      </div>
     </div>
-  </div>
-</header>
+  </header>
 
-<main>
-<section class="page-hero">
-  <div class="container">
-    <span class="page-badge">المدونة</span>
-    <h1>المدونة</h1>
-    <p>مركز للوصول إلى المحتوى والمسارات الأساسية داخل الموقع.</p>
-  </div>
-</section>
+  <main>
+    <section class="page-hero">
+      <div class="container">
+        <span class="page-badge">📰 المدونة</span>
+        <h1>المدونة</h1>
+        <p>مركز سريع للوصول إلى أحدث المقالات العملية في الذكاء الاصطناعي، التسويق بالعمولة، والسيو.</p>
+      </div>
+    </section>
 
-<section class="section">
-  <div class="container">
-    <div class="section-header">
-      <span class="section-tag">جديد المدونة</span>
-      <h2>أحدث التدوينات</h2>
-    </div>
-
-    <div class="articles-grid">
-      <article class="article-card">
-        <div class="article-content">
-          <span class="article-category">استراتيجيات AI</span>
-          <h3><a href="posts-ai/29-90-day-ai-plan.html">خطة 90 يومًا مع الذكاء الاصطناعي</a></h3>
+    <section class="section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">جديد المدونة</span>
+          <h2>أحدث التدوينات</h2>
+          <p>بطاقات سريعة لأهم المقالات التي تستحق القراءة الآن</p>
         </div>
-      </article>
+
+        <div class="articles-grid">
+          <article class="article-card">
+            <div class="article-image"><img src="assets/images/ai-writing-tools.svg" alt="خطة 90 يومًا مع الذكاء الاصطناعي" loading="lazy"></div>
+            <div class="article-content">
+              <span class="article-category">استراتيجيات AI</span>
+              <h3><a href="posts-ai/29-90-day-ai-plan.html">خطة 90 يومًا مع الذكاء الاصطناعي</a></h3>
+              <p class="article-excerpt">خطة عملية لبناء عادة يومية واضحة وتحويل الذكاء الاصطناعي إلى جزء فعلي من مشروعك الرقمي.</p>
+              <div class="article-meta"><span>12 أبريل 2026</span><a href="posts-ai/29-90-day-ai-plan.html" class="read-more">اقرأ المقال →</a></div>
+            </div>
+          </article>
+
+          <article class="article-card">
+            <div class="article-image"><img src="assets/images/affiliate-marketing.svg" alt="ما هو التسويق بالعمولة" loading="lazy"></div>
+            <div class="article-content">
+              <span class="article-category">التسويق بالعمولة</span>
+              <h3><a href="articles/what-is-affiliate-marketing.html">ما هو التسويق بالعمولة؟ شرح مبسط للمبتدئين</a></h3>
+              <p class="article-excerpt">دليل بداية واضح لفهم نموذج الأفلييت، طريقة الربح، وأفضل نقطة انطلاق للمبتدئين.</p>
+              <div class="article-meta"><span>14 أبريل 2026</span><a href="articles/what-is-affiliate-marketing.html" class="read-more">اقرأ المقال →</a></div>
+            </div>
+          </article>
+
+          <article class="article-card">
+            <div class="article-image"><img src="assets/images/seo-affiliate.svg" alt="كيف تهيئ موقع الأفلييت للسيو" loading="lazy"></div>
+            <div class="article-content">
+              <span class="article-category">SEO</span>
+              <h3><a href="articles/seo-for-affiliate-sites.html">كيف تهيئ موقع الأفلييت للسيو بشكل صحيح</a></h3>
+              <p class="article-excerpt">خطوات عملية لرفع فرص الظهور في جوجل وتحسين بنية المقالات والروابط والعناوين.</p>
+              <div class="article-meta"><span>13 أبريل 2026</span><a href="articles/seo-for-affiliate-sites.html" class="read-more">اقرأ المقال →</a></div>
+            </div>
+          </article>
+
+          <article class="article-card">
+            <div class="article-image"><img src="assets/images/ai-writing-tools.svg" alt="أفضل أدوات الكتابة بالذكاء الاصطناعي" loading="lazy"></div>
+            <div class="article-content">
+              <span class="article-category">أدوات AI</span>
+              <h3><a href="posts-ai/30-best-ai-writing-tools.html">أفضل أدوات الكتابة بالذكاء الاصطناعي</a></h3>
+              <p class="article-excerpt">مقارنة عملية بين أشهر أدوات الكتابة لمساعدتك في اختيار الأداة الأنسب لاحتياجك.</p>
+              <div class="article-meta"><span>17 أبريل 2026</span><a href="posts-ai/30-best-ai-writing-tools.html" class="read-more">اقرأ المقال →</a></div>
+            </div>
+          </article>
+
+          <article class="article-card">
+            <div class="article-image"><img src="assets/images/affiliate-marketing.svg" alt="أفضل برامج الأفلييت في العالم العربي" loading="lazy"></div>
+            <div class="article-content">
+              <span class="article-category">برامج عربية</span>
+              <h3><a href="articles/best-affiliate-programs-arab-world.html">أفضل برامج الأفلييت في العالم العربي</a></h3>
+              <p class="article-excerpt">قائمة مختصرة ببرامج تناسب السوق العربي وتدعم انطلاقة أسرع وأكثر وضوحًا.</p>
+              <div class="article-meta"><span>10 أبريل 2026</span><a href="articles/best-affiliate-programs-arab-world.html" class="read-more">اقرأ المقال →</a></div>
+            </div>
+          </article>
+
+          <article class="article-card">
+            <div class="article-image"><img src="assets/images/ai-writing-tools.svg" alt="الطريق الكامل لتعلم الذكاء الاصطناعي" loading="lazy"></div>
+            <div class="article-content">
+              <span class="article-category">تعلم AI</span>
+              <h3><a href="posts-ai/complete-ai-learning-path.html">الطريق الكامل لتعلم الذكاء الاصطناعي</a></h3>
+              <p class="article-excerpt">خطة تعلم متكاملة تساعدك على تنظيم المسار بدل التشتت بين الأدوات والمصادر.</p>
+              <div class="article-meta"><span>12 أبريل 2026</span><a href="posts-ai/complete-ai-learning-path.html" class="read-more">اقرأ المقال →</a></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-col">
+        <div class="logo">
+          <span class="logo-text logo-text-light">smart</span>
+          <span class="logo-text logo-text-accent">afiliate</span>
+        </div>
+        <p class="footer-description">منصة عربية تساعدك على فهم الذكاء الاصطناعي، التسويق بالعمولة، وبناء مشروع رقمي أوضح وأكثر قابلية للنمو.</p>
+      </div>
+      <div class="footer-col">
+        <h4>من نحن</h4>
+        <a href="about.html">من نحن</a>
+        <a href="contact.html">تواصل معنا</a>
+      </div>
+      <div class="footer-col">
+        <h4>سياسة الخصوصية</h4>
+        <a href="privacy.html">سياسة الخصوصية</a>
+        <a href="terms.html">الشروط والأحكام</a>
+      </div>
+      <div class="footer-col">
+        <h4>روابط سريعة</h4>
+        <a href="sitemap.xml">خريطة الموقع</a>
+        <a href="disclosure.html">الإفصاح</a>
+      </div>
     </div>
+    <div class="container footer-bottom">
+      <span>smartafiliate © 2026 – جميع الحقوق محفوظة</span>
+      <span>🌐 بناء محتوى عربي عملي للمستقبل</span>
+    </div>
+  </footer>
 
-  </div>
-</section>
-
-</main>
+  <script>
+    function toggleMenu() {
+      document.getElementById('mainNav').classList.toggle('active');
+    }
+    window.onscroll = function() {
+      const header = document.querySelector('.site-header');
+      if (window.scrollY > 50) {
+        header.classList.add('header-scrolled');
+      } else {
+        header.classList.remove('header-scrolled');
+      }
+    };
+  </script>
 
 </body>
 </html>
