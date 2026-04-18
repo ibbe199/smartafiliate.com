@@ -6,228 +6,35 @@
   <title>تعلم بايثون من الصفر للذكاء الاصطناعي | smartafiliate</title>
   <meta name="description" content="تعلم أساسيات لغة بايثون التي تحتاجها للذكاء الاصطناعي: المتغيرات، القوائم، الحلقات، الدوال، والمكتبات الأساسية." />
   <link rel="stylesheet" href="../styles.css" />
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-9T2MP7F5T2"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-9T2MP7F5T2');
-  </script>
+  <script defer src="../cookie-consent.js"></script>
 </head>
 <body>
-
   <header class="site-header">
     <div class="container header-inner">
-      <div class="logo">
-        <span class="logo-text logo-text-light">smart</span>
-        <span class="logo-text logo-text-accent">afiliate</span>
-      </div>
+      <div class="logo"><span class="logo-text logo-text-light">smart</span><span class="logo-text logo-text-accent">afiliate</span></div>
       <button class="menu-toggle" onclick="toggleMenu()">☰</button>
       <nav class="main-nav" id="mainNav">
-        <a href="../index.html">الرئيسية</a>
-        <a href="../best-ai-tools.html">أفضل أدوات AI</a>
-        <a href="../ai-articles.html">مكتبة AI</a>
-        <a href="../learn-ai.html">تعلم AI</a>
-        <a href="../open-source.html">أدوات مفتوحة المصدر</a>
-        <a href="../articles.html">المقالات</a>
-        <a href="../blog.html">المدونة</a>
-        <a href="../about.html">من نحن</a>
-        <a href="../contact.html">تواصل</a>
+        <a href="../index.html">الرئيسية</a><a href="../best-ai-tools.html">أفضل أدوات AI</a><a href="../ai-articles.html">مكتبة AI</a><a href="../learn-ai.html">تعلم AI</a><a href="../open-source.html">أدوات مفتوحة المصدر</a><a href="../articles.html">المقالات</a><a href="../blog.html">المدونة</a><a href="../about.html">من نحن</a><a href="../contact.html">تواصل</a>
       </nav>
-      <div class="header-actions">
-        <a href="../ai-articles.html" class="btn-outline-light">مكتبة AI</a>
-        <a href="../best-ai-tools.html" class="btn-primary-light">أفضل أدوات AI</a>
-      </div>
+      <div class="header-actions"><a href="../ai-articles.html" class="btn-outline-light">مكتبة AI</a><a href="../best-ai-tools.html" class="btn-primary-light">أفضل أدوات AI</a></div>
     </div>
   </header>
-
   <main>
-    <section class="page-hero">
-      <div class="container">
-        <span class="page-badge">🐍 تعلم بايثون</span>
-        <h1>تعلم بايثون من الصفر للذكاء الاصطناعي</h1>
-        <p>أساسيات بايثون التي تحتاجها فقط للبدء في الذكاء الاصطناعي (لن نتعلم كل شيء، فقط ما يهمك)</p>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container">
-        <div class="article-container">
-          <div class="article-body" style="padding: 2rem;">
-            
-            <div class="toc">
-              <h3>📑 في هذا المقال</h3>
-              <ul>
-                <li><a href="#why-python">لماذا بايثون؟</a></li>
-                <li><a href="#installation">كيف تثبت بايثون على جهازك؟</a></li>
-                <li><a href="#variables">المتغيرات وأنواع البيانات</a></li>
-                <li><a href="#lists">القوائم (Lists)</a></li>
-                <li><a href="#loops">الحلقات (Loops)</a></li>
-                <li><a href="#functions">الدوال (Functions)</a></li>
-                <li><a href="#libraries">المكتبات الأساسية للذكاء الاصطناعي</a></li>
-                <li><a href="#exercises">تمارين عملية</a></li>
-              </ul>
-            </div>
-
-            <h2 id="why-python">❓ لماذا بايثون تحديداً للذكاء الاصطناعي؟</h2>
-            <p>هناك أسباب كثيرة تجعل بايثون اللغة الأولى للذكاء الاصطناعي:</p>
-            <ul>
-              <li>✅ <strong>بسيطة وسهلة:</strong> تشبه اللغة الإنجليزية، مناسبة للمبتدئين.</li>
-              <li>✅ <strong>مكتبات جاهزة:</strong> NumPy, Pandas, TensorFlow, PyTorch – كلها مجانية وقوية.</li>
-              <li>✅ <strong>مجتمع ضخم:</strong> ملايين المطورين، ستجد إجابة لأي سؤال.</li>
-              <li>✅ <strong>مجانية بالكامل:</strong> لا تدفع شيئاً.</li>
-            </ul>
-
-            <h2 id="installation">💻 كيف تثبت بايثون على جهازك؟</h2>
-            <p><strong>الطريقة الأسهل:</strong> حمّل Anaconda (حزمة متكاملة تحتوي على بايثون + المكتبات + بيئة تطوير).</p>
-            <ul>
-              <li>اذهب إلى <a href="https://www.anaconda.com/download" target="_blank">anaconda.com/download</a></li>
-              <li>حمّل النسخة المناسبة لنظامك (Windows/Mac/Linux)</li>
-              <li>ثبت البرنامج (التالي → التالي → إنهاء)</li>
-              <li>افتح "Anaconda Navigator" ثم "Jupyter Notebook"</li>
-            </ul>
-            <div class="info-box">
-              <strong>💡 بديل سريع:</strong> إذا كنت لا تريد تثبيت أي شيء، استخدم <a href="https://colab.research.google.com" target="_blank">Google Colab</a> – بيئة برمجة مجانية في المتصفح.
-            </div>
-
-            <h2 id="variables">📦 المتغيرات وأنواع البيانات</h2>
-            <p>المتغير هو صندوق نضع فيه بيانات. بايثون تحدد نوع البيانات تلقائياً:</p>
-            <pre style="background:#0b1f3a; color:#fff; padding:1rem; border-radius:12px; direction:ltr; text-align:left; overflow-x:auto;">
-# الأعداد (integers)
-العمر = 25
-
-# الأعداد العشرية (floats)
-السعر = 99.99
-
-# النصوص (strings)
-الاسم = "أحمد"
-
-# القوائم (lists)
-الطلاب = ["أحمد", "سارة", "محمد"]
-
-# القواميس (dictionaries)
-شخص = {"الاسم": "أحمد", "العمر": 25}
-
-# طباعة أي متغير
-print(الاسم)  # النتيجة: أحمد
-            </pre>
-
-            <h2 id="lists">📋 القوائم (Lists)</h2>
-            <p>القائمة هي مجموعة مرتبة من العناصر. تستخدم كثيراً في الذكاء الاصطناعي لتخزين البيانات:</p>
-            <pre style="background:#0b1f3a; color:#fff; padding:1rem; border-radius:12px; direction:ltr; text-align:left; overflow-x:auto;">
-# إنشاء قائمة
-الدرجات = [85, 92, 78, 90]
-
-# الوصول إلى عنصر (يبدأ العد من 0)
-print(الدرجات[0])  # النتيجة: 85
-
-# إضافة عنصر
-الدرجات.append(95)
-
-# الحلقة على القائمة
-for درجة in الدرجات:
-    print(درجة)
-
-# طول القائمة
-print(len(الدرجات))  # النتيجة: 5
-            </pre>
-
-            <h2 id="loops">🔄 الحلقات (Loops)</h2>
-            <p>الحلقات تسمح لنا بتكرار الأوامر عدة مرات:</p>
-            <pre style="background:#0b1f3a; color:#fff; padding:1rem; border-radius:12px; direction:ltr; text-align:left; overflow-x:auto;">
-# for loop – نعرف عدد التكرارات
-for i in range(5):
-    print(f"التكرار رقم {i}")
-
-# while loop – نكرر حتى يتحقق شرط
-س = 0
-while س < 5:
-    print(س)
-    س = س + 1
-            </pre>
-
-            <h2 id="functions">⚙️ الدوال (Functions)</h2>
-            <p>الدالة هي قطعة كود تؤدي مهمة محددة. يمكنك استدعاؤها عدة مرات:</p>
-            <pre style="background:#0b1f3a; color:#fff; padding:1rem; border-radius:12px; direction:ltr; text-align:left; overflow-x:auto;">
-# تعريف دالة
-def تحية(الاسم):
-    return f"مرحباً يا {الاسم}"
-
-# استدعاء الدالة
-print(تحية("أحمد"))  # النتيجة: مرحباً يا أحمد
-
-# دالة لحساب المتوسط
-def المتوسط(الأعداد):
-    return sum(الأعداد) / len(الأعداد)
-
-print(المتوسط([85, 90, 95]))  # النتيجة: 90.0
-            </pre>
-
-            <h2 id="libraries">📚 المكتبات الأساسية للذكاء الاصطناعي</h2>
-            <p>المكتبات هي أكواد جاهزة يكتبها آخرون لتسهل علينا العمل. أهمها:</p>
-            <ul>
-              <li><strong>NumPy:</strong> للتعامل مع المصفوفات والأرقام (أساسي جداً).</li>
-              <li><strong>Pandas:</strong> لتحليل البيانات ومعالجتها (مثل Excel لكن أقوى).</li>
-              <li><strong>Matplotlib / Seaborn:</strong> لرسم الرسوم البيانية.</li>
-              <li><strong>Scikit-learn:</strong> لبناء نماذج تعلم الآلة.</li>
-              <li><strong>TensorFlow / PyTorch:</strong> للتعلم العميق (متقدم).</li>
-            </ul>
-            <pre style="background:#0b1f3a; color:#fff; padding:1rem; border-radius:12px; direction:ltr; text-align:left; overflow-x:auto;">
-# تثبيت مكتبة (من سطر الأوامر)
-pip install numpy pandas matplotlib
-
-# استخدام NumPy
-import numpy as np
-ارقام = np.array([1, 2, 3, 4, 5])
-print(ارقام * 2)  # [2, 4, 6, 8, 10]
-
-# استخدام Pandas
-import pandas as pd
-بيانات = pd.DataFrame({"الاسم": ["أحمد", "سارة"], "العمر": [25, 30]})
-print(بيانات)
-            </pre>
-
-            <h2 id="exercises">✍️ تمارين عملية (جرب بنفسك)</h2>
-            <p><strong>تمرين 1:</strong> أنشئ قائمة تحتوي على 5 أسماء، ثم اطبع الاسم الثالث.</p>
-            <p><strong>تمرين 2:</strong> اكتب دالة تستقبل رقمين وترجع مجموعهما.</p>
-            <p><strong>تمرين 3:</strong> أنشئ مصفوفة NumPy من 10 أرقام عشوائية، ثم احسب متوسطها.</p>
-            
-            <div class="info-box">
-              <strong>💡 نصيحة:</strong> لا تحاول حفظ الكود، فقط <strong>افهم الفكرة وطبقها بنفسك</strong>. البرمجة تتعلم بالممارسة وليس بالحفظ.
-            </div>
-
-            <p style="margin-top: 2rem; text-align: center;">📚 <strong>تابع القراءة:</strong> <a href="math-for-ai-beginners.html" style="color:#ea580c;">المقال التالي: الرياضيات التي تحتاجها للذكاء الاصطناعي →</a></p>
-          </div>
-        </div>
-      </div>
-    </section>
+    <section class="page-hero"><div class="container"><span class="page-badge">🐍 تعلم بايثون</span><h1>تعلم بايثون من الصفر للذكاء الاصطناعي</h1><p>أساسيات بايثون التي تحتاجها فقط للبدء في الذكاء الاصطناعي.</p></div></section>
+    <section class="section"><div class="container"><div class="article-container"><div class="article-body" style="padding: 2rem;">
+      <div class="toc"><h3>📑 في هذا المقال</h3><ul><li><a href="#why-python">لماذا بايثون؟</a></li><li><a href="#installation">التثبيت</a></li><li><a href="#variables">المتغيرات</a></li><li><a href="#lists">القوائم</a></li><li><a href="#loops">الحلقات</a></li><li><a href="#functions">الدوال</a></li><li><a href="#libraries">المكتبات</a></li></ul></div>
+      <h2 id="why-python">❓ لماذا بايثون؟</h2><p>لأنها بسيطة، شائعة، وتملك مكتبات قوية مثل NumPy وPandas وScikit-learn وTensorFlow.</p>
+      <h2 id="installation">💻 التثبيت</h2><p>يمكنك استخدام Anaconda أو Google Colab كبداية سهلة وسريعة.</p>
+      <h2 id="variables">📦 المتغيرات</h2><p>المتغيرات تخزن القيم: أرقام، نصوص، قوائم، أو قواميس.</p>
+      <h2 id="lists">📋 القوائم</h2><p>القوائم من أكثر الهياكل استخدامًا في التعامل مع البيانات داخل مشاريع الذكاء الاصطناعي.</p>
+      <h2 id="loops">🔄 الحلقات</h2><p>الحلقات تسمح لك بتكرار العمليات على البيانات بسهولة.</p>
+      <h2 id="functions">⚙️ الدوال</h2><p>الدوال تجعل الكود أوضح وأسهل في إعادة الاستخدام.</p>
+      <h2 id="libraries">📚 المكتبات</h2><p>ابدأ بـ NumPy وPandas، ثم لاحقًا انتقل إلى Scikit-learn وTensorFlow أو PyTorch.</p>
+      <div class="info-box"><strong>💡 نصيحة:</strong> لا تحفظ الكود. افهم الفكرة وطبّقها بيدك.</div>
+      <p style="margin-top: 2rem; text-align: center;">📚 <strong>تابع القراءة:</strong> <a href="math-for-ai-beginners.html" style="color:#ea580c;">المقال التالي: الرياضيات التي تحتاجها للذكاء الاصطناعي →</a></p>
+    </div></div></div></section>
   </main>
-
-  <footer class="site-footer">
-    <div class="container footer-grid">
-      <div class="footer-col">
-        <div class="logo"><span class="logo-text logo-text-light">smart</span><span class="logo-text logo-text-accent">afiliate</span></div>
-        <p class="footer-description">منصة عربية تساعدك على فهم الذكاء الاصطناعي، التسويق بالعمولة، وبناء مشروع رقمي.</p>
-      </div>
-      <div class="footer-col">
-        <h4>استكشف</h4>
-        <a href="../best-ai-tools.html">⭐ أفضل أدوات AI</a>
-        <a href="../ai-articles.html">📚 مكتبة AI</a>
-        <a href="../learn-ai.html">📖 تعلم AI</a>
-      </div>
-      <div class="footer-col">
-        <h4>المساعدة</h4>
-        <a href="../about.html">من نحن</a>
-        <a href="../contact.html">اتصل بنا</a>
-        <a href="../privacy.html">سياسة الخصوصية</a>
-      </div>
-    </div>
-    <div class="container footer-bottom">
-      <span>smartafiliate © 2026 – جميع الحقوق محفوظة</span>
-      <span>🌐 بناء محتوى عربي عملي للمستقبل</span>
-    </div>
-  </footer>
-
+  <footer class="site-footer"><div class="container footer-grid"><div class="footer-col"><div class="logo"><span class="logo-text logo-text-light">smart</span><span class="logo-text logo-text-accent">afiliate</span></div><p class="footer-description">منصة عربية تساعدك على فهم الذكاء الاصطناعي، التسويق بالعمولة، وبناء مشروع رقمي.</p></div><div class="footer-col"><h4>استكشف</h4><a href="../best-ai-tools.html">⭐ أفضل أدوات AI</a><a href="../ai-articles.html">📚 مكتبة AI</a><a href="../learn-ai.html">📖 تعلم AI</a></div><div class="footer-col"><h4>المساعدة</h4><a href="../about.html">من نحن</a><a href="../contact.html">اتصل بنا</a><a href="../privacy.html">سياسة الخصوصية</a><a href="../cookie-policy.html">سياسة الكوكيز</a></div></div><div class="container footer-bottom"><span>smartafiliate © 2026 – جميع الحقوق محفوظة</span><span>🌐 بناء محتوى عربي عملي للمستقبل</span></div></footer>
   <script>function toggleMenu(){document.getElementById('mainNav').classList.toggle('active');}</script>
 </body>
 </html>
