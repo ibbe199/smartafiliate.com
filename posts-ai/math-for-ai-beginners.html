@@ -6,22 +6,12 @@
   <title>الرياضيات التي تحتاجها للذكاء الاصطناعي (شرح مبسط) | smartafiliate</title>
   <meta name="description" content="شرح مبسط للرياضيات الأساسية التي تحتاجها للذكاء الاصطناعي: الإحصاء، الجبر الخطي، والاحتمالات. بدون تعقيدات." />
   <link rel="stylesheet" href="../styles.css" />
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-9T2MP7F5T2"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-9T2MP7F5T2');
-  </script>
+  <script defer src="../cookie-consent.js"></script>
 </head>
 <body>
-
   <header class="site-header">
     <div class="container header-inner">
-      <div class="logo">
-        <span class="logo-text logo-text-light">smart</span>
-        <span class="logo-text logo-text-accent">afiliate</span>
-      </div>
+      <div class="logo"><span class="logo-text logo-text-light">smart</span><span class="logo-text logo-text-accent">afiliate</span></div>
       <button class="menu-toggle" onclick="toggleMenu()">☰</button>
       <nav class="main-nav" id="mainNav">
         <a href="../index.html">الرئيسية</a>
@@ -34,136 +24,24 @@
         <a href="../about.html">من نحن</a>
         <a href="../contact.html">تواصل</a>
       </nav>
-      <div class="header-actions">
-        <a href="../ai-articles.html" class="btn-outline-light">مكتبة AI</a>
-        <a href="../best-ai-tools.html" class="btn-primary-light">أفضل أدوات AI</a>
-      </div>
+      <div class="header-actions"><a href="../ai-articles.html" class="btn-outline-light">مكتبة AI</a><a href="../best-ai-tools.html" class="btn-primary-light">أفضل أدوات AI</a></div>
     </div>
   </header>
-
   <main>
-    <section class="page-hero">
-      <div class="container">
-        <span class="page-badge">📊 الرياضيات للذكاء الاصطناعي</span>
-        <h1>الرياضيات التي تحتاجها للذكاء الاصطناعي (شرح مبسط)</h1>
-        <p>لا تحتاج إلى أن تكون عبقرياً في الرياضيات. هذه المفاهيم الأساسية كافية للبدء.</p>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container">
-        <div class="article-container">
-          <div class="article-body" style="padding: 2rem;">
-            
-            <div class="toc">
-              <h3>📑 في هذا المقال</h3>
-              <ul>
-                <li><a href="#myth">خرافة: "تحتاج رياضيات متقدمة للذكاء الاصطناعي"</a></li>
-                <li><a href="#statistics">الإحصاء الأساسي (متوسط، وسيط، انحراف معياري)</a></li>
-                <li><a href="#linear-algebra">الجبر الخطي (المصفوفات والمتجهات)</a></li>
-                <li><a href="#probability">الاحتمالات الأساسية</a></li>
-                <li><a href="#calculus">حساب التفاضل (فكرة بسيطة فقط)</a></li>
-                <li><a href="#resources">موارد لتعلم الرياضيات</a></li>
-              </ul>
-            </div>
-
-            <h2 id="myth">❌ خرافة: "تحتاج رياضيات متقدمة للذكاء الاصطناعي"</h2>
-            <p>هذه خرافة تمنع الكثيرين من البدء. الحقيقة:</p>
-            <ul>
-              <li>✅ <strong>للمبتدئين:</strong> تحتاج فقط أساسيات الإحصاء والجبر الخطي.</li>
-              <li>✅ <strong>للمستوى المتوسط:</strong> تحتاج فهم أعمق للإحصاء والاحتمالات.</li>
-              <li>✅ <strong>للمحترفين (الباحثين):</strong> هنا تحتاج رياضيات متقدمة.</li>
-            </ul>
-            <div class="info-box">
-              <strong>💡 الخلاصة:</strong> يمكنك البدء في تعلم الذكاء الاصطناعي بمستوى رياضيات الصف الثامن! ستتعلم الباقي أثناء المسير.
-            </div>
-
-            <h2 id="statistics">📈 الإحصاء الأساسي</h2>
-            <p><strong>المتوسط (Mean):</strong> مجموع الأرقام ÷ عددها</p>
-            <pre style="background:#0b1f3a; color:#fff; padding:1rem; border-radius:12px; direction:ltr; text-align:left;">
-# مثال: درجات الطلاب [85, 90, 95]
-المتوسط = (85 + 90 + 95) / 3 = 90
-            </pre>
-            
-            <p><strong>الوسيط (Median):</strong> الرقم الأوسط بعد الترتيب</p>
-            <pre style="background:#0b1f3a; color:#fff; padding:1rem; border-radius:12px; direction:ltr; text-align:left;">
-# [85, 90, 95] → الوسيط = 90
-# [85, 90, 92, 95] → الوسيط = (90+92)/2 = 91
-            </pre>
-            
-            <p><strong>الانحراف المعياري (Standard Deviation):</strong> يخبرك بمدى تشتت البيانات. قيمة صغيرة = البيانات متقاربة، قيمة كبيرة = البيانات متباعدة.</p>
-
-            <h2 id="linear-algebra">📐 الجبر الخطي (المصفوفات والمتجهات)</h2>
-            <p>الذكاء الاصطناعي يتعامل مع كميات هائلة من البيانات. المصفوفات والمتجهات هي الطريقة التي ننظم بها هذه البيانات.</p>
-            
-            <p><strong>المتجه (Vector):</strong> قائمة من الأرقام. مثلاً: درجة حرارة كل يوم في الأسبوع [20, 22, 21, 23, 24, 22, 21]</p>
-            
-            <p><strong>المصفوفة (Matrix):</strong> جدول من الأرقام (صفوف وأعمدة). مثلاً: أسعار 3 منتجات في 4 متاجر مختلفة.</p>
-            <pre style="background:#0b1f3a; color:#fff; padding:1rem; border-radius:12px; direction:ltr; text-align:left;">
-# مصفوفة 2×3 (صفين و3 أعمدة)
-[[1, 2, 3],
- [4, 5, 6]]
-            </pre>
-            
-            <div class="info-box">
-              <strong>💡 تشبيه بسيط:</strong> المتجه عمود واحد، المصفوفة جدول. معظم عمليات الذكاء الاصطناعي هي عمليات على المصفوفات.
-            </div>
-
-            <h2 id="probability">🎲 الاحتمالات الأساسية</h2>
-            <p><strong>الاحتمال = عدد النتائج المطلوبة ÷ عدد النتائج الممكنة</strong></p>
-            <ul>
-              <li>احتمال الحصول على "شعار" عند رمي عملة = 1 ÷ 2 = 0.5 (50%)</li>
-              <li>احتمال الحصول على 6 عند رمي حجر نرد = 1 ÷ 6 ≈ 0.166 (16.6%)</li>
-            </ul>
-            <p>في الذكاء الاصطناعي، نستخدم الاحتمالات لقياس "ثقة" النموذج في توقعاته. مثلاً: "هذه الصورة بها قطة بنسبة 95%".</p>
-
-            <h2 id="calculus">📉 حساب التفاضل (فكرة بسيطة فقط)</h2>
-            <p>المشتقة تخبرك "بمعدل التغير". مثلاً: إذا كنت تقود سيارة، المشتقة تخبرك بالسرعة (معدل تغير المسافة مع الزمن).</p>
-            <p>في الذكاء الاصطناعي، نستخدم المشتقات لتحسين النماذج. عملية "التعلم" هي البحث عن القيم التي تقلل الخطأ (نزول التدرج – Gradient Descent).</p>
-
-            <h2 id="resources">📚 موارد لتعلم الرياضيات</h2>
-            <ul>
-              <li><strong>قنوات يوتيوب:</strong> "إحصاء – أكاديمية حسوب"، "مباديء الإحصاء – Khan Academy"</li>
-              <li><strong>كتب مجانية:</strong> "Mathematics for Machine Learning" (متاح مجاناً بصيغة PDF)</li>
-              <li><strong>دورات:</strong> "Mathematics for Machine Learning" على Coursera (مجانية بالتدقيق).</li>
-            </ul>
-
-            <div class="info-box">
-              <strong>💡 نصيحة أخيرة:</strong> لا تحاول حفظ كل شيء. تعلم المفاهيم أثناء تطبيقها. الرياضيات تصبح أسهل عندما ترى استخدامها العملي.
-            </div>
-
-            <p style="margin-top: 2rem; text-align: center;">📚 <strong>تابع القراءة:</strong> <a href="complete-ai-learning-path.html" style="color:#ea580c;">المقال التالي: الطريق الكامل لتعلم الذكاء الاصطناعي →</a></p>
-          </div>
-        </div>
-      </div>
-    </section>
+    <section class="page-hero"><div class="container"><span class="page-badge">📊 الرياضيات للذكاء الاصطناعي</span><h1>الرياضيات التي تحتاجها للذكاء الاصطناعي (شرح مبسط)</h1><p>لا تحتاج إلى أن تكون عبقرياً في الرياضيات. هذه المفاهيم الأساسية كافية للبدء.</p></div></section>
+    <section class="section"><div class="container"><div class="article-container"><div class="article-body" style="padding: 2rem;">
+      <div class="toc"><h3>📑 في هذا المقال</h3><ul><li><a href="#myth">هل تحتاج رياضيات متقدمة؟</a></li><li><a href="#statistics">الإحصاء</a></li><li><a href="#linear-algebra">الجبر الخطي</a></li><li><a href="#probability">الاحتمالات</a></li><li><a href="#calculus">التفاضل</a></li><li><a href="#resources">موارد</a></li></ul></div>
+      <h2 id="myth">❌ هل تحتاج رياضيات متقدمة؟</h2><p>لا. للمبتدئ، أساسيات الإحصاء والجبر الخطي والاحتمالات تكفي للانطلاق. التعمق يأتي لاحقًا.</p>
+      <div class="info-box"><strong>💡 الخلاصة:</strong> يمكنك البدء أولاً، ثم تتعلم الرياضيات أثناء التطبيق.</div>
+      <h2 id="statistics">📈 الإحصاء</h2><p>المتوسط والوسيط والانحراف المعياري من المفاهيم الأساسية لفهم البيانات والتنبؤات.</p>
+      <h2 id="linear-algebra">📐 الجبر الخطي</h2><p>المتجهات والمصفوفات هي الطريقة التي تمثل بها النماذج البيانات وتتعامل معها داخليًا.</p>
+      <h2 id="probability">🎲 الاحتمالات</h2><p>الاحتمالات تساعدك على فهم الثقة في التنبؤات، مثل: "هذه صورة قطة بنسبة 95%".</p>
+      <h2 id="calculus">📉 التفاضل</h2><p>مطلوب لفهم كيف تقلل النماذج الخطأ وتتعلم بشكل أفضل، خاصة في التعلم العميق.</p>
+      <h2 id="resources">📚 موارد</h2><ul><li>Mathematics for Machine Learning</li><li>Khan Academy</li><li>Coursera</li></ul>
+      <p style="margin-top: 2rem; text-align: center;">📚 <strong>تابع القراءة:</strong> <a href="complete-ai-learning-path.html" style="color:#ea580c;">المقال التالي: الطريق الكامل لتعلم الذكاء الاصطناعي →</a></p>
+    </div></div></div></section>
   </main>
-
-  <footer class="site-footer">
-    <div class="container footer-grid">
-      <div class="footer-col">
-        <div class="logo"><span class="logo-text logo-text-light">smart</span><span class="logo-text logo-text-accent">afiliate</span></div>
-        <p class="footer-description">منصة عربية تساعدك على فهم الذكاء الاصطناعي، التسويق بالعمولة، وبناء مشروع رقمي.</p>
-      </div>
-      <div class="footer-col">
-        <h4>استكشف</h4>
-        <a href="../best-ai-tools.html">⭐ أفضل أدوات AI</a>
-        <a href="../ai-articles.html">📚 مكتبة AI</a>
-        <a href="../learn-ai.html">📖 تعلم AI</a>
-      </div>
-      <div class="footer-col">
-        <h4>المساعدة</h4>
-        <a href="../about.html">من نحن</a>
-        <a href="../contact.html">اتصل بنا</a>
-        <a href="../privacy.html">سياسة الخصوصية</a>
-      </div>
-    </div>
-    <div class="container footer-bottom">
-      <span>smartafiliate © 2026 – جميع الحقوق محفوظة</span>
-      <span>🌐 بناء محتوى عربي عملي للمستقبل</span>
-    </div>
-  </footer>
-
+  <footer class="site-footer"><div class="container footer-grid"><div class="footer-col"><div class="logo"><span class="logo-text logo-text-light">smart</span><span class="logo-text logo-text-accent">afiliate</span></div><p class="footer-description">منصة عربية تساعدك على فهم الذكاء الاصطناعي، التسويق بالعمولة، وبناء مشروع رقمي.</p></div><div class="footer-col"><h4>استكشف</h4><a href="../best-ai-tools.html">⭐ أفضل أدوات AI</a><a href="../ai-articles.html">📚 مكتبة AI</a><a href="../learn-ai.html">📖 تعلم AI</a></div><div class="footer-col"><h4>المساعدة</h4><a href="../about.html">من نحن</a><a href="../contact.html">اتصل بنا</a><a href="../privacy.html">سياسة الخصوصية</a><a href="../cookie-policy.html">سياسة الكوكيز</a></div></div><div class="container footer-bottom"><span>smartafiliate © 2026 – جميع الحقوق محفوظة</span><span>🌐 بناء محتوى عربي عملي للمستقبل</span></div></footer>
   <script>function toggleMenu(){document.getElementById('mainNav').classList.toggle('active');}</script>
 </body>
 </html>
