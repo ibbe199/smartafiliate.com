@@ -6,175 +6,34 @@
   <title>أفكار مشاريع ذكاء اصطناعي للمبتدئين (مع شرح خطوة بخطوة) | smartafiliate</title>
   <meta name="description" content="5 مشاريع ذكاء اصطناعي للمبتدئين مع شرح خطوة بخطوة: تصنيف الصور، تحليل المشاعر، توقع الأسعار، توصية المنتجات، ومحادثة ذكية." />
   <link rel="stylesheet" href="../styles.css" />
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-9T2MP7F5T2"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-9T2MP7F5T2');
-  </script>
+  <script defer src="../cookie-consent.js"></script>
 </head>
 <body>
-
   <header class="site-header">
     <div class="container header-inner">
-      <div class="logo">
-        <span class="logo-text logo-text-light">smart</span>
-        <span class="logo-text logo-text-accent">afiliate</span>
-      </div>
+      <div class="logo"><span class="logo-text logo-text-light">smart</span><span class="logo-text logo-text-accent">afiliate</span></div>
       <button class="menu-toggle" onclick="toggleMenu()">☰</button>
       <nav class="main-nav" id="mainNav">
-        <a href="../index.html">الرئيسية</a>
-        <a href="../best-ai-tools.html">أفضل أدوات AI</a>
-        <a href="../ai-articles.html">مكتبة AI</a>
-        <a href="../learn-ai.html">تعلم AI</a>
-        <a href="../open-source.html">أدوات مفتوحة المصدر</a>
-        <a href="../articles.html">المقالات</a>
-        <a href="../blog.html">المدونة</a>
-        <a href="../about.html">من نحن</a>
-        <a href="../contact.html">تواصل</a>
+        <a href="../index.html">الرئيسية</a><a href="../best-ai-tools.html">أفضل أدوات AI</a><a href="../ai-articles.html">مكتبة AI</a><a href="../learn-ai.html">تعلم AI</a><a href="../open-source.html">أدوات مفتوحة المصدر</a><a href="../articles.html">المقالات</a><a href="../blog.html">المدونة</a><a href="../about.html">من نحن</a><a href="../contact.html">تواصل</a>
       </nav>
-      <div class="header-actions">
-        <a href="../ai-articles.html" class="btn-outline-light">مكتبة AI</a>
-        <a href="../best-ai-tools.html" class="btn-primary-light">أفضل أدوات AI</a>
-      </div>
+      <div class="header-actions"><a href="../ai-articles.html" class="btn-outline-light">مكتبة AI</a><a href="../best-ai-tools.html" class="btn-primary-light">أفضل أدوات AI</a></div>
     </div>
   </header>
-
   <main>
-    <section class="page-hero">
-      <div class="container">
-        <span class="page-badge">🛠️ مشاريع عملية</span>
-        <h1>أفكار مشاريع ذكاء اصطناعي للمبتدئين</h1>
-        <p>5 مشاريع كاملة مع شرح خطوة بخطوة. بنهاية هذه المشاريع، سيكون لديك بورتفوليو قوي لسيرتك الذاتية.</p>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container">
-        <div class="article-container">
-          <div class="article-body" style="padding: 2rem;">
-            
-            <div class="toc">
-              <h3>📑 في هذا المقال</h3>
-              <ul>
-                <li><a href="#project1">المشروع 1: تصنيف الصور (التعرف على القطط والكلاب)</a></li>
-                <li><a href="#project2">المشروع 2: تحليل المشاعر (Sentiment Analysis)</a></li>
-                <li><a href="#project3">المشروع 3: توقع أسعار المنازل</a></li>
-                <li><a href="#project4">المشروع 4: نظام توصية المنتجات</a></li>
-                <li><a href="#project5">المشروع 5: روبوت محادثة بسيط (Chatbot)</a></li>
-                <li><a href="#next-steps">ماذا بعد هذه المشاريع؟</a></li>
-              </ul>
-            </div>
-
-            <h2 id="project1">🐱 المشروع 1: تصنيف الصور (التعرف على القطط والكلاب)</h2>
-            <p><strong>المستوى:</strong> مبتدئ<br />
-            <strong>الأدوات:</strong> TensorFlow / Keras, Python<br />
-            <strong>البيانات:</strong> مجموعة صور قطط وكلاب (متاحة مجاناً على Kaggle)</p>
-            <p><strong>الخطوات:</strong></p>
-            <ul>
-              <li>تحميل مجموعة البيانات من Kaggle</li>
-              <li>قراءة الصور وتحويلها إلى أرقام (Normalization)</li>
-              <li>بناء شبكة عصبية تلافيفية بسيطة (CNN)</li>
-              <li>تدريب النموذج وتقييمه</li>
-              <li>اختبار النموذج على صور جديدة</li>
-            </ul>
-            <div class="info-box">
-              <strong>💡 مصدر مفيد:</strong> <a href="https://www.tensorflow.org/tutorials/images/cnn" target="_blank">TensorFlow CNN Tutorial</a> – شرح خطوة بخطوة.
-            </div>
-
-            <h2 id="project2">😊 المشروع 2: تحليل المشاعر (Sentiment Analysis)</h2>
-            <p><strong>المستوى:</strong> مبتدئ – متوسط<br />
-            <strong>الأدوات:</strong> Python, NLTK / Scikit-learn<br />
-            <strong>البيانات:</strong> مجموعة تغريدات مصنفة (إيجابي/سلبي) – متاحة على Kaggle</p>
-            <p><strong>الخطوات:</strong></p>
-            <ul>
-              <li>تنظيف النصوص (إزالة علامات الترقيم، الروابط، الأرقام)</li>
-              <li>تحويل النصوص إلى أرقام (TF-IDF أو Word Embeddings)</li>
-              <li>بناء نموذج تصنيف (Naive Bayes أو Logistic Regression)</li>
-              <li>تقييم النموذج وحساب الدقة</li>
-            </ul>
-
-            <h2 id="project3">🏠 المشروع 3: توقع أسعار المنازل</h2>
-            <p><strong>المستوى:</strong> مبتدئ<br />
-            <strong>الأدوات:</strong> Python, Scikit-learn, Pandas<br />
-            <strong>البيانات:</strong> مجموعة بيانات أسعار المنازل في بوسطن (مدمجة في Scikit-learn)</p>
-            <p><strong>الخطوات:</strong></p>
-            <ul>
-              <li>استكشاف البيانات وتحليلها (EDA)</li>
-              <li>معالجة القيم المفقودة</li>
-              <li>تدريب نموذج الانحدار الخطي (Linear Regression)</li>
-              <li>تقييم النموذج باستخدام Mean Squared Error</li>
-            </ul>
-
-            <h2 id="project4">🎬 المشروع 4: نظام توصية المنتجات</h2>
-            <p><strong>المستوى:</strong> متوسط<br />
-            <strong>الأدوات:</strong> Python, Pandas, Scikit-learn<br />
-            <strong>البيانات:</strong> مجموعة بيانات تقييمات أفلام (MovieLens)</p>
-            <p><strong>الخطوات:</strong></p>
-            <ul>
-              <li>فهم مفهوم التصفية التعاونية (Collaborative Filtering)</li>
-              <li>بناء مصفوفة المستخدمين والمنتجات</li>
-              <li>استخدام خوارزمية الجوار (KNN) لإيجاد مستخدمين مشابهين</li>
-              <li>توصية منتجات بناءً على تفضيلات المستخدمين المشابهين</li>
-            </ul>
-
-            <h2 id="project5">💬 المشروع 5: روبوت محادثة بسيط (Chatbot)</h2>
-            <p><strong>المستوى:</strong> مبتدئ – متوسط<br />
-            <strong>الأدوات:</strong> Python, NLTK, Flask (للواجهة)<br />
-            <strong>البيانات:</strong> أسئلة وأجوبة محددة مسبقاً</p>
-            <p><strong>الخطوات:</strong></p>
-            <ul>
-              <li>إنشاء قاعدة بيانات بسيطة من الأسئلة والأجوبة</li>
-              <li>استخدام مطابقة الأنماط (Pattern Matching) أو خوارزميات بسيطة</li>
-              <li>إضافة واجهة ويب باستخدام Flask</li>
-              <li>تحسين الروبوت ليتعامل مع أسئلة أكثر تعقيداً</li>
-            </ul>
-
-            <h2 id="next-steps">🚀 ماذا بعد هذه المشاريع؟</h2>
-            <ul>
-              <li><strong>انشر مشاريعك على GitHub:</strong> أضف ملف README يشرح المشروع.</li>
-              <li><strong>اكتب مقالات عنها:</strong> اشرح كيف بنيت المشروع والتحديات التي واجهتك.</li>
-              <li><strong>شاركها في مجتمعات الذكاء الاصطناعي:</strong> اطلب آراء الآخرين.</li>
-              <li><strong>تقدم للمسابقات على Kaggle:</strong> لاختبار مهاراتك مع آلاف المشاركين.</li>
-            </ul>
-
-            <div class="info-box">
-              <strong>💡 تذكير:</strong> لا تنتظر حتى "تتقن" كل شيء. ابدأ المشروع الأول اليوم. ستتعلم أثناء العمل!
-            </div>
-
-            <p style="margin-top: 2rem; text-align: center;">📚 <strong>تابع القراءة:</strong> <a href="learning-tips-for-ai.html" style="color:#ea580c;">المقال التالي: 10 نصائح ذهبية لتعلم الذكاء الاصطناعي →</a></p>
-          </div>
-        </div>
-      </div>
-    </section>
+    <section class="page-hero"><div class="container"><span class="page-badge">🛠️ مشاريع عملية</span><h1>أفكار مشاريع ذكاء اصطناعي للمبتدئين</h1><p>5 مشاريع كاملة مع شرح خطوة بخطوة. بنهاية هذه المشاريع، سيكون لديك بورتفوليو قوي.</p></div></section>
+    <section class="section"><div class="container"><div class="article-container"><div class="article-body" style="padding: 2rem;">
+      <div class="toc"><h3>📑 في هذا المقال</h3><ul><li><a href="#project1">تصنيف الصور</a></li><li><a href="#project2">تحليل المشاعر</a></li><li><a href="#project3">توقع الأسعار</a></li><li><a href="#project4">أنظمة التوصية</a></li><li><a href="#project5">روبوت محادثة</a></li><li><a href="#next-steps">ماذا بعد؟</a></li></ul></div>
+      <h2 id="project1">🐱 تصنيف الصور</h2><p>مشروع مناسب لفهم الصور والشبكات العصبية التلافيفية بشكل مبسط.</p>
+      <h2 id="project2">😊 تحليل المشاعر</h2><p>مشروع رائع لفهم النصوص، التنظيف، والتصنيف.</p>
+      <h2 id="project3">🏠 توقع الأسعار</h2><p>مثالي لتعلم الانحدار وتحليل البيانات الجدولية.</p>
+      <h2 id="project4">🎬 أنظمة التوصية</h2><p>يعلمك كيف تقترح منتجات أو أفلامًا بناءً على تفضيلات المستخدمين.</p>
+      <h2 id="project5">💬 روبوت محادثة</h2><p>مشروع جيد لدمج النصوص والمنطق وبناء تجربة تفاعلية بسيطة.</p>
+      <h2 id="next-steps">🚀 ماذا بعد؟</h2><p>انشر مشاريعك على GitHub، اشرحها جيدًا، وابدأ في تحسينها تدريجيًا.</p>
+      <div class="info-box"><strong>💡 تذكير:</strong> لا تنتظر حتى تتقن كل شيء. ابدأ المشروع الأول اليوم.</div>
+      <p style="margin-top: 2rem; text-align: center;">📚 <strong>تابع القراءة:</strong> <a href="learning-tips-for-ai.html" style="color:#ea580c;">المقال التالي: 10 نصائح ذهبية لتعلم الذكاء الاصطناعي →</a></p>
+    </div></div></div></section>
   </main>
-
-  <footer class="site-footer">
-    <div class="container footer-grid">
-      <div class="footer-col">
-        <div class="logo"><span class="logo-text logo-text-light">smart</span><span class="logo-text logo-text-accent">afiliate</span></div>
-        <p class="footer-description">منصة عربية تساعدك على فهم الذكاء الاصطناعي، التسويق بالعمولة، وبناء مشروع رقمي.</p>
-      </div>
-      <div class="footer-col">
-        <h4>استكشف</h4>
-        <a href="../best-ai-tools.html">⭐ أفضل أدوات AI</a>
-        <a href="../ai-articles.html">📚 مكتبة AI</a>
-        <a href="../learn-ai.html">📖 تعلم AI</a>
-      </div>
-      <div class="footer-col">
-        <h4>المساعدة</h4>
-        <a href="../about.html">من نحن</a>
-        <a href="../contact.html">اتصل بنا</a>
-        <a href="../privacy.html">سياسة الخصوصية</a>
-      </div>
-    </div>
-    <div class="container footer-bottom">
-      <span>smartafiliate © 2026 – جميع الحقوق محفوظة</span>
-      <span>🌐 بناء محتوى عربي عملي للمستقبل</span>
-    </div>
-  </footer>
-
+  <footer class="site-footer"><div class="container footer-grid"><div class="footer-col"><div class="logo"><span class="logo-text logo-text-light">smart</span><span class="logo-text logo-text-accent">afiliate</span></div><p class="footer-description">منصة عربية تساعدك على فهم الذكاء الاصطناعي، التسويق بالعمولة، وبناء مشروع رقمي.</p></div><div class="footer-col"><h4>استكشف</h4><a href="../best-ai-tools.html">⭐ أفضل أدوات AI</a><a href="../ai-articles.html">📚 مكتبة AI</a><a href="../learn-ai.html">📖 تعلم AI</a></div><div class="footer-col"><h4>المساعدة</h4><a href="../about.html">من نحن</a><a href="../contact.html">اتصل بنا</a><a href="../privacy.html">سياسة الخصوصية</a><a href="../cookie-policy.html">سياسة الكوكيز</a></div></div><div class="container footer-bottom"><span>smartafiliate © 2026 – جميع الحقوق محفوظة</span><span>🌐 بناء محتوى عربي عملي للمستقبل</span></div></footer>
   <script>function toggleMenu(){document.getElementById('mainNav').classList.toggle('active');}</script>
 </body>
 </html>
