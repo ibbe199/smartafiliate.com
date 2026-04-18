@@ -39,7 +39,7 @@ MIT License
 
 ## 📧 التواصل
 
-contact@smartafiliate.com
+info@smartafiliate.com
 
 ---
 
