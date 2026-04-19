@@ -107,6 +107,21 @@
             <div class="faq-box"><strong>ما أفضل أداة للمقالات الطويلة؟</strong><p>Writesonic خيار مناسب إذا كنت تركز على المدونة وSEO والمحتوى الأطول.</p></div>
 
             <div class="cta-box"><p>جاهز للاختيار؟ انتقل الآن إلى المراجعة التفصيلية للأداة الأقرب لعملك قبل التسجيل.</p><div class="cta-actions"><a href="chatgpt-review.html" class="cta-primary">ابدأ بأفضل خيار عام</a><a href="../best-ai-tools.html" class="cta-secondary">ارجع إلى قائمة الأدوات</a></div><div class="quick-jump"><a href="chatgpt-review.html">ChatGPT</a><a href="jasper-ai-review.html">Jasper</a><a href="writesonic-review.html">Writesonic</a></div></div>
+
+            <section class="share-section">
+              <div class="share-box">
+                <span class="share-badge">📢 شارك المقال</span>
+                <h2>إذا أعجبك هذا المقال، شاركه</h2>
+                <p>ساعد غيرك يكتشف مقارنة عربية واضحة بين أفضل أدوات الكتابة بالذكاء الاصطناعي.</p>
+                <div class="share-buttons">
+                  <a class="share-btn share-whatsapp" href="https://wa.me/?text=https://smartafiliate.com/posts-ai/30-best-ai-writing-tools.html" target="_blank" rel="noopener noreferrer">واتساب</a>
+                  <a class="share-btn share-telegram" href="https://t.me/share/url?url=https://smartafiliate.com/posts-ai/30-best-ai-writing-tools.html&amp;text=مقارنة عربية واضحة بين أفضل أدوات الكتابة بالذكاء الاصطناعي" target="_blank" rel="noopener noreferrer">تيليجرام</a>
+                  <a class="share-btn share-x" href="https://twitter.com/intent/tweet?url=https://smartafiliate.com/posts-ai/30-best-ai-writing-tools.html&amp;text=مقارنة عربية واضحة بين أفضل أدوات الكتابة بالذكاء الاصطناعي" target="_blank" rel="noopener noreferrer">X</a>
+                  <button class="share-btn share-copy" onclick="copyArticleLink('https://smartafiliate.com/posts-ai/30-best-ai-writing-tools.html')">نسخ الرابط</button>
+                </div>
+                <p id="shareMessage" class="share-message" aria-live="polite"></p>
+              </div>
+            </section>
           </div>
         </div>
       </div>
@@ -118,6 +133,7 @@
   <script>
     function closeMenu(){const nav=document.getElementById('mainNav');const button=document.querySelector('.menu-toggle');if(!nav||!button)return;nav.classList.remove('active');button.setAttribute('aria-expanded','false');document.body.classList.remove('menu-open');}
     function toggleMenu(){const nav=document.getElementById('mainNav');const button=document.querySelector('.menu-toggle');if(!nav||!button)return;const isOpen=nav.classList.toggle('active');button.setAttribute('aria-expanded',isOpen?'true':'false');document.body.classList.toggle('menu-open',isOpen);}
+    function copyArticleLink(url){const message=document.getElementById('shareMessage');navigator.clipboard.writeText(url).then(()=>{if(message)message.textContent='تم نسخ رابط المقال ✅';}).catch(()=>{if(message)message.textContent='تعذر نسخ الرابط، انسخه يدويًا: '+url;});}
     window.onscroll=function(){const header=document.querySelector('.site-header');if(window.scrollY>50){header.classList.add('header-scrolled')}else{header.classList.remove('header-scrolled')}};
     document.addEventListener('click',function(event){const nav=document.getElementById('mainNav');const button=document.querySelector('.menu-toggle');if(!nav||!button)return;if(nav.classList.contains('active')&&!nav.contains(event.target)&&!button.contains(event.target)){closeMenu();}});
     window.addEventListener('resize',function(){if(window.innerWidth>900)closeMenu();});
