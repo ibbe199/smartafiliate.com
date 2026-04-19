@@ -1,6 +1,6 @@
-# SEO Settings for smartafiliate
 User-agent: *
-Allow: /
-Sitemap: https://smartafiliate.com/sitemap.xml
 Disallow: /admin/
 Disallow: /assets/private/
+Allow: /
+
+Sitemap: https://smartafiliate.com/sitemap.xml
