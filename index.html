@@ -139,6 +139,24 @@
       </div>
     </section>
 
+    <section class="section share-section">
+      <div class="container">
+        <div class="share-box">
+          <span class="share-badge">📢 شارك الموقع</span>
+          <h2>إذا أعجبك الموقع، شاركه</h2>
+          <p>ساعد غيرك يكتشف محتوى عربي عملي عن الذكاء الاصطناعي والتسويق بالعمولة.</p>
+          <div class="share-buttons">
+            <a class="share-btn share-whatsapp" href="https://wa.me/?text=https://smartafiliate.com" target="_blank" rel="noopener noreferrer">واتساب</a>
+            <a class="share-btn share-telegram" href="https://t.me/share/url?url=https://smartafiliate.com&amp;text=موقع عربي مفيد عن الذكاء الاصطناعي والتسويق بالعمولة" target="_blank" rel="noopener noreferrer">تيليجرام</a>
+            <a class="share-btn share-x" href="https://twitter.com/intent/tweet?url=https://smartafiliate.com&amp;text=موقع عربي مفيد عن الذكاء الاصطناعي والتسويق بالعمولة" target="_blank" rel="noopener noreferrer">X</a>
+            <a class="share-btn share-facebook" href="https://www.facebook.com/sharer/sharer.php?u=https://smartafiliate.com" target="_blank" rel="noopener noreferrer">فيسبوك</a>
+            <button class="share-btn share-copy" onclick="copySiteLink()">نسخ الرابط</button>
+          </div>
+          <p id="shareMessage" class="share-message" aria-live="polite"></p>
+        </div>
+      </div>
+    </section>
+
     <section class="section section-alt">
       <div class="container">
         <div class="newsletter">
@@ -202,6 +220,18 @@
       const isOpen = nav.classList.toggle('active');
       button.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
       document.body.classList.toggle('menu-open', isOpen);
+    }
+
+    function copySiteLink() {
+      const url = 'https://smartafiliate.com';
+      const message = document.getElementById('shareMessage');
+      navigator.clipboard.writeText(url)
+        .then(() => {
+          if (message) message.textContent = 'تم نسخ رابط الموقع ✅';
+        })
+        .catch(() => {
+          if (message) message.textContent = 'تعذر نسخ الرابط، انسخه يدويًا: ' + url;
+        });
     }
 
     window.onscroll = function() {
