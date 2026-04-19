@@ -16,6 +16,7 @@
   <meta name="twitter:description" content="مراجعة شاملة لـ DALL-E 3 من OpenAI: إمكانياته، مميزاته، وكيفية استخدامه لتوليد الصور." />
   <meta name="twitter:image" content="https://smartafiliate.com/assets/images/seo-card.png" />
   <link rel="stylesheet" href="../styles.css" />
+  <link rel="stylesheet" href="../article-enhancements.css" />
   <script defer src="../cookie-consent.js"></script>
   <style>
     .decision-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;margin:1rem 0}
@@ -100,6 +101,16 @@
             </div>
             <div class="quick-links"><a href="midjourney-guide.html">Midjourney للجودة الفنية</a><a href="canva-ai-review.html">Canva للتصميم اليومي</a><a href="best-ai-design-tools.html">كل أدوات التصميم</a></div>
 
+            <div class="article-links-box">
+              <strong>روابط داخلية وخارجية سريعة</strong>
+              <div class="article-links-grid">
+                <a href="midjourney-guide.html">دليل Midjourney</a>
+                <a href="canva-ai-review.html">مراجعة Canva AI</a>
+                <a href="ai-design-for-social-media.html">تصميم السوشيال بالذكاء الاصطناعي</a>
+                <a href="https://openai.com/dall-e-3" target="_blank" rel="noopener noreferrer nofollow">الموقع الرسمي لـ DALL-E 3</a>
+              </div>
+            </div>
+
             <h2 id="intro">🖼️ ما هو DALL-E 3؟</h2>
             <p>DALL-E 3 هو أحدث إصدار من أداة توليد الصور من OpenAI (الشركة التي صنعت ChatGPT). يتميز بقدرته على فهم النصوص المعقدة وتنفيذها بدقة عالية. مدمج مباشرة مع ChatGPT Plus.</p>
 
@@ -140,6 +151,16 @@
               </div>
             </div>
 
+            <div class="official-link-box">
+              <strong>روابط رسمية ومقالات مرتبطة</strong>
+              <div class="article-links-grid">
+                <a href="https://openai.com/dall-e-3" target="_blank" rel="noopener noreferrer nofollow">الموقع الرسمي</a>
+                <a href="midjourney-guide.html">بديل Midjourney</a>
+                <a href="canva-ai-review.html">بديل Canva AI</a>
+                <a href="best-ai-design-tools.html">المقارنة الكاملة</a>
+              </div>
+            </div>
+
             <h2 id="faq">❓ أسئلة شائعة</h2>
             <div class="faq-box"><strong>هل DALL-E 3 أفضل من Midjourney؟</strong><p>ليس دائمًا. DALL-E 3 أسهل غالبًا في فهم النصوص والتكامل مع ChatGPT، لكن Midjourney غالبًا أقوى في الجودة الفنية والإبداع.</p></div>
             <div class="faq-box"><strong>هل DALL-E 3 أفضل من Canva AI؟</strong><p>نعم عادة في توليد الصور من الوصف النصي، لكن Canva أفضل عندما تريد تصميمات جاهزة وسريعة للسوشيال والعروض.</p></div>
@@ -175,10 +196,6 @@
                 <p id="shareMessage" class="share-message" aria-live="polite"></p>
               </div>
             </section>
-
-            <div class="info-box">
-              <strong>🔗 رابط الموقع الرسمي:</strong> <a href="https://openai.com/dall-e-3" target="_blank" class="info-link">openai.com/dall-e-3</a>
-            </div>
           </div>
         </div>
       </div>
@@ -217,7 +234,7 @@
     function copyArticleLink(url){const message=document.getElementById('shareMessage');navigator.clipboard.writeText(url).then(()=>{if(message)message.textContent='تم نسخ رابط المقال ✅';}).catch(()=>{if(message)message.textContent='تعذر نسخ الرابط، انسخه يدويًا: '+url;});}
     window.onscroll=function(){const header=document.querySelector('.site-header');if(window.scrollY>50){header.classList.add('header-scrolled')}else{header.classList.remove('header-scrolled')}};
     document.addEventListener('click',function(event){const nav=document.getElementById('mainNav');const button=document.querySelector('.menu-toggle');if(!nav||!button)return;if(nav.classList.contains('active')&&!nav.contains(event.target)&&!button.contains(event.target)){closeMenu();}});
-    window.addEventListener('resize',function(){if(window.innerWidth>900)closeMenu();});
+    window.addEventListener('resize',function(){if(window.innerWidth>900)closeMenu();});}
   </script>
 </body>
 </html>
