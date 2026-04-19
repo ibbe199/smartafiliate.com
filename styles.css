@@ -1,6 +1,6 @@
 /* ============================================
    smartafiliate - Unified Stylesheet
-   Version: 3.4
+   Version: 3.5
    ============================================ */
 
 :root {
@@ -34,7 +34,11 @@ body {
 }
 body.menu-open { overflow: hidden; }
 
-a { text-decoration: none; color: inherit; transition: all 0.3s ease; }
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.3s ease, background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
 img { max-width: 100%; display: block; height: auto; }
 
 .container { width: min(1200px, calc(100% - 2rem)); margin: 0 auto; }
@@ -47,7 +51,7 @@ img { max-width: 100%; display: block; height: auto; }
   top: 0;
   z-index: 1000;
   box-shadow: var(--shadow-md);
-  transition: all 0.3s ease;
+  transition: background 0.3s ease, box-shadow 0.3s ease;
 }
 .header-scrolled {
   background: var(--navy-1);
@@ -209,6 +213,12 @@ img { max-width: 100%; display: block; height: auto; }
 /* ===== SECTIONS ===== */
 .section { padding: 5rem 0; }
 .section-alt { background: white; }
+main > .section,
+main > .section-alt,
+footer.site-footer {
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 900px;
+}
 .section-header { text-align: center; margin-bottom: 3rem; }
 .section-tag {
   display: inline-block;
@@ -234,7 +244,7 @@ img { max-width: 100%; display: block; height: auto; }
   border-radius: var(--radius-lg);
   padding: 1.8rem;
   box-shadow: var(--shadow-sm);
-  transition: all 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   border: 1px solid var(--line);
 }
 .card:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); }
@@ -263,7 +273,7 @@ img { max-width: 100%; display: block; height: auto; }
   border-radius: var(--radius-lg);
   overflow: hidden;
   box-shadow: var(--shadow-sm);
-  transition: all 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   border: 1px solid var(--line);
 }
 .article-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); }
@@ -304,7 +314,7 @@ img { max-width: 100%; display: block; height: auto; }
   padding: 1.5rem;
   text-align: center;
   box-shadow: var(--shadow-sm);
-  transition: all 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   border: 1px solid var(--line);
 }
 .tool-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); }
@@ -484,7 +494,7 @@ img { max-width: 100%; display: block; height: auto; }
   font-weight: 700;
   font-size: 0.92rem;
   cursor: pointer;
-  transition: all 0.25s ease;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease, color 0.25s ease;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -546,7 +556,7 @@ img { max-width: 100%; display: block; height: auto; }
   color: rgba(255, 255, 255, 0.6);
   font-size: 0.85rem;
   margin-bottom: 0.5rem;
-  transition: all 0.3s ease;
+  transition: color 0.3s ease, transform 0.3s ease;
 }
 .footer-col a:hover {
   color: white;
