@@ -9,7 +9,13 @@
   <link rel="canonical" href="https://smartafiliate.com/articles/what-is-affiliate-marketing.html" />
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ea580c'%3E%3Cpath d='M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5'/%3E%3C/svg%3E" />
   <link rel="stylesheet" href="../styles.css" />
+  <link rel="stylesheet" href="../article-enhancements.css" />
   <script defer src="../cookie-consent.js"></script>
+  <style>
+    .quick-links{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:.8rem}.quick-links a{color:var(--primary);font-weight:800}
+    .faq-box,.tip-box{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:1rem;margin-top:1rem}
+    @media (max-width:640px){.quick-links{justify-content:center}}
+  </style>
 </head>
 <body>
 
@@ -19,7 +25,7 @@
         <span class="logo-text logo-text-light">smart</span>
         <span class="logo-text logo-text-accent">afiliate</span>
       </div>
-      <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+      <button class="menu-toggle" aria-label="فتح وإغلاق القائمة" aria-expanded="false" aria-controls="mainNav" onclick="toggleMenu()">☰</button>
       <nav class="main-nav" id="mainNav">
         <a href="../index.html">الرئيسية</a>
         <a href="../best-ai-tools.html">أفضل أدوات AI</a>
@@ -44,14 +50,25 @@
         <span class="page-badge">📈 التسويق بالعمولة</span>
         <h1>ما هو التسويق بالعمولة؟ شرح مبسط للمبتدئين</h1>
         <p>تعرف على مفهوم الأفلييت، كيف تبدأ خطوة بخطوة، وأهم الأخطاء التي يجب تجنبها لتحقيق أرباح مستدامة</p>
+        <div class="review-cta">
+          <p>إذا كنت تبدأ من الصفر، فالأفضل أن تفهم الأساسيات أولًا ثم تنتقل إلى اختيار البرامج والمنصات المناسبة لمجالك.</p>
+          <div class="review-actions">
+            <a href="../blog.html" class="review-btn-primary">تصفح مقالات التسويق</a>
+            <a href="../best-ai-tools.html" class="review-btn-secondary">شاهد أدوات AI المفيدة</a>
+          </div>
+          <div class="mini-compare">
+            <a href="../blog.html">مقالات إضافية</a>
+            <a href="../contact.html">تواصل معنا</a>
+            <a href="https://www.amazon.com/gp/associates" target="_blank" rel="noopener noreferrer nofollow">Amazon Associates</a>
+          </div>
+        </div>
       </div>
     </section>
 
     <section class="section">
       <div class="container">
         <div class="article-container">
-          <div class="article-body" style="padding: 2rem;">
-            
+          <div class="article-body">
             <div class="toc">
               <h3>📑 محتوى المقال</h3>
               <ul>
@@ -60,11 +77,22 @@
                 <li><a href="#how-to-start">كيف تبدأ في التسويق بالعمولة؟</a></li>
                 <li><a href="#tips">نصائح مهمة للمبتدئين</a></li>
                 <li><a href="#programs">أفضل برامج الأفلييت للمبتدئين</a></li>
+                <li><a href="#faq">أسئلة شائعة</a></li>
               </ul>
             </div>
 
+            <div class="article-links-box">
+              <strong>روابط داخلية وخارجية سريعة</strong>
+              <div class="article-links-grid">
+                <a href="../blog.html">مقالات التسويق</a>
+                <a href="../best-ai-tools.html">أفضل أدوات AI</a>
+                <a href="../contact.html">تواصل معنا</a>
+                <a href="https://www.amazon.com/gp/associates" target="_blank" rel="noopener noreferrer nofollow">Amazon Associates</a>
+              </div>
+            </div>
+
             <h2 id="intro">🤔 ما هو التسويق بالعمولة؟</h2>
-            <p><strong>التسويق بالعمولة (Affiliate Marketing)</strong> هو نموذج ربحي تقوم فيه بالترويج لمنتجات أو خدمات تابعة لشركات أو أفراد، وتحصل على <strong>عمولة</strong> عند إتمام عملية شراء أو تنفيذ إجراء معين (مثل التسجيل أو ملء استبيان) عبر <strong>رابط التتبع الخاص بك</strong>.</p>
+            <p><strong>التسويق بالعمولة (Affiliate Marketing)</strong> هو نموذج ربحي تقوم فيه بالترويج لمنتجات أو خدمات تابعة لشركات أو أفراد، وتحصل على <strong>عمولة</strong> عند إتمام عملية شراء أو تنفيذ إجراء معين عبر <strong>رابط التتبع الخاص بك</strong>.</p>
             
             <div class="info-box">
               <strong>💡 معلومة مهمة:</strong> سوق التسويق بالعمولة عالميًا تجاوز 17 مليار دولار في 2025، وهو من أسرع مجالات الربح من الإنترنت نموًا.
@@ -77,7 +105,9 @@
               <li><strong>🔹 المسوق بالعمولة (Affiliate):</strong> أنت – الشخص الذي يروج للمنتج.</li>
               <li><strong>🔹 العميل (Customer):</strong> الشخص الذي يشتري عبر رابطك.</li>
             </ul>
-            <p>عندما ينشر المسوق <strong>رابطًا خاصًا</strong> (Affiliate Link) على موقعه أو قنوات التواصل، ويقوم العميل بالنقر عليه وإتمام الشراء، يتم تسجيل العملية ويحصل المسوق على <strong>نسبة مئوية من قيمة البيع</strong>.</p>
+            <p>عندما ينشر المسوق <strong>رابطًا خاصًا</strong> على موقعه أو قنوات التواصل، ويقوم العميل بالنقر عليه وإتمام الشراء، يتم تسجيل العملية ويحصل المسوق على <strong>نسبة مئوية من قيمة البيع</strong>.</p>
+
+            <div class="tip-box"><strong>خلاصة سريعة:</strong><p>نجاحك في الأفلييت لا يعتمد فقط على الرابط، بل على جودة المحتوى والثقة وحسن اختيار المنتجات المناسبة للجمهور.</p></div>
 
             <h2 id="how-to-start">🚀 كيف تبدأ في التسويق بالعمولة؟</h2>
             <ul>
@@ -92,7 +122,7 @@
             <ul>
               <li>✅ <strong>لا تعتمد على مصدر دخل واحد:</strong> انضم لأكثر من برنامج أفلييت.</li>
               <li>✅ <strong>ركز على نية المستخدم:</strong> اكتب محتوى يحل مشكلة حقيقية.</li>
-              <li>✅ <strong>استخدم التحليلات (Analytics):</strong> تابع الروابط الأكثر نقرًا وطور أداءك.</li>
+              <li>✅ <strong>استخدم التحليلات:</strong> تابع الروابط الأكثر نقرًا وطور أداءك.</li>
               <li>✅ <strong>ابنِ ثقة مع جمهورك:</strong> لا تروج لمنتج لم تجربه بنفسك.</li>
               <li>✅ <strong>حسّن SEO لمحتواك:</strong> ليظهر في محركات البحث ويجلب زوارًا عضويين.</li>
             </ul>
@@ -104,6 +134,35 @@
               <li><a href="https://www.shareasale.com" target="_blank" rel="noopener noreferrer nofollow">ShareASale</a> – شبكة متنوعة تضم آلاف التجار.</li>
             </ul>
 
+            <div class="official-link-box">
+              <strong>روابط رسمية ومقالات مرتبطة</strong>
+              <div class="article-links-grid">
+                <a href="https://www.amazon.com/gp/associates" target="_blank" rel="noopener noreferrer nofollow">Amazon Associates</a>
+                <a href="https://www.clickbank.com" target="_blank" rel="noopener noreferrer nofollow">ClickBank</a>
+                <a href="https://www.shareasale.com" target="_blank" rel="noopener noreferrer nofollow">ShareASale</a>
+                <a href="../blog.html">مقالات مرتبطة</a>
+              </div>
+            </div>
+
+            <h2 id="faq">❓ أسئلة شائعة</h2>
+            <div class="faq-box"><strong>هل أحتاج موقعًا لأبدأ؟</strong><p>ليس بالضرورة، لكن امتلاك موقع أو منصة محتوى يزيد فرصك في بناء جمهور وثقة طويلة المدى.</p></div>
+            <div class="faq-box"><strong>هل الأفلييت مناسب للمبتدئ؟</strong><p>نعم، لكنه يحتاج صبرًا ومحتوى مفيدًا وفهمًا جيدًا للجمهور والمنتجات.</p></div>
+            <div class="faq-box"><strong>ما أفضل برنامج للمبتدئ؟</strong><p>غالبًا Amazon Associates نقطة بداية سهلة، ثم يمكنك التوسع إلى شبكات وبرامج أكثر ربحية حسب مجالك.</p></div>
+
+            <section class="share-section">
+              <div class="share-box">
+                <span class="share-badge">📢 شارك المقال</span>
+                <h2>إذا أعجبك هذا المقال، شاركه</h2>
+                <p>ساعد غيرك يكتشف شرحًا عربيًا واضحًا للتسويق بالعمولة.</p>
+                <div class="share-buttons">
+                  <a class="share-btn share-whatsapp" href="https://wa.me/?text=https://smartafiliate.com/articles/what-is-affiliate-marketing.html" target="_blank" rel="noopener noreferrer">واتساب</a>
+                  <a class="share-btn share-telegram" href="https://t.me/share/url?url=https://smartafiliate.com/articles/what-is-affiliate-marketing.html&amp;text=شرح عربي واضح للتسويق بالعمولة" target="_blank" rel="noopener noreferrer">تيليجرام</a>
+                  <a class="share-btn share-x" href="https://twitter.com/intent/tweet?url=https://smartafiliate.com/articles/what-is-affiliate-marketing.html&amp;text=شرح عربي واضح للتسويق بالعمولة" target="_blank" rel="noopener noreferrer">X</a>
+                  <button class="share-btn share-copy" onclick="copyArticleLink('https://smartafiliate.com/articles/what-is-affiliate-marketing.html')">نسخ الرابط</button>
+                </div>
+                <p id="shareMessage" class="share-message" aria-live="polite"></p>
+              </div>
+            </section>
           </div>
         </div>
       </div>
@@ -144,9 +203,11 @@
   </footer>
 
   <script>
-    function toggleMenu() {
-      document.getElementById('mainNav').classList.toggle('active');
-    }
+    function closeMenu(){const nav=document.getElementById('mainNav');const button=document.querySelector('.menu-toggle');if(!nav||!button)return;nav.classList.remove('active');button.setAttribute('aria-expanded','false');document.body.classList.remove('menu-open');}
+    function toggleMenu(){const nav=document.getElementById('mainNav');const button=document.querySelector('.menu-toggle');if(!nav||!button)return;const isOpen=nav.classList.toggle('active');button.setAttribute('aria-expanded', isOpen ? 'true' : 'false');document.body.classList.toggle('menu-open', isOpen);}
+    function copyArticleLink(url){const message=document.getElementById('shareMessage');navigator.clipboard.writeText(url).then(()=>{if(message)message.textContent='تم نسخ رابط المقال ✅';}).catch(()=>{if(message)message.textContent='تعذر نسخ الرابط، انسخه يدويًا: '+url;});}
+    document.addEventListener('click',function(event){const nav=document.getElementById('mainNav');const button=document.querySelector('.menu-toggle');if(!nav||!button)return;if(nav.classList.contains('active')&&!nav.contains(event.target)&&!button.contains(event.target)){closeMenu();}});
+    window.addEventListener('resize',function(){if(window.innerWidth>900)closeMenu();});
   </script>
 </body>
 </html>
