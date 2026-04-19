@@ -19,9 +19,9 @@
   <link rel="stylesheet" href="styles.css" />
   <script defer src="cookie-consent.js"></script>
   <style>
-    .hub-cta{background:linear-gradient(135deg,rgba(234,88,12,.08),rgba(245,158,11,.12));border:1px solid rgba(234,88,12,.18);border-radius:22px;padding:1.25rem;margin-top:1.5rem}
-    .hub-cta p{margin:0 0 .9rem;font-weight:700}
-    .hub-actions{display:flex;flex-wrap:wrap;gap:.75rem}
+    .hub-cta{background:linear-gradient(135deg,rgba(234,88,12,.08),rgba(245,158,11,.12));border:1px solid rgba(234,88,12,.18);border-radius:22px;padding:1.25rem;margin-top:1.5rem;text-align:center}
+    .hub-cta p{margin:0 auto .9rem;font-weight:700;max-width:820px;line-height:1.9}
+    .hub-actions{display:flex;flex-wrap:wrap;gap:.75rem;justify-content:center}
     .hub-primary,.hub-secondary{display:inline-flex;align-items:center;justify-content:center;padding:.8rem 1.1rem;border-radius:999px;font-weight:800}
     .hub-primary{background:var(--primary);color:#fff}
     .hub-secondary{background:var(--surface);color:var(--text);border:1px solid var(--line)}
@@ -31,6 +31,8 @@
     .quick-card a{color:var(--primary);font-weight:800}
     .article-shortcuts{display:flex;flex-wrap:wrap;gap:.65rem;margin-top:.75rem}
     .article-shortcuts a{font-size:.9rem;font-weight:800;color:var(--primary)}
+    .page-hero .container{text-align:center}
+    .page-hero p{max-width:860px;margin:0 auto}
     @media (max-width: 640px){
       .hub-actions,.article-shortcuts{justify-content:center}
       .quick-grid{grid-template-columns:1fr}
