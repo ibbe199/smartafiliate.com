@@ -1,0 +1,6 @@
+Contact: mailto:info@smartafiliate.com
+Contact: https://smartafiliate.com/contact.html
+Expires: 2027-04-19T23:59:59.000Z
+Preferred-Languages: ar, en
+Canonical: https://smartafiliate.com/.well-known/security.txt
+Policy: https://smartafiliate.com/contact.html
