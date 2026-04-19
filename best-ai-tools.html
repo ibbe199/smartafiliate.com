@@ -37,10 +37,20 @@
     .decision-card h3 { margin-bottom:.45rem; }
     .quick-jump { display:flex; flex-wrap:wrap; gap:.75rem; margin-top:1rem; }
     .quick-jump a { color:var(--primary); font-weight:800; }
+    .tools-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); align-items: stretch; }
+    .tool-card { height: 100%; display: flex; flex-direction: column; justify-content: flex-start; }
+    .tool-card .mini-links { justify-content: center; margin-top: auto; }
+    .tool-card .tool-link { margin-top: 1rem; }
+    @media (max-width: 1180px) {
+      .tools-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    }
+    @media (max-width: 900px) {
+      .tools-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
     @media (max-width: 640px) {
       .cta-strip { padding: 1rem; }
       .cta-actions, .mini-links, .quick-jump { justify-content: center; }
-      .review-grid, .decision-grid { grid-template-columns: 1fr; }
+      .review-grid, .decision-grid, .tools-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
