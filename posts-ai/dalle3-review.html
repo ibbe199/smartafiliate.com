@@ -17,6 +17,14 @@
   <meta name="twitter:image" content="https://smartafiliate.com/assets/images/seo-card.png" />
   <link rel="stylesheet" href="../styles.css" />
   <script defer src="../cookie-consent.js"></script>
+  <style>
+    .decision-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;margin:1rem 0}
+    .decision-card{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:1rem}
+    .decision-card h3{margin-bottom:.4rem}
+    .quick-links{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:.8rem}.quick-links a{color:var(--primary);font-weight:800}
+    .faq-box,.value-box{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:1rem;margin-top:1rem}
+    @media (max-width:640px){.quick-links{justify-content:center}.decision-grid{grid-template-columns:1fr}}
+  </style>
 </head>
 <body>
 
@@ -73,14 +81,24 @@
             <div class="toc">
               <h3>📑 محتوى المقال</h3>
               <ul>
+                <li><a href="#quick-decision">قرار سريع</a></li>
                 <li><a href="#intro">ما هو DALL-E 3؟</a></li>
                 <li><a href="#features">المميزات</a></li>
                 <li><a href="#how-to-use">كيف تستخدمه؟</a></li>
                 <li><a href="#comparison">مقارنة مع Midjourney</a></li>
                 <li><a href="#pricing">الخطط السعرية</a></li>
+                <li><a href="#faq">أسئلة شائعة</a></li>
                 <li><a href="#conclusion">الخلاصة</a></li>
               </ul>
             </div>
+
+            <h2 id="quick-decision">🎯 قرار سريع: هل يناسبك DALL-E 3؟</h2>
+            <div class="decision-grid">
+              <div class="decision-card"><h3>نعم، إذا تريد السهولة</h3><p>مناسب جدًا إذا كنت تريد توليد صور بسرعة وبوصف نصي واضح دون تعقيد كبير.</p></div>
+              <div class="decision-card"><h3>نعم، إذا كنت تستخدم ChatGPT</h3><p>أحد أكبر مزاياه أنه يعمل بسهولة داخل نفس بيئة ChatGPT Plus.</p></div>
+              <div class="decision-card"><h3>قد لا يكون الأفضل إذا...</h3><p>كانت أولويتك الأساسية هي الجودة الفنية والإبداع البصري الأعلى، حيث يتفوق Midjourney غالبًا.</p></div>
+            </div>
+            <div class="quick-links"><a href="midjourney-guide.html">Midjourney للجودة الفنية</a><a href="canva-ai-review.html">Canva للتصميم اليومي</a><a href="best-ai-design-tools.html">كل أدوات التصميم</a></div>
 
             <h2 id="intro">🖼️ ما هو DALL-E 3؟</h2>
             <p>DALL-E 3 هو أحدث إصدار من أداة توليد الصور من OpenAI (الشركة التي صنعت ChatGPT). يتميز بقدرته على فهم النصوص المعقدة وتنفيذها بدقة عالية. مدمج مباشرة مع ChatGPT Plus.</p>
@@ -112,6 +130,7 @@
               <li><strong>عبر ChatGPT Plus:</strong> 20$/شهر (يشمل أيضاً GPT-4).</li>
               <li><strong>عبر API:</strong> 0.040$ لكل صورة (1024x1024).</li>
             </ul>
+            <div class="value-box"><strong>أين تظهر القيمة الحقيقية؟</strong><p>إذا كنت أصلًا تستخدم ChatGPT، فإضافة DALL-E 3 داخل نفس الاشتراك تجعل القرار أسهل وأوفر من أداة مستقلة في كثير من الحالات.</p></div>
 
             <div class="review-cta">
               <p>إذا كنت أصلًا تستخدم ChatGPT للعمل أو الكتابة، فإن إضافة DALL-E 3 داخل نفس الاشتراك تجعل القرار أسهل بكثير من الاشتراك في أداة منفصلة.</p>
@@ -120,6 +139,11 @@
                 <a href="midjourney-guide.html" class="review-btn-secondary">شاهد البديل الفني</a>
               </div>
             </div>
+
+            <h2 id="faq">❓ أسئلة شائعة</h2>
+            <div class="faq-box"><strong>هل DALL-E 3 أفضل من Midjourney؟</strong><p>ليس دائمًا. DALL-E 3 أسهل غالبًا في فهم النصوص والتكامل مع ChatGPT، لكن Midjourney غالبًا أقوى في الجودة الفنية والإبداع.</p></div>
+            <div class="faq-box"><strong>هل DALL-E 3 أفضل من Canva AI؟</strong><p>نعم عادة في توليد الصور من الوصف النصي، لكن Canva أفضل عندما تريد تصميمات جاهزة وسريعة للسوشيال والعروض.</p></div>
+            <div class="faq-box"><strong>هل يستحق ChatGPT Plus من أجله؟</strong><p>غالبًا نعم إذا كنت ستستخدم أيضًا ChatGPT نفسه في الكتابة أو التحليل، لأنك تحصل على أكثر من ميزة داخل اشتراك واحد.</p></div>
 
             <h2 id="conclusion">🎯 الخلاصة</h2>
             <p>DALL-E 3 هو الخيار الأمثل لمن يريد توليد صور دقيقة بناءً على أوصاف معقدة. اشتراك ChatGPT Plus يمنحك أيضاً GPT-4، مما يجعله صفقة ممتازة.</p>
