@@ -1,6 +1,6 @@
 /* ============================================
    smartafiliate - Unified Stylesheet
-   Version: 3.2
+   Version: 3.3
    ============================================ */
 
 :root {
@@ -30,6 +30,7 @@ body {
   color: var(--text);
   line-height: 1.75;
   direction: rtl;
+  text-rendering: optimizeLegibility;
 }
 body.menu-open { overflow: hidden; }
 
@@ -193,6 +194,10 @@ img { max-width: 100%; display: block; height: auto; }
 }
 .section-header h2 { margin-bottom: 0.5rem; }
 .section-header p { color: var(--muted); max-width: 600px; margin: 0 auto; }
+.defer-section {
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 900px;
+}
 
 /* ===== CARDS ===== */
 .cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.8rem; }
