@@ -32,16 +32,20 @@
     .review-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(220px,1fr)); gap: 1rem; margin-top: 1rem; }
     .review-card { background: rgba(255,255,255,.7); border: 1px solid var(--line); border-radius: 16px; padding: 1rem; }
     .review-card a { color: var(--primary); font-weight: 800; }
+    .decision-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:1rem; margin-top:1.5rem; }
+    .decision-card { background:var(--surface); border:1px solid var(--line); border-radius:18px; padding:1rem; }
+    .decision-card h3 { margin-bottom:.45rem; }
+    .quick-jump { display:flex; flex-wrap:wrap; gap:.75rem; margin-top:1rem; }
+    .quick-jump a { color:var(--primary); font-weight:800; }
     @media (max-width: 640px) {
       .cta-strip { padding: 1rem; }
-      .cta-actions, .mini-links { justify-content: center; }
-      .review-grid { grid-template-columns: 1fr; }
+      .cta-actions, .mini-links, .quick-jump { justify-content: center; }
+      .review-grid, .decision-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
 
-  <!-- ===== HEADER ===== -->
   <header class="site-header">
     <div class="container header-inner">
       <div class="logo">
@@ -84,6 +88,11 @@
           <a href="posts-ai/midjourney-guide.html">Midjourney</a>
           <a href="posts-ai/dalle3-review.html">DALL-E 3</a>
         </div>
+        <div class="decision-grid">
+          <div class="decision-card"><h3>تريد أداة واحدة لكل شيء؟</h3><p>ابدأ بـ ChatGPT إذا كنت تريد نقطة بداية مرنة وشاملة.</p><a href="posts-ai/chatgpt-review.html" class="read-more">افتح المراجعة →</a></div>
+          <div class="decision-card"><h3>تريد محتوى تسويقيًا؟</h3><p>ابدأ بـ Jasper إذا كان تركيزك على الإعلانات وصفحات البيع.</p><a href="posts-ai/jasper-ai-review.html" class="read-more">افتح المراجعة →</a></div>
+          <div class="decision-card"><h3>تريد تصميمًا سريعًا؟</h3><p>ابدأ بـ Canva AI إذا كان هدفك السوشيال والعروض والبنرات.</p><a href="posts-ai/canva-ai-review.html" class="read-more">افتح المراجعة →</a></div>
+        </div>
       </div>
     </section>
 
@@ -95,10 +104,10 @@
           <p>أنشئ محتوى احترافي بسرعة وجودة عالية</p>
         </div>
         <div class="tools-grid">
-          <div class="tool-card"><div class="tool-icon">🤖</div><h3>ChatGPT</h3><p>نموذج لغوي متقدم للكتابة، الترجمة، البرمجة، والتحليل.</p><a href="https://chat.openai.com" target="_blank" rel="noopener noreferrer nofollow" class="tool-link">زيارة الموقع →</a><div class="mini-links"><a href="posts-ai/chatgpt-review.html">اقرأ المراجعة</a></div></div>
-          <div class="tool-card"><div class="tool-icon">📝</div><h3>Jasper AI</h3><p>مساعد كتابة متخصص للمحتوى التسويقي والإعلاني.</p><a href="https://www.jasper.ai" target="_blank" rel="noopener noreferrer nofollow" class="tool-link">زيارة الموقع →</a><div class="mini-links"><a href="posts-ai/jasper-ai-review.html">شاهد التفاصيل</a></div></div>
-          <div class="tool-card"><div class="tool-icon">✍️</div><h3>Copy.ai</h3><p>أداة ممتازة لكتابة النصوص التسويقية والإعلانات بسرعة.</p><a href="https://www.copy.ai" target="_blank" rel="noopener noreferrer nofollow" class="tool-link">زيارة الموقع →</a><div class="mini-links"><a href="posts-ai/copyai-review.html">اقرأ المراجعة</a></div></div>
-          <div class="tool-card"><div class="tool-icon">📖</div><h3>Writesonic</h3><p>أداة متكاملة لكتابة المقالات الطويلة والمحتوى التسويقي.</p><a href="https://writesonic.com" target="_blank" rel="noopener noreferrer nofollow" class="tool-link">زيارة الموقع →</a><div class="mini-links"><a href="posts-ai/writesonic-review.html">شاهد المراجعة</a></div></div>
+          <div class="tool-card"><div class="tool-icon">🤖</div><h3>ChatGPT</h3><p>نموذج لغوي متقدم للكتابة، الترجمة، البرمجة، والتحليل.</p><a href="https://chat.openai.com" target="_blank" rel="noopener noreferrer nofollow" class="tool-link">زيارة الموقع →</a><div class="mini-links"><a href="posts-ai/chatgpt-review.html">اقرأ المراجعة</a><a href="posts-ai/30-best-ai-writing-tools.html">شاهد المقارنة</a></div></div>
+          <div class="tool-card"><div class="tool-icon">📝</div><h3>Jasper AI</h3><p>مساعد كتابة متخصص للمحتوى التسويقي والإعلاني.</p><a href="https://www.jasper.ai" target="_blank" rel="noopener noreferrer nofollow" class="tool-link">زيارة الموقع →</a><div class="mini-links"><a href="posts-ai/jasper-ai-review.html">شاهد التفاصيل</a><a href="posts-ai/30-best-ai-writing-tools.html">قارن البدائل</a></div></div>
+          <div class="tool-card"><div class="tool-icon">✍️</div><h3>Copy.ai</h3><p>أداة ممتازة لكتابة النصوص التسويقية والإعلانات بسرعة.</p><a href="https://www.copy.ai" target="_blank" rel="noopener noreferrer nofollow" class="tool-link">زيارة الموقع →</a><div class="mini-links"><a href="posts-ai/copyai-review.html">اقرأ المراجعة</a><a href="posts-ai/30-best-ai-writing-tools.html">شاهد المقارنة</a></div></div>
+          <div class="tool-card"><div class="tool-icon">📖</div><h3>Writesonic</h3><p>أداة متكاملة لكتابة المقالات الطويلة والمحتوى التسويقي.</p><a href="https://writesonic.com" target="_blank" rel="noopener noreferrer nofollow" class="tool-link">زيارة الموقع →</a><div class="mini-links"><a href="posts-ai/writesonic-review.html">شاهد المراجعة</a><a href="posts-ai/30-best-ai-writing-tools.html">قارن البدائل</a></div></div>
         </div>
         <div class="review-box">
           <h3>هل تريد اختيار أداة كتابة بسرعة؟</h3>
@@ -107,6 +116,7 @@
             <a href="posts-ai/chatgpt-review.html" class="cta-primary">أفضل خيار شامل</a>
             <a href="posts-ai/jasper-ai-review.html" class="cta-secondary">أفضل خيار تسويقي</a>
           </div>
+          <div class="quick-jump"><a href="posts-ai/writesonic-review.html">Writesonic للمقالات</a><a href="posts-ai/30-best-ai-writing-tools.html">المقارنة الكاملة</a></div>
         </div>
       </div>
     </section>
@@ -119,9 +129,9 @@
           <p>أنشئ صوراً وتصاميم احترافية بسهولة</p>
         </div>
         <div class="tools-grid">
-          <div class="tool-card"><div class="tool-icon">🎨</div><h3>Midjourney</h3><p>توليد صور فائقة الجودة باستخدام الذكاء الاصطناعي.</p><a href="https://www.midjourney.com" target="_blank" rel="noopener noreferrer nofollow" class="tool-link">زيارة الموقع →</a><div class="mini-links"><a href="posts-ai/midjourney-guide.html">اقرأ الدليل</a></div></div>
-          <div class="tool-card"><div class="tool-icon">🖼️</div><h3>DALL-E 3</h3><p>أداة OpenAI لتوليد الصور من النصوص بدقة عالية.</p><a href="https://openai.com/dall-e-3" target="_blank" rel="noopener noreferrer nofollow" class="tool-link">زيارة الموقع →</a><div class="mini-links"><a href="posts-ai/dalle3-review.html">اقرأ المراجعة</a></div></div>
-          <div class="tool-card"><div class="tool-icon">🎨</div><h3>Canva AI</h3><p>منصة تصميم مع ميزات ذكاء اصطناعي مدمجة.</p><a href="https://canva.com" target="_blank" rel="noopener noreferrer nofollow" class="tool-link">زيارة الموقع →</a><div class="mini-links"><a href="posts-ai/canva-ai-review.html">شاهد المراجعة</a></div></div>
+          <div class="tool-card"><div class="tool-icon">🎨</div><h3>Midjourney</h3><p>توليد صور فائقة الجودة باستخدام الذكاء الاصطناعي.</p><a href="https://www.midjourney.com" target="_blank" rel="noopener noreferrer nofollow" class="tool-link">زيارة الموقع →</a><div class="mini-links"><a href="posts-ai/midjourney-guide.html">اقرأ الدليل</a><a href="posts-ai/dalle3-review.html">قارن مع DALL-E 3</a></div></div>
+          <div class="tool-card"><div class="tool-icon">🖼️</div><h3>DALL-E 3</h3><p>أداة OpenAI لتوليد الصور من النصوص بدقة عالية.</p><a href="https://openai.com/dall-e-3" target="_blank" rel="noopener noreferrer nofollow" class="tool-link">زيارة الموقع →</a><div class="mini-links"><a href="posts-ai/dalle3-review.html">اقرأ المراجعة</a><a href="posts-ai/midjourney-guide.html">قارن مع Midjourney</a></div></div>
+          <div class="tool-card"><div class="tool-icon">🎨</div><h3>Canva AI</h3><p>منصة تصميم مع ميزات ذكاء اصطناعي مدمجة.</p><a href="https://canva.com" target="_blank" rel="noopener noreferrer nofollow" class="tool-link">زيارة الموقع →</a><div class="mini-links"><a href="posts-ai/canva-ai-review.html">شاهد المراجعة</a><a href="posts-ai/ai-design-for-social-media.html">استخدام عملي</a></div></div>
           <div class="tool-card"><div class="tool-icon">✏️</div><h3>Leonardo.ai</h3><p>أداة مجانية قوية لتوليد الصور والرسومات الفنية.</p><a href="https://leonardo.ai" target="_blank" rel="noopener noreferrer nofollow" class="tool-link">زيارة الموقع →</a></div>
         </div>
         <div class="review-box">
@@ -131,6 +141,7 @@
             <a href="posts-ai/canva-ai-review.html" class="cta-primary">ابدأ بـ Canva AI</a>
             <a href="posts-ai/midjourney-guide.html" class="cta-secondary">شاهد دليل Midjourney</a>
           </div>
+          <div class="quick-jump"><a href="posts-ai/dalle3-review.html">DALL-E 3</a><a href="posts-ai/best-ai-design-tools.html">كل أدوات التصميم</a></div>
         </div>
       </div>
     </section>
