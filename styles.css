@@ -34,12 +34,44 @@ body {
 }
 body.menu-open { overflow: hidden; }
 
+.skip-link {
+  position: absolute;
+  top: -48px;
+  right: 1rem;
+  z-index: 2000;
+  background: #ffffff;
+  color: #0f172a;
+  padding: 0.75rem 1rem;
+  border-radius: 12px;
+  border: 2px solid var(--primary);
+  box-shadow: var(--shadow-md);
+}
+.skip-link:focus {
+  top: 1rem;
+}
+
 a {
   text-decoration: none;
   color: inherit;
   transition: color 0.3s ease, background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 }
 img { max-width: 100%; display: block; height: auto; }
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid #f59e0b;
+  outline-offset: 3px;
+}
 
 .container { width: min(1200px, calc(100% - 2rem)); margin: 0 auto; }
 
