@@ -18,27 +18,8 @@
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ea580c'%3E%3Cpath d='M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5'/%3E%3C/svg%3E" />
   <link rel="stylesheet" href="styles.css" />
   <script defer src="cookie-consent.js"></script>
-  <style>
-    .hub-cta{background:linear-gradient(135deg,rgba(234,88,12,.08),rgba(245,158,11,.12));border:1px solid rgba(234,88,12,.18);border-radius:22px;padding:1.25rem;margin-top:1.5rem;text-align:center}
-    .hub-cta p{margin:0 auto .9rem;font-weight:700;max-width:820px;line-height:1.9}
-    .hub-actions{display:flex;flex-wrap:wrap;gap:.75rem;justify-content:center}
-    .hub-primary,.hub-secondary{display:inline-flex;align-items:center;justify-content:center;padding:.8rem 1.1rem;border-radius:999px;font-weight:800}
-    .hub-primary{background:var(--primary);color:#fff}
-    .hub-secondary{background:var(--surface);color:var(--text);border:1px solid var(--line)}
-    .quick-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;margin-top:1.5rem}
-    .quick-card{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:1rem}
-    .quick-card h3{margin-bottom:.4rem}
-    .quick-card a{color:var(--primary);font-weight:800}
-    .article-shortcuts{display:flex;flex-wrap:wrap;gap:.65rem;margin-top:.75rem}
-    .article-shortcuts a{font-size:.9rem;font-weight:800;color:var(--primary)}
-    .page-hero .container{text-align:center}
-    .page-hero p{max-width:860px;margin:0 auto}
-    .article-image{background:linear-gradient(135deg,#0b1f3a,#12305a)}
-    @media (max-width: 640px){
-      .hub-actions,.article-shortcuts{justify-content:center}
-      .quick-grid{grid-template-columns:1fr}
-    }
-  </style>
+  <script defer src="site.js"></script>
+  <script defer src="ai-articles.js"></script>
 </head>
 <body>
   <header class="site-header">
@@ -72,15 +53,5 @@
   </main>
 
   <footer class="site-footer"><div class="container footer-grid"><div class="footer-col"><div class="logo"><span class="logo-text logo-text-light">smart</span><span class="logo-text logo-text-accent">afiliate</span></div><p class="footer-description">منصة عربية تساعدك على فهم الذكاء الاصطناعي، التسويق بالعمولة، وبناء مشروع رقمي أوضح وأكثر قابلية للنمو.</p></div><div class="footer-col"><h4>من نحن</h4><a href="about.html">من نحن</a><a href="contact.html">تواصل معنا</a></div><div class="footer-col"><h4>سياسة الخصوصية</h4><a href="privacy.html">سياسة الخصوصية</a><a href="cookie-policy.html">سياسة الكوكيز</a><a href="terms.html">الشروط والأحكام</a></div><div class="footer-col"><h4>روابط سريعة</h4><a href="sitemap.xml">خريطة الموقع</a><a href="disclosure.html">الإفصاح</a></div></div><div class="container footer-bottom"><span>smartafiliate © 2026 – جميع الحقوق محفوظة</span><span>بناء محتوى عربي عملي للمستقبل</span></div></footer>
-  <script>
-    function closeMenu(){const nav=document.getElementById('mainNav');const button=document.querySelector('.menu-toggle');if(!nav||!button)return;nav.classList.remove('active');button.setAttribute('aria-expanded','false');document.body.classList.remove('menu-open');}
-    function toggleMenu(){const nav=document.getElementById('mainNav');const button=document.querySelector('.menu-toggle');if(!nav||!button)return;const isOpen=nav.classList.toggle('active');button.setAttribute('aria-expanded',isOpen?'true':'false');document.body.classList.toggle('menu-open',isOpen);}
-    function copyPageLink(url){const message=document.getElementById('shareMessage');navigator.clipboard.writeText(url).then(()=>{if(message)message.textContent='تم نسخ رابط الصفحة ✅';}).catch(()=>{if(message)message.textContent='تعذر نسخ الرابط، انسخه يدويًا: '+url;});}
-    function applyCardImageFallbacks(){document.querySelectorAll('.article-image img').forEach(function(img){img.addEventListener('error',function(){if(img.dataset.fallbackApplied==='true')return;img.dataset.fallbackApplied='true';img.src=img.dataset.fallback||'assets/ai-writing-tools.svg';});});}
-    window.onscroll=function(){const h=document.querySelector('.site-header');if(window.scrollY>50){h.classList.add('header-scrolled')}else{h.classList.remove('header-scrolled')}};
-    document.addEventListener('click',function(event){const nav=document.getElementById('mainNav');const button=document.querySelector('.menu-toggle');if(!nav||!button)return;if(nav.classList.contains('active')&&!nav.contains(event.target)&&!button.contains(event.target)){closeMenu();}});
-    window.addEventListener('resize',function(){if(window.innerWidth>900)closeMenu();});
-    applyCardImageFallbacks();
-  </script>
 </body>
 </html>
