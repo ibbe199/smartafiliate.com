@@ -594,6 +594,11 @@ footer.site-footer {
 .shortcut-links a { color:var(--primary); font-weight:800; font-size:.92rem; }
 .next-step-box { background:var(--surface); border:1px solid var(--line); border-radius:18px; padding:1rem; margin-top:1rem; }
 
+/* ===== ABOUT PAGE UTILITIES ===== */
+.about-cta-section { background: linear-gradient(135deg, #0b1f3a, #12305a); color: white; text-align: center; }
+.about-cta-text { margin-bottom: 1.5rem; }
+.about-cta-button { background: white; color: #0b1f3a; }
+
 /* ===== OPEN SOURCE PAGE UTILITIES ===== */
 .hero-strip{background:linear-gradient(135deg,rgba(234,88,12,.08),rgba(245,158,11,.12));border:1px solid rgba(234,88,12,.16);border-radius:22px;padding:1.2rem;margin-top:1.35rem;display:flex;flex-wrap:wrap;gap:1rem;align-items:center;justify-content:space-between}
 .hero-strip p{margin:0;font-weight:700}
