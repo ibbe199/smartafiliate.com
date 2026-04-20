@@ -7,6 +7,7 @@
   <meta name="description" content="تعرف على smartafiliate ورسالة المشروع وطريقة بناء المحتوى. منصة عربية متخصصة في الذكاء الاصطناعي والتسويق بالعمولة." />
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ea580c'%3E%3Cpath d='M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5'/%3E%3C/svg%3E" />
   <link rel="stylesheet" href="styles.css" />
+  <script defer src="site.js"></script>
 </head>
 <body>
 
@@ -17,7 +18,7 @@
         <span class="logo-text logo-text-light">smart</span>
         <span class="logo-text logo-text-accent">afiliate</span>
       </div>
-      <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+      <button class="menu-toggle" aria-label="فتح وإغلاق القائمة" aria-expanded="false" aria-controls="mainNav" onclick="toggleMenu()">☰</button>
       <nav class="main-nav" id="mainNav">
         <a href="index.html">الرئيسية</a>
         <a href="best-ai-tools.html">أفضل أدوات AI</a>
@@ -92,11 +93,11 @@
       </div>
     </section>
 
-    <section class="section" style="background: linear-gradient(135deg, #0b1f3a, #12305a); color: white; text-align: center;">
+    <section class="section about-cta-section">
       <div class="container">
         <h2>📢 انضم إلى مجتمعنا</h2>
-        <p style="margin-bottom: 1.5rem;">كن أول من يعلم بكل جديد في عالم الذكاء الاصطناعي والتسويق بالعمولة</p>
-        <a href="contact.html" class="btn-primary" style="background: white; color: #0b1f3a;">تواصل معنا الآن →</a>
+        <p class="about-cta-text">كن أول من يعلم بكل جديد في عالم الذكاء الاصطناعي والتسويق بالعمولة</p>
+        <a href="contact.html" class="btn-primary about-cta-button">تواصل معنا الآن →</a>
       </div>
     </section>
   </main>
@@ -132,20 +133,5 @@
       <span>🌐 بناء محتوى عربي عملي للمستقبل</span>
     </div>
   </footer>
-
-  <script>
-    function toggleMenu() {
-      document.getElementById('mainNav').classList.toggle('active');
-    }
-    
-    window.onscroll = function() {
-      const header = document.querySelector('.site-header');
-      if (window.scrollY > 50) {
-        header.classList.add('header-scrolled');
-      } else {
-        header.classList.remove('header-scrolled');
-      }
-    };
-  </script>
 </body>
 </html>
