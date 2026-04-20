@@ -18,34 +18,8 @@
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ea580c'%3E%3Cpath d='M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5'/%3E%3C/svg%3E" />
   <link rel="stylesheet" href="styles.css" />
   <script defer src="cookie-consent.js"></script>
-  <style>
-    .filter-bar { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.8rem; margin-bottom: 2rem; padding: 1rem 0; border-bottom: 1px solid var(--line); }
-    .filter-btn { background: var(--surface); border: 1px solid var(--line); padding: 0.5rem 1.2rem; border-radius: 30px; font-size: 0.85rem; font-weight: 600; color: var(--muted); cursor: pointer; transition: all 0.2s; }
-    .filter-btn:hover, .filter-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
-    .posts-count { text-align: center; margin-bottom: 1.5rem; color: var(--muted); font-size: 0.85rem; }
-    .post-card { background: var(--surface); border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-sm); transition: all 0.3s ease; border: 1px solid var(--line); display: flex; flex-direction: column; }
-    .post-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); }
-    .post-image { height: 200px; overflow: hidden; }
-    .post-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
-    .post-card:hover .post-image img { transform: scale(1.05); }
-    .post-content { padding: 1.2rem; flex: 1; display: flex; flex-direction: column; }
-    .post-category { display: inline-block; background: var(--primary-soft); color: var(--primary); padding: 0.2rem 0.8rem; border-radius: 20px; font-size: 0.7rem; font-weight: 700; margin-bottom: 0.8rem; align-self: flex-start; }
-    .post-title { margin-bottom: 0.5rem; font-size: 1.1rem; line-height: 1.4; }
-    .post-title a { color: var(--text); }
-    .post-title a:hover { color: var(--primary); }
-    .post-excerpt { color: var(--muted); font-size: 0.85rem; margin-bottom: 1rem; line-height: 1.6; flex: 1; }
-    .post-meta { display: flex; justify-content: space-between; align-items: center; color: var(--muted); font-size: 0.75rem; padding-top: 0.8rem; border-top: 1px solid var(--line); margin-top: auto; }
-    .read-more-btn { color: var(--primary); font-weight: 700; font-size: 0.8rem; }
-    .pagination { display: flex; justify-content: center; gap: 0.5rem; margin-top: 3rem; }
-    .page-link { display: inline-flex; align-items: center; justify-content: center; min-width: 40px; height: 40px; padding: 0 0.75rem; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; font-weight: 600; transition: all 0.2s; }
-    .page-link:hover, .page-link.active { background: var(--primary); color: white; border-color: var(--primary); }
-    .hub-cta{background:linear-gradient(135deg,rgba(234,88,12,.08),rgba(245,158,11,.12));border:1px solid rgba(234,88,12,.18);border-radius:22px;padding:1.25rem;margin-top:1.5rem}
-    .hub-cta p{margin:0 0 .9rem;font-weight:700}
-    .hub-actions{display:flex;flex-wrap:wrap;gap:.75rem}.hub-primary,.hub-secondary{display:inline-flex;align-items:center;justify-content:center;padding:.8rem 1.1rem;border-radius:999px;font-weight:800}
-    .hub-primary{background:var(--primary);color:#fff}.hub-secondary{background:var(--surface);color:var(--text);border:1px solid var(--line)}
-    .post-shortcuts{display:flex;flex-wrap:wrap;gap:.65rem;margin-top:.75rem}.post-shortcuts a{color:var(--primary);font-weight:800;font-size:.9rem}
-    @media (max-width:640px){.hub-actions,.post-shortcuts,.filter-bar{justify-content:center}}
-  </style>
+  <script defer src="site.js"></script>
+  <script defer src="posts-ai.js"></script>
 </head>
 <body>
   <header class="site-header">
@@ -100,21 +74,5 @@
   </main>
 
   <footer class="site-footer"><div class="container footer-grid"><div class="footer-col"><div class="logo"><span class="logo-text logo-text-light">smart</span><span class="logo-text logo-text-accent">afiliate</span></div><p class="footer-description">منصة عربية تساعدك على فهم الذكاء الاصطناعي، التسويق بالعمولة، وبناء مشروع رقمي أوضح وأكثر قابلية للنمو.</p></div><div class="footer-col"><h4>من نحن</h4><a href="about.html">من نحن</a><a href="contact.html">تواصل معنا</a></div><div class="footer-col"><h4>سياسة الخصوصية</h4><a href="privacy.html">سياسة الخصوصية</a><a href="cookie-policy.html">سياسة الكوكيز</a><a href="terms.html">الشروط والأحكام</a></div><div class="footer-col"><h4>روابط سريعة</h4><a href="sitemap.xml">خريطة الموقع</a><a href="disclosure.html">الإفصاح</a></div></div><div class="container footer-bottom"><span>smartafiliate © 2026 – جميع الحقوق محفوظة</span><span>🌐 بناء محتوى عربي عملي للمستقبل</span></div></footer>
-
-  <script>
-    function closeMenu(){const nav=document.getElementById('mainNav');const button=document.querySelector('.menu-toggle');if(!nav||!button)return;nav.classList.remove('active');button.setAttribute('aria-expanded','false');document.body.classList.remove('menu-open');}
-    function toggleMenu(){const nav=document.getElementById('mainNav');const button=document.querySelector('.menu-toggle');if(!nav||!button)return;const isOpen=nav.classList.toggle('active');button.setAttribute('aria-expanded',isOpen?'true':'false');document.body.classList.toggle('menu-open',isOpen);}
-    function copyPageLink(url){const message=document.getElementById('shareMessage');navigator.clipboard.writeText(url).then(()=>{if(message)message.textContent='تم نسخ رابط الصفحة ✅';}).catch(()=>{if(message)message.textContent='تعذر نسخ الرابط، انسخه يدويًا: '+url;});}
-    window.onscroll = function() { const header = document.querySelector('.site-header'); if (window.scrollY > 50) { header.classList.add('header-scrolled'); } else { header.classList.remove('header-scrolled'); } };
-    document.addEventListener('click',function(event){const nav=document.getElementById('mainNav');const button=document.querySelector('.menu-toggle');if(!nav||!button)return;if(nav.classList.contains('active')&&!nav.contains(event.target)&&!button.contains(event.target)){closeMenu();}});
-    window.addEventListener('resize',function(){if(window.innerWidth>900)closeMenu();});
-    const filterButtons = document.querySelectorAll('.filter-btn');
-    const posts = document.querySelectorAll('.post-card');
-    const postsCount = document.getElementById('postsCount');
-    function updatePostsCount(visibleCount) { postsCount.textContent = `📄 ${visibleCount} مقال`; }
-    function filterPosts(category) { let visibleCount = 0; posts.forEach(post => { const categories = post.dataset.category; if (category === 'all' || categories.includes(category)) { post.style.display = 'flex'; visibleCount++; } else { post.style.display = 'none'; } }); updatePostsCount(visibleCount); }
-    filterButtons.forEach(btn => { btn.addEventListener('click', () => { filterButtons.forEach(b => b.classList.remove('active')); btn.classList.add('active'); filterPosts(btn.dataset.filter); }); });
-    filterPosts('all');
-  </script>
 </body>
 </html>
