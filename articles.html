@@ -8,12 +8,14 @@
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ea580c'%3E%3Cpath d='M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5'/%3E%3C/svg%3E" />
   <link rel="stylesheet" href="styles.css" />
   <script defer src="cookie-consent.js"></script>
+  <script defer src="site.js"></script>
+  <script defer src="articles.js"></script>
 </head>
 <body>
   <header class="site-header">
     <div class="container header-inner">
       <div class="logo"><span class="logo-text logo-text-light">smart</span><span class="logo-text logo-text-accent">afiliate</span></div>
-      <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+      <button class="menu-toggle" aria-label="فتح وإغلاق القائمة" aria-expanded="false" aria-controls="mainNav" onclick="toggleMenu()">☰</button>
       <nav class="main-nav" id="mainNav">
         <a href="index.html">الرئيسية</a>
         <a href="best-ai-tools.html">أفضل أدوات AI</a>
@@ -72,11 +74,5 @@
   </main>
 
   <footer class="site-footer"><div class="container footer-grid"><div class="footer-col"><div class="logo"><span class="logo-text logo-text-light">smart</span><span class="logo-text logo-text-accent">afiliate</span></div><p class="footer-description">منصة عربية تساعدك على فهم الذكاء الاصطناعي، التسويق بالعمولة، وبناء مشروع رقمي أوضح وأكثر قابلية للنمو.</p></div><div class="footer-col"><h4>من نحن</h4><a href="about.html">من نحن</a><a href="contact.html">تواصل معنا</a></div><div class="footer-col"><h4>سياسة الخصوصية</h4><a href="privacy.html">سياسة الخصوصية</a><a href="cookie-policy.html">سياسة الكوكيز</a><a href="terms.html">الشروط والأحكام</a></div><div class="footer-col"><h4>روابط سريعة</h4><a href="sitemap.xml">خريطة الموقع</a><a href="disclosure.html">الإفصاح</a></div></div><div class="container footer-bottom"><span>smartafiliate © 2026 – جميع الحقوق محفوظة</span><span>🌐 بناء محتوى عربي عملي للمستقبل</span></div></footer>
-
-  <script>
-    function toggleMenu() { document.getElementById('mainNav').classList.toggle('active'); }
-    function copyPageLink(url){const message=document.getElementById('shareMessage');navigator.clipboard.writeText(url).then(()=>{if(message)message.textContent='تم نسخ رابط الصفحة ✅';}).catch(()=>{if(message)message.textContent='تعذر نسخ الرابط، انسخه يدويًا: '+url;});}
-    window.onscroll = function() { const header = document.querySelector('.site-header'); if (window.scrollY > 50) { header.classList.add('header-scrolled'); } else { header.classList.remove('header-scrolled'); } };
-  </script>
 </body>
 </html>
