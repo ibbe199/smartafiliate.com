@@ -552,6 +552,7 @@ footer.site-footer {
 .decision-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:1rem; margin-top:1.5rem; }
 .decision-card { background:var(--surface); border:1px solid var(--line); border-radius:18px; padding:1rem; }
 .decision-card h3 { margin-bottom:.45rem; }
+.decision-title { margin-bottom:.45rem; font-size:1.1rem; font-weight:800; color:var(--navy-2); }
 .quick-jump { display:flex; flex-wrap:wrap; gap:.75rem; margin-top:1rem; }
 .quick-jump a { color:var(--primary); font-weight:800; }
 .tools-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); align-items: stretch; }
