@@ -13,18 +13,8 @@
   <meta property="og:url" content="https://smartafiliate.com/contact.html" />
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ea580c'%3E%3Cpath d='M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5'/%3E%3C/svg%3E" />
   <link rel="stylesheet" href="styles.css" />
-  <style>
-    .form-group input, .form-group select, .form-group textarea { transition: all 0.3s ease; }
-    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(234,88,12,0.1); outline: none; }
-    @media (max-width: 768px) {
-      .form-group input, .form-group textarea { font-size: 16px; width: 100%; }
-      .contact-form { padding: 1.2rem; }
-    }
-    .submit-btn { position: relative; transition: all 0.3s ease; }
-    .submit-btn.loading { opacity: 0.7; pointer-events: none; }
-    .submit-btn.loading::after { content: "⏳"; margin-right: 0.5rem; animation: spin 1s linear infinite; display: inline-block; }
-    @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-  </style>
+  <script defer src="site.js"></script>
+  <script defer src="contact.js"></script>
 </head>
 <body>
 
@@ -34,7 +24,7 @@
         <span class="logo-text logo-text-light">smart</span>
         <span class="logo-text logo-text-accent">afiliate</span>
       </div>
-      <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+      <button class="menu-toggle" aria-label="فتح وإغلاق القائمة" aria-expanded="false" aria-controls="mainNav" onclick="toggleMenu()">☰</button>
       <nav class="main-nav" id="mainNav">
         <a href="index.html">الرئيسية</a>
         <a href="best-ai-tools.html">أفضل أدوات AI</a>
@@ -69,7 +59,7 @@
           <div class="info-card">
             <h2>📧 البريد الإلكتروني</h2>
             <p>للتواصل العام أو إرسال أي استفسار متعلق بالموقع:</p>
-            <p><a href="mailto:info@smartafiliate.com" style="color: #ea580c; font-weight: bold; font-size: 1.1rem;">info@smartafiliate.com</a></p>
+            <p><a href="mailto:info@smartafiliate.com" class="contact-email-link">info@smartafiliate.com</a></p>
             <p>نرحب بالرسائل المتعلقة بالمحتوى، اقتراحات الأدوات، فرص التعاون، أو أي ملاحظات تساعد على تطوير smartafiliate.</p>
           </div>
           <div class="info-card">
@@ -84,9 +74,9 @@
         </div>
 
         <div class="contact-form">
-          <h2 style="margin-bottom: 1.5rem;">✉️ أرسل لنا رسالة</h2>
+          <h2 class="contact-form-title">✉️ أرسل لنا رسالة</h2>
           <form action="https://formspree.io/f/xgvogdkn" method="POST" id="contactForm">
-            <input type="text" name="_gotcha" style="display:none" />
+            <input type="text" name="_gotcha" hidden />
             <input type="hidden" name="_next" value="https://smartafiliate.com/thanks.html" />
             <input type="hidden" name="_subject" value="رسالة جديدة من smartafiliate" />
             <input type="hidden" name="_language" value="ar" />
@@ -114,7 +104,7 @@
             </div>
             <button type="submit" class="submit-btn" id="submitBtn">إرسال الرسالة</button>
           </form>
-          <p style="font-size: 0.8rem; color: #475569; margin-top: 1rem;">🔒 لن يتم مشاركة بريدك الإلكتروني مع أي طرف ثالث. سنرد عليك خلال 48 ساعة.</p>
+          <p class="contact-note">🔒 لن يتم مشاركة بريدك الإلكتروني مع أي طرف ثالث. سنرد عليك خلال 48 ساعة.</p>
         </div>
       </div>
     </section>
@@ -150,31 +140,5 @@
       <span>🌐 بناء محتوى عربي عملي للمستقبل</span>
     </div>
   </footer>
-
-  <script>
-    function toggleMenu() { document.getElementById('mainNav').classList.toggle('active'); }
-    window.onscroll = function() {
-      const header = document.querySelector('.site-header');
-      if (window.scrollY > 50) { header.classList.add('header-scrolled'); } else { header.classList.remove('header-scrolled'); }
-    };
-    const form = document.getElementById('contactForm');
-    const submitBtn = document.getElementById('submitBtn');
-    if (form) {
-      form.addEventListener('submit', function(e) {
-        submitBtn.innerHTML = 'جاري الإرسال...';
-        submitBtn.classList.add('loading');
-        let submitted = false;
-        if (submitted) { e.preventDefault(); return; }
-        submitted = true;
-        setTimeout(function() {
-          if (submitBtn.classList.contains('loading')) {
-            submitBtn.innerHTML = 'إرسال الرسالة';
-            submitBtn.classList.remove('loading');
-            submitted = false;
-          }
-        }, 10000);
-      });
-    }
-  </script>
 </body>
 </html>
