@@ -586,6 +586,15 @@ footer.site-footer {
 .shortcut-links a { color:var(--primary); font-weight:800; font-size:.92rem; }
 .next-step-box { background:var(--surface); border:1px solid var(--line); border-radius:18px; padding:1rem; margin-top:1rem; }
 
+/* ===== OPEN SOURCE PAGE UTILITIES ===== */
+.hero-strip{background:linear-gradient(135deg,rgba(234,88,12,.08),rgba(245,158,11,.12));border:1px solid rgba(234,88,12,.16);border-radius:22px;padding:1.2rem;margin-top:1.35rem;display:flex;flex-wrap:wrap;gap:1rem;align-items:center;justify-content:space-between}
+.hero-strip p{margin:0;font-weight:700}
+.hero-actions{display:flex;flex-wrap:wrap;gap:.75rem}
+.hero-btn-primary,.hero-btn-secondary{display:inline-flex;align-items:center;justify-content:center;padding:.8rem 1.1rem;border-radius:999px;font-weight:800}
+.hero-btn-primary{background:var(--primary);color:#fff}
+.hero-btn-secondary{background:var(--surface);color:var(--text);border:1px solid var(--line)}
+.tool-preview.opensource{background:linear-gradient(135deg,rgba(17,24,39,.98),rgba(30,64,175,.92))}
+
 /* ===== FOOTER ===== */
 .site-footer {
   background: var(--navy-1);
@@ -641,7 +650,7 @@ footer.site-footer {
   .main-nav a { font-size: 0.86rem; }
   .header-actions { gap: 0.5rem; }
   .btn-outline-light, .btn-primary-light { padding: 0.5rem 0.85rem; font-size: 0.84rem; }
-  .tools-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .tools-grid, .cards-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
 }
 @media (max-width: 1024px) {
   .hero-grid { grid-template-columns: 1fr; text-align: center; }
@@ -667,8 +676,8 @@ footer.site-footer {
   .share-box { padding: 1.4rem; }
   .share-btn { width: 100%; }
   .cta-strip { padding: 1rem; }
-  .cta-actions, .mini-links, .quick-jump, .hub-actions, .article-shortcuts, .learn-actions, .shortcut-links { justify-content: center; }
-  .review-grid, .decision-grid, .tools-grid, .quick-grid { grid-template-columns: 1fr; }
+  .cta-actions, .mini-links, .quick-jump, .hub-actions, .article-shortcuts, .learn-actions, .shortcut-links, .hero-actions { justify-content: center; }
+  .review-grid, .decision-grid, .tools-grid, .quick-grid, .cards-grid { grid-template-columns: 1fr; }
   .tool-preview { height: 126px; }
 }
 
