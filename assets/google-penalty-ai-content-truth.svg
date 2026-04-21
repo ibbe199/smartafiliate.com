@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="58" y1="44" x2="1117" y2="587" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0b132b"/>
+      <stop offset="1" stop-color="#7c2d12"/>
+    </linearGradient>
+    <linearGradient id="card" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#ffffff" stop-opacity="0.98"/>
+      <stop offset="1" stop-color="#fff7ed" stop-opacity="0.94"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" rx="28" fill="url(#bg)"/>
+  <circle cx="155" cy="88" r="56" fill="#ffffff" fill-opacity="0.06"/>
+  <circle cx="1042" cy="102" r="48" fill="#ffffff" fill-opacity="0.06"/>
+  <text x="600" y="84" text-anchor="middle" font-family="Arial, sans-serif" font-size="46" font-weight="800" fill="#ffffff">هل تعاقب جوجل المحتوى المكتوب بالذكاء الاصطناعي؟</text>
+  <rect x="286" y="98" width="628" height="54" rx="18" fill="#f97316"/>
+  <text x="600" y="134" text-anchor="middle" font-family="Arial, sans-serif" font-size="28" font-weight="800" fill="#ffffff">فهم الحقيقة قبل أن تنشر</text>
+  <rect x="120" y="186" width="960" height="358" rx="28" fill="#ffffff" fill-opacity="0.08" stroke="#ffffff" stroke-opacity="0.14"/>
+  <rect x="388" y="220" width="424" height="252" rx="26" fill="url(#card)"/>
+  <rect x="444" y="256" width="312" height="48" rx="16" fill="#0f172a" fill-opacity="0.08"/>
+  <text x="732" y="288" text-anchor="end" font-family="Arial, sans-serif" font-size="24" font-weight="800" fill="#0f172a">ما الذي تراجعه جوجل؟</text>
+  <text x="738" y="342" text-anchor="end" font-family="Arial, sans-serif" font-size="23" font-weight="700" fill="#16a34a">✓ جودة المحتوى</text>
+  <text x="738" y="382" text-anchor="end" font-family="Arial, sans-serif" font-size="23" font-weight="700" fill="#16a34a">✓ الفائدة للمستخدم</text>
+  <text x="738" y="422" text-anchor="end" font-family="Arial, sans-serif" font-size="23" font-weight="700" fill="#dc2626">✕ النصوص الضعيفة والمكررة</text>
+  <circle cx="248" cy="355" r="84" fill="#ffffff" fill-opacity="0.1" stroke="#ffffff" stroke-opacity="0.22"/>
+  <path d="M210 330C210 305.147 230.147 285 255 285H275C299.853 285 320 305.147 320 330V378C320 402.853 299.853 423 275 423H255C230.147 423 210 402.853 210 378V330Z" fill="#dc2626" fill-opacity="0.18" stroke="#fecaca" stroke-width="3"/>
+  <path d="M230 305L300 403" stroke="#fecaca" stroke-width="7" stroke-linecap="round"/>
+  <path d="M300 305L230 403" stroke="#fecaca" stroke-width="7" stroke-linecap="round"/>
+  <rect x="165" y="440" width="170" height="42" rx="14" fill="#ffffff" fill-opacity="0.16"/>
+  <text x="315" y="468" text-anchor="end" font-family="Arial, sans-serif" font-size="24" font-weight="800" fill="#ffffff">ليست عقوبة تلقائية</text>
+  <circle cx="952" cy="355" r="84" fill="#ffffff" fill-opacity="0.1" stroke="#ffffff" stroke-opacity="0.22"/>
+  <circle cx="952" cy="355" r="48" fill="#16a34a" fill-opacity="0.2" stroke="#bbf7d0" stroke-width="3"/>
+  <path d="M930 357L946 373L974 339" stroke="#dcfce7" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="860" y="440" width="184" height="42" rx="14" fill="#ffffff" fill-opacity="0.16"/>
+  <text x="1022" y="468" text-anchor="end" font-family="Arial, sans-serif" font-size="24" font-weight="800" fill="#ffffff">الحكم على النتيجة</text>
+  <rect x="178" y="560" width="844" height="34" rx="12" fill="#02101f" fill-opacity="0.62"/>
+  <text x="600" y="583" text-anchor="middle" font-family="Arial, sans-serif" font-size="21" font-weight="700" fill="#ffffff">جوجل لا تعاقب الأداة وحدها، بل المحتوى الرديء الذي لا يستحق الظهور</text>
+</svg>
