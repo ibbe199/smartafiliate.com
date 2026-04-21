@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="80" y1="70" x2="1110" y2="580" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#081a33"/>
+      <stop offset="1" stop-color="#1d4ed8"/>
+    </linearGradient>
+    <linearGradient id="leftGlow" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#16a34a" stop-opacity="0.95"/>
+      <stop offset="1" stop-color="#86efac" stop-opacity="0.85"/>
+    </linearGradient>
+    <linearGradient id="rightGlow" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#f97316" stop-opacity="0.95"/>
+      <stop offset="1" stop-color="#fecaca" stop-opacity="0.85"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" rx="28" fill="url(#bg)"/>
+  <circle cx="140" cy="96" r="50" fill="#fff" fill-opacity="0.06"/>
+  <circle cx="1070" cy="104" r="60" fill="#fff" fill-opacity="0.06"/>
+  <text x="600" y="88" text-anchor="middle" font-family="Arial, sans-serif" font-size="48" font-weight="800" fill="#fff">محتوى AI وجوجل</text>
+  <rect x="270" y="102" width="660" height="54" rx="18" fill="#f97316"/>
+  <text x="600" y="138" text-anchor="middle" font-family="Arial, sans-serif" font-size="29" font-weight="800" fill="#fff">هل هو فرصة للظهور أم طريق إلى السقوط؟</text>
+  <rect x="92" y="198" width="1016" height="334" rx="28" fill="#ffffff" fill-opacity="0.07" stroke="#ffffff" stroke-opacity="0.16"/>
+  <path d="M600 460L600 240" stroke="#fff" stroke-width="6" stroke-dasharray="14 12"/>
+  <circle cx="600" cy="350" r="58" fill="#ffffff" fill-opacity="0.12" stroke="#ffffff" stroke-opacity="0.25" stroke-width="2"/>
+  <text x="600" y="360" text-anchor="middle" font-family="Arial, sans-serif" font-size="54" font-weight="800" fill="#fff">AI</text>
+  <rect x="126" y="240" width="360" height="246" rx="24" fill="url(#leftGlow)" fill-opacity="0.16"/>
+  <text x="444" y="286" text-anchor="end" font-family="Arial, sans-serif" font-size="28" font-weight="800" fill="#ffffff">فرصة للظهور</text>
+  <text x="438" y="336" text-anchor="end" font-family="Arial, sans-serif" font-size="22" font-weight="700" fill="#dcfce7">• مسودات أسرع</text>
+  <text x="438" y="376" text-anchor="end" font-family="Arial, sans-serif" font-size="22" font-weight="700" fill="#dcfce7">• تنظيم أفضل للمقالات</text>
+  <text x="438" y="416" text-anchor="end" font-family="Arial, sans-serif" font-size="22" font-weight="700" fill="#dcfce7">• تحسين تغطية المواضيع</text>
+  <rect x="714" y="240" width="360" height="246" rx="24" fill="url(#rightGlow)" fill-opacity="0.16"/>
+  <text x="1034" y="286" text-anchor="end" font-family="Arial, sans-serif" font-size="28" font-weight="800" fill="#ffffff">طريق إلى السقوط</text>
+  <text x="1028" y="336" text-anchor="end" font-family="Arial, sans-serif" font-size="22" font-weight="700" fill="#fff7ed">• حشو وتكرار</text>
+  <text x="1028" y="376" text-anchor="end" font-family="Arial, sans-serif" font-size="22" font-weight="700" fill="#fff7ed">• محتوى بلا قيمة</text>
+  <text x="1028" y="416" text-anchor="end" font-family="Arial, sans-serif" font-size="22" font-weight="700" fill="#fff7ed">• فقدان الثقة</text>
+  <path d="M310 522C354 490 428 490 468 522" stroke="#86efac" stroke-width="8" stroke-linecap="round"/>
+  <path d="M834 522C878 490 952 490 992 522" stroke="#fdba74" stroke-width="8" stroke-linecap="round"/>
+  <rect x="146" y="548" width="908" height="36" rx="12" fill="#031225" fill-opacity="0.65"/>
+  <text x="600" y="573" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" font-weight="700" fill="#ffffff">جوجل لا تحكم على الأداة وحدها، بل على جودة الناتج النهائي</text>
+</svg>
