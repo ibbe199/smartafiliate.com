@@ -1,6 +1,13 @@
 User-agent: *
 Disallow: /admin/
 Disallow: /assets/private/
+Disallow: /*?page_id=
+Disallow: /*?utm_
+Disallow: /*&utm_
+Disallow: /*?fbclid=
+Disallow: /*&fbclid=
+Disallow: /*?gclid=
+Disallow: /*&gclid=
 Allow: /
 
 Sitemap: https://smartafiliate.com/sitemap.xml
