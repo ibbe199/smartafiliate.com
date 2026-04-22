@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">30 Day AI Plan</title>
+  <desc id="desc">صورة توضيحية لخطة 30 يوم لبناء مشروع بالذكاء الاصطناعي</desc>
+  <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#0b1f3a"/><stop offset="100%" stop-color="#12305a"/></linearGradient></defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect x="95" y="95" width="1010" height="440" rx="34" fill="#ffffff" opacity="0.08"/>
+  <text x="140" y="235" fill="#fb923c" font-size="36" font-family="Segoe UI, Arial, sans-serif">30 DAY AI PLAN</text>
+  <text x="140" y="320" fill="#ffffff" font-size="76" font-family="Segoe UI, Arial, sans-serif" font-weight="700">خطة 30 يوم</text>
+  <text x="140" y="400" fill="#dbeafe" font-size="34" font-family="Segoe UI, Arial, sans-serif">لبناء مشروع بالذكاء الاصطناعي</text>
+</svg>
