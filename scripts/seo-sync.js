@@ -5,6 +5,7 @@ const ROOT = process.cwd();
 const SITE_URL = 'https://smartafiliate.com';
 const BRAND = 'smartafiliate';
 const DEFAULT_IMAGE = `${SITE_URL}/assets/images/seo-card.png`;
+const GENERATED_COVERS_DIR = 'assets/generated-covers';
 const EXCLUDE_FROM_SITEMAP = new Set(['404.html', 'thanks.html']);
 const HTML_DIRS = ['', 'posts-ai', 'articles'];
 
@@ -22,11 +23,17 @@ function listHtmlFiles() {
   return files.sort((a, b) => a.localeCompare(b, 'en'));
 }
 
+function ensureDir(relPath) {
+  const abs = path.join(ROOT, relPath);
+  if (!fs.existsSync(abs)) fs.mkdirSync(abs, { recursive: true });
+}
+
 function readFile(relPath) {
   return fs.readFileSync(path.join(ROOT, relPath), 'utf8');
 }
 
 function writeFile(relPath, content) {
+  ensureDir(path.dirname(relPath));
   fs.writeFileSync(path.join(ROOT, relPath), content, 'utf8');
 }
 
@@ -57,6 +64,10 @@ function matchFirst(content, regex) {
   return m ? m[1].trim() : '';
 }
 
+function slugFromPath(filePath) {
+  return filePath.replace(/\.html$/, '').replace(/[^a-zA-Z0-9/_-]+/g, '-').replace(/[\/]+/g, '-');
+}
+
 function toAbsoluteUrl(rawUrl, filePath) {
   if (!rawUrl) return DEFAULT_IMAGE;
   if (/^https?:\/\//i.test(rawUrl)) return rawUrl;
@@ -72,6 +83,62 @@ function replaceOrInsert(head, regex, replacement) {
   return regex.test(head) ? head.replace(regex, replacement) : `${head}  ${replacement}\n`;
 }
 
+function wrapTitle(title, maxLineLength = 18, maxLines = 3) {
+  const words = title.split(/\s+/).filter(Boolean);
+  const lines = [];
+  let current = '';
+  for (const word of words) {
+    const candidate = current ? `${current} ${word}` : word;
+    if (candidate.length <= maxLineLength) {
+      current = candidate;
+    } else {
+      if (current) lines.push(current);
+      current = word;
+      if (lines.length === maxLines - 1) break;
+    }
+  }
+  if (current && lines.length < maxLines) lines.push(current);
+  if (lines.length < words.length && lines.length > 0) {
+    lines[lines.length - 1] = truncate(lines[lines.length - 1], maxLineLength);
+  }
+  return lines.slice(0, maxLines);
+}
+
+function buildGeneratedCover(filePath, headline, sectionLabel) {
+  const slug = slugFromPath(filePath);
+  const relCoverPath = `${GENERATED_COVERS_DIR}/${slug}.svg`;
+  const absCoverPath = path.join(ROOT, relCoverPath);
+  const lines = wrapTitle(headline || 'مقال جديد');
+  const lineYs = [250, 330, 410];
+  const textLines = lines
+    .map((line, index) => `<text x="1140" y="${lineYs[index]}" text-anchor="end" font-size="56" font-weight="800" fill="#ffffff">${escapeHtml(line)}</text>`)
+    .join('');
+  const svg = `<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="630" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#111827"/>
+      <stop offset="0.55" stop-color="#1F2937"/>
+      <stop offset="1" stop-color="#EA580C"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="120" y1="110" x2="520" y2="520" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F59E0B" stop-opacity="0.95"/>
+      <stop offset="1" stop-color="#EA580C" stop-opacity="0.15"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" rx="0" fill="url(#bg)"/>
+  <circle cx="180" cy="150" r="220" fill="url(#accent)"/>
+  <circle cx="1030" cy="560" r="180" fill="#ffffff" fill-opacity="0.08"/>
+  <rect x="68" y="68" width="1064" height="494" rx="34" fill="#ffffff" fill-opacity="0.05" stroke="#ffffff" stroke-opacity="0.12"/>
+  <text x="1140" y="120" text-anchor="end" font-size="28" font-weight="700" fill="#FDBA74">${escapeHtml(sectionLabel)}</text>
+  ${textLines}
+  <text x="1140" y="540" text-anchor="end" font-size="32" font-weight="700" fill="#ffffff" fill-opacity="0.92">${BRAND}</text>
+</svg>`;
+  ensureDir(path.dirname(relCoverPath));
+  fs.writeFileSync(absCoverPath, svg, 'utf8');
+  return `${SITE_URL}/${relCoverPath}`;
+}
+
 function buildMetadata(filePath, html) {
   const titleTag = stripHtml(matchFirst(html, /<title>([\s\S]*?)<\/title>/i)).replace(/\s*\|\s*smartafiliate\s*$/i, '').trim();
   const h1 = stripHtml(matchFirst(html, /<h1[^>]*>([\s\S]*?)<\/h1>/i));
@@ -83,7 +150,12 @@ function buildMetadata(filePath, html) {
   const description = truncate(descriptionTag || firstParagraph || baseTitle, 160);
   const canonical = `${SITE_URL}/${filePath}`.replace('/index.html', '/');
   const type = filePath.startsWith('posts-ai/') || filePath.startsWith('articles/') ? 'article' : 'website';
-  const image = toAbsoluteUrl(firstImage, filePath);
+  const sectionLabel = filePath.startsWith('posts-ai/') ? 'مقال من smartafiliate' : filePath.startsWith('articles/') ? 'محتوى عربي عملي' : 'صفحة من smartafiliate';
+  const absoluteFirstImage = toAbsoluteUrl(firstImage, filePath);
+  const shouldUseGeneratedCover = type === 'article' && (!firstImage || absoluteFirstImage === DEFAULT_IMAGE || /assets\/images\/seo-card\.png$/i.test(absoluteFirstImage));
+  const image = shouldUseGeneratedCover
+    ? buildGeneratedCover(filePath, h1 || titleTag || 'مقال جديد', sectionLabel)
+    : absoluteFirstImage;
 
   return { title, description, canonical, type, image, headline: h1 || baseTitle };
 }
@@ -154,13 +226,14 @@ function buildSitemap(files) {
 }
 
 function main() {
+  ensureDir(GENERATED_COVERS_DIR);
   const files = listHtmlFiles();
   let changedCount = 0;
   for (const filePath of files) {
     if (updateHtml(filePath)) changedCount += 1;
   }
   writeFile('sitemap.xml', buildSitemap(files));
-  console.log(`SEO sync finished. Updated ${changedCount} HTML files and rebuilt sitemap.`);
+  console.log(`SEO sync finished. Updated ${changedCount} HTML files, generated article covers, and rebuilt sitemap.`);
 }
 
 main();
