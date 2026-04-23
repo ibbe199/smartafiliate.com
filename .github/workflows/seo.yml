@@ -1,0 +1,33 @@
+name: Auto SEO
+
+on:
+  push:
+    branches: [ main ]
+
+permissions:
+  contents: write
+
+jobs:
+  seo:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Run SEO Script
+        run: node scripts/seo-sync.js
+
+      - name: Commit Changes
+        run: |
+          git config user.name "seo-bot"
+          git config user.email "bot@smartafiliate.com"
+          git add .
+          git commit -m "Auto SEO update" || echo "No changes"
+          git push
