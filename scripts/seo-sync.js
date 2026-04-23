@@ -8,6 +8,36 @@ const DEFAULT_IMAGE = `${SITE_URL}/assets/images/seo-card.png`;
 const GENERATED_COVERS_DIR = 'assets/generated-covers';
 const EXCLUDE_FROM_SITEMAP = new Set(['404.html', 'thanks.html']);
 const HTML_DIRS = ['', 'posts-ai', 'articles'];
+const ARTICLE_IMAGE_MAP = {
+  'posts-ai/google-ai-content-acceptance.html': '/assets/google-ai-content-acceptance.png',
+  'posts-ai/future-arab-websites-ai.html': '/assets/future-arab-websites-ai.png',
+  'posts-ai/ai-content-google-opportunity-risk.html': '/assets/ai-content-google-opportunity-risk.png',
+  'posts-ai/google-penalty-ai-content-truth.html': '/assets/google-penalty-ai-content-truth.png',
+  'posts-ai/ai-seo-content-success.html': '/assets/ai-seo-content-success.png',
+  'posts-ai/ai-save-or-bury-arab-websites.html': '/assets/ai-save-or-bury-arab-websites.png',
+  'posts-ai/arab-websites-ai-who-survives.html': '/assets/arab-websites-ai-who-survives.png',
+  'posts-ai/ai-knocks-arab-websites-door.html': '/assets/ai-knocks-arab-websites-door.png',
+  'posts-ai/build-website-with-ai-in-minutes.html': '/assets/build-website-with-ai-in-minutes.png',
+  'posts-ai/latest-ai-news-2026.html': '/assets/latest-ai-news-2026.png',
+  'posts-ai/30-best-ai-writing-tools.html': '/assets/ai-writing-tools.png',
+  'posts-ai/90-day-ai-plan.html': '/assets/90-day-ai-plan.png',
+  'posts-ai/30-day-ai-plan.html': '/assets/30-day-action-plan.png',
+  'posts-ai/ai-affiliate-tools.html': '/assets/ai-affiliate-tools.png',
+  'posts-ai/ai-content-sales-system.html': '/assets/ai-tools-content-sales.png',
+  'posts-ai/affiliate-funnel-guide.html': '/assets/affiliate-conversion-funnel.png',
+  'posts-ai/affiliate-growth-strategy.html': '/assets/generated-covers/affiliate-growth-strategy.svg',
+  'posts-ai/what-is-affiliate-marketing.html': '/assets/what-is-affiliate.svg',
+  'posts-ai/affiliate-mistakes.html': '/assets/affiliate-mistakes.svg',
+  'posts-ai/arab-affiliate-programs.html': '/assets/arab-affiliate-programs.svg',
+  'posts-ai/complete-ai-learning-path.html': '/assets/complete-ai-learning-path.png',
+  'posts-ai/content-structure-seo.html': '/assets/best-content-structure.svg',
+  'articles/what-is-affiliate-marketing.html': '/assets/what-is-affiliate.svg',
+  'articles/affiliate-marketing-mistakes.html': '/assets/affiliate-mistakes.svg',
+  'articles/seo-for-affiliate-sites.html': '/assets/images/seo-affiliate.svg',
+  'articles/ai-tools-for-affiliate-marketing.html': '/assets/ai-affiliate-tools.png',
+  'articles/best-content-structure.html': '/assets/best-content-structure.svg',
+  'articles/best-affiliate-programs-arab-world.html': '/assets/arab-affiliate-programs.svg'
+};
 
 function listHtmlFiles() {
   const files = [];
@@ -79,6 +109,10 @@ function toAbsoluteUrl(rawUrl, filePath) {
   return `${SITE_URL}/${clean}`;
 }
 
+function toSiteRelativeUrl(absoluteUrl) {
+  return absoluteUrl.replace(SITE_URL, '');
+}
+
 function replaceOrInsert(head, regex, replacement) {
   return regex.test(head) ? head.replace(regex, replacement) : `${head}  ${replacement}\n`;
 }
@@ -139,6 +173,11 @@ function buildGeneratedCover(filePath, headline, sectionLabel) {
   return `${SITE_URL}/${relCoverPath}`;
 }
 
+function preferredImageAbsolute(filePath, fallbackHeadline, sectionLabel) {
+  if (ARTICLE_IMAGE_MAP[filePath]) return `${SITE_URL}${ARTICLE_IMAGE_MAP[filePath]}`;
+  return buildGeneratedCover(filePath, fallbackHeadline || 'مقال جديد', sectionLabel);
+}
+
 function buildMetadata(filePath, html) {
   const titleTag = stripHtml(matchFirst(html, /<title>([\s\S]*?)<\/title>/i)).replace(/\s*\|\s*smartafiliate\s*$/i, '').trim();
   const h1 = stripHtml(matchFirst(html, /<h1[^>]*>([\s\S]*?)<\/h1>/i));
@@ -152,12 +191,17 @@ function buildMetadata(filePath, html) {
   const type = filePath.startsWith('posts-ai/') || filePath.startsWith('articles/') ? 'article' : 'website';
   const sectionLabel = filePath.startsWith('posts-ai/') ? 'مقال من smartafiliate' : filePath.startsWith('articles/') ? 'محتوى عربي عملي' : 'صفحة من smartafiliate';
   const absoluteFirstImage = toAbsoluteUrl(firstImage, filePath);
-  const shouldUseGeneratedCover = type === 'article' && (!firstImage || absoluteFirstImage === DEFAULT_IMAGE || /assets\/images\/seo-card\.png$/i.test(absoluteFirstImage));
-  const image = shouldUseGeneratedCover
-    ? buildGeneratedCover(filePath, h1 || titleTag || 'مقال جديد', sectionLabel)
+  const image = type === 'article'
+    ? preferredImageAbsolute(filePath, h1 || titleTag || 'مقال جديد', sectionLabel)
     : absoluteFirstImage;
 
   return { title, description, canonical, type, image, headline: h1 || baseTitle };
+}
+
+function syncArticleBodyImage(content, filePath, imageAbsolute) {
+  if (!(filePath.startsWith('posts-ai/') || filePath.startsWith('articles/'))) return content;
+  const imageRelative = toSiteRelativeUrl(imageAbsolute);
+  return content.replace(/<img([^>]+)src=["']([^"']+)["']([^>]*)>/i, `<img$1src="${imageRelative}"$3>`);
 }
 
 function updateHtml(filePath) {
@@ -166,7 +210,8 @@ function updateHtml(filePath) {
   if (!headMatch) return false;
 
   const meta = buildMetadata(filePath, original);
-  let head = headMatch[1];
+  let content = syncArticleBodyImage(original, filePath, meta.image);
+  let head = content.match(/<head>([\s\S]*?)<\/head>/i)[1];
 
   head = replaceOrInsert(head, /<title>[\s\S]*?<\/title>/i, `  <title>${escapeHtml(meta.title)}</title>`);
   head = replaceOrInsert(head, /<meta\s+name=["']description["'][^>]*>/i, `  <meta name="description" content="${escapeHtml(meta.description)}" />`);
@@ -200,9 +245,9 @@ function updateHtml(filePath) {
     );
   }
 
-  const updated = original.replace(/<head>[\s\S]*?<\/head>/i, `<head>\n${head.trim()}\n</head>`);
-  if (updated !== original) {
-    writeFile(filePath, updated);
+  content = content.replace(/<head>[\s\S]*?<\/head>/i, `<head>\n${head.trim()}\n</head>`);
+  if (content !== original) {
+    writeFile(filePath, content);
     return true;
   }
   return false;
@@ -233,7 +278,7 @@ function main() {
     if (updateHtml(filePath)) changedCount += 1;
   }
   writeFile('sitemap.xml', buildSitemap(files));
-  console.log(`SEO sync finished. Updated ${changedCount} HTML files, generated article covers, and rebuilt sitemap.`);
+  console.log(`SEO sync finished. Updated ${changedCount} HTML files, synced article covers, and rebuilt sitemap.`);
 }
 
 main();
