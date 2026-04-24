@@ -117,6 +117,12 @@ function replaceOrInsert(head, regex, replacement) {
   return regex.test(head) ? head.replace(regex, replacement) : `${head}  ${replacement}\n`;
 }
 
+function ensureCookieConsentScript(head, filePath) {
+  if (/cookie-consent\.js/i.test(head)) return head;
+  const src = filePath.includes('/') ? '../cookie-consent.js' : 'cookie-consent.js';
+  return `${head.trim()}\n  <script defer src="${src}"></script>\n`;
+}
+
 function wrapTitle(title, maxLineLength = 18, maxLines = 3) {
   const words = title.split(/\s+/).filter(Boolean);
   const lines = [];
@@ -245,6 +251,7 @@ function updateHtml(filePath) {
     );
   }
 
+  head = ensureCookieConsentScript(head, filePath);
   content = content.replace(/<head>[\s\S]*?<\/head>/i, `<head>\n${head.trim()}\n</head>`);
   if (content !== original) {
     writeFile(filePath, content);
@@ -278,7 +285,7 @@ function main() {
     if (updateHtml(filePath)) changedCount += 1;
   }
   writeFile('sitemap.xml', buildSitemap(files));
-  console.log(`SEO sync finished. Updated ${changedCount} HTML files, synced article covers, and rebuilt sitemap.`);
+  console.log(`SEO sync finished. Updated ${changedCount} HTML files, synced article covers, added cookie consent scripts, and rebuilt sitemap.`);
 }
 
 main();
