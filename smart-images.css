@@ -3,6 +3,7 @@
   --smart-thumb-ratio: 16 / 9;
   --smart-thumb-height: clamp(170px, 13vw, 220px);
   --smart-tool-thumb-height: clamp(150px, 11vw, 190px);
+  --smart-image-radius: 20px;
 }
 
 .smart-article-image-link {
@@ -28,8 +29,12 @@
   aspect-ratio: var(--smart-thumb-ratio);
   height: var(--smart-thumb-height) !important;
   min-height: 0;
-  border-radius: 18px;
+  border-radius: var(--smart-image-radius);
   background: linear-gradient(135deg, #071527, #12305a);
+  box-shadow:
+    0 14px 30px rgba(15, 23, 42, .14),
+    inset 0 1px 0 rgba(255,255,255,.16);
+  border: 1px solid rgba(255,255,255,.58);
 }
 
 .tool-preview {
@@ -48,9 +53,10 @@
   z-index: 1;
   pointer-events: none;
   background:
-    linear-gradient(180deg, rgba(2, 6, 23, 0.02) 0%, rgba(2, 6, 23, 0.18) 55%, rgba(2, 6, 23, 0.55) 100%),
-    radial-gradient(circle at 20% 15%, rgba(255,255,255,.20), transparent 28%);
-  opacity: .85;
+    linear-gradient(180deg, rgba(2, 6, 23, 0.02) 0%, rgba(2, 6, 23, 0.10) 48%, rgba(2, 6, 23, 0.48) 100%),
+    radial-gradient(circle at 18% 14%, rgba(255,255,255,.24), transparent 24%),
+    linear-gradient(135deg, rgba(234,88,12,.10), rgba(14,165,233,.10));
+  opacity: .78;
   transition: opacity .35s ease;
 }
 
@@ -67,15 +73,37 @@
   padding: 7px 13px;
   border-radius: 999px;
   color: #fff;
-  background: rgba(234, 88, 12, .92);
-  border: 1px solid rgba(255,255,255,.24);
-  box-shadow: 0 10px 25px rgba(0,0,0,.22);
+  background: linear-gradient(135deg, rgba(234,88,12,.96), rgba(245,158,11,.92));
+  border: 1px solid rgba(255,255,255,.32);
+  box-shadow: 0 10px 25px rgba(0,0,0,.25);
   font-size: 12px;
-  font-weight: 800;
+  font-weight: 900;
   letter-spacing: -.1px;
   opacity: 0;
   transform: translateY(8px);
   transition: opacity .35s ease, transform .35s ease;
+}
+
+.article-image .smart-image-shine,
+.post-image .smart-image-shine,
+.blog-image .smart-image-shine,
+.card-image .smart-image-shine,
+.tool-preview .smart-image-shine {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background: linear-gradient(115deg, transparent 0%, transparent 36%, rgba(255,255,255,.28) 48%, transparent 60%, transparent 100%);
+  transform: translateX(120%);
+  transition: transform .9s ease;
+}
+
+.article-card:hover .smart-image-shine,
+.post-card:hover .smart-image-shine,
+.blog-card:hover .smart-image-shine,
+.card:hover .smart-image-shine,
+.tool-card:hover .smart-image-shine {
+  transform: translateX(-120%);
 }
 
 .article-card:hover .article-image::after,
@@ -92,7 +120,7 @@
 .blog-card:hover .blog-image::before,
 .card:hover .card-image::before,
 .tool-card:hover .tool-preview::before {
-  opacity: .55;
+  opacity: .50;
 }
 
 .article-image img,
@@ -107,7 +135,7 @@
   object-position: center;
   display: block;
   transform: scale(1.001);
-  filter: saturate(1.08) contrast(1.04);
+  filter: saturate(1.12) contrast(1.06) brightness(1.02);
   transition: transform .65s cubic-bezier(.2,.7,.2,1), filter .65s ease;
 }
 
@@ -117,7 +145,7 @@
 .card:hover .card-image img,
 .tool-card:hover .tool-preview img {
   transform: scale(1.075);
-  filter: saturate(1.18) contrast(1.08) brightness(1.02);
+  filter: saturate(1.22) contrast(1.10) brightness(1.05);
 }
 
 .article-card,
@@ -131,6 +159,13 @@
   will-change: transform;
 }
 
+.article-card,
+.post-card,
+.blog-card,
+.tool-card {
+  box-shadow: 0 10px 25px rgba(15,23,42,.08);
+}
+
 .article-card::before,
 .post-card::before,
 .blog-card::before,
@@ -141,7 +176,7 @@
   border-radius: inherit;
   pointer-events: none;
   opacity: 0;
-  background: linear-gradient(135deg, rgba(234,88,12,.22), rgba(14,165,233,.12));
+  background: linear-gradient(135deg, rgba(234,88,12,.18), rgba(14,165,233,.14));
   transition: opacity .35s ease;
   z-index: 0;
 }
@@ -168,9 +203,9 @@
   z-index: 3;
   padding: 6px 11px;
   border-radius: 999px;
-  background: rgba(255, 255, 255, .88);
+  background: rgba(255, 255, 255, .90);
   color: #0f172a;
-  border: 1px solid rgba(255,255,255,.55);
+  border: 1px solid rgba(255,255,255,.62);
   box-shadow: 0 10px 25px rgba(0,0,0,.16);
   font-size: 11px;
   font-weight: 900;
@@ -207,6 +242,8 @@
   max-height: 430px;
   background-size: cover;
   background-position: center;
+  border-radius: 24px;
+  box-shadow: 0 18px 45px rgba(15,23,42,.16);
 }
 
 @media (max-width: 900px) {
@@ -263,7 +300,8 @@
   .post-image::after,
   .blog-image::after,
   .card-image::after,
-  .tool-preview::after {
+  .tool-preview::after,
+  .smart-image-shine {
     transition: none !important;
     animation: none !important;
   }
