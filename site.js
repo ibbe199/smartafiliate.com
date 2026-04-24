@@ -84,16 +84,16 @@
     'posts-ai/falcon-guide.html': 'assets/images/11-falcon-guide.png',
     'posts-ai/free-ai-courses-arabic.html': 'assets/images/12-free-ai-courses-arabic.png',
     'posts-ai/future-of-ai-automation.html': 'assets/13-future-ai-automation.png',
-    'posts-ai/latest-ai-automation-uses.html': 'assets/images/14-latest-ai-automation-uses.png',
-    'posts-ai/learning-tips-for-ai.html': 'assets/images/15-ai-learning-tips.png',
+    'posts-ai/latest-ai-automation-uses.html': 'assets/14-latest-ai-automation-uses.png',
+    'posts-ai/learning-tips-for-ai.html': 'assets/15-ai-learning-tips.png',
     'posts-ai/llama3-guide.html': 'assets/16-llama3-guide.png',
     'posts-ai/math-for-ai-beginners.html': 'assets/17-math-for-ai-beginners.png',
-    'posts-ai/mistral-guide.html': 'assets/images/18-mistral-guide.png',
-    'posts-ai/ollama-guide.html': 'assets/images/19-ollama-guide.png',
+    'posts-ai/mistral-guide.html': 'assets/18-mistral-guide.png',
+    'posts-ai/ollama-guide.html': 'assets/19-ollama-guide.png',
     'posts-ai/python-for-ai-beginners.html': 'assets/20-python-for-ai-beginners.png',
-    'posts-ai/tiktok-growth-engineering.html': 'assets/images/21-tiktok-growth-engineering.png',
-    'posts-ai/what-is-ai-beginners.html': 'assets/images/22-what-is-ai-beginners.png',
-    'articles/paid-vs-free-vs-open-source-ai.html': 'assets/images/23-paid-free-open-source-ai.png'
+    'posts-ai/tiktok-growth-engineering.html': 'assets/21-tiktok-growth-engineering.png',
+    'posts-ai/what-is-ai-beginners.html': 'assets/22-what-is-ai-beginners.png',
+    'articles/paid-vs-free-vs-open-source-ai.html': 'assets/23-paid-free-open-source-ai.png'
   };
 
   window.ARTICLE_IMAGE_MAP = ARTICLE_IMAGE_MAP;
@@ -115,7 +115,7 @@
     var imageCss = document.createElement('link');
     imageCss.id = 'smart-images-css';
     imageCss.rel = 'stylesheet';
-    imageCss.href = resolveSiteAssetPath('smart-images.css?v=20260424-11');
+    imageCss.href = resolveSiteAssetPath('smart-images.css?v=20260424-12');
     document.head.appendChild(imageCss);
   }
 
