@@ -12,28 +12,6 @@
     firstScript.parentNode.insertBefore(gtmScript, firstScript);
   }
 
-  function normalizeUrl(url) {
-    var a = document.createElement('a');
-    a.href = url || '';
-    return a.pathname.replace(/^\//, '').replace(/^smartafiliate\.com\//, '').replace(/^\.\//, '').split('#')[0].split('?')[0];
-  }
-
-  function resolveSiteAssetPath(assetPath) {
-    var parts = window.location.pathname.split('/').filter(Boolean);
-    var currentFile = parts[parts.length - 1] || '';
-    var isFile = currentFile.indexOf('.') !== -1;
-    var depth = isFile ? Math.max(0, parts.length - 1) : parts.length;
-    return (depth ? '../'.repeat(depth) : '') + assetPath;
-  }
-
-  function absoluteAssetUrl(assetPath) {
-    return window.location.origin + '/' + assetPath.replace(/^\.\.\//g, '').replace(/^\//, '');
-  }
-
-  function cleanArticleTitle(title) {
-    return (title || '').replace(/\s+/g, ' ').replace(/^(اقرأ\s+المقال|قراءة\s+المقال|المزيد|اقرأ\s+المزيد)\s*/i, '').trim();
-  }
-
   var ARTICLE_IMAGE_MAP = {
     'posts-ai/google-ai-content-acceptance.html': 'assets/images/image_01.jpg',
     'posts-ai/future-arab-websites-ai.html': 'assets/images/image_02.jpg',
@@ -77,9 +55,9 @@
     'posts-ai/ai-design-for-social-media.html': 'assets/images/04-ai-design-social-media.png',
     'posts-ai/ai-learning-communities.html': 'assets/images/05-ai-learning-communities.png',
     'posts-ai/ai-logo-design-guide.html': 'assets/images/06-ai-logo-design.png',
-    'posts-ai/ai-projects-for-beginners.html': 'assets/images/07-ai-projects-beginners.png',
-    'posts-ai/best-ai-design-tools.html': 'assets/images/08-best-ai-design-tools.png',
-    'posts-ai/best-books-to-learn-ai.html': 'assets/images/09-best-ai-books.png',
+    'posts-ai/ai-projects-for-beginners.html': 'assets/07-ai-projects-beginners.png',
+    'posts-ai/best-ai-design-tools.html': 'assets/08-best-ai-design-tools.png',
+    'posts-ai/best-books-to-learn-ai.html': 'assets/09-best-ai-books.png',
     'posts-ai/copyai-review.html': 'assets/images/10-copyai-review.png',
     'posts-ai/falcon-guide.html': 'assets/images/11-falcon-guide.png',
     'posts-ai/free-ai-courses-arabic.html': 'assets/images/12-free-ai-courses-arabic.png',
@@ -98,16 +76,34 @@
 
   window.ARTICLE_IMAGE_MAP = ARTICLE_IMAGE_MAP;
 
-  function pageHasArticleImages() {
-    return !!document.querySelector('.article-card, .post-card, .blog-card, .article-image, .post-image, .blog-image, .card-image, .article-container, .article-body');
+  function normalizeUrl(url) {
+    var a = document.createElement('a');
+    a.href = url || '';
+    return a.pathname.replace(/^\//, '').replace(/^smartafiliate\.com\//, '').replace(/^\.\//, '').split('#')[0].split('?')[0];
   }
 
-  function injectCriticalImageSizing() {
-    if (!pageHasArticleImages() || document.getElementById('smart-critical-image-sizing')) return;
-    var critical = document.createElement('style');
-    critical.id = 'smart-critical-image-sizing';
-    critical.textContent = '.article-image,.post-image,.blog-image,.card-image{width:100%!important;height:clamp(280px,24vw,430px)!important;min-height:280px!important;max-height:430px!important;aspect-ratio:16/9!important;overflow:hidden!important;border-radius:20px!important;padding:0!important;background:linear-gradient(135deg,#071527,#12305a)!important;display:block!important;position:relative!important}.article-image>a,.post-image>a,.blog-image>a,.card-image>a,.smart-article-image-link{display:block!important;width:100%!important;height:100%!important}.article-image img,.post-image img,.blog-image img,.card-image img,.smart-article-image-link img{width:100%!important;height:100%!important;max-width:none!important;object-fit:cover!important;object-position:center!important;display:block!important}.smart-image-title{position:absolute!important;right:14px!important;left:14px!important;bottom:56px!important;z-index:4!important;color:#fff!important;font-weight:900!important;line-height:1.45!important;text-shadow:0 3px 14px rgba(0,0,0,.55)!important;display:-webkit-box!important;-webkit-line-clamp:2!important;-webkit-box-orient:vertical!important;overflow:hidden!important}.article-featured-image{aspect-ratio:16/9!important;min-height:280px!important;max-height:430px!important;background-size:cover!important;background-position:center!important}@media(max-width:700px){.article-image,.post-image,.blog-image,.card-image{height:240px!important;min-height:240px!important;max-height:280px!important}}@media(max-width:430px){.article-image,.post-image,.blog-image,.card-image{height:220px!important;min-height:220px!important;max-height:250px!important}}';
-    document.head.appendChild(critical);
+  function resolveSiteAssetPath(assetPath) {
+    var parts = window.location.pathname.split('/').filter(Boolean);
+    var currentFile = parts[parts.length - 1] || '';
+    var isFile = currentFile.indexOf('.') !== -1;
+    var depth = isFile ? Math.max(0, parts.length - 1) : parts.length;
+    return (depth ? '../'.repeat(depth) : '') + assetPath;
+  }
+
+  function absoluteAssetUrl(assetPath) {
+    return window.location.origin + '/' + assetPath.replace(/^\.\.\//g, '').replace(/^\//, '');
+  }
+
+  function installGlobalFixes() {
+    if (document.getElementById('smartafiliate-global-fixes')) return;
+    var style = document.createElement('style');
+    style.id = 'smartafiliate-global-fixes';
+    style.textContent = '.logo{direction:ltr!important;unicode-bidi:isolate!important}.logo-text{direction:ltr!important;unicode-bidi:isolate!important}.logo-text-light{text-transform:capitalize!important}.site-header .logo{display:inline-flex!important;flex-direction:row!important}.smart-image-title,.article-image .smart-image-title,.post-image .smart-image-title,.blog-image .smart-image-title,.card-image .smart-image-title,.tool-preview .smart-image-title{display:none!important;visibility:hidden!important;opacity:0!important;pointer-events:none!important}';
+    document.head.appendChild(style);
+  }
+
+  function pageHasArticleImages() {
+    return !!document.querySelector('.article-card, .post-card, .blog-card, .article-image, .post-image, .blog-image, .card-image, .article-container, .article-body');
   }
 
   function loadSmartImagesCss() {
@@ -115,7 +111,7 @@
     var imageCss = document.createElement('link');
     imageCss.id = 'smart-images-css';
     imageCss.rel = 'stylesheet';
-    imageCss.href = resolveSiteAssetPath('smart-images.css?v=20260424-12');
+    imageCss.href = resolveSiteAssetPath('smart-images.css?v=20260424-13');
     document.head.appendChild(imageCss);
   }
 
@@ -139,21 +135,15 @@
     return null;
   }
 
-  function ensureImageTitle(box, title) {
-    if (!box) return;
-    var cleanTitle = cleanArticleTitle(title);
-    if (!cleanTitle) return;
-    var titleEl = box.querySelector('.smart-image-title');
-    if (!titleEl) {
-      titleEl = document.createElement('span');
-      titleEl.className = 'smart-image-title';
-      box.appendChild(titleEl);
-    }
-    titleEl.textContent = cleanTitle;
+  function removeGeneratedImageTitles(scope) {
+    (scope || document).querySelectorAll('.smart-image-title').forEach(function (el) {
+      el.remove();
+    });
   }
 
   function ensureImageInsideBox(box, href, title, imagePath) {
     if (!box) return null;
+    removeGeneratedImageTitles(box);
     var img = box.querySelector('img');
     if (!img) {
       box.innerHTML = '';
@@ -171,14 +161,6 @@
     img.decoding = 'async';
     img.alt = title || 'صورة المقال';
     img.classList.add('smart-image-loaded');
-
-    if (!box.querySelector('.smart-image-shine')) {
-      var shine = document.createElement('span');
-      shine.className = 'smart-image-shine';
-      box.appendChild(shine);
-    }
-
-    ensureImageTitle(box, title);
 
     if (href && img.parentElement && img.parentElement.tagName !== 'A') {
       var link = document.createElement('a');
@@ -199,7 +181,7 @@
       if (!match) return;
       var imagePath = resolveSiteAssetPath(ARTICLE_IMAGE_MAP[match.href]);
       var heading = card.querySelector('h1, h2, h3, .post-title, .article-title');
-      var title = cleanArticleTitle((heading && heading.textContent) || (match.link.textContent || '').trim() || match.link.getAttribute('aria-label') || 'اقرأ المقال');
+      var title = (heading && heading.textContent || match.link.textContent || match.link.getAttribute('aria-label') || 'صورة المقال').replace(/\s+/g, ' ').trim();
       var box = card.querySelector('.article-image,.post-image,.blog-image,.card-image');
       var img = card.querySelector('img');
       if (box) ensureImageInsideBox(box, match.href, title, imagePath);
@@ -212,6 +194,7 @@
         img.classList.add('smart-image-loaded');
       }
     });
+    removeGeneratedImageTitles(document);
   }
 
   function upsertMeta(selector, attrName, attrValue, content) {
@@ -259,18 +242,13 @@
   }
 
   document.addEventListener('DOMContentLoaded', function () {
-    if (!document.getElementById('smartafiliate-logo-fix')) {
-      var logoFix = document.createElement('style');
-      logoFix.id = 'smartafiliate-logo-fix';
-      logoFix.textContent = '.logo{direction:ltr!important;unicode-bidi:isolate!important}.logo-text{direction:ltr!important;unicode-bidi:isolate!important}.logo-text-light{text-transform:capitalize!important}.site-header .logo{display:inline-flex!important;flex-direction:row!important}';
-      document.head.appendChild(logoFix);
-    }
+    installGlobalFixes();
     normalizeLogoText();
-    injectCriticalImageSizing();
     loadSmartImagesCss();
     applyArticleImagesEverywhere();
     applyCurrentArticleBackgroundAndMeta();
     applyGlobalImageFallbacks();
+    removeGeneratedImageTitles(document);
     if (!document.body || document.getElementById('gtm-noscript-fallback')) return;
     var wrapper = document.createElement('div');
     wrapper.id = 'gtm-noscript-fallback';
