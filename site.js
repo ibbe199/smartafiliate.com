@@ -88,7 +88,7 @@
     'posts-ai/copyai-review.html': 'assets/images/10-copyai-review.png',
     'posts-ai/falcon-guide.html': 'assets/images/11-falcon-guide.png',
     'posts-ai/free-ai-courses-arabic.html': 'assets/images/12-free-ai-courses-arabic.png',
-    'posts-ai/future-of-ai-automation.html': 'assets/images/13-future-ai-automation.png',
+    'posts-ai/future-of-ai-automation.html': 'assets/13-future-ai-automation.png',
     'posts-ai/latest-ai-automation-uses.html': 'assets/images/14-latest-ai-automation-uses.png',
     'posts-ai/learning-tips-for-ai.html': 'assets/images/15-ai-learning-tips.png',
     'posts-ai/llama3-guide.html': 'assets/images/16-llama3-guide.png',
@@ -122,7 +122,7 @@
     var imageCss = document.createElement('link');
     imageCss.id = 'smart-images-css';
     imageCss.rel = 'stylesheet';
-    imageCss.href = resolveSiteAssetPath('smart-images.css?v=20260424-8');
+    imageCss.href = resolveSiteAssetPath('smart-images.css?v=20260424-9');
     document.head.appendChild(imageCss);
   }
 
