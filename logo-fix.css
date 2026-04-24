@@ -18,3 +18,118 @@
 .logo-text-light {
   text-transform: capitalize !important;
 }
+
+/* Fix AI tools cards: keep tool previews clean and stop article-cover text overlap */
+.best-ai-tools-page .tool-card .tool-preview,
+.tool-card .tool-preview {
+  height: 170px !important;
+  min-height: 170px !important;
+  max-height: 170px !important;
+  aspect-ratio: 16 / 9 !important;
+  padding: 1rem !important;
+  border-radius: 22px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+  background:
+    radial-gradient(circle at 18% 18%, rgba(255,255,255,.18), transparent 28%),
+    linear-gradient(135deg, #071527, #12305a) !important;
+  overflow: hidden !important;
+}
+
+.tool-card .tool-preview.design {
+  background:
+    radial-gradient(circle at 18% 18%, rgba(255,255,255,.18), transparent 28%),
+    linear-gradient(135deg, #581c87, #1d4ed8) !important;
+}
+
+.tool-card .tool-preview.video {
+  background:
+    radial-gradient(circle at 18% 18%, rgba(255,255,255,.18), transparent 28%),
+    linear-gradient(135deg, #082f49, #0891b2) !important;
+}
+
+.tool-card .tool-preview .smart-article-image-link,
+.tool-card .tool-preview img,
+.tool-card .tool-preview .smart-image-shine {
+  display: none !important;
+}
+
+.tool-card .tool-preview::after {
+  display: none !important;
+  content: none !important;
+}
+
+.tool-card .tool-preview::before {
+  opacity: .45 !important;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(255,255,255,.20), transparent 26%),
+    linear-gradient(180deg, rgba(2,6,23,.04), rgba(2,6,23,.28)) !important;
+}
+
+.tool-card .tool-preview .smart-image-title,
+.tool-card .tool-preview .preview-title {
+  position: relative !important;
+  inset: auto !important;
+  z-index: 5 !important;
+  display: block !important;
+  color: #ffffff !important;
+  font-size: clamp(1.35rem, 2vw, 1.75rem) !important;
+  font-weight: 900 !important;
+  line-height: 1.25 !important;
+  letter-spacing: 0 !important;
+  text-shadow: 0 4px 16px rgba(0,0,0,.38) !important;
+  -webkit-line-clamp: unset !important;
+  -webkit-box-orient: unset !important;
+  overflow: visible !important;
+}
+
+.tool-card .tool-preview .preview-icon {
+  position: relative !important;
+  z-index: 5 !important;
+  width: 56px !important;
+  height: 56px !important;
+  margin: 0 auto .55rem !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border-radius: 16px !important;
+  background: rgba(255,255,255,.14) !important;
+  color: #fff !important;
+  font-size: 1.45rem !important;
+}
+
+.tool-card .tool-preview .preview-subtitle {
+  position: relative !important;
+  z-index: 5 !important;
+  margin-top: .4rem !important;
+  color: rgba(255,255,255,.82) !important;
+  font-size: .85rem !important;
+  font-weight: 700 !important;
+  line-height: 1.45 !important;
+}
+
+.tool-card h3 {
+  text-align: center !important;
+  margin-top: .35rem !important;
+  margin-bottom: .65rem !important;
+  color: var(--navy-2) !important;
+}
+
+.tool-card p {
+  text-align: center !important;
+}
+
+@media (max-width: 700px) {
+  .tool-card .tool-preview {
+    height: 150px !important;
+    min-height: 150px !important;
+    max-height: 150px !important;
+  }
+
+  .tool-card .tool-preview .smart-image-title,
+  .tool-card .tool-preview .preview-title {
+    font-size: 1.25rem !important;
+  }
+}
