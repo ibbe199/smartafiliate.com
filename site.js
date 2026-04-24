@@ -20,11 +20,50 @@
     return (depth ? '../'.repeat(depth) : '') + assetPath;
   }
 
+  function injectCriticalImageSizing() {
+    if (document.getElementById('smart-critical-image-sizing')) return;
+    var critical = document.createElement('style');
+    critical.id = 'smart-critical-image-sizing';
+    critical.textContent = `
+      .article-image,.post-image,.blog-image,.card-image,.tool-preview{
+        width:100%!important;
+        height:200px!important;
+        min-height:200px!important;
+        max-height:200px!important;
+        aspect-ratio:16/9!important;
+        overflow:hidden!important;
+        border-radius:18px!important;
+        padding:0!important;
+        background:linear-gradient(135deg,#071527,#12305a)!important;
+        display:block!important;
+        position:relative!important;
+      }
+      .tool-preview{height:170px!important;min-height:170px!important;max-height:170px!important;}
+      .article-image>a,.post-image>a,.blog-image>a,.card-image>a,.tool-preview>a,.smart-article-image-link{
+        display:block!important;width:100%!important;height:100%!important;
+      }
+      .article-image img,.post-image img,.blog-image img,.card-image img,.tool-preview img,.smart-article-image-link img{
+        width:100%!important;height:100%!important;max-width:none!important;object-fit:cover!important;object-position:center!important;display:block!important;
+      }
+      @media(max-width:700px){
+        .article-image,.post-image,.blog-image,.card-image{height:185px!important;min-height:185px!important;max-height:185px!important;}
+        .tool-preview{height:165px!important;min-height:165px!important;max-height:165px!important;}
+      }
+      @media(max-width:430px){
+        .article-image,.post-image,.blog-image,.card-image{height:170px!important;min-height:170px!important;max-height:170px!important;}
+        .tool-preview{height:150px!important;min-height:150px!important;max-height:150px!important;}
+      }
+    `;
+    document.head.appendChild(critical);
+  }
+
+  injectCriticalImageSizing();
+
   if (!document.getElementById('smart-images-css')) {
     var imageCss = document.createElement('link');
     imageCss.id = 'smart-images-css';
     imageCss.rel = 'stylesheet';
-    imageCss.href = resolveSiteAssetPath('smart-images.css');
+    imageCss.href = resolveSiteAssetPath('smart-images.css?v=20260424-2');
     document.head.appendChild(imageCss);
   }
 
