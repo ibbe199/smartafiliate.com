@@ -1,8 +1,8 @@
-/* Smartafiliate image upgrade: global article visuals */
+/* Smartafiliate image upgrade: article images + clean AI tool previews */
 :root {
   --smart-thumb-ratio: 16 / 9;
   --smart-thumb-height: clamp(280px, 24vw, 430px);
-  --smart-tool-thumb-height: clamp(220px, 18vw, 320px);
+  --smart-tool-thumb-height: clamp(190px, 17vw, 240px);
   --smart-image-radius: 20px;
 }
 
@@ -20,8 +20,7 @@
 .article-image,
 .post-image,
 .blog-image,
-.card-image,
-.tool-preview {
+.card-image {
   position: relative;
   overflow: hidden;
   isolation: isolate;
@@ -32,24 +31,14 @@
   max-height: 430px;
   border-radius: var(--smart-image-radius);
   background: linear-gradient(135deg, #071527, #12305a);
-  box-shadow:
-    0 14px 30px rgba(15, 23, 42, .14),
-    inset 0 1px 0 rgba(255,255,255,.16);
+  box-shadow: 0 14px 30px rgba(15, 23, 42, .14), inset 0 1px 0 rgba(255,255,255,.16);
   border: 1px solid rgba(255,255,255,.58);
-}
-
-.tool-preview {
-  height: var(--smart-tool-thumb-height) !important;
-  min-height: 220px;
-  max-height: 320px;
-  margin-bottom: 1rem;
 }
 
 .article-image::before,
 .post-image::before,
 .blog-image::before,
-.card-image::before,
-.tool-preview::before {
+.card-image::before {
   content: "";
   position: absolute;
   inset: 0;
@@ -66,8 +55,7 @@
 .article-image::after,
 .post-image::after,
 .blog-image::after,
-.card-image::after,
-.tool-preview::after {
+.card-image::after {
   content: "اقرأ المقال";
   position: absolute;
   left: 14px;
@@ -82,9 +70,6 @@
   font-size: 12px;
   font-weight: 900;
   letter-spacing: -.1px;
-  opacity: 1;
-  transform: none;
-  transition: opacity .35s ease, transform .35s ease;
 }
 
 .smart-image-title {
@@ -108,8 +93,7 @@
 .article-image .smart-image-shine,
 .post-image .smart-image-shine,
 .blog-image .smart-image-shine,
-.card-image .smart-image-shine,
-.tool-preview .smart-image-shine {
+.card-image .smart-image-shine {
   position: absolute;
   inset: 0;
   z-index: 2;
@@ -122,16 +106,14 @@
 .article-card:hover .smart-image-shine,
 .post-card:hover .smart-image-shine,
 .blog-card:hover .smart-image-shine,
-.card:hover .card-image .smart-image-shine,
-.tool-card:hover .smart-image-shine {
+.card:hover .card-image .smart-image-shine {
   transform: translateX(-120%);
 }
 
 .article-card:hover .article-image::before,
 .post-card:hover .post-image::before,
 .blog-card:hover .blog-image::before,
-.card:hover .card-image::before,
-.tool-card:hover .tool-preview::before {
+.card:hover .card-image::before {
   opacity: .62;
 }
 
@@ -139,7 +121,6 @@
 .post-image img,
 .blog-image img,
 .card-image img,
-.tool-preview img,
 .smart-article-image-link img {
   width: 100%;
   height: 100%;
@@ -154,8 +135,7 @@
 .article-card:hover .article-image img,
 .post-card:hover .post-image img,
 .blog-card:hover .blog-image img,
-.card:hover .card-image img,
-.tool-card:hover .tool-preview img {
+.card:hover .card-image img {
   transform: scale(1.075);
   filter: saturate(1.22) contrast(1.10) brightness(1.05);
 }
@@ -246,7 +226,6 @@
   to { opacity: 1; transform: scale(1.001); }
 }
 
-/* Featured image inside article pages */
 .article-featured-image {
   aspect-ratio: 16 / 9;
   height: auto !important;
@@ -258,17 +237,88 @@
   box-shadow: 0 18px 45px rgba(15,23,42,.16);
 }
 
+/* AI tools previews: show the original image fully, without crop or duplicated overlay title */
+.tool-card .tool-preview {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  width: 100%;
+  height: var(--smart-tool-thumb-height) !important;
+  min-height: 190px;
+  max-height: 240px;
+  aspect-ratio: 16 / 9;
+  padding: 0 !important;
+  border-radius: 22px !important;
+  background: #071527 !important;
+  box-shadow: 0 14px 30px rgba(15, 23, 42, .14);
+  border: 1px solid rgba(15, 23, 42, .08);
+}
+
+.tool-card .tool-preview::before,
+.tool-card .tool-preview::after {
+  display: none !important;
+  content: none !important;
+}
+
+.tool-card .tool-preview .smart-article-image-link {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 100% !important;
+  height: 100% !important;
+  background: #071527 !important;
+}
+
+.tool-card .tool-preview img,
+.tool-card .tool-preview .smart-article-image-link img {
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+  max-width: 100% !important;
+  max-height: 100% !important;
+  object-fit: contain !important;
+  object-position: center !important;
+  transform: none !important;
+  filter: none !important;
+  background: #071527 !important;
+}
+
+.tool-card:hover .tool-preview img,
+.tool-card:hover .tool-preview .smart-article-image-link img {
+  transform: none !important;
+  filter: none !important;
+}
+
+.tool-card .tool-preview .smart-image-title,
+.tool-card .tool-preview .smart-image-shine,
+.tool-card .tool-preview .preview-icon,
+.tool-card .tool-preview .preview-title,
+.tool-card .tool-preview .preview-subtitle {
+  display: none !important;
+}
+
+.tool-card h3 {
+  text-align: center;
+  margin-top: .75rem;
+  margin-bottom: .65rem;
+  color: var(--navy-2);
+}
+
+.tool-card p {
+  text-align: center;
+}
+
 @media (max-width: 900px) {
   :root {
     --smart-thumb-height: clamp(240px, 36vw, 360px);
-    --smart-tool-thumb-height: clamp(200px, 30vw, 280px);
+    --smart-tool-thumb-height: clamp(180px, 28vw, 220px);
   }
 }
 
 @media (max-width: 700px) {
   :root {
     --smart-thumb-height: 240px;
-    --smart-tool-thumb-height: 210px;
+    --smart-tool-thumb-height: 190px;
   }
 
   .article-image,
@@ -281,9 +331,9 @@
     aspect-ratio: 16 / 9;
   }
 
-  .tool-preview {
-    min-height: 210px;
-    max-height: 250px;
+  .tool-card .tool-preview {
+    min-height: 180px;
+    max-height: 210px;
   }
 
   .smart-image-title {
@@ -295,8 +345,7 @@
   .article-image::after,
   .post-image::after,
   .blog-image::after,
-  .card-image::after,
-  .tool-preview::after {
+  .card-image::after {
     font-size: 11px;
     padding: 6px 11px;
   }
@@ -305,7 +354,7 @@
 @media (max-width: 430px) {
   :root {
     --smart-thumb-height: 220px;
-    --smart-tool-thumb-height: 190px;
+    --smart-tool-thumb-height: 170px;
   }
 
   .article-image,
@@ -316,9 +365,9 @@
     max-height: 250px;
   }
 
-  .tool-preview {
-    min-height: 190px;
-    max-height: 220px;
+  .tool-card .tool-preview {
+    min-height: 160px;
+    max-height: 190px;
   }
 }
 
@@ -336,7 +385,6 @@
   .post-image::after,
   .blog-image::after,
   .card-image::after,
-  .tool-preview::after,
   .smart-image-shine {
     transition: none !important;
     animation: none !important;
