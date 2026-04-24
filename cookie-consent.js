@@ -1,6 +1,35 @@
 (function () {
   const STORAGE_KEY = 'smartafiliate_cookie_consent';
   const GA_ID = 'G-9T2MP7F5T2';
+  const GTM_ID = 'GTM-P96QVPT3';
+
+  function loadGoogleTagManager() {
+    if (window.__smartafiliateGTMLoaded) return;
+    window.__smartafiliateGTMLoaded = true;
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      'gtm.start': new Date().getTime(),
+      event: 'gtm.js'
+    });
+
+    if (!document.querySelector('script[src*="googletagmanager.com/gtm.js?id=' + GTM_ID + '"]')) {
+      const firstScript = document.getElementsByTagName('script')[0];
+      const gtmScript = document.createElement('script');
+      gtmScript.async = true;
+      gtmScript.src = 'https://www.googletagmanager.com/gtm.js?id=' + GTM_ID;
+      firstScript.parentNode.insertBefore(gtmScript, firstScript);
+    }
+  }
+
+  function insertGtmNoscriptFallback() {
+    if (!document.body || document.getElementById('gtm-noscript-fallback')) return;
+    const wrapper = document.createElement('div');
+    wrapper.id = 'gtm-noscript-fallback';
+    wrapper.innerHTML = '<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=' + GTM_ID + '" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>';
+    document.body.insertBefore(wrapper, document.body.firstChild);
+  }
+
+  loadGoogleTagManager();
 
   function saveConsent(value) {
     localStorage.setItem(STORAGE_KEY, value);
@@ -78,6 +107,7 @@
   }
 
   document.addEventListener('DOMContentLoaded', function () {
+    insertGtmNoscriptFallback();
     const saved = localStorage.getItem(STORAGE_KEY);
     if (saved === 'accepted') {
       loadAnalytics();
