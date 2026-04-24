@@ -69,7 +69,6 @@
     'posts-ai/midjourney-guide.html': 'assets/images/image_26.jpg',
     'posts-ai/dalle3-review.html': 'assets/images/image_27.jpg',
     'posts-ai/canva-ai-review.html': 'assets/images/image_28.jpg',
-
     'posts-ai/27-ai-and-personal-brand.html': 'assets/images/01-ai-personal-brand.png',
     'posts-ai/28-ai-newsletters.html': 'assets/images/02-ai-newsletters.png',
     'posts-ai/ai-automation-productivity.html': 'assets/images/03-ai-automation-productivity.png',
@@ -95,13 +94,28 @@
     'articles/paid-vs-free-vs-open-source-ai.html': 'assets/images/23-paid-free-open-source-ai.png'
   };
 
+  var TOOL_IMAGE_MAP = {
+    'ChatGPT': 'assets/images/image_23.jpg',
+    'Jasper AI': 'assets/images/image_24.jpg',
+    'Copy.ai': 'assets/images/10-copyai-review.png',
+    'Writesonic': 'assets/images/image_25.jpg',
+    'Midjourney': 'assets/images/image_26.jpg',
+    'DALL-E 3': 'assets/images/image_27.jpg',
+    'Canva AI': 'assets/images/image_28.jpg',
+    'Leonardo.ai': 'assets/images/08-best-ai-design-tools.png',
+    'Pictory.ai': 'assets/images/image_27.jpg',
+    'ElevenLabs': 'assets/images/14-latest-ai-automation-uses.png',
+    'Runway ML': 'assets/images/image_26.jpg',
+    'Synthesia': 'assets/images/08-best-ai-design-tools.png'
+  };
+
   window.ARTICLE_IMAGE_MAP = ARTICLE_IMAGE_MAP;
 
   function injectCriticalImageSizing() {
     if (document.getElementById('smart-critical-image-sizing')) return;
     var critical = document.createElement('style');
     critical.id = 'smart-critical-image-sizing';
-    critical.textContent = '.article-image,.post-image,.blog-image,.card-image,.tool-preview{width:100%!important;height:200px!important;min-height:200px!important;max-height:200px!important;aspect-ratio:16/9!important;overflow:hidden!important;border-radius:18px!important;padding:0!important;background:linear-gradient(135deg,#071527,#12305a)!important;display:block!important;position:relative!important}.tool-preview{height:170px!important;min-height:170px!important;max-height:170px!important}.article-image>a,.post-image>a,.blog-image>a,.card-image>a,.tool-preview>a,.smart-article-image-link{display:block!important;width:100%!important;height:100%!important}.article-image img,.post-image img,.blog-image img,.card-image img,.tool-preview img,.smart-article-image-link img{width:100%!important;height:100%!important;max-width:none!important;object-fit:cover!important;object-position:center!important;display:block!important}.article-featured-image{aspect-ratio:16/9!important;min-height:280px!important;max-height:430px!important;background-size:cover!important;background-position:center!important}@media(max-width:700px){.article-image,.post-image,.blog-image,.card-image{height:185px!important;min-height:185px!important;max-height:185px!important}.tool-preview{height:165px!important;min-height:165px!important;max-height:165px!important}}@media(max-width:430px){.article-image,.post-image,.blog-image,.card-image{height:170px!important;min-height:170px!important;max-height:170px!important}.tool-preview{height:150px!important;min-height:150px!important;max-height:150px!important}}';
+    critical.textContent = '.article-image,.post-image,.blog-image,.card-image,.tool-preview{width:100%!important;height:200px!important;min-height:200px!important;max-height:200px!important;aspect-ratio:16/9!important;overflow:hidden!important;border-radius:18px!important;padding:0!important;background:linear-gradient(135deg,#071527,#12305a)!important;display:block!important;position:relative!important}.tool-preview{height:200px!important;min-height:200px!important;max-height:200px!important;margin-bottom:1rem!important}.article-image>a,.post-image>a,.blog-image>a,.card-image>a,.tool-preview>a,.smart-article-image-link{display:block!important;width:100%!important;height:100%!important}.article-image img,.post-image img,.blog-image img,.card-image img,.tool-preview img,.smart-article-image-link img{width:100%!important;height:100%!important;max-width:none!important;object-fit:cover!important;object-position:center!important;display:block!important}.article-featured-image{aspect-ratio:16/9!important;min-height:280px!important;max-height:430px!important;background-size:cover!important;background-position:center!important}@media(max-width:700px){.article-image,.post-image,.blog-image,.card-image,.tool-preview{height:185px!important;min-height:185px!important;max-height:185px!important}}@media(max-width:430px){.article-image,.post-image,.blog-image,.card-image,.tool-preview{height:170px!important;min-height:170px!important;max-height:170px!important}}';
     document.head.appendChild(critical);
   }
 
@@ -110,7 +124,7 @@
     var imageCss = document.createElement('link');
     imageCss.id = 'smart-images-css';
     imageCss.rel = 'stylesheet';
-    imageCss.href = resolveSiteAssetPath('smart-images.css?v=20260424-4');
+    imageCss.href = resolveSiteAssetPath('smart-images.css?v=20260424-5');
     document.head.appendChild(imageCss);
   }
 
@@ -141,7 +155,7 @@
       box.innerHTML = '';
       var a = document.createElement('a');
       a.className = 'smart-article-image-link';
-      a.href = href;
+      a.href = href || '#';
       a.setAttribute('aria-label', title || 'اقرأ المقال');
       img = document.createElement('img');
       a.appendChild(img);
@@ -160,7 +174,7 @@
       box.appendChild(shine);
     }
 
-    if (img.parentElement && img.parentElement.tagName !== 'A') {
+    if (href && img.parentElement && img.parentElement.tagName !== 'A') {
       var link = document.createElement('a');
       link.href = href;
       link.className = 'smart-article-image-link';
@@ -172,13 +186,13 @@
   }
 
   function applyArticleImagesEverywhere() {
-    var selectors = '.article-card,.post-card,.blog-card,.tool-card,.review-card,.decision-card,.quick-card,.card,article';
+    var selectors = '.article-card,.post-card,.blog-card,.review-card,.decision-card,.quick-card,.card,article';
     document.querySelectorAll(selectors).forEach(function (card) {
       var match = findBestArticleLink(card);
       if (!match) return;
       var imagePath = resolveSiteAssetPath(ARTICLE_IMAGE_MAP[match.href]);
       var title = (match.link.textContent || '').trim() || match.link.getAttribute('aria-label') || 'اقرأ المقال';
-      var box = card.querySelector('.article-image,.post-image,.blog-image,.card-image,.tool-preview');
+      var box = card.querySelector('.article-image,.post-image,.blog-image,.card-image');
       var img = card.querySelector('img');
       if (box) ensureImageInsideBox(box, match.href, title, imagePath);
       else if (img) {
@@ -189,6 +203,19 @@
         img.alt = title;
         img.classList.add('smart-image-loaded');
       }
+    });
+  }
+
+  function applyHomeToolImages() {
+    document.querySelectorAll('.tool-card').forEach(function (card) {
+      var titleEl = card.querySelector('h3, .preview-title');
+      var title = titleEl ? titleEl.textContent.trim() : '';
+      var asset = TOOL_IMAGE_MAP[title];
+      if (!asset) return;
+      var box = card.querySelector('.tool-preview');
+      if (!box) return;
+      var link = card.querySelector('a.tool-link, a[href]');
+      ensureImageInsideBox(box, link ? link.getAttribute('href') : '#', title, resolveSiteAssetPath(asset));
     });
   }
 
@@ -206,12 +233,10 @@
     var currentPath = normalizeUrl(window.location.href);
     var asset = ARTICLE_IMAGE_MAP[currentPath];
     if (!asset) return;
-
     var localImage = resolveSiteAssetPath(asset);
     var absoluteImage = absoluteAssetUrl(asset);
     var heading = document.querySelector('h1');
     var pageTitle = (heading && heading.textContent.trim()) || document.title;
-
     var featured = document.querySelector('.article-featured-image');
     var articleBody = document.querySelector('.article-body, .article-container');
     if (!featured && articleBody) {
@@ -224,15 +249,6 @@
       featured.style.backgroundImage = 'linear-gradient(180deg, rgba(2,6,23,.05), rgba(2,6,23,.35)), url("' + localImage + '")';
       featured.setAttribute('aria-label', pageTitle || 'صورة المقال');
     }
-
-    var firstArticleImg = document.querySelector('.article-body img, .article-container img');
-    if (firstArticleImg && !firstArticleImg.closest('.share-box')) {
-      firstArticleImg.src = localImage;
-      firstArticleImg.alt = pageTitle || firstArticleImg.alt || 'صورة المقال';
-      firstArticleImg.loading = 'lazy';
-      firstArticleImg.decoding = 'async';
-    }
-
     upsertMeta('meta[property="og:image"]', 'property', 'og:image', absoluteImage);
     upsertMeta('meta[name="twitter:image"]', 'name', 'twitter:image', absoluteImage);
   }
@@ -257,12 +273,11 @@
       logoFix.textContent = '.logo{direction:ltr!important;unicode-bidi:isolate!important}.logo-text{direction:ltr!important;unicode-bidi:isolate!important}.logo-text-light{text-transform:capitalize!important}.site-header .logo{display:inline-flex!important;flex-direction:row!important}';
       document.head.appendChild(logoFix);
     }
-
     normalizeLogoText();
     applyArticleImagesEverywhere();
+    applyHomeToolImages();
     applyCurrentArticleBackgroundAndMeta();
     applyGlobalImageFallbacks();
-
     if (!document.body || document.getElementById('gtm-noscript-fallback')) return;
     var wrapper = document.createElement('div');
     wrapper.id = 'gtm-noscript-fallback';
