@@ -18,3 +18,16 @@
 .logo-text-light {
   text-transform: capitalize !important;
 }
+
+/* Hide all generated article titles over images */
+.smart-image-title,
+.article-image .smart-image-title,
+.post-image .smart-image-title,
+.blog-image .smart-image-title,
+.card-image .smart-image-title,
+.tool-preview .smart-image-title {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
