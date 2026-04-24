@@ -59,7 +59,7 @@
     'articles/ai-tools-for-afiliate-marketing.html': 'assets/images/image_14.jpg',
     'posts-ai/ai-content-sales-system.html': 'assets/images/image_15.jpg',
     'posts-ai/affiliate-funnel-guide.html': 'assets/images/image_16.jpg',
-    'posts-ai/affiliate-growth-strategy.html': 'assets/images/image_17.jpg',
+    'posts-ai/affiliate-growth-strategy.html': 'assets/images/file_00000000c704720c89048bb85ea9bad6.png',
     'posts-ai/what-is-affiliate-marketing.html': 'assets/images/image_18.jpg',
     'articles/what-is-affiliate-marketing.html': 'assets/images/image_18.jpg',
     'posts-ai/affiliate-mistakes.html': 'assets/images/image_19.jpg',
@@ -122,7 +122,7 @@
     var imageCss = document.createElement('link');
     imageCss.id = 'smart-images-css';
     imageCss.rel = 'stylesheet';
-    imageCss.href = resolveSiteAssetPath('smart-images.css?v=20260424-7');
+    imageCss.href = resolveSiteAssetPath('smart-images.css?v=20260424-8');
     document.head.appendChild(imageCss);
   }
 
