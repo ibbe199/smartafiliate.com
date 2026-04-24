@@ -12,6 +12,14 @@
     firstScript.parentNode.insertBefore(gtmScript, firstScript);
   }
 
+  function resolveSiteAssetPath(assetPath) {
+    var parts = window.location.pathname.split('/').filter(Boolean);
+    var currentFile = parts[parts.length - 1] || '';
+    var isFile = currentFile.indexOf('.') !== -1;
+    var depth = isFile ? Math.max(0, parts.length - 1) : parts.length;
+    return (depth ? '../'.repeat(depth) : '') + assetPath;
+  }
+
   if (!document.getElementById('smart-images-css')) {
     var imageCss = document.createElement('link');
     imageCss.id = 'smart-images-css';
@@ -21,6 +29,7 @@
   }
 
   var ARTICLE_IMAGE_MAP = {
+    /* Existing 28 image set */
     'posts-ai/google-ai-content-acceptance.html': 'assets/images/image_01.jpg',
     'posts-ai/future-arab-websites-ai.html': 'assets/images/image_02.jpg',
     'posts-ai/ai-content-google-opportunity-risk.html': 'assets/images/image_03.jpg',
@@ -56,7 +65,32 @@
     'posts-ai/writesonic-review.html': 'assets/images/image_25.jpg',
     'posts-ai/midjourney-guide.html': 'assets/images/image_26.jpg',
     'posts-ai/dalle3-review.html': 'assets/images/image_27.jpg',
-    'posts-ai/canva-ai-review.html': 'assets/images/image_28.jpg'
+    'posts-ai/canva-ai-review.html': 'assets/images/image_28.jpg',
+
+    /* New uploaded PNG image set */
+    'posts-ai/27-ai-and-personal-brand.html': 'assets/images/01-ai-personal-brand.png',
+    'posts-ai/28-ai-newsletters.html': 'assets/images/02-ai-newsletters.png',
+    'posts-ai/ai-automation-productivity.html': 'assets/images/03-ai-automation-productivity.png',
+    'posts-ai/ai-design-for-social-media.html': 'assets/images/04-ai-design-social-media.png',
+    'posts-ai/ai-learning-communities.html': 'assets/images/05-ai-learning-communities.png',
+    'posts-ai/ai-logo-design-guide.html': 'assets/images/06-ai-logo-design.png',
+    'posts-ai/ai-projects-for-beginners.html': 'assets/images/07-ai-projects-beginners.png',
+    'posts-ai/best-ai-design-tools.html': 'assets/images/08-best-ai-design-tools.png',
+    'posts-ai/best-books-to-learn-ai.html': 'assets/images/09-best-ai-books.png',
+    'posts-ai/copyai-review.html': 'assets/images/10-copyai-review.png',
+    'posts-ai/falcon-guide.html': 'assets/images/11-falcon-guide.png',
+    'posts-ai/free-ai-courses-arabic.html': 'assets/images/12-free-ai-courses-arabic.png',
+    'posts-ai/future-of-ai-automation.html': 'assets/images/13-future-ai-automation.png',
+    'posts-ai/latest-ai-automation-uses.html': 'assets/images/14-latest-ai-automation-uses.png',
+    'posts-ai/learning-tips-for-ai.html': 'assets/images/15-ai-learning-tips.png',
+    'posts-ai/llama3-guide.html': 'assets/images/16-llama3-guide.png',
+    'posts-ai/math-for-ai-beginners.html': 'assets/images/17-math-for-ai-beginners.png',
+    'posts-ai/mistral-guide.html': 'assets/images/18-mistral-guide.png',
+    'posts-ai/ollama-guide.html': 'assets/images/19-ollama-guide.png',
+    'posts-ai/python-for-ai-beginners.html': 'assets/images/20-python-for-ai-beginners.png',
+    'posts-ai/tiktok-growth-engineering.html': 'assets/images/21-tiktok-growth-engineering.png',
+    'posts-ai/what-is-ai-beginners.html': 'assets/images/22-what-is-ai-beginners.png',
+    'articles/paid-vs-free-vs-open-source-ai.html': 'assets/images/23-paid-free-open-source-ai.png'
   };
 
   function normalizeLogoText() {
@@ -68,14 +102,6 @@
       logo.setAttribute('dir', 'ltr');
       logo.setAttribute('aria-label', 'Smartafiliate');
     });
-  }
-
-  function resolveSiteAssetPath(assetPath) {
-    var parts = window.location.pathname.split('/').filter(Boolean);
-    var currentFile = parts[parts.length - 1] || '';
-    var isFile = currentFile.indexOf('.') !== -1;
-    var depth = isFile ? Math.max(0, parts.length - 1) : parts.length;
-    return (depth ? '../'.repeat(depth) : '') + assetPath;
   }
 
   function normalizeUrl(url) {
