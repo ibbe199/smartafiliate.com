@@ -7,69 +7,10 @@ function copyPageLink(url) {
   });
 }
 
-const FALLBACK_ARTICLE_IMAGE_MAP = {
-  'posts-ai/google-ai-content-acceptance.html': 'assets/images/image_01.jpg',
-  'posts-ai/future-arab-websites-ai.html': 'assets/images/image_02.jpg',
-  'posts-ai/ai-content-google-opportunity-risk.html': 'assets/images/image_03.jpg',
-  'posts-ai/google-penalty-ai-content-truth.html': 'assets/images/image_04.jpg',
-  'posts-ai/ai-seo-content-success.html': 'assets/images/image_05.jpg',
-  'posts-ai/ai-save-or-bury-arab-websites.html': 'assets/images/image_06.jpg',
-  'posts-ai/arab-websites-ai-who-survives.html': 'assets/images/image_07.jpg',
-  'posts-ai/ai-knocks-arab-websites-door.html': 'assets/images/image_08.jpg',
-  'posts-ai/build-website-with-ai-in-minutes.html': 'assets/images/image_09.jpg',
-  'posts-ai/latest-ai-news-2026.html': 'assets/images/image_10.jpg',
-  'posts-ai/30-best-ai-writing-tools.html': 'assets/images/image_11.jpg',
-  'posts-ai/90-day-ai-plan.html': 'assets/images/image_12.jpg',
-  'posts-ai/29-90-day-ai-plan.html': 'assets/images/image_12.jpg',
-  'posts-ai/30-day-ai-plan.html': 'assets/images/image_13.jpg',
-  'posts-ai/ai-affiliate-tools.html': 'assets/images/image_14.jpg',
-  'articles/ai-tools-for-affiliate-marketing.html': 'assets/images/image_14.jpg',
-  'articles/ai-tools-for-afiliate-marketing.html': 'assets/images/image_14.jpg',
-  'posts-ai/ai-content-sales-system.html': 'assets/images/image_15.jpg',
-  'posts-ai/affiliate-funnel-guide.html': 'assets/images/image_16.jpg',
-  'posts-ai/affiliate-growth-strategy.html': 'assets/images/file_00000000c704720c89048bb85ea9bad6.png',
-  'posts-ai/what-is-affiliate-marketing.html': 'assets/images/image_18.jpg',
-  'articles/what-is-affiliate-marketing.html': 'assets/images/image_18.jpg',
-  'posts-ai/affiliate-mistakes.html': 'assets/images/image_19.jpg',
-  'articles/affiliate-marketing-mistakes.html': 'assets/images/image_19.jpg',
-  'posts-ai/arab-affiliate-programs.html': 'assets/images/image_20.jpg',
-  'articles/best-affiliate-programs-arab-world.html': 'assets/images/image_20.jpg',
-  'posts-ai/complete-ai-learning-path.html': 'assets/images/image_21.jpg',
-  'posts-ai/content-structure-seo.html': 'assets/images/image_22.jpg',
-  'articles/best-content-structure.html': 'assets/images/image_22.jpg',
-  'articles/seo-for-affiliate-sites.html': 'assets/images/image_22.jpg',
-  'posts-ai/chatgpt-review.html': 'assets/images/image_23.jpg',
-  'posts-ai/jasper-ai-review.html': 'assets/images/image_24.jpg',
-  'posts-ai/writesonic-review.html': 'assets/images/image_25.jpg',
-  'posts-ai/midjourney-guide.html': 'assets/images/image_26.jpg',
-  'posts-ai/dalle3-review.html': 'assets/images/image_27.jpg',
-  'posts-ai/canva-ai-review.html': 'assets/images/image_28.jpg',
-  'posts-ai/27-ai-and-personal-brand.html': 'assets/images/01-ai-personal-brand.png',
-  'posts-ai/28-ai-newsletters.html': 'assets/images/02-ai-newsletters.png',
-  'posts-ai/ai-automation-productivity.html': 'assets/images/03-ai-automation-productivity.png',
-  'posts-ai/ai-design-for-social-media.html': 'assets/images/04-ai-design-social-media.png',
-  'posts-ai/ai-learning-communities.html': 'assets/images/05-ai-learning-communities.png',
-  'posts-ai/ai-logo-design-guide.html': 'assets/images/06-ai-logo-design.png',
-  'posts-ai/ai-projects-for-beginners.html': 'assets/images/07-ai-projects-beginners.png',
-  'posts-ai/best-ai-design-tools.html': 'assets/images/08-best-ai-design-tools.png',
-  'posts-ai/best-books-to-learn-ai.html': 'assets/images/09-best-ai-books.png',
-  'posts-ai/copyai-review.html': 'assets/images/10-copyai-review.png',
-  'posts-ai/falcon-guide.html': 'assets/images/11-falcon-guide.png',
-  'posts-ai/free-ai-courses-arabic.html': 'assets/images/12-free-ai-courses-arabic.png',
-  'posts-ai/future-of-ai-automation.html': 'assets/13-future-ai-automation.png',
-  'posts-ai/latest-ai-automation-uses.html': 'assets/14-latest-ai-automation-uses.png',
-  'posts-ai/learning-tips-for-ai.html': 'assets/15-ai-learning-tips.png',
-  'posts-ai/llama3-guide.html': 'assets/16-llama3-guide.png',
-  'posts-ai/math-for-ai-beginners.html': 'assets/17-math-for-ai-beginners.png',
-  'posts-ai/mistral-guide.html': 'assets/18-mistral-guide.png',
-  'posts-ai/ollama-guide.html': 'assets/19-ollama-guide.png',
-  'posts-ai/python-for-ai-beginners.html': 'assets/20-python-for-ai-beginners.png',
-  'posts-ai/tiktok-growth-engineering.html': 'assets/21-tiktok-growth-engineering.png',
-  'posts-ai/what-is-ai-beginners.html': 'assets/22-what-is-ai-beginners.png',
-  'articles/paid-vs-free-vs-open-source-ai.html': 'assets/23-paid-free-open-source-ai.png'
-};
-
-const ARTICLE_IMAGE_MAP = Object.assign({}, FALLBACK_ARTICLE_IMAGE_MAP, window.ARTICLE_IMAGE_MAP || {});
+const DEFAULT_ARTICLE_IMAGE = 'assets/images/seo-card.png';
+const ARTICLE_IMAGE_MAP = new Proxy({}, {
+  get: function () { return DEFAULT_ARTICLE_IMAGE; }
+});
 
 const CONVERSION_PRIORITY = {
   'posts-ai/chatgpt-review.html': 100,
@@ -105,12 +46,7 @@ const CONVERSION_PRIORITY = {
 function normalizeUrl(url) {
   const a = document.createElement('a');
   a.href = url || '';
-  return a.pathname
-    .replace(/^\//, '')
-    .replace(/^smartafiliate\.com\//, '')
-    .replace(/^\.\//, '')
-    .split('#')[0]
-    .split('?')[0];
+  return a.pathname.replace(/^\//, '').replace(/^smartafiliate\.com\//, '').replace(/^\.\//, '').split('#')[0].split('?')[0];
 }
 
 function resolveAsset(assetPath) {
@@ -150,7 +86,6 @@ function installImageTitleBlocker() {
 function sortArticlesByConversionPriority() {
   const grid = document.querySelector('.articles-grid');
   if (!grid) return;
-
   const cards = Array.from(grid.querySelectorAll('.article-card'));
   cards
     .map(function (card, index) {
@@ -194,17 +129,11 @@ function applyNewArticleImages() {
     const img = imageBox ? imageBox.querySelector('img') : card.querySelector('img');
     if (!articleUrl || !img) return;
 
-    const newImage = ARTICLE_IMAGE_MAP[articleUrl];
-    const title = getCardTitle(card) || img.alt || 'صورة المقال';
+    const resolvedImage = resolveAsset(DEFAULT_ARTICLE_IMAGE);
+    const title = getCardTitle(card) || img.alt || 'صورة افتراضية للمقال';
 
-    if (newImage) {
-      const resolvedImage = resolveAsset(newImage);
-      img.src = resolvedImage;
-      img.dataset.fallback = resolvedImage;
-    } else if (!img.dataset.fallback) {
-      img.dataset.fallback = resolveAsset('assets/images/seo-card.png');
-    }
-
+    img.src = resolvedImage;
+    img.dataset.fallback = resolvedImage;
     img.loading = 'lazy';
     img.decoding = 'async';
     img.alt = title;
@@ -225,36 +154,21 @@ function trackArticleClick(articleUrl, articleTitle, clickArea, rank, priority) 
     conversion_priority: priority,
     page_path: window.location.pathname
   };
-
-  if (typeof window.gtag === 'function') {
-    window.gtag('event', 'article_card_click', eventPayload);
-  }
-
-  try {
-    const key = 'smartafiliate_article_clicks';
-    const current = JSON.parse(localStorage.getItem(key) || '[]');
-    current.push(Object.assign({ clicked_at: new Date().toISOString() }, eventPayload));
-    localStorage.setItem(key, JSON.stringify(current.slice(-100)));
-  } catch (error) {
-    // تجاهل الخطأ إذا كان المتصفح يمنع localStorage.
-  }
+  if (typeof window.gtag === 'function') window.gtag('event', 'article_card_click', eventPayload);
 }
 
 function addArticleClickTracking() {
   document.querySelectorAll('.article-card').forEach(function (card) {
     const articleUrl = getCardArticleUrl(card);
     if (!articleUrl) return;
-
     const articleTitle = getCardTitle(card);
     const rank = card.dataset.conversionRank || '';
     const priority = card.dataset.conversionPriority || '';
-
     card.querySelectorAll('a[href]').forEach(function (link) {
       const linkUrl = normalizeUrl(link.getAttribute('href'));
       if (linkUrl !== articleUrl) return;
       if (link.dataset.smartTrackingReady === 'true') return;
       link.dataset.smartTrackingReady = 'true';
-
       link.addEventListener('click', function () {
         const clickArea = link.dataset.trackArea || (link.classList.contains('read-more') ? 'read_more' : 'title');
         trackArticleClick(articleUrl, articleTitle, clickArea, rank, priority);
@@ -270,7 +184,7 @@ function applyCardImageFallbacks() {
     img.addEventListener('error', function () {
       if (img.dataset.fallbackApplied === 'true') return;
       img.dataset.fallbackApplied = 'true';
-      img.src = img.dataset.fallback || resolveAsset('assets/images/seo-card.png');
+      img.src = img.dataset.fallback || resolveAsset(DEFAULT_ARTICLE_IMAGE);
     });
   });
 }
