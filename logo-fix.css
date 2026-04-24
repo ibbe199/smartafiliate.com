@@ -1,0 +1,16 @@
+.logo,
+.site-header .logo,
+.site-footer .logo {
+  direction: ltr !important;
+  unicode-bidi: isolate !important;
+  display: inline-flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+}
+
+.logo-text,
+.logo-text-light,
+.logo-text-accent {
+  direction: ltr !important;
+  unicode-bidi: isolate !important;
+}
