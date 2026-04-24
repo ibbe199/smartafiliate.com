@@ -15,9 +15,7 @@
   function normalizeUrl(url) {
     var a = document.createElement('a');
     a.href = url || '';
-    var path = a.pathname.replace(/^\//, '');
-    path = path.replace(/^smartafiliate\.com\//, '');
-    return path.replace(/^\.\//, '').split('#')[0].split('?')[0];
+    return a.pathname.replace(/^\//, '').replace(/^smartafiliate\.com\//, '').replace(/^\.\//, '').split('#')[0].split('?')[0];
   }
 
   function resolveSiteAssetPath(assetPath) {
@@ -33,10 +31,7 @@
   }
 
   function cleanArticleTitle(title) {
-    return (title || '')
-      .replace(/\s+/g, ' ')
-      .replace(/^(اقرأ\s+المقال|قراءة\s+المقال|المزيد|اقرأ\s+المزيد)\s*/i, '')
-      .trim();
+    return (title || '').replace(/\s+/g, ' ').replace(/^(اقرأ\s+المقال|قراءة\s+المقال|المزيد|اقرأ\s+المزيد)\s*/i, '').trim();
   }
 
   var ARTICLE_IMAGE_MAP = {
@@ -95,7 +90,7 @@
     'posts-ai/math-for-ai-beginners.html': 'assets/17-math-for-ai-beginners.png',
     'posts-ai/mistral-guide.html': 'assets/images/18-mistral-guide.png',
     'posts-ai/ollama-guide.html': 'assets/images/19-ollama-guide.png',
-    'posts-ai/python-for-ai-beginners.html': 'assets/images/20-python-for-ai-beginners.png',
+    'posts-ai/python-for-ai-beginners.html': 'assets/20-python-for-ai-beginners.png',
     'posts-ai/tiktok-growth-engineering.html': 'assets/images/21-tiktok-growth-engineering.png',
     'posts-ai/what-is-ai-beginners.html': 'assets/images/22-what-is-ai-beginners.png',
     'articles/paid-vs-free-vs-open-source-ai.html': 'assets/images/23-paid-free-open-source-ai.png'
@@ -108,8 +103,7 @@
   }
 
   function injectCriticalImageSizing() {
-    if (!pageHasArticleImages()) return;
-    if (document.getElementById('smart-critical-image-sizing')) return;
+    if (!pageHasArticleImages() || document.getElementById('smart-critical-image-sizing')) return;
     var critical = document.createElement('style');
     critical.id = 'smart-critical-image-sizing';
     critical.textContent = '.article-image,.post-image,.blog-image,.card-image{width:100%!important;height:clamp(280px,24vw,430px)!important;min-height:280px!important;max-height:430px!important;aspect-ratio:16/9!important;overflow:hidden!important;border-radius:20px!important;padding:0!important;background:linear-gradient(135deg,#071527,#12305a)!important;display:block!important;position:relative!important}.article-image>a,.post-image>a,.blog-image>a,.card-image>a,.smart-article-image-link{display:block!important;width:100%!important;height:100%!important}.article-image img,.post-image img,.blog-image img,.card-image img,.smart-article-image-link img{width:100%!important;height:100%!important;max-width:none!important;object-fit:cover!important;object-position:center!important;display:block!important}.smart-image-title{position:absolute!important;right:14px!important;left:14px!important;bottom:56px!important;z-index:4!important;color:#fff!important;font-weight:900!important;line-height:1.45!important;text-shadow:0 3px 14px rgba(0,0,0,.55)!important;display:-webkit-box!important;-webkit-line-clamp:2!important;-webkit-box-orient:vertical!important;overflow:hidden!important}.article-featured-image{aspect-ratio:16/9!important;min-height:280px!important;max-height:430px!important;background-size:cover!important;background-position:center!important}@media(max-width:700px){.article-image,.post-image,.blog-image,.card-image{height:240px!important;min-height:240px!important;max-height:280px!important}}@media(max-width:430px){.article-image,.post-image,.blog-image,.card-image{height:220px!important;min-height:220px!important;max-height:250px!important}}';
@@ -117,12 +111,11 @@
   }
 
   function loadSmartImagesCss() {
-    if (!pageHasArticleImages()) return;
-    if (document.getElementById('smart-images-css')) return;
+    if (!pageHasArticleImages() || document.getElementById('smart-images-css')) return;
     var imageCss = document.createElement('link');
     imageCss.id = 'smart-images-css';
     imageCss.rel = 'stylesheet';
-    imageCss.href = resolveSiteAssetPath('smart-images.css?v=20260424-10');
+    imageCss.href = resolveSiteAssetPath('smart-images.css?v=20260424-11');
     document.head.appendChild(imageCss);
   }
 
