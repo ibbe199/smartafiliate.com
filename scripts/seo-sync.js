@@ -5,39 +5,79 @@ const ROOT = process.cwd();
 const SITE_URL = 'https://smartafiliate.com';
 const BRAND = 'smartafiliate';
 const DEFAULT_IMAGE = `${SITE_URL}/assets/images/seo-card.png`;
-const GENERATED_COVERS_DIR = 'assets/generated-covers';
 const EXCLUDE_FROM_SITEMAP = new Set(['404.html', 'thanks.html']);
 const HTML_DIRS = ['', 'posts-ai', 'articles'];
+
+// الصور الجديدة المرفوعة داخل assets/images
 const ARTICLE_IMAGE_MAP = {
-  'posts-ai/google-ai-content-acceptance.html': '/assets/google-ai-content-acceptance.png',
-  'posts-ai/future-arab-websites-ai.html': '/assets/future-arab-websites-ai.png',
-  'posts-ai/ai-content-google-opportunity-risk.html': '/assets/ai-content-google-opportunity-risk.png',
-  'posts-ai/google-penalty-ai-content-truth.html': '/assets/google-penalty-ai-content-truth.png',
-  'posts-ai/ai-seo-content-success.html': '/assets/ai-seo-content-success.png',
-  'posts-ai/ai-save-or-bury-arab-websites.html': '/assets/ai-save-or-bury-arab-websites.png',
-  'posts-ai/arab-websites-ai-who-survives.html': '/assets/arab-websites-ai-who-survives.png',
-  'posts-ai/ai-knocks-arab-websites-door.html': '/assets/ai-knocks-arab-websites-door.png',
-  'posts-ai/build-website-with-ai-in-minutes.html': '/assets/build-website-with-ai-in-minutes.png',
-  'posts-ai/latest-ai-news-2026.html': '/assets/latest-ai-news-2026.png',
-  'posts-ai/30-best-ai-writing-tools.html': '/assets/ai-writing-tools.png',
-  'posts-ai/90-day-ai-plan.html': '/assets/90-day-ai-plan.png',
-  'posts-ai/30-day-ai-plan.html': '/assets/30-day-action-plan.png',
-  'posts-ai/ai-affiliate-tools.html': '/assets/ai-affiliate-tools.png',
-  'posts-ai/ai-content-sales-system.html': '/assets/ai-tools-content-sales.png',
-  'posts-ai/affiliate-funnel-guide.html': '/assets/affiliate-conversion-funnel.png',
-  'posts-ai/affiliate-growth-strategy.html': '/assets/generated-covers/affiliate-growth-strategy.svg',
-  'posts-ai/what-is-affiliate-marketing.html': '/assets/what-is-affiliate.svg',
-  'posts-ai/affiliate-mistakes.html': '/assets/affiliate-mistakes.svg',
-  'posts-ai/arab-affiliate-programs.html': '/assets/arab-affiliate-programs.svg',
-  'posts-ai/complete-ai-learning-path.html': '/assets/complete-ai-learning-path.png',
-  'posts-ai/content-structure-seo.html': '/assets/best-content-structure.svg',
-  'articles/what-is-affiliate-marketing.html': '/assets/what-is-affiliate.svg',
-  'articles/affiliate-marketing-mistakes.html': '/assets/affiliate-mistakes.svg',
-  'articles/seo-for-affiliate-sites.html': '/assets/images/seo-affiliate.svg',
-  'articles/ai-tools-for-affiliate-marketing.html': '/assets/ai-affiliate-tools.png',
-  'articles/best-content-structure.html': '/assets/best-content-structure.svg',
-  'articles/best-affiliate-programs-arab-world.html': '/assets/arab-affiliate-programs.svg'
+  'posts-ai/27-ai-and-personal-brand.html': '/assets/images/01-ai-personal-brand.png',
+  'posts-ai/28-ai-newsletters.html': '/assets/images/02-ai-newsletters.png',
+  'posts-ai/ai-automation-productivity.html': '/assets/images/03-ai-automation-productivity.png',
+  'posts-ai/ai-design-for-social-media.html': '/assets/images/04-ai-design-social-media.png',
+  'posts-ai/ai-learning-communities.html': '/assets/images/05-ai-learning-communities.png',
+  'posts-ai/ai-logo-design-guide.html': '/assets/images/06-ai-logo-design.png',
+  'posts-ai/ai-projects-for-beginners.html': '/assets/images/07-ai-projects-beginners.png',
+  'posts-ai/best-ai-design-tools.html': '/assets/images/08-best-ai-design-tools.png',
+  'posts-ai/best-books-to-learn-ai.html': '/assets/images/09-best-ai-books.png',
+  'posts-ai/copyai-review.html': '/assets/images/10-copyai-review.png',
+  'posts-ai/falcon-guide.html': '/assets/images/11-falcon-guide.png',
+  'posts-ai/free-ai-courses-arabic.html': '/assets/images/12-free-ai-courses-arabic.png',
+  'posts-ai/future-of-ai-automation.html': '/assets/images/13-future-ai-automation.png',
+  'posts-ai/latest-ai-automation-uses.html': '/assets/images/14-latest-ai-automation-uses.png',
+  'posts-ai/learning-tips-for-ai.html': '/assets/images/15-ai-learning-tips.png',
+  'posts-ai/llama3-guide.html': '/assets/images/16-llama3-guide.png',
+  'posts-ai/math-for-ai-beginners.html': '/assets/images/17-math-for-ai-beginners.png',
+  'posts-ai/mistral-guide.html': '/assets/images/18-mistral-guide.png',
+  'posts-ai/ollama-guide.html': '/assets/images/19-ollama-guide.png',
+  'posts-ai/python-for-ai-beginners.html': '/assets/images/20-python-for-ai-beginners.png',
+  'posts-ai/tiktok-growth-engineering.html': '/assets/images/21-tiktok-growth-engineering.png',
+  'posts-ai/what-is-ai-beginners.html': '/assets/images/22-what-is-ai-beginners.png',
+  'articles/paid-vs-free-vs-open-source-ai.html': '/assets/images/23-paid-free-open-source-ai.png',
+
+  // صور المقالات الأساسية القديمة الموجودة داخل assets/images
+  'posts-ai/google-ai-content-acceptance.html': '/assets/images/image_01.jpg',
+  'posts-ai/future-arab-websites-ai.html': '/assets/images/image_02.jpg',
+  'posts-ai/ai-content-google-opportunity-risk.html': '/assets/images/image_03.jpg',
+  'posts-ai/google-penalty-ai-content-truth.html': '/assets/images/image_04.jpg',
+  'posts-ai/ai-seo-content-success.html': '/assets/images/image_05.jpg',
+  'posts-ai/ai-save-or-bury-arab-websites.html': '/assets/images/image_06.jpg',
+  'posts-ai/arab-websites-ai-who-survives.html': '/assets/images/image_07.jpg',
+  'posts-ai/ai-knocks-arab-websites-door.html': '/assets/images/image_08.jpg',
+  'posts-ai/build-website-with-ai-in-minutes.html': '/assets/images/image_09.jpg',
+  'posts-ai/latest-ai-news-2026.html': '/assets/images/image_10.jpg',
+  'posts-ai/30-best-ai-writing-tools.html': '/assets/images/image_11.jpg',
+  'posts-ai/90-day-ai-plan.html': '/assets/images/image_12.jpg',
+  'posts-ai/29-90-day-ai-plan.html': '/assets/images/image_12.jpg',
+  'posts-ai/30-day-ai-plan.html': '/assets/images/image_13.jpg',
+  'posts-ai/ai-affiliate-tools.html': '/assets/images/image_14.jpg',
+  'posts-ai/ai-content-sales-system.html': '/assets/images/image_15.jpg',
+  'posts-ai/affiliate-funnel-guide.html': '/assets/images/image_16.jpg',
+  'posts-ai/affiliate-growth-strategy.html': '/assets/images/image_17.jpg',
+  'posts-ai/what-is-affiliate-marketing.html': '/assets/images/image_18.jpg',
+  'posts-ai/affiliate-mistakes.html': '/assets/images/image_19.jpg',
+  'posts-ai/arab-affiliate-programs.html': '/assets/images/image_20.jpg',
+  'posts-ai/complete-ai-learning-path.html': '/assets/images/image_21.jpg',
+  'posts-ai/content-structure-seo.html': '/assets/images/image_22.jpg',
+  'posts-ai/chatgpt-review.html': '/assets/images/image_23.jpg',
+  'posts-ai/jasper-ai-review.html': '/assets/images/image_24.jpg',
+  'posts-ai/writesonic-review.html': '/assets/images/image_25.jpg',
+  'posts-ai/midjourney-guide.html': '/assets/images/image_26.jpg',
+  'posts-ai/dalle3-review.html': '/assets/images/image_27.jpg',
+  'posts-ai/canva-ai-review.html': '/assets/images/image_28.jpg',
+
+  'articles/ai-tools-for-affiliate-marketing.html': '/assets/images/image_14.jpg',
+  'articles/ai-tools-for-afiliate-marketing.html': '/assets/images/image_14.jpg',
+  'articles/what-is-affiliate-marketing.html': '/assets/images/image_18.jpg',
+  'articles/affiliate-marketing-mistakes.html': '/assets/images/image_19.jpg',
+  'articles/best-affiliate-programs-arab-world.html': '/assets/images/image_20.jpg',
+  'articles/best-content-structure.html': '/assets/images/image_22.jpg',
+  'articles/seo-for-affiliate-sites.html': '/assets/images/image_22.jpg'
 };
+
+function ensureDir(relPath) {
+  const abs = path.join(ROOT, relPath);
+  if (!fs.existsSync(abs)) fs.mkdirSync(abs, { recursive: true });
+}
 
 function listHtmlFiles() {
   const files = [];
@@ -45,17 +85,12 @@ function listHtmlFiles() {
     const absDir = path.join(ROOT, dir);
     if (!fs.existsSync(absDir)) continue;
     for (const entry of fs.readdirSync(absDir, { withFileTypes: true })) {
-      if (!entry.isFile() || !entry.name.endsWith('.html')) continue;
-      const rel = path.posix.join(dir, entry.name).replace(/^\//, '');
-      files.push(rel);
+      if (entry.isFile() && entry.name.endsWith('.html')) {
+        files.push(path.posix.join(dir, entry.name).replace(/^\//, ''));
+      }
     }
   }
-  return files.sort((a, b) => a.localeCompare(b, 'en'));
-}
-
-function ensureDir(relPath) {
-  const abs = path.join(ROOT, relPath);
-  if (!fs.existsSync(abs)) fs.mkdirSync(abs, { recursive: true });
+  return files.sort();
 }
 
 function readFile(relPath) {
@@ -85,129 +120,41 @@ function escapeHtml(text = '') {
 }
 
 function truncate(text = '', max = 160) {
-  if (text.length <= max) return text;
-  return text.slice(0, max - 1).trimEnd() + '…';
+  return text.length <= max ? text : text.slice(0, max - 1).trimEnd() + '…';
 }
 
 function matchFirst(content, regex) {
-  const m = content.match(regex);
-  return m ? m[1].trim() : '';
-}
-
-function slugFromPath(filePath) {
-  return filePath.replace(/\.html$/, '').replace(/[^a-zA-Z0-9/_-]+/g, '-').replace(/[\/]+/g, '-');
+  const match = content.match(regex);
+  return match ? match[1].trim() : '';
 }
 
 function toAbsoluteUrl(rawUrl, filePath) {
   if (!rawUrl) return DEFAULT_IMAGE;
   if (/^https?:\/\//i.test(rawUrl)) return rawUrl;
-  const normalized = rawUrl.replace(/^\.\//, '');
-  if (normalized.startsWith('/')) return `${SITE_URL}${normalized}`;
+  const clean = rawUrl.replace(/^\.\//, '').split('#')[0].split('?')[0];
+  if (clean.startsWith('/')) return `${SITE_URL}${clean}`;
   const baseDir = filePath.includes('/') ? filePath.split('/').slice(0, -1).join('/') : '';
-  const joined = baseDir ? `${baseDir}/${normalized}` : normalized;
-  const clean = joined.replace(/\/\/+/g, '/').replace(/^\.\.\//, '');
-  return `${SITE_URL}/${clean}`;
+  return `${SITE_URL}/${path.posix.normalize(path.posix.join(baseDir, clean))}`;
 }
 
-function toSiteRelativeUrl(absoluteUrl) {
-  return absoluteUrl.replace(SITE_URL, '');
+function preferredImage(filePath, html) {
+  if (ARTICLE_IMAGE_MAP[filePath]) return `${SITE_URL}${ARTICLE_IMAGE_MAP[filePath]}`;
+  const firstImage = matchFirst(html, /<img[^>]+src=["']([^"']+)["'][^>]*>/i);
+  return toAbsoluteUrl(firstImage, filePath);
 }
 
 function replaceOrInsert(head, regex, replacement) {
-  return regex.test(head) ? head.replace(regex, replacement) : `${head}  ${replacement}\n`;
-}
-
-function ensureCookieConsentScript(head, filePath) {
-  if (/cookie-consent\.js/i.test(head)) return head;
-  const src = filePath.includes('/') ? '../cookie-consent.js' : 'cookie-consent.js';
-  return `${head.trim()}\n  <script defer src="${src}"></script>\n`;
-}
-
-function wrapTitle(title, maxLineLength = 18, maxLines = 3) {
-  const words = title.split(/\s+/).filter(Boolean);
-  const lines = [];
-  let current = '';
-  for (const word of words) {
-    const candidate = current ? `${current} ${word}` : word;
-    if (candidate.length <= maxLineLength) {
-      current = candidate;
-    } else {
-      if (current) lines.push(current);
-      current = word;
-      if (lines.length === maxLines - 1) break;
-    }
-  }
-  if (current && lines.length < maxLines) lines.push(current);
-  if (lines.length < words.length && lines.length > 0) {
-    lines[lines.length - 1] = truncate(lines[lines.length - 1], maxLineLength);
-  }
-  return lines.slice(0, maxLines);
-}
-
-function buildGeneratedCover(filePath, headline, sectionLabel) {
-  const slug = slugFromPath(filePath);
-  const relCoverPath = `${GENERATED_COVERS_DIR}/${slug}.svg`;
-  const absCoverPath = path.join(ROOT, relCoverPath);
-  const lines = wrapTitle(headline || 'مقال جديد');
-  const lineYs = [250, 330, 410];
-  const textLines = lines
-    .map((line, index) => `<text x="1140" y="${lineYs[index]}" text-anchor="end" font-size="56" font-weight="800" fill="#ffffff">${escapeHtml(line)}</text>`)
-    .join('');
-  const svg = `<?xml version="1.0" encoding="UTF-8"?>
-<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="630" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#111827"/>
-      <stop offset="0.55" stop-color="#1F2937"/>
-      <stop offset="1" stop-color="#EA580C"/>
-    </linearGradient>
-    <linearGradient id="accent" x1="120" y1="110" x2="520" y2="520" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#F59E0B" stop-opacity="0.95"/>
-      <stop offset="1" stop-color="#EA580C" stop-opacity="0.15"/>
-    </linearGradient>
-  </defs>
-  <rect width="1200" height="630" rx="0" fill="url(#bg)"/>
-  <circle cx="180" cy="150" r="220" fill="url(#accent)"/>
-  <circle cx="1030" cy="560" r="180" fill="#ffffff" fill-opacity="0.08"/>
-  <rect x="68" y="68" width="1064" height="494" rx="34" fill="#ffffff" fill-opacity="0.05" stroke="#ffffff" stroke-opacity="0.12"/>
-  <text x="1140" y="120" text-anchor="end" font-size="28" font-weight="700" fill="#FDBA74">${escapeHtml(sectionLabel)}</text>
-  ${textLines}
-  <text x="1140" y="540" text-anchor="end" font-size="32" font-weight="700" fill="#ffffff" fill-opacity="0.92">${BRAND}</text>
-</svg>`;
-  ensureDir(path.dirname(relCoverPath));
-  fs.writeFileSync(absCoverPath, svg, 'utf8');
-  return `${SITE_URL}/${relCoverPath}`;
-}
-
-function preferredImageAbsolute(filePath, fallbackHeadline, sectionLabel) {
-  if (ARTICLE_IMAGE_MAP[filePath]) return `${SITE_URL}${ARTICLE_IMAGE_MAP[filePath]}`;
-  return buildGeneratedCover(filePath, fallbackHeadline || 'مقال جديد', sectionLabel);
-}
-
-function buildMetadata(filePath, html) {
-  const titleTag = stripHtml(matchFirst(html, /<title>([\s\S]*?)<\/title>/i)).replace(/\s*\|\s*smartafiliate\s*$/i, '').trim();
-  const h1 = stripHtml(matchFirst(html, /<h1[^>]*>([\s\S]*?)<\/h1>/i));
-  const firstParagraph = stripHtml(matchFirst(html, /<p[^>]*>([\s\S]*?)<\/p>/i));
-  const descriptionTag = stripHtml(matchFirst(html, /<meta\s+name=["']description["']\s+content=["']([\s\S]*?)["']\s*\/?>/i));
-  const firstImage = matchFirst(html, /<img[^>]+src=["']([^"']+)["'][^>]*>/i);
-  const baseTitle = h1 || titleTag || BRAND;
-  const title = baseTitle.includes(BRAND) ? baseTitle : `${baseTitle} | ${BRAND}`;
-  const description = truncate(descriptionTag || firstParagraph || baseTitle, 160);
-  const canonical = `${SITE_URL}/${filePath}`.replace('/index.html', '/');
-  const type = filePath.startsWith('posts-ai/') || filePath.startsWith('articles/') ? 'article' : 'website';
-  const sectionLabel = filePath.startsWith('posts-ai/') ? 'مقال من smartafiliate' : filePath.startsWith('articles/') ? 'محتوى عربي عملي' : 'صفحة من smartafiliate';
-  const absoluteFirstImage = toAbsoluteUrl(firstImage, filePath);
-  const image = type === 'article'
-    ? preferredImageAbsolute(filePath, h1 || titleTag || 'مقال جديد', sectionLabel)
-    : absoluteFirstImage;
-
-  return { title, description, canonical, type, image, headline: h1 || baseTitle };
+  return regex.test(head) ? head.replace(regex, replacement) : `${head.trim()}\n  ${replacement}\n`;
 }
 
 function syncArticleBodyImage(content, filePath, imageAbsolute) {
   if (!(filePath.startsWith('posts-ai/') || filePath.startsWith('articles/'))) return content;
-  const imageRelative = toSiteRelativeUrl(imageAbsolute);
-  return content.replace(/<img([^>]+)src=["']([^"']+)["']([^>]*)>/i, `<img$1src="${imageRelative}"$3>`);
+  const imageRelative = imageAbsolute.replace(SITE_URL, '');
+  if (!imageRelative || imageRelative === DEFAULT_IMAGE.replace(SITE_URL, '')) return content;
+  if (/<img[^>]+src=["'][^"']+["'][^>]*>/i.test(content)) {
+    return content.replace(/<img([^>]+)src=["']([^"']+)["']([^>]*)>/i, `<img$1src="${imageRelative}"$3>`);
+  }
+  return content;
 }
 
 function updateHtml(filePath) {
@@ -215,43 +162,48 @@ function updateHtml(filePath) {
   const headMatch = original.match(/<head>([\s\S]*?)<\/head>/i);
   if (!headMatch) return false;
 
-  const meta = buildMetadata(filePath, original);
-  let content = syncArticleBodyImage(original, filePath, meta.image);
+  const titleTag = stripHtml(matchFirst(original, /<title>([\s\S]*?)<\/title>/i)).replace(/\s*\|\s*smartafiliate\s*$/i, '').trim();
+  const h1 = stripHtml(matchFirst(original, /<h1[^>]*>([\s\S]*?)<\/h1>/i));
+  const firstParagraph = stripHtml(matchFirst(original, /<p[^>]*>([\s\S]*?)<\/p>/i));
+  const descriptionTag = stripHtml(matchFirst(original, /<meta\s+name=["']description["']\s+content=["']([\s\S]*?)["']\s*\/?>/i));
+  const baseTitle = h1 || titleTag || BRAND;
+  const title = baseTitle.includes(BRAND) ? baseTitle : `${baseTitle} | ${BRAND}`;
+  const description = truncate(descriptionTag || firstParagraph || baseTitle, 160);
+  const canonical = `${SITE_URL}/${filePath}`.replace('/index.html', '/');
+  const type = filePath.startsWith('posts-ai/') || filePath.startsWith('articles/') ? 'article' : 'website';
+  const image = preferredImage(filePath, original);
+
+  let content = syncArticleBodyImage(original, filePath, image);
   let head = content.match(/<head>([\s\S]*?)<\/head>/i)[1];
 
-  head = replaceOrInsert(head, /<title>[\s\S]*?<\/title>/i, `  <title>${escapeHtml(meta.title)}</title>`);
-  head = replaceOrInsert(head, /<meta\s+name=["']description["'][^>]*>/i, `  <meta name="description" content="${escapeHtml(meta.description)}" />`);
-  head = replaceOrInsert(head, /<link\s+rel=["']canonical["'][^>]*>/i, `  <link rel="canonical" href="${meta.canonical}" />`);
-  head = replaceOrInsert(head, /<meta\s+property=["']og:type["'][^>]*>/i, `  <meta property="og:type" content="${meta.type}" />`);
-  head = replaceOrInsert(head, /<meta\s+property=["']og:title["'][^>]*>/i, `  <meta property="og:title" content="${escapeHtml(meta.title)}" />`);
-  head = replaceOrInsert(head, /<meta\s+property=["']og:description["'][^>]*>/i, `  <meta property="og:description" content="${escapeHtml(meta.description)}" />`);
-  head = replaceOrInsert(head, /<meta\s+property=["']og:url["'][^>]*>/i, `  <meta property="og:url" content="${meta.canonical}" />`);
-  head = replaceOrInsert(head, /<meta\s+property=["']og:image["'][^>]*>/i, `  <meta property="og:image" content="${meta.image}" />`);
-  head = replaceOrInsert(head, /<meta\s+name=["']twitter:card["'][^>]*>/i, `  <meta name="twitter:card" content="summary_large_image" />`);
-  head = replaceOrInsert(head, /<meta\s+name=["']twitter:title["'][^>]*>/i, `  <meta name="twitter:title" content="${escapeHtml(meta.title)}" />`);
-  head = replaceOrInsert(head, /<meta\s+name=["']twitter:description["'][^>]*>/i, `  <meta name="twitter:description" content="${escapeHtml(meta.description)}" />`);
-  head = replaceOrInsert(head, /<meta\s+name=["']twitter:image["'][^>]*>/i, `  <meta name="twitter:image" content="${meta.image}" />`);
+  head = replaceOrInsert(head, /<title>[\s\S]*?<\/title>/i, `<title>${escapeHtml(title)}</title>`);
+  head = replaceOrInsert(head, /<meta\s+name=["']description["'][^>]*>/i, `<meta name="description" content="${escapeHtml(description)}" />`);
+  head = replaceOrInsert(head, /<link\s+rel=["']canonical["'][^>]*>/i, `<link rel="canonical" href="${canonical}" />`);
+  head = replaceOrInsert(head, /<meta\s+property=["']og:type["'][^>]*>/i, `<meta property="og:type" content="${type}" />`);
+  head = replaceOrInsert(head, /<meta\s+property=["']og:title["'][^>]*>/i, `<meta property="og:title" content="${escapeHtml(title)}" />`);
+  head = replaceOrInsert(head, /<meta\s+property=["']og:description["'][^>]*>/i, `<meta property="og:description" content="${escapeHtml(description)}" />`);
+  head = replaceOrInsert(head, /<meta\s+property=["']og:url["'][^>]*>/i, `<meta property="og:url" content="${canonical}" />`);
+  head = replaceOrInsert(head, /<meta\s+property=["']og:image["'][^>]*>/i, `<meta property="og:image" content="${image}" />`);
+  head = replaceOrInsert(head, /<meta\s+name=["']twitter:card["'][^>]*>/i, `<meta name="twitter:card" content="summary_large_image" />`);
+  head = replaceOrInsert(head, /<meta\s+name=["']twitter:title["'][^>]*>/i, `<meta name="twitter:title" content="${escapeHtml(title)}" />`);
+  head = replaceOrInsert(head, /<meta\s+name=["']twitter:description["'][^>]*>/i, `<meta name="twitter:description" content="${escapeHtml(description)}" />`);
+  head = replaceOrInsert(head, /<meta\s+name=["']twitter:image["'][^>]*>/i, `<meta name="twitter:image" content="${image}" />`);
 
-  if (meta.type === 'article') {
+  if (type === 'article') {
     const jsonLd = {
       '@context': 'https://schema.org',
       '@type': 'Article',
-      headline: meta.headline,
-      description: meta.description,
-      mainEntityOfPage: meta.canonical,
-      image: [meta.image],
+      headline: h1 || baseTitle,
+      description,
+      mainEntityOfPage: canonical,
+      image: [image],
       author: { '@type': 'Organization', name: BRAND },
       publisher: { '@type': 'Organization', name: BRAND },
       inLanguage: 'ar'
     };
-    head = replaceOrInsert(
-      head,
-      /<script\s+type=["']application\/ld\+json["']>[\s\S]*?<\/script>/i,
-      `  <script type="application/ld+json">${JSON.stringify(jsonLd)}</script>`
-    );
+    head = replaceOrInsert(head, /<script\s+type=["']application\/ld\+json["']>[\s\S]*?<\/script>/i, `<script type="application/ld+json">${JSON.stringify(jsonLd)}</script>`);
   }
 
-  head = ensureCookieConsentScript(head, filePath);
   content = content.replace(/<head>[\s\S]*?<\/head>/i, `<head>\n${head.trim()}\n</head>`);
   if (content !== original) {
     writeFile(filePath, content);
@@ -263,29 +215,18 @@ function updateHtml(filePath) {
 function buildSitemap(files) {
   const urls = files
     .filter((filePath) => !EXCLUDE_FROM_SITEMAP.has(filePath))
-    .map((filePath) => {
-      const loc = `${SITE_URL}/${filePath}`.replace('/index.html', '/');
-      return `  <url><loc>${loc}</loc></url>`;
-    });
-
-  return [
-    '<?xml version="1.0" encoding="UTF-8"?>',
-    '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
-    ...urls,
-    '</urlset>',
-    ''
-  ].join('\n');
+    .map((filePath) => `  <url><loc>${`${SITE_URL}/${filePath}`.replace('/index.html', '/')}</loc></url>`);
+  return ['<?xml version="1.0" encoding="UTF-8"?>', '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">', ...urls, '</urlset>', ''].join('\n');
 }
 
 function main() {
-  ensureDir(GENERATED_COVERS_DIR);
   const files = listHtmlFiles();
   let changedCount = 0;
   for (const filePath of files) {
     if (updateHtml(filePath)) changedCount += 1;
   }
   writeFile('sitemap.xml', buildSitemap(files));
-  console.log(`SEO sync finished. Updated ${changedCount} HTML files, synced article covers, added cookie consent scripts, and rebuilt sitemap.`);
+  console.log(`SEO sync finished. Updated ${changedCount} HTML files and rebuilt sitemap.`);
 }
 
 main();
