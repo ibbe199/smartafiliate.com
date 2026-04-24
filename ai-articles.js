@@ -27,7 +27,7 @@ const FALLBACK_ARTICLE_IMAGE_MAP = {
   'articles/ai-tools-for-afiliate-marketing.html': 'assets/images/image_14.jpg',
   'posts-ai/ai-content-sales-system.html': 'assets/images/image_15.jpg',
   'posts-ai/affiliate-funnel-guide.html': 'assets/images/image_16.jpg',
-  'posts-ai/affiliate-growth-strategy.html': 'assets/images/image_17.jpg',
+  'posts-ai/affiliate-growth-strategy.html': 'assets/images/file_00000000c704720c89048bb85ea9bad6.png',
   'posts-ai/what-is-affiliate-marketing.html': 'assets/images/image_18.jpg',
   'articles/what-is-affiliate-marketing.html': 'assets/images/image_18.jpg',
   'posts-ai/affiliate-mistakes.html': 'assets/images/image_19.jpg',
@@ -56,17 +56,17 @@ const FALLBACK_ARTICLE_IMAGE_MAP = {
   'posts-ai/copyai-review.html': 'assets/images/10-copyai-review.png',
   'posts-ai/falcon-guide.html': 'assets/images/11-falcon-guide.png',
   'posts-ai/free-ai-courses-arabic.html': 'assets/images/12-free-ai-courses-arabic.png',
-  'posts-ai/future-of-ai-automation.html': 'assets/images/13-future-ai-automation.png',
-  'posts-ai/latest-ai-automation-uses.html': 'assets/images/14-latest-ai-automation-uses.png',
-  'posts-ai/learning-tips-for-ai.html': 'assets/images/15-ai-learning-tips.png',
-  'posts-ai/llama3-guide.html': 'assets/images/16-llama3-guide.png',
-  'posts-ai/math-for-ai-beginners.html': 'assets/images/17-math-for-ai-beginners.png',
-  'posts-ai/mistral-guide.html': 'assets/images/18-mistral-guide.png',
-  'posts-ai/ollama-guide.html': 'assets/images/19-ollama-guide.png',
-  'posts-ai/python-for-ai-beginners.html': 'assets/images/20-python-for-ai-beginners.png',
-  'posts-ai/tiktok-growth-engineering.html': 'assets/images/21-tiktok-growth-engineering.png',
-  'posts-ai/what-is-ai-beginners.html': 'assets/images/22-what-is-ai-beginners.png',
-  'articles/paid-vs-free-vs-open-source-ai.html': 'assets/images/23-paid-free-open-source-ai.png'
+  'posts-ai/future-of-ai-automation.html': 'assets/13-future-ai-automation.png',
+  'posts-ai/latest-ai-automation-uses.html': 'assets/14-latest-ai-automation-uses.png',
+  'posts-ai/learning-tips-for-ai.html': 'assets/15-ai-learning-tips.png',
+  'posts-ai/llama3-guide.html': 'assets/16-llama3-guide.png',
+  'posts-ai/math-for-ai-beginners.html': 'assets/17-math-for-ai-beginners.png',
+  'posts-ai/mistral-guide.html': 'assets/18-mistral-guide.png',
+  'posts-ai/ollama-guide.html': 'assets/19-ollama-guide.png',
+  'posts-ai/python-for-ai-beginners.html': 'assets/20-python-for-ai-beginners.png',
+  'posts-ai/tiktok-growth-engineering.html': 'assets/21-tiktok-growth-engineering.png',
+  'posts-ai/what-is-ai-beginners.html': 'assets/22-what-is-ai-beginners.png',
+  'articles/paid-vs-free-vs-open-source-ai.html': 'assets/23-paid-free-open-source-ai.png'
 };
 
 const ARTICLE_IMAGE_MAP = Object.assign({}, FALLBACK_ARTICLE_IMAGE_MAP, window.ARTICLE_IMAGE_MAP || {});
