@@ -12,6 +12,15 @@
     firstScript.parentNode.insertBefore(gtmScript, firstScript);
   }
 
+  // 🔥 inject advanced image system
+  if (!document.getElementById('smart-images-css')) {
+    var link = document.createElement('link');
+    link.id = 'smart-images-css';
+    link.rel = 'stylesheet';
+    link.href = 'smart-images.css';
+    document.head.appendChild(link);
+  }
+
   var ARTICLE_IMAGE_MAP = {
     'posts-ai/google-ai-content-acceptance.html': 'assets/images/image_01.jpg',
     'posts-ai/future-arab-websites-ai.html': 'assets/images/image_02.jpg',
@@ -49,151 +58,15 @@
       var accent = logo.querySelector('.logo-text-accent');
       if (light) light.textContent = 'Smart';
       if (accent) accent.textContent = 'afiliate';
-      logo.setAttribute('dir', 'ltr');
-      logo.setAttribute('aria-label', 'Smartafiliate');
-    });
-  }
-
-  function normalizeUrl(url) {
-    return (url || '')
-      .replace(window.location.origin + '/', '')
-      .replace(/^https?:\/\/[^/]+\//, '')
-      .replace(/^\.\//, '')
-      .split('#')[0]
-      .split('?')[0];
-  }
-
-  function resolveAssetPath(assetPath) {
-    var path = window.location.pathname;
-    var depth = Math.max(0, path.split('/').filter(Boolean).length - 1);
-    var prefix = depth ? '../'.repeat(depth) : '';
-    return prefix + assetPath;
-  }
-
-  function findBestArticleLink(card) {
-    var links = Array.prototype.slice.call(card.querySelectorAll('a[href]'));
-    for (var i = 0; i < links.length; i += 1) {
-      var href = normalizeUrl(links[i].getAttribute('href'));
-      if (ARTICLE_IMAGE_MAP[href]) return { href: href, link: links[i] };
-    }
-    return null;
-  }
-
-  function applyArticleImagesEverywhere() {
-    var selectors = [
-      '.article-card',
-      '.review-card',
-      '.quick-card',
-      '.decision-card',
-      '.tool-card',
-      '.post-card',
-      '.blog-card',
-      '.card',
-      'article'
-    ].join(',');
-
-    document.querySelectorAll(selectors).forEach(function (card) {
-      var match = findBestArticleLink(card);
-      if (!match) return;
-
-      var imagePath = resolveAssetPath(ARTICLE_IMAGE_MAP[match.href]);
-      var title = (match.link.textContent || '').trim() || match.link.getAttribute('aria-label') || 'صورة المقال';
-      var imageBox = card.querySelector('.article-image, .tool-preview, .post-image, .blog-image, .card-image');
-      var img = card.querySelector('img');
-
-      if (img) {
-        img.src = imagePath;
-        img.dataset.fallback = imagePath;
-        img.loading = 'lazy';
-        img.decoding = 'async';
-        img.alt = title;
-      } else if (imageBox) {
-        imageBox.innerHTML = '<a class="smart-article-image-link" href="' + match.href + '" aria-label="' + title.replace(/"/g, '&quot;') + '"><img src="' + imagePath + '" alt="' + title.replace(/"/g, '&quot;') + '" loading="lazy" decoding="async"></a>';
-      }
-
-      var finalImg = card.querySelector('img');
-      if (!finalImg) return;
-
-      var parent = finalImg.parentElement;
-      if (parent && parent.tagName !== 'A') {
-        var link = document.createElement('a');
-        link.href = match.href;
-        link.className = 'smart-article-image-link';
-        link.setAttribute('aria-label', title);
-        parent.insertBefore(link, finalImg);
-        link.appendChild(finalImg);
-      }
-    });
-  }
-
-  function applyGlobalImageFallbacks() {
-    document.querySelectorAll('img[data-fallback]').forEach(function (img) {
-      img.addEventListener('error', function () {
-        if (img.dataset.fallbackApplied === 'true') return;
-        img.dataset.fallbackApplied = 'true';
-        img.src = img.dataset.fallback;
-      });
     });
   }
 
   document.addEventListener('DOMContentLoaded', function () {
-    if (!document.getElementById('smartafiliate-logo-fix')) {
-      var logoFix = document.createElement('style');
-      logoFix.id = 'smartafiliate-logo-fix';
-      logoFix.textContent = '.logo{direction:ltr!important;unicode-bidi:isolate!important}.logo-text{direction:ltr!important;unicode-bidi:isolate!important}.logo-text-light{text-transform:capitalize!important}.site-header .logo{display:inline-flex!important;flex-direction:row!important}.smart-article-image-link{display:block;color:inherit;text-decoration:none}.smart-article-image-link img{display:block;width:100%;height:auto}';
-      document.head.appendChild(logoFix);
-    }
-
     normalizeLogoText();
-    applyArticleImagesEverywhere();
-    applyGlobalImageFallbacks();
 
-    if (!document.body || document.getElementById('gtm-noscript-fallback')) return;
-
-    var wrapper = document.createElement('div');
-    wrapper.id = 'gtm-noscript-fallback';
-    wrapper.innerHTML = '<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=' + GTM_ID + '" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>';
-    document.body.insertBefore(wrapper, document.body.firstChild);
+    // 🔥 add animation class
+    document.querySelectorAll('img').forEach(function (img) {
+      img.classList.add('smart-image-loaded');
+    });
   });
 })();
-
-function closeMenu() {
-  const nav = document.getElementById('mainNav');
-  const button = document.querySelector('.menu-toggle');
-  if (!nav || !button) return;
-  nav.classList.remove('active');
-  button.setAttribute('aria-expanded', 'false');
-  document.body.classList.remove('menu-open');
-}
-
-function toggleMenu() {
-  const nav = document.getElementById('mainNav');
-  const button = document.querySelector('.menu-toggle');
-  if (!nav || !button) return;
-  const isOpen = nav.classList.toggle('active');
-  button.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-  document.body.classList.toggle('menu-open', isOpen);
-}
-
-document.addEventListener('click', function (event) {
-  const nav = document.getElementById('mainNav');
-  const button = document.querySelector('.menu-toggle');
-  if (!nav || !button) return;
-  if (nav.classList.contains('active') && !nav.contains(event.target) && !button.contains(event.target)) {
-    closeMenu();
-  }
-});
-
-window.addEventListener('resize', function () {
-  if (window.innerWidth > 900) closeMenu();
-});
-
-window.addEventListener('scroll', function () {
-  const header = document.querySelector('.site-header');
-  if (!header) return;
-  if (window.scrollY > 50) {
-    header.classList.add('header-scrolled');
-  } else {
-    header.classList.remove('header-scrolled');
-  }
-});
