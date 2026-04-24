@@ -14,3 +14,7 @@
   direction: ltr !important;
   unicode-bidi: isolate !important;
 }
+
+.logo-text-light {
+  text-transform: capitalize !important;
+}
