@@ -1,12 +1,25 @@
 (function () {
   var GTM_ID = 'GTM-P96QVPT3';
+
   window.dataLayer = window.dataLayer || [];
   window.dataLayer.push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
-  var firstScript = document.getElementsByTagName('script')[0];
-  var gtmScript = document.createElement('script');
-  gtmScript.async = true;
-  gtmScript.src = 'https://www.googletagmanager.com/gtm.js?id=' + GTM_ID;
-  firstScript.parentNode.insertBefore(gtmScript, firstScript);
+
+  if (!document.querySelector('script[src*="googletagmanager.com/gtm.js?id=' + GTM_ID + '"]')) {
+    var firstScript = document.getElementsByTagName('script')[0];
+    var gtmScript = document.createElement('script');
+    gtmScript.async = true;
+    gtmScript.src = 'https://www.googletagmanager.com/gtm.js?id=' + GTM_ID;
+    firstScript.parentNode.insertBefore(gtmScript, firstScript);
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    if (!document.body || document.getElementById('gtm-noscript-fallback')) return;
+
+    var wrapper = document.createElement('div');
+    wrapper.id = 'gtm-noscript-fallback';
+    wrapper.innerHTML = '<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=' + GTM_ID + '" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>';
+    document.body.insertBefore(wrapper, document.body.firstChild);
+  });
 })();
 
 function closeMenu() {
