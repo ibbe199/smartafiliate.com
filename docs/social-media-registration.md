@@ -2,6 +2,21 @@
 
 هذا الملف يجهز بيانات تسجيل موقع smartafiliate.com على منصات التواصل الاجتماعي، مع نصوص جاهزة للنسخ.
 
+## روابط التسجيل المباشرة
+
+- Facebook Page: https://www.facebook.com/pages/create
+- Instagram: https://www.instagram.com/accounts/emailsignup/
+- TikTok: https://www.tiktok.com/signup
+- X / Twitter: https://x.com/i/flow/signup
+- YouTube / Google Account: https://accounts.google.com/signup
+- YouTube Channel: https://www.youtube.com/create_channel
+- LinkedIn Page: https://www.linkedin.com/company/setup/new/
+- Pinterest Business: https://www.pinterest.com/business/create/
+- Telegram Channel: https://t.me/newchannel
+- WhatsApp Channel: https://www.whatsapp.com/channel
+- Reddit: https://www.reddit.com/register/
+- Medium: https://medium.com/m/signin
+
 ## بيانات العلامة
 
 - الاسم: smartafiliate
@@ -23,6 +38,7 @@
 
 ### 1. Facebook Page
 
+- رابط التسجيل: https://www.facebook.com/pages/create
 - الاسم: smartafiliate
 - الفئة: موقع ويب / تعليم / أدوات رقمية
 - الرابط: https://smartafiliate.com
@@ -34,6 +50,7 @@ smartafiliate منصة عربية تساعدك على اكتشاف أفضل أد
 
 ### 2. Instagram
 
+- رابط التسجيل: https://www.instagram.com/accounts/emailsignup/
 - username المقترح: smartafiliate
 - الاسم الظاهر: smartafiliate
 - bio:
@@ -46,6 +63,7 @@ smartafiliate منصة عربية تساعدك على اكتشاف أفضل أد
 
 ### 3. TikTok
 
+- رابط التسجيل: https://www.tiktok.com/signup
 - username المقترح: smartafiliate
 - bio:
 
@@ -56,6 +74,7 @@ smartafiliate منصة عربية تساعدك على اكتشاف أفضل أد
 
 ### 4. X / Twitter
 
+- رابط التسجيل: https://x.com/i/flow/signup
 - username المقترح: smartafiliate
 - bio:
 
@@ -65,6 +84,8 @@ smartafiliate منصة عربية تساعدك على اكتشاف أفضل أد
 
 ### 5. YouTube
 
+- إنشاء حساب Google: https://accounts.google.com/signup
+- إنشاء قناة YouTube: https://www.youtube.com/create_channel
 - اسم القناة: smartafiliate
 - الوصف:
 
@@ -74,6 +95,7 @@ smartafiliate منصة عربية تساعدك على اكتشاف أفضل أد
 
 ### 6. LinkedIn Page
 
+- رابط التسجيل: https://www.linkedin.com/company/setup/new/
 - الاسم: smartafiliate
 - المجال: Online Media / E-learning / Technology
 - الوصف:
@@ -84,6 +106,7 @@ smartafiliate منصة محتوى عربية تساعد الأفراد وصنا�
 
 ### 7. Pinterest
 
+- رابط التسجيل: https://www.pinterest.com/business/create/
 - username المقترح: smartafiliate
 - الوصف:
 
