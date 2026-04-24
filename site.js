@@ -39,26 +39,20 @@
     return window.location.origin + '/' + assetPath.replace(/^\.\.\//g, '').replace(/^\//, '');
   }
 
+  function loadCssOnce(id, href) {
+    if (document.getElementById(id)) return;
+    var link = document.createElement('link');
+    link.id = id;
+    link.rel = 'stylesheet';
+    link.href = resolveSiteAssetPath(href);
+    document.head.appendChild(link);
+  }
+
   function installGlobalFixes() {
     if (document.getElementById('smartafiliate-global-fixes')) return;
     var style = document.createElement('style');
     style.id = 'smartafiliate-global-fixes';
-    style.textContent = [
-      '.logo{direction:ltr!important;unicode-bidi:isolate!important}',
-      '.logo-text{direction:ltr!important;unicode-bidi:isolate!important}',
-      '.logo-text-light{text-transform:capitalize!important}',
-      '.site-header .logo{display:inline-flex!important;flex-direction:row!important}',
-      '.smart-image-title{display:none!important;visibility:hidden!important;opacity:0!important;pointer-events:none!important}',
-      '.article-card h3,.post-title,.post-card h3,.blog-card h3,.review-card h3,.decision-card h3,.quick-card h3,.tool-card h3{font-size:clamp(1.06rem,1.15vw,1.22rem)!important;line-height:1.55!important;font-weight:900!important;letter-spacing:-.015em!important;color:#0b1f3a!important;margin:.45rem 0 .7rem!important;text-align:right!important;text-wrap:balance!important}',
-      '.article-card h3 a,.post-title a,.post-card h3 a,.blog-card h3 a,.review-card h3 a,.decision-card h3 a,.quick-card h3 a{color:#0b1f3a!important;display:-webkit-box!important;-webkit-line-clamp:2!important;-webkit-box-orient:vertical!important;overflow:hidden!important;min-height:3.1em!important}',
-      '.article-card h3 a:hover,.post-title a:hover,.post-card h3 a:hover,.blog-card h3 a:hover{color:#ea580c!important}',
-      '.article-content,.post-content,.blog-content{display:flex!important;flex-direction:column!important;gap:.35rem!important}',
-      '.article-category,.post-category{align-self:flex-start!important;margin-bottom:.35rem!important;font-weight:900!important}',
-      '.article-excerpt,.post-excerpt{font-size:.9rem!important;line-height:1.8!important;color:#475569!important;display:-webkit-box!important;-webkit-line-clamp:3!important;-webkit-box-orient:vertical!important;overflow:hidden!important}',
-      '.page-hero h1,.article-body h1,.article-container h1{font-size:clamp(2rem,4vw,3.25rem)!important;line-height:1.3!important;font-weight:950!important;letter-spacing:-.025em!important;text-wrap:balance!important}',
-      '.article-body h2{font-size:clamp(1.45rem,2.4vw,2rem)!important;line-height:1.45!important;font-weight:900!important;color:#0b1f3a!important;margin-top:2.3rem!important}',
-      '@media(max-width:700px){.article-card h3,.post-title,.post-card h3,.tool-card h3{font-size:1.02rem!important;line-height:1.55!important}.article-card h3 a,.post-title a{min-height:auto!important}.page-hero h1{font-size:2rem!important}}'
-    ].join('');
+    style.textContent = '.logo{direction:ltr!important;unicode-bidi:isolate!important}.logo-text{direction:ltr!important;unicode-bidi:isolate!important}.logo-text-light{text-transform:capitalize!important}.site-header .logo{display:inline-flex!important;flex-direction:row!important}.smart-image-title{display:none!important;visibility:hidden!important;opacity:0!important;pointer-events:none!important}';
     document.head.appendChild(style);
   }
 
@@ -67,12 +61,9 @@
   }
 
   function loadSmartImagesCss() {
-    if (!pageHasArticleImages() || document.getElementById('smart-images-css')) return;
-    var imageCss = document.createElement('link');
-    imageCss.id = 'smart-images-css';
-    imageCss.rel = 'stylesheet';
-    imageCss.href = resolveSiteAssetPath('smart-images.css?v=20260424-title-1');
-    document.head.appendChild(imageCss);
+    if (!pageHasArticleImages()) return;
+    loadCssOnce('smart-images-css', 'smart-images.css?v=20260424-title-2');
+    loadCssOnce('title-fix-css', 'title-fix.css?v=20260424-1');
   }
 
   function normalizeLogoText() {
