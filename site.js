@@ -32,6 +32,13 @@
     return window.location.origin + '/' + assetPath.replace(/^\.\.\//g, '').replace(/^\//, '');
   }
 
+  function cleanArticleTitle(title) {
+    return (title || '')
+      .replace(/\s+/g, ' ')
+      .replace(/^(اقرأ\s+المقال|قراءة\s+المقال|المزيد|اقرأ\s+المزيد)\s*/i, '')
+      .trim();
+  }
+
   var ARTICLE_IMAGE_MAP = {
     'posts-ai/google-ai-content-acceptance.html': 'assets/images/image_01.jpg',
     'posts-ai/future-arab-websites-ai.html': 'assets/images/image_02.jpg',
@@ -115,7 +122,7 @@
     if (document.getElementById('smart-critical-image-sizing')) return;
     var critical = document.createElement('style');
     critical.id = 'smart-critical-image-sizing';
-    critical.textContent = '.article-image,.post-image,.blog-image,.card-image,.tool-preview{width:100%!important;height:200px!important;min-height:200px!important;max-height:200px!important;aspect-ratio:16/9!important;overflow:hidden!important;border-radius:18px!important;padding:0!important;background:linear-gradient(135deg,#071527,#12305a)!important;display:block!important;position:relative!important}.tool-preview{height:200px!important;min-height:200px!important;max-height:200px!important;margin-bottom:1rem!important}.article-image>a,.post-image>a,.blog-image>a,.card-image>a,.tool-preview>a,.smart-article-image-link{display:block!important;width:100%!important;height:100%!important}.article-image img,.post-image img,.blog-image img,.card-image img,.tool-preview img,.smart-article-image-link img{width:100%!important;height:100%!important;max-width:none!important;object-fit:cover!important;object-position:center!important;display:block!important}.article-featured-image{aspect-ratio:16/9!important;min-height:280px!important;max-height:430px!important;background-size:cover!important;background-position:center!important}@media(max-width:700px){.article-image,.post-image,.blog-image,.card-image,.tool-preview{height:185px!important;min-height:185px!important;max-height:185px!important}}@media(max-width:430px){.article-image,.post-image,.blog-image,.card-image,.tool-preview{height:170px!important;min-height:170px!important;max-height:170px!important}}';
+    critical.textContent = '.article-image,.post-image,.blog-image,.card-image{width:100%!important;height:clamp(280px,24vw,430px)!important;min-height:280px!important;max-height:430px!important;aspect-ratio:16/9!important;overflow:hidden!important;border-radius:20px!important;padding:0!important;background:linear-gradient(135deg,#071527,#12305a)!important;display:block!important;position:relative!important}.tool-preview{width:100%!important;height:clamp(220px,18vw,320px)!important;min-height:220px!important;max-height:320px!important;aspect-ratio:16/9!important;overflow:hidden!important;border-radius:20px!important;padding:0!important;background:linear-gradient(135deg,#071527,#12305a)!important;display:block!important;position:relative!important;margin-bottom:1rem!important}.article-image>a,.post-image>a,.blog-image>a,.card-image>a,.tool-preview>a,.smart-article-image-link{display:block!important;width:100%!important;height:100%!important}.article-image img,.post-image img,.blog-image img,.card-image img,.tool-preview img,.smart-article-image-link img{width:100%!important;height:100%!important;max-width:none!important;object-fit:cover!important;object-position:center!important;display:block!important}.smart-image-title{position:absolute!important;right:14px!important;left:14px!important;bottom:56px!important;z-index:4!important;color:#fff!important;font-weight:900!important;line-height:1.45!important;text-shadow:0 3px 14px rgba(0,0,0,.55)!important;display:-webkit-box!important;-webkit-line-clamp:2!important;-webkit-box-orient:vertical!important;overflow:hidden!important}.article-featured-image{aspect-ratio:16/9!important;min-height:280px!important;max-height:430px!important;background-size:cover!important;background-position:center!important}@media(max-width:700px){.article-image,.post-image,.blog-image,.card-image{height:240px!important;min-height:240px!important;max-height:280px!important}.tool-preview{height:210px!important;min-height:210px!important;max-height:250px!important}}@media(max-width:430px){.article-image,.post-image,.blog-image,.card-image{height:220px!important;min-height:220px!important;max-height:250px!important}.tool-preview{height:190px!important;min-height:190px!important;max-height:220px!important}}';
     document.head.appendChild(critical);
   }
 
@@ -124,7 +131,7 @@
     var imageCss = document.createElement('link');
     imageCss.id = 'smart-images-css';
     imageCss.rel = 'stylesheet';
-    imageCss.href = resolveSiteAssetPath('smart-images.css?v=20260424-5');
+    imageCss.href = resolveSiteAssetPath('smart-images.css?v=20260424-6');
     document.head.appendChild(imageCss);
   }
 
@@ -146,6 +153,19 @@
       if (ARTICLE_IMAGE_MAP[href]) return { href: href, link: links[i] };
     }
     return null;
+  }
+
+  function ensureImageTitle(box, title) {
+    if (!box) return;
+    var cleanTitle = cleanArticleTitle(title);
+    if (!cleanTitle) return;
+    var titleEl = box.querySelector('.smart-image-title');
+    if (!titleEl) {
+      titleEl = document.createElement('span');
+      titleEl.className = 'smart-image-title';
+      box.appendChild(titleEl);
+    }
+    titleEl.textContent = cleanTitle;
   }
 
   function ensureImageInsideBox(box, href, title, imagePath) {
@@ -174,6 +194,8 @@
       box.appendChild(shine);
     }
 
+    ensureImageTitle(box, title);
+
     if (href && img.parentElement && img.parentElement.tagName !== 'A') {
       var link = document.createElement('a');
       link.href = href;
@@ -191,7 +213,8 @@
       var match = findBestArticleLink(card);
       if (!match) return;
       var imagePath = resolveSiteAssetPath(ARTICLE_IMAGE_MAP[match.href]);
-      var title = (match.link.textContent || '').trim() || match.link.getAttribute('aria-label') || 'اقرأ المقال';
+      var heading = card.querySelector('h1, h2, h3, .post-title, .article-title');
+      var title = cleanArticleTitle((heading && heading.textContent) || (match.link.textContent || '').trim() || match.link.getAttribute('aria-label') || 'اقرأ المقال');
       var box = card.querySelector('.article-image,.post-image,.blog-image,.card-image');
       var img = card.querySelector('img');
       if (box) ensureImageInsideBox(box, match.href, title, imagePath);
