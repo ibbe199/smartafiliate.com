@@ -1,8 +1,8 @@
 /* Smartafiliate image upgrade: global article visuals */
 :root {
   --smart-thumb-ratio: 16 / 9;
-  --smart-thumb-height: clamp(170px, 13vw, 220px);
-  --smart-tool-thumb-height: clamp(150px, 11vw, 190px);
+  --smart-thumb-height: clamp(280px, 24vw, 430px);
+  --smart-tool-thumb-height: clamp(220px, 18vw, 320px);
   --smart-image-radius: 20px;
 }
 
@@ -28,7 +28,8 @@
   width: 100%;
   aspect-ratio: var(--smart-thumb-ratio);
   height: var(--smart-thumb-height) !important;
-  min-height: 0;
+  min-height: 280px;
+  max-height: 430px;
   border-radius: var(--smart-image-radius);
   background: linear-gradient(135deg, #071527, #12305a);
   box-shadow:
@@ -39,6 +40,8 @@
 
 .tool-preview {
   height: var(--smart-tool-thumb-height) !important;
+  min-height: 220px;
+  max-height: 320px;
   margin-bottom: 1rem;
 }
 
@@ -53,10 +56,10 @@
   z-index: 1;
   pointer-events: none;
   background:
-    linear-gradient(180deg, rgba(2, 6, 23, 0.02) 0%, rgba(2, 6, 23, 0.10) 48%, rgba(2, 6, 23, 0.48) 100%),
+    linear-gradient(180deg, rgba(2, 6, 23, 0.02) 0%, rgba(2, 6, 23, 0.16) 44%, rgba(2, 6, 23, 0.72) 100%),
     radial-gradient(circle at 18% 14%, rgba(255,255,255,.24), transparent 24%),
     linear-gradient(135deg, rgba(234,88,12,.10), rgba(14,165,233,.10));
-  opacity: .78;
+  opacity: .86;
   transition: opacity .35s ease;
 }
 
@@ -69,7 +72,7 @@
   position: absolute;
   left: 14px;
   bottom: 14px;
-  z-index: 2;
+  z-index: 4;
   padding: 7px 13px;
   border-radius: 999px;
   color: #fff;
@@ -79,9 +82,27 @@
   font-size: 12px;
   font-weight: 900;
   letter-spacing: -.1px;
-  opacity: 0;
-  transform: translateY(8px);
+  opacity: 1;
+  transform: none;
   transition: opacity .35s ease, transform .35s ease;
+}
+
+.smart-image-title {
+  position: absolute;
+  right: 14px;
+  left: 14px;
+  bottom: 56px;
+  z-index: 4;
+  color: #fff;
+  font-size: clamp(1rem, 1.7vw, 1.35rem);
+  font-weight: 900;
+  line-height: 1.45;
+  letter-spacing: -.25px;
+  text-shadow: 0 3px 14px rgba(0,0,0,.55);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .article-image .smart-image-shine,
@@ -101,18 +122,9 @@
 .article-card:hover .smart-image-shine,
 .post-card:hover .smart-image-shine,
 .blog-card:hover .smart-image-shine,
-.card:hover .smart-image-shine,
+.card:hover .card-image .smart-image-shine,
 .tool-card:hover .smart-image-shine {
   transform: translateX(-120%);
-}
-
-.article-card:hover .article-image::after,
-.post-card:hover .post-image::after,
-.blog-card:hover .blog-image::after,
-.card:hover .card-image::after,
-.tool-card:hover .tool-preview::after {
-  opacity: 1;
-  transform: translateY(0);
 }
 
 .article-card:hover .article-image::before,
@@ -120,7 +132,7 @@
 .blog-card:hover .blog-image::before,
 .card:hover .card-image::before,
 .tool-card:hover .tool-preview::before {
-  opacity: .50;
+  opacity: .62;
 }
 
 .article-image img,
@@ -248,15 +260,15 @@
 
 @media (max-width: 900px) {
   :root {
-    --smart-thumb-height: clamp(170px, 28vw, 210px);
-    --smart-tool-thumb-height: clamp(150px, 24vw, 185px);
+    --smart-thumb-height: clamp(240px, 36vw, 360px);
+    --smart-tool-thumb-height: clamp(200px, 30vw, 280px);
   }
 }
 
 @media (max-width: 700px) {
   :root {
-    --smart-thumb-height: 185px;
-    --smart-tool-thumb-height: 165px;
+    --smart-thumb-height: 240px;
+    --smart-tool-thumb-height: 210px;
   }
 
   .article-image,
@@ -264,7 +276,20 @@
   .blog-image,
   .card-image {
     height: var(--smart-thumb-height) !important;
+    min-height: 240px;
+    max-height: 280px;
     aspect-ratio: 16 / 9;
+  }
+
+  .tool-preview {
+    min-height: 210px;
+    max-height: 250px;
+  }
+
+  .smart-image-title {
+    bottom: 52px;
+    font-size: 1rem;
+    -webkit-line-clamp: 2;
   }
 
   .article-image::after,
@@ -272,8 +297,6 @@
   .blog-image::after,
   .card-image::after,
   .tool-preview::after {
-    opacity: 1;
-    transform: none;
     font-size: 11px;
     padding: 6px 11px;
   }
@@ -281,8 +304,21 @@
 
 @media (max-width: 430px) {
   :root {
-    --smart-thumb-height: 170px;
-    --smart-tool-thumb-height: 150px;
+    --smart-thumb-height: 220px;
+    --smart-tool-thumb-height: 190px;
+  }
+
+  .article-image,
+  .post-image,
+  .blog-image,
+  .card-image {
+    min-height: 220px;
+    max-height: 250px;
+  }
+
+  .tool-preview {
+    min-height: 190px;
+    max-height: 220px;
   }
 }
 
