@@ -1,4 +1,10 @@
 /* Smartafiliate image upgrade: global article visuals */
+:root {
+  --smart-thumb-ratio: 16 / 9;
+  --smart-thumb-height: clamp(170px, 13vw, 220px);
+  --smart-tool-thumb-height: clamp(150px, 11vw, 190px);
+}
+
 .smart-article-image-link {
   display: block;
   position: relative;
@@ -6,6 +12,8 @@
   color: inherit;
   text-decoration: none;
   background: linear-gradient(135deg, #071527, #12305a);
+  width: 100%;
+  height: 100%;
 }
 
 .article-image,
@@ -16,6 +24,17 @@
   position: relative;
   overflow: hidden;
   isolation: isolate;
+  width: 100%;
+  aspect-ratio: var(--smart-thumb-ratio);
+  height: var(--smart-thumb-height) !important;
+  min-height: 0;
+  border-radius: 18px;
+  background: linear-gradient(135deg, #071527, #12305a);
+}
+
+.tool-preview {
+  height: var(--smart-tool-thumb-height) !important;
+  margin-bottom: 1rem;
 }
 
 .article-image::before,
@@ -80,10 +99,13 @@
 .post-image img,
 .blog-image img,
 .card-image img,
-.tool-preview img {
+.tool-preview img,
+.smart-article-image-link img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center;
+  display: block;
   transform: scale(1.001);
   filter: saturate(1.08) contrast(1.04);
   transition: transform .65s cubic-bezier(.2,.7,.2,1), filter .65s ease;
@@ -177,12 +199,35 @@
   to { opacity: 1; transform: scale(1.001); }
 }
 
+/* Featured image inside article pages */
+.article-featured-image {
+  aspect-ratio: 16 / 9;
+  height: auto !important;
+  min-height: 280px;
+  max-height: 430px;
+  background-size: cover;
+  background-position: center;
+}
+
+@media (max-width: 900px) {
+  :root {
+    --smart-thumb-height: clamp(170px, 28vw, 210px);
+    --smart-tool-thumb-height: clamp(150px, 24vw, 185px);
+  }
+}
+
 @media (max-width: 700px) {
+  :root {
+    --smart-thumb-height: 185px;
+    --smart-tool-thumb-height: 165px;
+  }
+
   .article-image,
   .post-image,
   .blog-image,
   .card-image {
-    height: 185px;
+    height: var(--smart-thumb-height) !important;
+    aspect-ratio: 16 / 9;
   }
 
   .article-image::after,
@@ -194,6 +239,13 @@
     transform: none;
     font-size: 11px;
     padding: 6px 11px;
+  }
+}
+
+@media (max-width: 430px) {
+  :root {
+    --smart-thumb-height: 170px;
+    --smart-tool-thumb-height: 150px;
   }
 }
 
