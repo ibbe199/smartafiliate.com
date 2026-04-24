@@ -1,71 +1,10 @@
 (function () {
   var GTM_ID = 'GTM-P96QVPT3';
   var DEFAULT_ARTICLE_IMAGE = 'assets/images/seo-card.png';
-  var ARTICLE_PATHS = [
-    'posts-ai/google-ai-content-acceptance.html',
-    'posts-ai/future-arab-websites-ai.html',
-    'posts-ai/ai-content-google-opportunity-risk.html',
-    'posts-ai/google-penalty-ai-content-truth.html',
-    'posts-ai/ai-seo-content-success.html',
-    'posts-ai/ai-save-or-bury-arab-websites.html',
-    'posts-ai/arab-websites-ai-who-survives.html',
-    'posts-ai/ai-knocks-arab-websites-door.html',
-    'posts-ai/build-website-with-ai-in-minutes.html',
-    'posts-ai/latest-ai-news-2026.html',
-    'posts-ai/30-best-ai-writing-tools.html',
-    'posts-ai/90-day-ai-plan.html',
-    'posts-ai/29-90-day-ai-plan.html',
-    'posts-ai/30-day-ai-plan.html',
-    'posts-ai/ai-affiliate-tools.html',
-    'articles/ai-tools-for-affiliate-marketing.html',
-    'articles/ai-tools-for-afiliate-marketing.html',
-    'posts-ai/ai-content-sales-system.html',
-    'posts-ai/affiliate-funnel-guide.html',
-    'posts-ai/affiliate-growth-strategy.html',
-    'posts-ai/what-is-affiliate-marketing.html',
-    'articles/what-is-affiliate-marketing.html',
-    'posts-ai/affiliate-mistakes.html',
-    'articles/affiliate-marketing-mistakes.html',
-    'posts-ai/arab-affiliate-programs.html',
-    'articles/best-affiliate-programs-arab-world.html',
-    'posts-ai/complete-ai-learning-path.html',
-    'posts-ai/content-structure-seo.html',
-    'articles/best-content-structure.html',
-    'articles/seo-for-affiliate-sites.html',
-    'posts-ai/chatgpt-review.html',
-    'posts-ai/jasper-ai-review.html',
-    'posts-ai/writesonic-review.html',
-    'posts-ai/midjourney-guide.html',
-    'posts-ai/dalle3-review.html',
-    'posts-ai/canva-ai-review.html',
-    'posts-ai/27-ai-and-personal-brand.html',
-    'posts-ai/28-ai-newsletters.html',
-    'posts-ai/ai-automation-productivity.html',
-    'posts-ai/ai-design-for-social-media.html',
-    'posts-ai/ai-learning-communities.html',
-    'posts-ai/ai-logo-design-guide.html',
-    'posts-ai/ai-projects-for-beginners.html',
-    'posts-ai/best-ai-design-tools.html',
-    'posts-ai/best-books-to-learn-ai.html',
-    'posts-ai/copyai-review.html',
-    'posts-ai/falcon-guide.html',
-    'posts-ai/free-ai-courses-arabic.html',
-    'posts-ai/future-of-ai-automation.html',
-    'posts-ai/latest-ai-automation-uses.html',
-    'posts-ai/learning-tips-for-ai.html',
-    'posts-ai/llama3-guide.html',
-    'posts-ai/math-for-ai-beginners.html',
-    'posts-ai/mistral-guide.html',
-    'posts-ai/ollama-guide.html',
-    'posts-ai/python-for-ai-beginners.html',
-    'posts-ai/tiktok-growth-engineering.html',
-    'posts-ai/what-is-ai-beginners.html',
-    'articles/paid-vs-free-vs-open-source-ai.html'
-  ];
 
-  var ARTICLE_IMAGE_MAP = {};
-  ARTICLE_PATHS.forEach(function (path) { ARTICLE_IMAGE_MAP[path] = DEFAULT_ARTICLE_IMAGE; });
-  window.ARTICLE_IMAGE_MAP = ARTICLE_IMAGE_MAP;
+  window.ARTICLE_IMAGE_MAP = new Proxy({}, {
+    get: function () { return DEFAULT_ARTICLE_IMAGE; }
+  });
 
   window.dataLayer = window.dataLayer || [];
   window.dataLayer.push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
@@ -84,6 +23,10 @@
     return a.pathname.replace(/^\//, '').replace(/^smartafiliate\.com\//, '').replace(/^\.\//, '').split('#')[0].split('?')[0];
   }
 
+  function isArticlePath(path) {
+    return /^(posts-ai|articles)\/.+\.html$/i.test(path || '');
+  }
+
   function resolveSiteAssetPath(assetPath) {
     var parts = window.location.pathname.split('/').filter(Boolean);
     var currentFile = parts[parts.length - 1] || '';
@@ -100,12 +43,27 @@
     if (document.getElementById('smartafiliate-global-fixes')) return;
     var style = document.createElement('style');
     style.id = 'smartafiliate-global-fixes';
-    style.textContent = '.logo{direction:ltr!important;unicode-bidi:isolate!important}.logo-text{direction:ltr!important;unicode-bidi:isolate!important}.logo-text-light{text-transform:capitalize!important}.site-header .logo{display:inline-flex!important;flex-direction:row!important}.smart-image-title{display:none!important;visibility:hidden!important;opacity:0!important;pointer-events:none!important}';
+    style.textContent = [
+      '.logo{direction:ltr!important;unicode-bidi:isolate!important}',
+      '.logo-text{direction:ltr!important;unicode-bidi:isolate!important}',
+      '.logo-text-light{text-transform:capitalize!important}',
+      '.site-header .logo{display:inline-flex!important;flex-direction:row!important}',
+      '.smart-image-title{display:none!important;visibility:hidden!important;opacity:0!important;pointer-events:none!important}',
+      '.article-card h3,.post-title,.post-card h3,.blog-card h3,.review-card h3,.decision-card h3,.quick-card h3,.tool-card h3{font-size:clamp(1.06rem,1.15vw,1.22rem)!important;line-height:1.55!important;font-weight:900!important;letter-spacing:-.015em!important;color:#0b1f3a!important;margin:.45rem 0 .7rem!important;text-align:right!important;text-wrap:balance!important}',
+      '.article-card h3 a,.post-title a,.post-card h3 a,.blog-card h3 a,.review-card h3 a,.decision-card h3 a,.quick-card h3 a{color:#0b1f3a!important;display:-webkit-box!important;-webkit-line-clamp:2!important;-webkit-box-orient:vertical!important;overflow:hidden!important;min-height:3.1em!important}',
+      '.article-card h3 a:hover,.post-title a:hover,.post-card h3 a:hover,.blog-card h3 a:hover{color:#ea580c!important}',
+      '.article-content,.post-content,.blog-content{display:flex!important;flex-direction:column!important;gap:.35rem!important}',
+      '.article-category,.post-category{align-self:flex-start!important;margin-bottom:.35rem!important;font-weight:900!important}',
+      '.article-excerpt,.post-excerpt{font-size:.9rem!important;line-height:1.8!important;color:#475569!important;display:-webkit-box!important;-webkit-line-clamp:3!important;-webkit-box-orient:vertical!important;overflow:hidden!important}',
+      '.page-hero h1,.article-body h1,.article-container h1{font-size:clamp(2rem,4vw,3.25rem)!important;line-height:1.3!important;font-weight:950!important;letter-spacing:-.025em!important;text-wrap:balance!important}',
+      '.article-body h2{font-size:clamp(1.45rem,2.4vw,2rem)!important;line-height:1.45!important;font-weight:900!important;color:#0b1f3a!important;margin-top:2.3rem!important}',
+      '@media(max-width:700px){.article-card h3,.post-title,.post-card h3,.tool-card h3{font-size:1.02rem!important;line-height:1.55!important}.article-card h3 a,.post-title a{min-height:auto!important}.page-hero h1{font-size:2rem!important}}'
+    ].join('');
     document.head.appendChild(style);
   }
 
   function pageHasArticleImages() {
-    return !!document.querySelector('.article-card, .post-card, .blog-card, .article-image, .post-image, .blog-image, .card-image, .article-container, .article-body');
+    return !!document.querySelector('.article-card, .post-card, .blog-card, .article-image, .post-image, .blog-image, .card-image, .article-container, .article-body, .tool-card');
   }
 
   function loadSmartImagesCss() {
@@ -113,7 +71,7 @@
     var imageCss = document.createElement('link');
     imageCss.id = 'smart-images-css';
     imageCss.rel = 'stylesheet';
-    imageCss.href = resolveSiteAssetPath('smart-images.css?v=20260424-default-1');
+    imageCss.href = resolveSiteAssetPath('smart-images.css?v=20260424-title-1');
     document.head.appendChild(imageCss);
   }
 
@@ -132,7 +90,7 @@
     var links = Array.prototype.slice.call(card.querySelectorAll('a[href]'));
     for (var i = 0; i < links.length; i += 1) {
       var href = normalizeUrl(links[i].getAttribute('href'));
-      if (ARTICLE_IMAGE_MAP[href]) return { href: href, link: links[i] };
+      if (isArticlePath(href)) return { href: href, link: links[i] };
     }
     return null;
   }
@@ -172,15 +130,14 @@
   }
 
   function applyDefaultArticleImagesEverywhere() {
-    if (!pageHasArticleImages()) return;
-    var selectors = '.article-card,.post-card,.blog-card,.review-card,.decision-card,.quick-card,.card,article';
+    var selectors = '.article-card,.post-card,.blog-card,.review-card,.decision-card,.quick-card,.card,article,.tool-card';
     document.querySelectorAll(selectors).forEach(function (card) {
       var match = findBestArticleLink(card);
       if (!match) return;
       var imagePath = resolveSiteAssetPath(DEFAULT_ARTICLE_IMAGE);
       var heading = card.querySelector('h1, h2, h3, .post-title, .article-title');
       var title = (heading && heading.textContent || match.link.textContent || 'صورة افتراضية للمقال').replace(/\s+/g, ' ').trim();
-      var box = card.querySelector('.article-image,.post-image,.blog-image,.card-image');
+      var box = card.querySelector('.article-image,.post-image,.blog-image,.card-image,.tool-preview');
       var img = card.querySelector('img');
       if (box) ensureImageInsideBox(box, match.href, title, imagePath);
       else if (img) {
@@ -206,7 +163,7 @@
 
   function applyCurrentArticleMeta() {
     var currentPath = normalizeUrl(window.location.href);
-    if (!ARTICLE_IMAGE_MAP[currentPath]) return;
+    if (!isArticlePath(currentPath)) return;
     var localImage = resolveSiteAssetPath(DEFAULT_ARTICLE_IMAGE);
     var absoluteImage = absoluteAssetUrl(DEFAULT_ARTICLE_IMAGE);
     var heading = document.querySelector('h1');
