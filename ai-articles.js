@@ -133,6 +133,20 @@ function getCardTitle(card) {
   return titleLink ? titleLink.textContent.replace(/\s+/g, ' ').trim() : '';
 }
 
+function removeImageTitles(scope) {
+  (scope || document).querySelectorAll('.smart-image-title').forEach(function (el) {
+    el.remove();
+  });
+}
+
+function installImageTitleBlocker() {
+  if (document.getElementById('ai-articles-no-image-titles')) return;
+  const style = document.createElement('style');
+  style.id = 'ai-articles-no-image-titles';
+  style.textContent = '.smart-image-title{display:none!important;visibility:hidden!important;opacity:0!important}';
+  document.head.appendChild(style);
+}
+
 function sortArticlesByConversionPriority() {
   const grid = document.querySelector('.articles-grid');
   if (!grid) return;
@@ -172,18 +186,8 @@ function ensureImageLink(imageBox, img, articleUrl, title) {
   imageLink.appendChild(img);
 }
 
-function ensureImageTitle(imageBox, title) {
-  if (!imageBox || !title) return;
-  let titleEl = imageBox.querySelector('.smart-image-title');
-  if (!titleEl) {
-    titleEl = document.createElement('span');
-    titleEl.className = 'smart-image-title';
-    imageBox.appendChild(titleEl);
-  }
-  titleEl.textContent = title;
-}
-
 function applyNewArticleImages() {
+  installImageTitleBlocker();
   document.querySelectorAll('.article-card').forEach(function (card) {
     const articleUrl = getCardArticleUrl(card);
     const imageBox = card.querySelector('.article-image, .post-image, .blog-image, .card-image');
@@ -207,8 +211,9 @@ function applyNewArticleImages() {
     img.classList.add('smart-image-loaded');
 
     ensureImageLink(imageBox, img, articleUrl, title);
-    ensureImageTitle(imageBox, title);
+    removeImageTitles(card);
   });
+  removeImageTitles(document);
 }
 
 function trackArticleClick(articleUrl, articleTitle, clickArea, rank, priority) {
@@ -270,7 +275,9 @@ function applyCardImageFallbacks() {
   });
 }
 
+installImageTitleBlocker();
 sortArticlesByConversionPriority();
 applyNewArticleImages();
 addArticleClickTracking();
 applyCardImageFallbacks();
+removeImageTitles(document);
