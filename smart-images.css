@@ -1,0 +1,218 @@
+/* Smartafiliate image upgrade: global article visuals */
+.smart-article-image-link {
+  display: block;
+  position: relative;
+  overflow: hidden;
+  color: inherit;
+  text-decoration: none;
+  background: linear-gradient(135deg, #071527, #12305a);
+}
+
+.article-image,
+.post-image,
+.blog-image,
+.card-image,
+.tool-preview {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.article-image::before,
+.post-image::before,
+.blog-image::before,
+.card-image::before,
+.tool-preview::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, rgba(2, 6, 23, 0.02) 0%, rgba(2, 6, 23, 0.18) 55%, rgba(2, 6, 23, 0.55) 100%),
+    radial-gradient(circle at 20% 15%, rgba(255,255,255,.20), transparent 28%);
+  opacity: .85;
+  transition: opacity .35s ease;
+}
+
+.article-image::after,
+.post-image::after,
+.blog-image::after,
+.card-image::after,
+.tool-preview::after {
+  content: "اقرأ المقال";
+  position: absolute;
+  left: 14px;
+  bottom: 14px;
+  z-index: 2;
+  padding: 7px 13px;
+  border-radius: 999px;
+  color: #fff;
+  background: rgba(234, 88, 12, .92);
+  border: 1px solid rgba(255,255,255,.24);
+  box-shadow: 0 10px 25px rgba(0,0,0,.22);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: -.1px;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity .35s ease, transform .35s ease;
+}
+
+.article-card:hover .article-image::after,
+.post-card:hover .post-image::after,
+.blog-card:hover .blog-image::after,
+.card:hover .card-image::after,
+.tool-card:hover .tool-preview::after {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.article-card:hover .article-image::before,
+.post-card:hover .post-image::before,
+.blog-card:hover .blog-image::before,
+.card:hover .card-image::before,
+.tool-card:hover .tool-preview::before {
+  opacity: .55;
+}
+
+.article-image img,
+.post-image img,
+.blog-image img,
+.card-image img,
+.tool-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.001);
+  filter: saturate(1.08) contrast(1.04);
+  transition: transform .65s cubic-bezier(.2,.7,.2,1), filter .65s ease;
+}
+
+.article-card:hover .article-image img,
+.post-card:hover .post-image img,
+.blog-card:hover .blog-image img,
+.card:hover .card-image img,
+.tool-card:hover .tool-preview img {
+  transform: scale(1.075);
+  filter: saturate(1.18) contrast(1.08) brightness(1.02);
+}
+
+.article-card,
+.post-card,
+.blog-card,
+.tool-card,
+.review-card,
+.decision-card,
+.quick-card {
+  position: relative;
+  will-change: transform;
+}
+
+.article-card::before,
+.post-card::before,
+.blog-card::before,
+.tool-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  background: linear-gradient(135deg, rgba(234,88,12,.22), rgba(14,165,233,.12));
+  transition: opacity .35s ease;
+  z-index: 0;
+}
+
+.article-card:hover::before,
+.post-card:hover::before,
+.blog-card:hover::before,
+.tool-card:hover::before {
+  opacity: 1;
+}
+
+.article-card > *,
+.post-card > *,
+.blog-card > *,
+.tool-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.smart-image-badge {
+  position: absolute;
+  right: 14px;
+  top: 14px;
+  z-index: 3;
+  padding: 6px 11px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, .88);
+  color: #0f172a;
+  border: 1px solid rgba(255,255,255,.55);
+  box-shadow: 0 10px 25px rgba(0,0,0,.16);
+  font-size: 11px;
+  font-weight: 900;
+  backdrop-filter: blur(10px);
+}
+
+.smart-image-skeleton {
+  background:
+    linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,.22), rgba(255,255,255,0)),
+    linear-gradient(135deg, #0b1f3a, #1d4ed8);
+  background-size: 220% 100%, 100% 100%;
+  animation: smartImageShimmer 1.3s ease-in-out infinite;
+}
+
+.smart-image-loaded {
+  animation: smartImageFade .45s ease both;
+}
+
+@keyframes smartImageShimmer {
+  from { background-position: 120% 0, 0 0; }
+  to { background-position: -120% 0, 0 0; }
+}
+
+@keyframes smartImageFade {
+  from { opacity: .55; transform: scale(1.025); }
+  to { opacity: 1; transform: scale(1.001); }
+}
+
+@media (max-width: 700px) {
+  .article-image,
+  .post-image,
+  .blog-image,
+  .card-image {
+    height: 185px;
+  }
+
+  .article-image::after,
+  .post-image::after,
+  .blog-image::after,
+  .card-image::after,
+  .tool-preview::after {
+    opacity: 1;
+    transform: none;
+    font-size: 11px;
+    padding: 6px 11px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .article-image img,
+  .post-image img,
+  .blog-image img,
+  .card-image img,
+  .tool-preview img,
+  .article-card,
+  .post-card,
+  .blog-card,
+  .tool-card,
+  .article-image::after,
+  .post-image::after,
+  .blog-image::after,
+  .card-image::after,
+  .tool-preview::after {
+    transition: none !important;
+    animation: none !important;
+  }
+}
