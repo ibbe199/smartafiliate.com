@@ -3,7 +3,7 @@ function copyPageLink(url) {
   navigator.clipboard.writeText(url).then(function () {
     if (message) message.textContent = 'تم نسخ رابط الصفحة ✅';
   }).catch(function () {
-    if (message) message.textContent = 'تعذر نسخ الرابط، انسخه يدويًا: ' + url;
+    if (message) message.textContent = 'تعذر نسخ الرابط. انسخ الرابط يدويًا: ' + url;
   });
 }
 
@@ -17,6 +17,9 @@ function cleanArticleTitle(title) {
   return String(title || 'مقال من Smartafiliate')
     .replace(/\s*\|\s*Smartafiliate/gi, '')
     .replace(/\s*\|\s*smartafiliate/gi, '')
+    .replace(/\s+/g, ' ')
+    .replace(/\s+([،؛:.؟])/g, '$1')
+    .replace(/([،؛:.؟])([^\s])/g, '$1 $2')
     .replace(/[:؟?]+$/g, '')
     .trim();
 }
@@ -27,7 +30,7 @@ function splitTitleForCover(title) {
 
   const totalChars = words.join('').length;
   const targetLines = totalChars > 36 || words.length > 7 ? 3 : 2;
-  const targetLength = Math.ceil((words.join(' ').length) / targetLines);
+  const targetLength = Math.ceil(words.join(' ').length / targetLines);
   const lines = [];
   let current = '';
 
@@ -83,6 +86,7 @@ function applyCardImageFallbacks() {
     const category = card.querySelector('.article-category');
     if (!img || !link) return;
 
+    link.textContent = cleanArticleTitle(link.textContent);
     const current = img.getAttribute('src') || '';
     const isRealUploadedImage = current.indexOf('assets/images/') !== -1 || current.indexOf('/assets/images/') !== -1;
 
@@ -136,12 +140,13 @@ function appendAdditionalPublishedArticles() {
     const article = document.createElement('article');
     article.className = 'article-card additional-published-ai-article';
     if (index === 0) article.id = 'additional-published-ai-articles';
-    const cover = createOrganizedDefaultCover(item[1], item[2]);
-    article.innerHTML = '<div class="article-image"><img src="' + cover + '" alt="' + cleanArticleTitle(item[1]) + '" loading="lazy" decoding="async"></div>' +
+    const title = cleanArticleTitle(item[1]);
+    const cover = createOrganizedDefaultCover(title, item[2]);
+    article.innerHTML = '<div class="article-image"><img src="' + cover + '" alt="' + title + '" loading="lazy" decoding="async"></div>' +
       '<div class="article-content"><span class="article-category">' + item[2] + '</span>' +
-      '<h3><a href="' + item[0] + '">' + item[1] + '</a></h3>' +
-      '<p class="article-excerpt">مقال منشور داخل المستودع وتم ربطه الآن داخل مكتبة الذكاء الاصطناعي ليظهر للزائر ومحركات البحث.</p>' +
-      '<div class="article-meta"><span>منشور</span><a href="' + item[0] + '" class="read-more">اقرأ المقال →</a></div></div>';
+      '<h3><a href="' + item[0] + '">' + title + '</a></h3>' +
+      '<p class="article-excerpt">دليل عملي ضمن مكتبة Smartafiliate يساعدك على فهم الموضوع وتطبيقه بخطوات واضحة.</p>' +
+      '<div class="article-meta"><span>مقال محدث</span><a href="' + item[0] + '" class="read-more">اقرأ المقال →</a></div></div>';
     fragment.appendChild(article);
   });
 
