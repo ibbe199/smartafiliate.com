@@ -24,15 +24,16 @@
   content: "";
   position: absolute;
   inset: auto 5% 10% auto;
-  width: min(320px, 30vw);
-  height: min(320px, 30vw);
+  width: min(420px, 32vw);
+  aspect-ratio: 1200 / 630;
+  height: auto;
   border-radius: 28px;
   background: var(--article-cover, linear-gradient(135deg, rgba(255,255,255,0.10), rgba(255,255,255,0.02)));
   background-size: cover;
   background-position: center;
   border: 1px solid rgba(255,255,255,0.14);
   box-shadow: 0 20px 60px rgba(0,0,0,0.22);
-  transform: rotate(-8deg);
+  transform: rotate(-5deg);
   pointer-events: none;
   z-index: -1;
   opacity: .72;
@@ -41,19 +42,50 @@
   position: relative;
   z-index: 1;
 }
+.article-cover-card,
+.article-featured-thumbnail,
+.article-image,
+.post-image {
+  width: 100%;
+  aspect-ratio: 1200 / 630 !important;
+  height: auto !important;
+  overflow: hidden;
+  background: linear-gradient(135deg, #0b1f3a, #12305a);
+}
 .article-cover-card {
   width: min(100%, 900px);
   margin: 0 auto 1.5rem;
   border-radius: 24px;
-  overflow: hidden;
   border: 1px solid var(--line);
   box-shadow: var(--shadow-md);
   background: var(--surface);
 }
-.article-cover-card img {
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  object-fit: cover;
+.article-cover-card img,
+.article-featured-thumbnail img,
+.article-image img,
+.post-image img {
+  width: 100% !important;
+  height: 100% !important;
+  aspect-ratio: 1200 / 630 !important;
+  object-fit: cover !important;
+  object-position: center center !important;
+  display: block !important;
+}
+.article-card,
+.post-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.article-content,
+.post-content {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+}
+.article-meta,
+.post-meta {
+  margin-top: auto;
 }
 .article-body a {
   color: var(--primary-dark);
@@ -99,8 +131,7 @@
 @media (max-width: 1024px) {
   .page-hero::after {
     opacity: .55;
-    width: 220px;
-    height: 220px;
+    width: min(320px, 42vw);
   }
 }
 @media (max-width: 640px) {
@@ -110,7 +141,8 @@
   .page-hero::after {
     display: none;
   }
-  .article-cover-card {
+  .article-cover-card,
+  .article-featured-thumbnail {
     border-radius: 18px;
   }
 }
