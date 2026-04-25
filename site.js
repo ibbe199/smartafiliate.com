@@ -1,11 +1,7 @@
 (function () {
   const GTM_ID = 'GTM-P96QVPT3';
-
   window.dataLayer = window.dataLayer || [];
-  window.dataLayer.push({
-    'gtm.start': new Date().getTime(),
-    event: 'gtm.js'
-  });
+  window.dataLayer.push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
 
   if (!document.querySelector('script[src*="googletagmanager.com/gtm.js?id=' + GTM_ID + '"]')) {
     const firstScript = document.getElementsByTagName('script')[0];
@@ -27,20 +23,36 @@
 (function () {
   const BRAND = 'Smartafiliate';
 
-  function normalizeText(value) {
-    if (!value) return value;
-    return value.replace(/smartafiliate/gi, BRAND);
-  }
+  const IMAGE_BY_TOPIC = [
+    {
+      image: '/assets/images/ai-tools-review.png',
+      match: ['30-best-ai-writing-tools', 'chatgpt-review', 'canva-ai-review', 'jasper-ai-review', 'writesonic-review', 'copyai-review', 'dalle3-review', 'midjourney-guide', 'best-ai-design-tools']
+    },
+    {
+      image: '/assets/images/open-source-ai-models.png',
+      match: ['llama3-guide', 'mistral-guide', 'falcon-guide', 'ollama-guide', 'open-source']
+    },
+    {
+      image: '/assets/images/ai-seo-guide.png',
+      match: ['latest-ai-news-2026', 'build-website-with-ai-in-minutes', 'google-ai-content-acceptance', 'google-penalty-ai-content-truth', 'ai-content-google-opportunity-risk', 'ai-seo-content-success', 'content-structure-seo', 'seo-for-affiliate-sites']
+    },
+    {
+      image: '/assets/images/ai-learning-roadmap.png',
+      match: ['complete-ai-learning-path', 'what-is-ai-beginners', 'python-for-ai-beginners', 'math-for-ai-beginners', 'free-ai-courses-arabic', 'best-books-to-learn-ai', 'ai-projects-for-beginners', 'learning-tips-for-ai', 'ai-learning-communities', 'learn-ai']
+    },
+    {
+      image: '/assets/images/ai-productivity-tools.png',
+      match: ['ai-automation-productivity', 'latest-ai-automation-uses', 'future-of-ai-automation', 'ai-affiliate-tools', 'affiliate-funnel-guide', 'affiliate-growth-strategy', 'affiliate-mistakes', 'arab-affiliate-programs', 'what-is-affiliate-marketing', 'ai-content-sales-system', 'tiktok-growth-engineering', 'ai-design-for-social-media', 'ai-logo-design-guide', '27-ai-and-personal-brand', '28-ai-newsletters', '29-90-day-ai-plan', '30-day-ai-plan', '90-day-ai-plan', 'ai-tools-for-affiliate-marketing', 'affiliate-marketing-mistakes', 'best-affiliate-programs-arab-world', 'best-content-structure']
+    }
+  ];
 
   function normalizeBranding() {
-    document.title = normalizeText(document.title);
-
+    document.title = (document.title || '').replace(/smartafiliate/gi, BRAND);
     document.querySelectorAll('meta[content]').forEach(function (meta) {
-      const content = meta.getAttribute('content');
-      const next = normalizeText(content);
-      if (next !== content) meta.setAttribute('content', next);
+      const value = meta.getAttribute('content') || '';
+      const next = value.replace(/smartafiliate/gi, BRAND);
+      if (next !== value) meta.setAttribute('content', next);
     });
-
     document.querySelectorAll('.logo').forEach(function (logo) {
       const light = logo.querySelector('.logo-text-light');
       const accent = logo.querySelector('.logo-text-accent');
@@ -49,28 +61,41 @@
         accent.textContent = 'afiliate';
       }
     });
+  }
 
-    const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
-      acceptNode: function (node) {
-        if (!node.nodeValue || !/smartafiliate/i.test(node.nodeValue)) return NodeFilter.FILTER_REJECT;
-        const parent = node.parentElement;
-        if (!parent || ['SCRIPT', 'STYLE', 'NOSCRIPT'].includes(parent.tagName)) return NodeFilter.FILTER_REJECT;
-        return NodeFilter.FILTER_ACCEPT;
-      }
+  function imageForHref(href) {
+    const normalized = (href || '').toLowerCase();
+    const topic = IMAGE_BY_TOPIC.find(function (group) {
+      return group.match.some(function (key) { return normalized.includes(key); });
     });
+    return topic ? topic.image : '';
+  }
 
-    const nodes = [];
-    while (walker.nextNode()) nodes.push(walker.currentNode);
-    nodes.forEach(function (node) {
-      node.nodeValue = normalizeText(node.nodeValue);
+  function linkHomepageImages() {
+    if (!document.body.classList.contains('home-page')) return;
+    document.querySelectorAll('.article-directory a[href]').forEach(function (link) {
+      if (link.querySelector('img.link-thumb')) return;
+      const image = imageForHref(link.getAttribute('href'));
+      if (!image) return;
+      const img = document.createElement('img');
+      img.className = 'link-thumb';
+      img.src = image;
+      img.alt = link.textContent.trim();
+      img.loading = 'lazy';
+      img.decoding = 'async';
+      img.onerror = function () { img.remove(); };
+      link.prepend(img);
     });
   }
 
-  function injectMobileFixes() {
-    if (document.getElementById('smartafiliate-mobile-fixes')) return;
+  function injectSharedStyles() {
+    if (document.getElementById('smartafiliate-shared-fixes')) return;
     const style = document.createElement('style');
-    style.id = 'smartafiliate-mobile-fixes';
+    style.id = 'smartafiliate-shared-fixes';
     style.textContent = `
+      .home-page .article-directory a { align-items: center !important; gap: .65rem !important; }
+      .home-page .article-directory a:before { display: none !important; }
+      .home-page .link-thumb { width: 72px !important; height: 44px !important; object-fit: cover !important; border-radius: 10px !important; flex: 0 0 72px !important; box-shadow: 0 6px 14px rgba(15,23,42,.12); background: #0b1f3a; }
       @media (max-width: 900px) {
         html, body { width: 100%; overflow-x: hidden; }
         .container { width: min(100% - 1.25rem, 1200px) !important; }
@@ -95,9 +120,6 @@
         .article-content, .post-content, .tool-card, .review-card, .decision-card, .info-card { padding: 1rem !important; }
         .article-meta, .post-meta { flex-direction: column !important; align-items: flex-start !important; gap: .4rem !important; }
         .tool-preview { height: 120px !important; }
-        .newsletter { padding: 1.25rem !important; }
-        .newsletter-form { display: grid !important; grid-template-columns: 1fr !important; }
-        .newsletter-input, .newsletter-btn { width: 100% !important; }
         .footer-grid { grid-template-columns: 1fr !important; text-align: center !important; }
         .footer-col { align-items: center !important; }
         img { max-width: 100% !important; height: auto; }
@@ -107,23 +129,20 @@
         .page-hero h1 { font-size: 2rem !important; }
         .section-header h2 { font-size: 1.6rem !important; }
         .article-image, .post-image { height: 170px !important; }
-        .share-buttons { display: grid !important; grid-template-columns: 1fr !important; }
-        .share-btn { width: 100% !important; }
+        .home-page .link-thumb { width: 86px !important; height: 52px !important; flex-basis: 86px !important; }
       }
     `;
     document.head.appendChild(style);
   }
 
-  function initSharedFixes() {
+  function init() {
     normalizeBranding();
-    injectMobileFixes();
+    injectSharedStyles();
+    linkHomepageImages();
   }
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initSharedFixes);
-  } else {
-    initSharedFixes();
-  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+  else init();
 })();
 
 function closeMenu() {
@@ -148,9 +167,7 @@ document.addEventListener('click', function (event) {
   const nav = document.getElementById('mainNav');
   const button = document.querySelector('.menu-toggle');
   if (!nav || !button) return;
-  if (nav.classList.contains('active') && !nav.contains(event.target) && !button.contains(event.target)) {
-    closeMenu();
-  }
+  if (nav.classList.contains('active') && !nav.contains(event.target) && !button.contains(event.target)) closeMenu();
 });
 
 window.addEventListener('resize', function () {
@@ -160,9 +177,6 @@ window.addEventListener('resize', function () {
 window.addEventListener('scroll', function () {
   const header = document.querySelector('.site-header');
   if (!header) return;
-  if (window.scrollY > 50) {
-    header.classList.add('header-scrolled');
-  } else {
-    header.classList.remove('header-scrolled');
-  }
+  if (window.scrollY > 50) header.classList.add('header-scrolled');
+  else header.classList.remove('header-scrolled');
 });
