@@ -1,17 +1,24 @@
-/* Shared article enhancements for smartafiliate */
+/* Shared article enhancements for Smartafiliate */
 .page-hero {
   position: relative;
   overflow: hidden;
+  isolation: isolate;
 }
 .page-hero::before {
   content: "";
   position: absolute;
   inset: 0;
   background:
+    linear-gradient(135deg, rgba(8,20,38,.92), rgba(11,31,58,.88), rgba(18,48,90,.82)),
+    var(--article-cover, none),
     radial-gradient(circle at 15% 20%, rgba(234,88,12,0.16), transparent 20%),
     radial-gradient(circle at 85% 18%, rgba(59,130,246,0.22), transparent 24%),
     radial-gradient(circle at 50% 95%, rgba(245,158,11,0.12), transparent 26%);
+  background-size: cover, cover, auto, auto, auto;
+  background-position: center, center, center, center, center;
+  background-repeat: no-repeat;
   pointer-events: none;
+  z-index: -2;
 }
 .page-hero::after {
   content: "";
@@ -20,15 +27,33 @@
   width: min(320px, 30vw);
   height: min(320px, 30vw);
   border-radius: 28px;
-  background: linear-gradient(135deg, rgba(255,255,255,0.10), rgba(255,255,255,0.02));
-  border: 1px solid rgba(255,255,255,0.08);
-  box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+  background: var(--article-cover, linear-gradient(135deg, rgba(255,255,255,0.10), rgba(255,255,255,0.02)));
+  background-size: cover;
+  background-position: center;
+  border: 1px solid rgba(255,255,255,0.14);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.22);
   transform: rotate(-8deg);
   pointer-events: none;
+  z-index: -1;
+  opacity: .72;
 }
 .page-hero .container {
   position: relative;
   z-index: 1;
+}
+.article-cover-card {
+  width: min(100%, 900px);
+  margin: 0 auto 1.5rem;
+  border-radius: 24px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-md);
+  background: var(--surface);
+}
+.article-cover-card img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
 }
 .article-body a {
   color: var(--primary-dark);
@@ -84,6 +109,9 @@
   }
   .page-hero::after {
     display: none;
+  }
+  .article-cover-card {
+    border-radius: 18px;
   }
 }
 @media (prefers-reduced-motion: reduce) {
