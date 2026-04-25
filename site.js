@@ -25,6 +25,47 @@
 })();
 
 (function () {
+  const BRAND = 'Smartafiliate';
+
+  function normalizeText(value) {
+    if (!value) return value;
+    return value.replace(/smartafiliate/gi, BRAND);
+  }
+
+  function normalizeBranding() {
+    document.title = normalizeText(document.title);
+
+    document.querySelectorAll('meta[content]').forEach(function (meta) {
+      const content = meta.getAttribute('content');
+      const next = normalizeText(content);
+      if (next !== content) meta.setAttribute('content', next);
+    });
+
+    document.querySelectorAll('.logo').forEach(function (logo) {
+      const light = logo.querySelector('.logo-text-light');
+      const accent = logo.querySelector('.logo-text-accent');
+      if (light && accent) {
+        light.textContent = 'Smart';
+        accent.textContent = 'afiliate';
+      }
+    });
+
+    const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
+      acceptNode: function (node) {
+        if (!node.nodeValue || !/smartafiliate/i.test(node.nodeValue)) return NodeFilter.FILTER_REJECT;
+        const parent = node.parentElement;
+        if (!parent || ['SCRIPT', 'STYLE', 'NOSCRIPT'].includes(parent.tagName)) return NodeFilter.FILTER_REJECT;
+        return NodeFilter.FILTER_ACCEPT;
+      }
+    });
+
+    const nodes = [];
+    while (walker.nextNode()) nodes.push(walker.currentNode);
+    nodes.forEach(function (node) {
+      node.nodeValue = normalizeText(node.nodeValue);
+    });
+  }
+
   function injectMobileFixes() {
     if (document.getElementById('smartafiliate-mobile-fixes')) return;
     const style = document.createElement('style');
@@ -72,10 +113,16 @@
     `;
     document.head.appendChild(style);
   }
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', injectMobileFixes);
-  } else {
+
+  function initSharedFixes() {
+    normalizeBranding();
     injectMobileFixes();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initSharedFixes);
+  } else {
+    initSharedFixes();
   }
 })();
 
