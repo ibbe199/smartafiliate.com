@@ -23,51 +23,54 @@ function cleanArticleTitle(title) {
 
 function splitTitleForCover(title) {
   const words = cleanArticleTitle(title).split(/\s+/).filter(Boolean);
+  if (words.length <= 3) return [words.join(' ')];
+
+  const totalChars = words.join('').length;
+  const targetLines = totalChars > 36 || words.length > 7 ? 3 : 2;
+  const targetLength = Math.ceil((words.join(' ').length) / targetLines);
   const lines = [];
   let current = '';
 
   words.forEach(function (word) {
     const next = current ? current + ' ' + word : word;
-    if (next.length > 23 && current && lines.length < 2) {
+    if (next.length > targetLength && current && lines.length < targetLines - 1) {
       lines.push(current);
       current = word;
     } else {
       current = next;
     }
   });
-
   if (current) lines.push(current);
-  if (lines.length > 3) {
-    lines[2] = lines.slice(2).join(' ');
-    lines.length = 3;
-  }
 
-  return lines.map(function (line) {
-    return line.length > 31 ? line.slice(0, 30).trim() + '…' : line;
+  return lines.slice(0, 3).map(function (line) {
+    return line.length > 34 ? line.slice(0, 33).trim() + '…' : line;
   });
 }
 
 function createOrganizedDefaultCover(title, category) {
   const lines = splitTitleForCover(title);
-  const yStart = lines.length === 1 ? 326 : lines.length === 2 ? 292 : 258;
+  const fontSize = lines.length === 1 ? 64 : lines.length === 2 ? 58 : 52;
+  const lineGap = lines.length === 3 ? 66 : 74;
+  const yStart = lines.length === 1 ? 320 : lines.length === 2 ? 292 : 252;
   const titleLines = lines.map(function (line, index) {
-    return '<tspan x="1040" y="' + (yStart + index * 70) + '">' + escapeSvgText(line) + '</tspan>';
+    return '<tspan x="600" y="' + (yStart + index * lineGap) + '">' + escapeSvgText(line) + '</tspan>';
   }).join('');
 
   const svg = '<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">' +
     '<defs>' +
-      '<linearGradient id="bg" x1="0" y1="0" x2="1200" y2="630"><stop stop-color="#081426"/><stop offset="0.56" stop-color="#12305a"/><stop offset="1" stop-color="#ea580c"/></linearGradient>' +
-      '<linearGradient id="accent" x1="90" y1="80" x2="500" y2="500"><stop stop-color="#f59e0b" stop-opacity="0.96"/><stop offset="1" stop-color="#ea580c" stop-opacity="0.10"/></linearGradient>' +
-      '<filter id="shadow"><feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#000" flood-opacity="0.25"/></filter>' +
+      '<linearGradient id="bg" x1="0" y1="0" x2="1200" y2="630"><stop stop-color="#071426"/><stop offset="0.52" stop-color="#12305a"/><stop offset="1" stop-color="#ea580c"/></linearGradient>' +
+      '<linearGradient id="accent" x1="110" y1="80" x2="520" y2="520"><stop stop-color="#f59e0b" stop-opacity="0.98"/><stop offset="1" stop-color="#ea580c" stop-opacity="0.12"/></linearGradient>' +
+      '<linearGradient id="glass" x1="210" y1="140" x2="990" y2="510"><stop stop-color="#ffffff" stop-opacity="0.10"/><stop offset="1" stop-color="#ffffff" stop-opacity="0.035"/></linearGradient>' +
+      '<filter id="shadow"><feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#000" flood-opacity="0.30"/></filter>' +
     '</defs>' +
     '<rect width="1200" height="630" fill="url(#bg)"/>' +
-    '<circle cx="150" cy="135" r="215" fill="url(#accent)"/>' +
-    '<circle cx="1030" cy="548" r="190" fill="#ffffff" fill-opacity="0.08"/>' +
-    '<rect x="70" y="70" width="1060" height="490" rx="38" fill="#ffffff" fill-opacity="0.055" stroke="#ffffff" stroke-opacity="0.13"/>' +
-    '<rect x="760" y="95" width="290" height="52" rx="26" fill="#111827" fill-opacity="0.44"/>' +
-    '<text x="1040" y="131" text-anchor="end" direction="rtl" unicode-bidi="plaintext" font-family="Tahoma, Arial, sans-serif" font-size="27" font-weight="800" fill="#FDBA74">' + escapeSvgText(category || 'مقال من Smartafiliate') + '</text>' +
-    '<text text-anchor="end" direction="rtl" unicode-bidi="plaintext" font-family="Tahoma, Arial, sans-serif" font-size="54" font-weight="900" fill="#ffffff" filter="url(#shadow)">' + titleLines + '</text>' +
-    '<text x="1040" y="535" text-anchor="end" direction="rtl" unicode-bidi="plaintext" font-family="Tahoma, Arial, sans-serif" font-size="32" font-weight="800" fill="#fff" fill-opacity="0.92">Smartafiliate</text>' +
+    '<circle cx="160" cy="130" r="225" fill="url(#accent)"/>' +
+    '<circle cx="1040" cy="540" r="205" fill="#ffffff" fill-opacity="0.075"/>' +
+    '<rect x="92" y="74" width="1016" height="482" rx="42" fill="url(#glass)" stroke="#ffffff" stroke-opacity="0.15"/>' +
+    '<rect x="398" y="94" width="404" height="56" rx="28" fill="#071426" fill-opacity="0.48"/>' +
+    '<text x="600" y="131" text-anchor="middle" direction="rtl" unicode-bidi="plaintext" font-family="Tahoma, Arial, sans-serif" font-size="26" font-weight="800" fill="#FDBA74">' + escapeSvgText(category || 'مقال من Smartafiliate') + '</text>' +
+    '<text text-anchor="middle" direction="rtl" unicode-bidi="plaintext" font-family="Tahoma, Arial, sans-serif" font-size="' + fontSize + '" font-weight="900" fill="#ffffff" filter="url(#shadow)">' + titleLines + '</text>' +
+    '<text x="600" y="530" text-anchor="middle" direction="ltr" font-family="Tahoma, Arial, sans-serif" font-size="32" font-weight="900" fill="#fff" fill-opacity="0.92">Smartafiliate</text>' +
     '</svg>';
 
   return 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(svg);
@@ -82,9 +85,8 @@ function applyCardImageFallbacks() {
 
     const current = img.getAttribute('src') || '';
     const isRealUploadedImage = current.indexOf('assets/images/') !== -1 || current.indexOf('/assets/images/') !== -1;
-    const isAlreadyGenerated = current.indexOf('data:image/svg+xml') === 0;
 
-    if (!isRealUploadedImage && !isAlreadyGenerated) {
+    if (!isRealUploadedImage) {
       img.src = createOrganizedDefaultCover(link.textContent.trim(), category ? category.textContent.trim() : 'مقال من Smartafiliate');
       img.alt = cleanArticleTitle(link.textContent.trim());
     }
