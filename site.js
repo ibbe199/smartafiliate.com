@@ -79,6 +79,7 @@
       .article-card, .post-card { display: flex !important; flex-direction: column !important; height: 100% !important; min-height: 100% !important; overflow: hidden !important; }
       .article-image, .post-image { width: 100% !important; height: auto !important; aspect-ratio: 1200 / 630 !important; overflow: hidden !important; background: linear-gradient(135deg,#0b1f3a,#12305a) !important; flex: 0 0 auto !important; }
       .article-image img, .post-image img { width: 100% !important; height: 100% !important; aspect-ratio: 1200 / 630 !important; object-fit: cover !important; object-position: center center !important; display: block !important; }
+      .article-image img:not([src^="data:"]), .post-image img:not([src^="data:"]) { transform: scale(1.18) !important; transform-origin: center center !important; }
       .article-content, .post-content { flex: 1 1 auto !important; display: flex !important; flex-direction: column !important; min-height: 255px !important; }
       .article-content h3, .post-title { min-height: 3.9em !important; line-height: 1.35 !important; }
       .article-excerpt, .post-excerpt { min-height: 4.8em !important; line-height: 1.6 !important; }
@@ -119,6 +120,7 @@
         .container { width: min(100% - 1rem, 1200px) !important; }
         .page-hero h1 { font-size: 2rem !important; }
         .section-header h2 { font-size: 1.6rem !important; }
+        .article-image img:not([src^="data:"]), .post-image img:not([src^="data:"]) { transform: scale(1.14) !important; }
         .home-page .link-thumb { width: 86px !important; height: 52px !important; flex-basis: 86px !important; }
       }
     `;
