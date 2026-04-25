@@ -24,26 +24,11 @@
   const BRAND = 'Smartafiliate';
 
   const IMAGE_BY_TOPIC = [
-    {
-      image: '/assets/images/ai-tools-review.png',
-      match: ['30-best-ai-writing-tools', 'chatgpt-review', 'canva-ai-review', 'jasper-ai-review', 'writesonic-review', 'copyai-review', 'dalle3-review', 'midjourney-guide', 'best-ai-design-tools']
-    },
-    {
-      image: '/assets/images/open-source-ai-models.png',
-      match: ['llama3-guide', 'mistral-guide', 'falcon-guide', 'ollama-guide', 'open-source']
-    },
-    {
-      image: '/assets/images/ai-seo-guide.png',
-      match: ['latest-ai-news-2026', 'build-website-with-ai-in-minutes', 'google-ai-content-acceptance', 'google-penalty-ai-content-truth', 'ai-content-google-opportunity-risk', 'ai-seo-content-success', 'content-structure-seo', 'seo-for-affiliate-sites']
-    },
-    {
-      image: '/assets/images/ai-learning-roadmap.png',
-      match: ['complete-ai-learning-path', 'what-is-ai-beginners', 'python-for-ai-beginners', 'math-for-ai-beginners', 'free-ai-courses-arabic', 'best-books-to-learn-ai', 'ai-projects-for-beginners', 'learning-tips-for-ai', 'ai-learning-communities', 'learn-ai']
-    },
-    {
-      image: '/assets/images/ai-productivity-tools.png',
-      match: ['ai-automation-productivity', 'latest-ai-automation-uses', 'future-of-ai-automation', 'ai-affiliate-tools', 'affiliate-funnel-guide', 'affiliate-growth-strategy', 'affiliate-mistakes', 'arab-affiliate-programs', 'what-is-affiliate-marketing', 'ai-content-sales-system', 'tiktok-growth-engineering', 'ai-design-for-social-media', 'ai-logo-design-guide', '27-ai-and-personal-brand', '28-ai-newsletters', '29-90-day-ai-plan', '30-day-ai-plan', '90-day-ai-plan', 'ai-tools-for-affiliate-marketing', 'affiliate-marketing-mistakes', 'best-affiliate-programs-arab-world', 'best-content-structure']
-    }
+    { image: '/assets/images/ai-tools-review.png', match: ['30-best-ai-writing-tools', 'chatgpt-review', 'canva-ai-review', 'jasper-ai-review', 'writesonic-review', 'copyai-review', 'dalle3-review', 'midjourney-guide', 'best-ai-design-tools'] },
+    { image: '/assets/images/open-source-ai-models.png', match: ['llama3-guide', 'mistral-guide', 'falcon-guide', 'ollama-guide', 'open-source'] },
+    { image: '/assets/images/ai-seo-guide.png', match: ['latest-ai-news-2026', 'build-website-with-ai-in-minutes', 'google-ai-content-acceptance', 'google-penalty-ai-content-truth', 'ai-content-google-opportunity-risk', 'ai-seo-content-success', 'content-structure-seo', 'seo-for-affiliate-sites'] },
+    { image: '/assets/images/ai-learning-roadmap.png', match: ['complete-ai-learning-path', 'what-is-ai-beginners', 'python-for-ai-beginners', 'math-for-ai-beginners', 'free-ai-courses-arabic', 'best-books-to-learn-ai', 'ai-projects-for-beginners', 'learning-tips-for-ai', 'ai-learning-communities', 'learn-ai'] },
+    { image: '/assets/images/ai-productivity-tools.png', match: ['ai-automation-productivity', 'latest-ai-automation-uses', 'future-of-ai-automation', 'ai-affiliate-tools', 'affiliate-funnel-guide', 'affiliate-growth-strategy', 'affiliate-mistakes', 'arab-affiliate-programs', 'what-is-affiliate-marketing', 'ai-content-sales-system', 'tiktok-growth-engineering', 'ai-design-for-social-media', 'ai-logo-design-guide', '27-ai-and-personal-brand', '28-ai-newsletters', '29-90-day-ai-plan', '30-day-ai-plan', '90-day-ai-plan', 'ai-tools-for-affiliate-marketing', 'affiliate-marketing-mistakes', 'best-affiliate-programs-arab-world', 'best-content-structure'] }
   ];
 
   function normalizeBranding() {
@@ -56,10 +41,7 @@
     document.querySelectorAll('.logo').forEach(function (logo) {
       const light = logo.querySelector('.logo-text-light');
       const accent = logo.querySelector('.logo-text-accent');
-      if (light && accent) {
-        light.textContent = 'Smart';
-        accent.textContent = 'afiliate';
-      }
+      if (light && accent) { light.textContent = 'Smart'; accent.textContent = 'afiliate'; }
     });
   }
 
@@ -93,6 +75,11 @@
     const style = document.createElement('style');
     style.id = 'smartafiliate-shared-fixes';
     style.textContent = `
+      .article-image, .post-image { width: 100% !important; height: auto !important; aspect-ratio: 16 / 9 !important; overflow: hidden !important; background: linear-gradient(135deg,#0b1f3a,#12305a) !important; }
+      .article-image img, .post-image img { width: 100% !important; height: 100% !important; object-fit: cover !important; object-position: center center !important; display: block !important; }
+      .article-card, .post-card { display: flex !important; flex-direction: column !important; height: 100% !important; }
+      .article-content, .post-content { flex: 1 1 auto !important; display: flex !important; flex-direction: column !important; }
+      .article-meta, .post-meta { margin-top: auto !important; }
       .home-page .article-directory a { align-items: center !important; gap: .65rem !important; }
       .home-page .article-directory a:before { display: none !important; }
       .home-page .link-thumb { width: 72px !important; height: 44px !important; object-fit: cover !important; border-radius: 10px !important; flex: 0 0 72px !important; box-shadow: 0 6px 14px rgba(15,23,42,.12); background: #0b1f3a; }
@@ -116,31 +103,24 @@
         .decision-grid, .articles-grid, .tools-grid, .review-grid, .cards-grid, .quick-grid, .info-grid { grid-template-columns: 1fr !important; gap: 1rem !important; }
         .section, .section-alt { padding: 3rem 0 !important; }
         .section-header { margin-bottom: 1.5rem !important; }
-        .article-image, .post-image { height: 190px !important; }
         .article-content, .post-content, .tool-card, .review-card, .decision-card, .info-card { padding: 1rem !important; }
         .article-meta, .post-meta { flex-direction: column !important; align-items: flex-start !important; gap: .4rem !important; }
         .tool-preview { height: 120px !important; }
         .footer-grid { grid-template-columns: 1fr !important; text-align: center !important; }
         .footer-col { align-items: center !important; }
-        img { max-width: 100% !important; height: auto; }
+        img { max-width: 100% !important; }
       }
       @media (max-width: 480px) {
         .container { width: min(100% - 1rem, 1200px) !important; }
         .page-hero h1 { font-size: 2rem !important; }
         .section-header h2 { font-size: 1.6rem !important; }
-        .article-image, .post-image { height: 170px !important; }
         .home-page .link-thumb { width: 86px !important; height: 52px !important; flex-basis: 86px !important; }
       }
     `;
     document.head.appendChild(style);
   }
 
-  function init() {
-    normalizeBranding();
-    injectSharedStyles();
-    linkHomepageImages();
-  }
-
+  function init() { normalizeBranding(); injectSharedStyles(); linkHomepageImages(); }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
   else init();
 })();
@@ -170,10 +150,7 @@ document.addEventListener('click', function (event) {
   if (nav.classList.contains('active') && !nav.contains(event.target) && !button.contains(event.target)) closeMenu();
 });
 
-window.addEventListener('resize', function () {
-  if (window.innerWidth > 900) closeMenu();
-});
-
+window.addEventListener('resize', function () { if (window.innerWidth > 900) closeMenu(); });
 window.addEventListener('scroll', function () {
   const header = document.querySelector('.site-header');
   if (!header) return;
