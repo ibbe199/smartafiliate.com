@@ -30,8 +30,18 @@
     if (!document.getElementById('smartafiliate-accessibility-fixes')) {
       const style = document.createElement('style');
       style.id = 'smartafiliate-accessibility-fixes';
-      style.textContent = ':root{--muted:#334155;--text:#0f172a}.article-excerpt,.post-excerpt,.section-header p,.card p,.tool-card p,.info-card p,.info-card li,.footer-description,.article-meta,.post-meta{color:#334155!important}.page-hero p,.hero p{color:rgba(255,255,255,.92)!important}.main-nav a{color:rgba(255,255,255,.94)!important}a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid #f59e0b!important;outline-offset:3px!important;border-radius:10px}';
+      style.textContent = ':root{--muted:#334155;--text:#0f172a}.article-excerpt,.post-excerpt,.section-header p,.card p,.tool-card p,.info-card p,.info-card li,.footer-description,.article-meta,.post-meta{color:#334155!important}.page-hero p,.hero p{color:rgba(255,255,255,.92)!important}.main-nav a{color:rgba(255,255,255,.94)!important}a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid #f59e0b!important;outline-offset:3px!important;border-radius:10px}.skip-link{position:absolute;top:-48px;right:16px;z-index:10000;background:#111827;color:#fff;padding:10px 14px;border-radius:10px;text-decoration:none;font-weight:800}.skip-link:focus{top:16px}';
       document.head.appendChild(style);
+    }
+
+    const main = document.querySelector('main');
+    if (main && !main.id) main.id = 'main-content';
+    if (main && !document.querySelector('.skip-link')) {
+      const skip = document.createElement('a');
+      skip.className = 'skip-link';
+      skip.href = '#main-content';
+      skip.textContent = 'تخطي إلى المحتوى الرئيسي';
+      document.body.insertBefore(skip, document.body.firstChild);
     }
 
     document.querySelectorAll('button').forEach(function (button) {
@@ -46,9 +56,19 @@
       }
     });
 
+    document.querySelectorAll('nav').forEach(function (nav) {
+      if (!nav.getAttribute('aria-label')) nav.setAttribute('aria-label', 'قائمة التنقل الرئيسية');
+    });
+
     document.querySelectorAll('a[href]').forEach(function (link) {
       if (!link.getAttribute('aria-label') && !(link.textContent || '').trim()) {
         link.setAttribute('aria-label', 'رابط داخل موقع Smartafiliate');
+      }
+      if (link.hostname && link.hostname !== window.location.hostname) {
+        link.setAttribute('rel', 'noopener noreferrer');
+        if (!link.getAttribute('aria-label')) {
+          link.setAttribute('aria-label', (link.textContent || 'رابط خارجي').trim() + ' - يفتح موقعًا خارجيًا');
+        }
       }
     });
 
@@ -106,6 +126,8 @@
     banner.style.boxShadow = '0 12px 30px rgba(0,0,0,0.25)';
     banner.style.maxWidth = '980px';
     banner.style.margin = '0 auto';
+    banner.setAttribute('role', 'dialog');
+    banner.setAttribute('aria-label', 'تنبيه ملفات تعريف الارتباط');
 
     banner.innerHTML = '<div style="display:flex;gap:16px;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;">' +
       '<div style="flex:1 1 420px;min-width:260px;">' +
@@ -113,8 +135,8 @@
         '<div style="font-size:14px;line-height:1.8;color:#e5e7eb;">نستخدم ملفات تعريف الارتباط لتحسين تجربتك، وقياس الزيارات، وفهم كيفية استخدام الموقع. يمكنك قبولها أو رفضها، وقراءة التفاصيل في <a href="/cookie-policy.html" style="color:#f59e0b;text-decoration:underline;">سياسة الكوكيز</a>.</div>' +
       '</div>' +
       '<div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;">' +
-        '<button id="cookie-reject-btn" style="border:none;border-radius:10px;padding:10px 16px;background:#374151;color:#fff;cursor:pointer;font-weight:700;">رفض</button>' +
-        '<button id="cookie-accept-btn" style="border:none;border-radius:10px;padding:10px 16px;background:#ea580c;color:#fff;cursor:pointer;font-weight:700;">قبول</button>' +
+        '<button id="cookie-reject-btn" type="button" style="border:none;border-radius:10px;padding:10px 16px;background:#374151;color:#fff;cursor:pointer;font-weight:700;">رفض</button>' +
+        '<button id="cookie-accept-btn" type="button" style="border:none;border-radius:10px;padding:10px 16px;background:#ea580c;color:#fff;cursor:pointer;font-weight:700;">قبول</button>' +
       '</div>' +
     '</div>';
 
