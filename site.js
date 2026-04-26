@@ -1,20 +1,32 @@
 (function () {
   const BRAND = 'Smartafiliate';
   const AFFILIATE_LINK = 'https://9e507bq9nsow4n57d9tap0ohpd.hop.clickbank.net';
+  const AFFILIATE_LINK_EXTRA = 'https://f21555c3kvj-1zc-zxjkslrl96.hop.clickbank.net';
 
   function injectSingleImageCss() {
     if (document.getElementById('single-tool-image-fix')) return;
     const style = document.createElement('style');
     style.id = 'single-tool-image-fix';
-    style.textContent = '.tool-card{padding:0!important;overflow:hidden!important}.tool-card .tool-preview,.tool-card .tool-icon{display:none!important}.tool-card>.article-image{display:block!important;margin:0!important;border-radius:22px 22px 0 0!important;overflow:hidden!important}.tool-card>.article-image img{width:100%!important;height:200px!important;object-fit:cover!important;display:block!important}.tool-card h3{padding:1rem 1.25rem 0!important}.tool-card p{padding:0 1.25rem!important}.tool-card .tool-link{margin:0 1.25rem 1rem!important}.tool-card .mini-links{padding:0 1.25rem 1.25rem!important}';
+    style.textContent = '.tool-card{padding:0!important;overflow:hidden!important}.tool-card .tool-preview,.tool-card .tool-icon{display:none!important}.tool-card>.article-image{display:block!important;margin:0!important;border-radius:22px 22px 0 0!important;overflow:hidden!important}.tool-card>.article-image img{width:100%!important;height:200px!important;object-fit:cover!important;display:block!important}.tool-card h3{padding:1rem 1.25rem 0!important}.tool-card p{padding:0 1.25rem!important}.tool-card .tool-link{margin:0 1.25rem .65rem!important}.tool-card .extra-affiliate-link{margin:.25rem 1.25rem 1rem!important;background:#ea580c!important}.tool-card .mini-links{padding:0 1.25rem 1.25rem!important}';
     document.head.appendChild(style);
   }
 
   function applyAffiliateLinks() {
-    document.querySelectorAll('.tool-card .tool-link').forEach(function (link) {
-      link.href = AFFILIATE_LINK;
-      link.target = '_blank';
-      link.rel = 'nofollow sponsored noopener noreferrer';
+    document.querySelectorAll('.tool-card').forEach(function (card) {
+      const mainLink = card.querySelector('.tool-link');
+      if (!mainLink) return;
+      mainLink.href = AFFILIATE_LINK;
+      mainLink.target = '_blank';
+      mainLink.rel = 'nofollow sponsored noopener noreferrer';
+      if (!card.querySelector('.extra-affiliate-link')) {
+        const extraLink = mainLink.cloneNode(true);
+        extraLink.classList.add('extra-affiliate-link');
+        extraLink.href = AFFILIATE_LINK_EXTRA;
+        extraLink.textContent = 'عرض إضافي →';
+        extraLink.target = '_blank';
+        extraLink.rel = 'nofollow sponsored noopener noreferrer';
+        mainLink.insertAdjacentElement('afterend', extraLink);
+      }
     });
   }
 
