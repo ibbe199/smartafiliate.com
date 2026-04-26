@@ -11,22 +11,44 @@
     document.head.appendChild(style);
   }
 
+  function getProfitLinks(title) {
+    const t = String(title || '').toLowerCase();
+    const writingTools = ['chatgpt', 'jasper', 'copy.ai', 'copy ai', 'writesonic'];
+    const visualTools = ['midjourney', 'dall-e', 'dalle', 'canva', 'leonardo', 'pictory', 'runway', 'synthesia'];
+    const localTools = ['ollama', 'llama', 'mistral', 'falcon'];
+
+    if (visualTools.some(function (key) { return t.includes(key); })) {
+      return { primary: AFFILIATE_LINK_EXTRA, secondary: AFFILIATE_LINK, primaryText: 'جرّب أداة التصميم →', secondaryText: 'عرض إضافي →' };
+    }
+    if (localTools.some(function (key) { return t.includes(key); })) {
+      return { primary: AFFILIATE_LINK_EXTRA, secondary: AFFILIATE_LINK, primaryText: 'عرض تعلّم AI →', secondaryText: 'أداة بديلة →' };
+    }
+    if (writingTools.some(function (key) { return t.includes(key); })) {
+      return { primary: AFFILIATE_LINK, secondary: AFFILIATE_LINK_EXTRA, primaryText: 'جرب أداة الكتابة →', secondaryText: 'عرض إضافي →' };
+    }
+    return { primary: AFFILIATE_LINK, secondary: AFFILIATE_LINK_EXTRA, primaryText: 'زيارة الموقع →', secondaryText: 'عرض إضافي →' };
+  }
+
   function applyAffiliateLinks() {
     document.querySelectorAll('.tool-card').forEach(function (card) {
+      const title = getCardTitle(card);
+      const links = getProfitLinks(title);
       const mainLink = card.querySelector('.tool-link');
       if (!mainLink) return;
-      mainLink.href = AFFILIATE_LINK;
+      mainLink.href = links.primary;
+      mainLink.textContent = links.primaryText;
       mainLink.target = '_blank';
       mainLink.rel = 'nofollow sponsored noopener noreferrer';
-      if (!card.querySelector('.extra-affiliate-link')) {
-        const extraLink = mainLink.cloneNode(true);
+      let extraLink = card.querySelector('.extra-affiliate-link');
+      if (!extraLink) {
+        extraLink = mainLink.cloneNode(true);
         extraLink.classList.add('extra-affiliate-link');
-        extraLink.href = AFFILIATE_LINK_EXTRA;
-        extraLink.textContent = 'عرض إضافي →';
-        extraLink.target = '_blank';
-        extraLink.rel = 'nofollow sponsored noopener noreferrer';
         mainLink.insertAdjacentElement('afterend', extraLink);
       }
+      extraLink.href = links.secondary;
+      extraLink.textContent = links.secondaryText;
+      extraLink.target = '_blank';
+      extraLink.rel = 'nofollow sponsored noopener noreferrer';
     });
   }
 
