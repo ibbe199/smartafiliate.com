@@ -25,13 +25,24 @@
       'assets/images/homepage-ai-tools-reviews.png': '/assets/images/homepage-ai-tools-reviews.webp',
       'assets/images/homepage-ai-tools-guide.png': '/assets/images/homepage-ai-tools-guide.webp'
     };
-    document.querySelectorAll('img').forEach(function (img) {
+    document.querySelectorAll('img').forEach(function (img, index) {
       const src = img.getAttribute('src') || '';
       if (replacements[src]) img.setAttribute('src', replacements[src]);
       else if (src.indexOf('homepage-ai-tools-reviews.png') !== -1) img.setAttribute('src', '/assets/images/homepage-ai-tools-reviews.webp');
       else if (src.indexOf('homepage-ai-tools-guide.png') !== -1) img.setAttribute('src', '/assets/images/homepage-ai-tools-guide.webp');
-      if (!img.hasAttribute('loading') && !img.hasAttribute('fetchpriority')) img.setAttribute('loading', 'lazy');
+      else if (src.endsWith('.png')) img.setAttribute('src', src.replace(/\.png(\?.*)?$/, '.webp$1'));
+      else if (src.endsWith('.jpg')) img.setAttribute('src', src.replace(/\.jpg(\?.*)?$/, '.webp$1'));
+      else if (src.endsWith('.jpeg')) img.setAttribute('src', src.replace(/\.jpeg(\?.*)?$/, '.webp$1'));
+
+      if (!img.hasAttribute('width')) img.setAttribute('width', '1200');
+      if (!img.hasAttribute('height')) img.setAttribute('height', '630');
       if (!img.hasAttribute('decoding')) img.setAttribute('decoding', 'async');
+      if (index === 0 || img.hasAttribute('fetchpriority')) {
+        img.setAttribute('fetchpriority', img.getAttribute('fetchpriority') || 'high');
+        img.removeAttribute('loading');
+      } else if (!img.hasAttribute('loading')) {
+        img.setAttribute('loading', 'lazy');
+      }
     });
   }
 
