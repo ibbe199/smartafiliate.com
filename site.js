@@ -1,12 +1,21 @@
 (function () {
   const BRAND = 'Smartafiliate';
+  const AFFILIATE_LINK = 'https://9e507bq9nsow4n57d9tap0ohpd.hop.clickbank.net';
 
   function injectSingleImageCss() {
     if (document.getElementById('single-tool-image-fix')) return;
     const style = document.createElement('style');
     style.id = 'single-tool-image-fix';
-    style.textContent = '.tool-card .tool-preview,.tool-card .tool-icon{display:none!important}.tool-card>.article-image{display:block!important;margin-bottom:1rem;border-radius:18px;overflow:hidden}.tool-card>.article-image img{width:100%!important;height:200px!important;object-fit:cover!important;display:block!important}';
+    style.textContent = '.tool-card{padding:0!important;overflow:hidden!important}.tool-card .tool-preview,.tool-card .tool-icon{display:none!important}.tool-card>.article-image{display:block!important;margin:0!important;border-radius:22px 22px 0 0!important;overflow:hidden!important}.tool-card>.article-image img{width:100%!important;height:200px!important;object-fit:cover!important;display:block!important}.tool-card h3{padding:1rem 1.25rem 0!important}.tool-card p{padding:0 1.25rem!important}.tool-card .tool-link{margin:0 1.25rem 1rem!important}.tool-card .mini-links{padding:0 1.25rem 1.25rem!important}';
     document.head.appendChild(style);
+  }
+
+  function applyAffiliateLinks() {
+    document.querySelectorAll('.tool-card .tool-link').forEach(function (link) {
+      link.href = AFFILIATE_LINK;
+      link.target = '_blank';
+      link.rel = 'nofollow sponsored noopener noreferrer';
+    });
   }
 
   function escapeSvgText(value) {
@@ -132,6 +141,7 @@
   function init() {
     normalizeBranding();
     applyPerCardCovers();
+    applyAffiliateLinks();
     fixImages();
   }
 
