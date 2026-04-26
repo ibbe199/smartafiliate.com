@@ -1,5 +1,6 @@
 (function () {
   const BRAND = 'Smartafiliate';
+  const DEFAULT_CARD_IMAGE = '/assets/generated-covers/posts-ai-ollama-guide.svg';
 
   function normalizeBranding() {
     document.title = (document.title || '').replace(/smartafiliate/gi, BRAND);
@@ -27,12 +28,15 @@
     };
     document.querySelectorAll('img').forEach(function (img, index) {
       const src = img.getAttribute('src') || '';
-      if (replacements[src]) img.setAttribute('src', replacements[src]);
+      if (img.closest('.article-image, .post-image')) {
+        img.setAttribute('src', DEFAULT_CARD_IMAGE);
+      } else if (replacements[src]) img.setAttribute('src', replacements[src]);
       else if (src.indexOf('homepage-ai-tools-reviews.png') !== -1) img.setAttribute('src', '/assets/images/homepage-ai-tools-reviews.webp');
       else if (src.indexOf('homepage-ai-tools-guide.png') !== -1) img.setAttribute('src', '/assets/images/homepage-ai-tools-guide.webp');
-      else if (src.endsWith('.png')) img.setAttribute('src', src.replace(/\.png(\?.*)?$/, '.webp$1'));
-      else if (src.endsWith('.jpg')) img.setAttribute('src', src.replace(/\.jpg(\?.*)?$/, '.webp$1'));
-      else if (src.endsWith('.jpeg')) img.setAttribute('src', src.replace(/\.jpeg(\?.*)?$/, '.webp$1'));
+
+      img.addEventListener('error', function () {
+        if (img.closest('.article-image, .post-image')) img.setAttribute('src', DEFAULT_CARD_IMAGE);
+      });
 
       if (!img.hasAttribute('width')) img.setAttribute('width', '1200');
       if (!img.hasAttribute('height')) img.setAttribute('height', '630');
@@ -46,19 +50,28 @@
     });
   }
 
-  function removeEmptyCardImages() {
-    document.querySelectorAll('.article-image, .post-image').forEach(function (imageBox) {
-      imageBox.remove();
+  function applyUnifiedCardImages() {
+    document.querySelectorAll('.article-card, .post-card').forEach(function (card) {
+      const imageClass = card.classList.contains('post-card') ? 'post-image' : 'article-image';
+      let imageBox = card.querySelector('.article-image, .post-image');
+      if (!imageBox) {
+        imageBox = document.createElement('div');
+        imageBox.className = imageClass;
+        card.insertBefore(imageBox, card.firstChild);
+      }
+      imageBox.innerHTML = '<img src="' + DEFAULT_CARD_IMAGE + '" alt="Smartafiliate" loading="lazy" decoding="async" width="1200" height="630">';
     });
   }
 
   function cleanHomepageDirectory() {
-    document.querySelectorAll('.home-page .article-directory img.link-thumb').forEach(function (img) { img.remove(); });
+    document.querySelectorAll('.home-page .article-directory img.link-thumb').forEach(function (img) {
+      img.setAttribute('src', DEFAULT_CARD_IMAGE);
+    });
   }
 
   function init() {
     normalizeBranding();
-    removeEmptyCardImages();
+    applyUnifiedCardImages();
     fixImages();
     cleanHomepageDirectory();
   }
