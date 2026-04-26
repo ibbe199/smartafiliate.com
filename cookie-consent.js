@@ -4,11 +4,11 @@
   const GTM_ID = 'GTM-P96QVPT3';
 
   const thumbs = {
-    '/posts-ai/chatgpt-review.html': ['assets/images/chatgpt-review.webp', 'مراجعة ChatGPT وواجهة أدوات الذكاء الاصطناعي'],
-    '/posts-ai/canva-ai-review.html': ['assets/images/canva-ai-review.webp', 'مراجعة Canva AI وأدوات التصميم بالذكاء الاصطناعي'],
-    '/posts-ai/google-ai-content-acceptance.html': ['assets/images/google-ai-content-acceptance.webp', 'قبول محتوى الذكاء الاصطناعي في جوجل وتحليل SEO'],
-    '/posts-ai/ollama-guide.html': ['assets/images/ollama-guide.webp', 'دليل Ollama لتشغيل نماذج الذكاء الاصطناعي محليا'],
-    '/posts-ai/llama3-guide.html': ['assets/images/llama3-guide.webp', 'دليل Llama 3 والنماذج مفتوحة المصدر']
+    '/posts-ai/chatgpt-review.html': ['assets/images/ai-reviews.webp', 'مراجعة ChatGPT وأدوات الذكاء الاصطناعي'],
+    '/posts-ai/canva-ai-review.html': ['assets/images/ai-reviews.webp', 'مراجعة Canva AI وأدوات التصميم بالذكاء الاصطناعي'],
+    '/posts-ai/google-ai-content-acceptance.html': ['assets/images/ai-reviews.webp', 'مراجعات أدوات الذكاء الاصطناعي وتحليل المحتوى'],
+    '/posts-ai/ollama-guide.html': ['assets/images/ai-guide.webp', 'دليل أدوات الذكاء الاصطناعي وتشغيل النماذج محليا'],
+    '/posts-ai/llama3-guide.html': ['assets/images/ai-guide.webp', 'دليل نماذج الذكاء الاصطناعي مفتوحة المصدر']
   };
 
   function abs(path) { return new URL('/' + path.replace(/^\//, ''), location.origin).href; }
@@ -25,9 +25,12 @@
       const alt = item[1];
       const hero = document.querySelector('.page-hero .container');
       if (hero) {
-        const style = document.createElement('style');
-        style.textContent = '.article-featured-thumbnail{margin:2rem auto 0;max-width:1120px;border-radius:24px;overflow:hidden;border:1px solid rgba(255,255,255,.14);box-shadow:0 24px 70px rgba(2,6,23,.24);background:#071426}.article-featured-thumbnail img{display:block;width:100%;aspect-ratio:1200/630;object-fit:cover}@media(max-width:640px){.article-featured-thumbnail{margin-top:1.25rem;border-radius:16px}}';
-        document.head.appendChild(style);
+        if (!document.getElementById('article-featured-thumbnail-style')) {
+          const style = document.createElement('style');
+          style.id = 'article-featured-thumbnail-style';
+          style.textContent = '.article-featured-thumbnail{margin:2rem auto 0;max-width:1120px;border-radius:24px;overflow:hidden;border:1px solid rgba(255,255,255,.14);box-shadow:0 24px 70px rgba(2,6,23,.24);background:#071426}.article-featured-thumbnail img{display:block;width:100%;aspect-ratio:1200/630;object-fit:cover}@media(max-width:640px){.article-featured-thumbnail{margin-top:1.25rem;border-radius:16px}}';
+          document.head.appendChild(style);
+        }
         const fig = document.createElement('figure');
         fig.className = 'article-featured-thumbnail';
         fig.innerHTML = '<img src="' + src + '" alt="' + alt + '" width="1200" height="630" loading="eager" decoding="async">';
