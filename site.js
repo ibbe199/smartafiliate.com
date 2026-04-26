@@ -1,6 +1,14 @@
 (function () {
   const BRAND = 'Smartafiliate';
 
+  function injectSingleImageCss() {
+    if (document.getElementById('single-tool-image-fix')) return;
+    const style = document.createElement('style');
+    style.id = 'single-tool-image-fix';
+    style.textContent = '.tool-card .tool-preview,.tool-card .tool-icon{display:none!important}.tool-card>.article-image{display:block!important;margin-bottom:1rem;border-radius:18px;overflow:hidden}.tool-card>.article-image img{width:100%!important;height:200px!important;object-fit:cover!important;display:block!important}';
+    document.head.appendChild(style);
+  }
+
   function escapeSvgText(value) {
     return String(value || '').replace(/[&<>"]/g, function (char) {
       return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[char];
@@ -84,6 +92,7 @@
   }
 
   function applyPerCardCovers() {
+    injectSingleImageCss();
     document.querySelectorAll('.article-card, .post-card, .tool-card').forEach(function (card) {
       const title = getCardTitle(card);
       const category = getCardCategory(card);
