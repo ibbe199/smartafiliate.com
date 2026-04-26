@@ -87,6 +87,14 @@
     document.querySelectorAll('.article-card, .post-card, .tool-card').forEach(function (card) {
       const title = getCardTitle(card);
       const category = getCardCategory(card);
+      const isToolCard = card.classList.contains('tool-card');
+
+      if (isToolCard) {
+        card.querySelectorAll('.tool-preview, .tool-icon').forEach(function (duplicateBox) {
+          duplicateBox.remove();
+        });
+      }
+
       const imageClass = card.classList.contains('post-card') ? 'post-image' : 'article-image';
       let imageBox = card.querySelector('.article-image, .post-image, .tool-image');
       if (!imageBox) {
