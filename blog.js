@@ -7,12 +7,26 @@ function copyPageLink(url) {
   });
 }
 
-function removeEmptyBlogImages() {
-  const articleImages = document.querySelectorAll('.article-image');
+function applyDefaultImages() {
+  const map = {
+    'جوجل وAI': 'assets/images/default/google-ai.png',
+    'AI وSEO': 'assets/images/default/seo-ai.png',
+    'المواقع العربية': 'assets/images/default/arab-websites.png',
+    'استراتيجيات AI': 'assets/images/default/strategy.png',
+    'خطة تنفيذ': 'assets/images/default/strategy.png',
+    'بقاء المواقع': 'assets/images/default/arab-websites.png'
+  };
 
-  articleImages.forEach(function (imageBox) {
-    imageBox.remove();
+  document.querySelectorAll('.article-card').forEach(function(card){
+    const category = card.querySelector('.article-category')?.textContent.trim();
+    const imgSrc = map[category] || 'assets/images/default/general.png';
+
+    const div = document.createElement('div');
+    div.className = 'article-image';
+    div.innerHTML = `<img src="${imgSrc}" alt="${category}" loading="lazy" decoding="async">`;
+
+    card.insertBefore(div, card.firstChild);
   });
 }
 
-document.addEventListener('DOMContentLoaded', removeEmptyBlogImages);
+document.addEventListener('DOMContentLoaded', applyDefaultImages);
