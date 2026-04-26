@@ -26,6 +26,43 @@
     document.body.insertBefore(wrapper, document.body.firstChild);
   }
 
+  function applySafeAccessibilityFixes() {
+    if (!document.getElementById('smartafiliate-accessibility-fixes')) {
+      const style = document.createElement('style');
+      style.id = 'smartafiliate-accessibility-fixes';
+      style.textContent = ':root{--muted:#334155;--text:#0f172a}.article-excerpt,.post-excerpt,.section-header p,.card p,.tool-card p,.info-card p,.info-card li,.footer-description,.article-meta,.post-meta{color:#334155!important}.page-hero p,.hero p{color:rgba(255,255,255,.92)!important}.main-nav a{color:rgba(255,255,255,.94)!important}a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid #f59e0b!important;outline-offset:3px!important;border-radius:10px}';
+      document.head.appendChild(style);
+    }
+
+    document.querySelectorAll('button').forEach(function (button) {
+      const text = (button.textContent || '').trim();
+      if (button.classList.contains('menu-toggle')) {
+        button.setAttribute('aria-label', 'فتح وإغلاق قائمة التنقل');
+        button.setAttribute('aria-controls', 'mainNav');
+        if (!button.getAttribute('aria-expanded')) button.setAttribute('aria-expanded', 'false');
+        button.setAttribute('type', 'button');
+      } else if (!button.getAttribute('aria-label') && !text) {
+        button.setAttribute('aria-label', 'زر تفاعلي');
+      }
+    });
+
+    document.querySelectorAll('a[href]').forEach(function (link) {
+      if (!link.getAttribute('aria-label') && !(link.textContent || '').trim()) {
+        link.setAttribute('aria-label', 'رابط داخل موقع Smartafiliate');
+      }
+    });
+
+    document.querySelectorAll('img').forEach(function (img) {
+      if (!img.hasAttribute('alt') || !img.getAttribute('alt').trim()) {
+        const card = img.closest('.article-card, .post-card, .tool-card, .review-card, .decision-card');
+        const title = card ? card.querySelector('h1,h2,h3,h4,a') : null;
+        img.setAttribute('alt', title ? title.textContent.trim() : 'صورة توضيحية من Smartafiliate');
+      }
+      if (!img.hasAttribute('decoding')) img.setAttribute('decoding', 'async');
+      if (!img.hasAttribute('loading') && !img.closest('.page-hero')) img.setAttribute('loading', 'lazy');
+    });
+  }
+
   function saveConsent(value) {
     localStorage.setItem(STORAGE_KEY, value);
   }
@@ -99,6 +136,7 @@
 
   document.addEventListener('DOMContentLoaded', function () {
     insertGtmNoscriptFallback();
+    applySafeAccessibilityFixes();
     const saved = localStorage.getItem(STORAGE_KEY);
     if (saved === 'accepted') {
       loadAnalytics();
