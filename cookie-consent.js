@@ -18,6 +18,66 @@
     if (el) el.setAttribute('content', value);
   }
 
+  function injectHomeCardSizing() {
+    if (!document.body || !document.body.classList.contains('home-page')) return;
+    if (document.getElementById('home-card-sizing-upgrade')) return;
+    const style = document.createElement('style');
+    style.id = 'home-card-sizing-upgrade';
+    style.textContent = `
+      body.home-page .home-primary-section .tools-grid {
+        gap: 2rem !important;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)) !important;
+      }
+      body.home-page .home-primary-section .tool-card {
+        padding: 2rem 1.7rem !important;
+        border-radius: 28px !important;
+        min-height: 390px !important;
+        box-shadow: 0 22px 55px rgba(15,23,42,.12) !important;
+      }
+      body.home-page .home-primary-section .tool-preview {
+        height: 185px !important;
+        border-radius: 24px !important;
+        margin-bottom: 1.35rem !important;
+      }
+      body.home-page .home-primary-section .preview-icon {
+        width: 68px !important;
+        height: 68px !important;
+        font-size: 2rem !important;
+        border-radius: 20px !important;
+      }
+      body.home-page .home-primary-section .preview-title {
+        font-size: 1.35rem !important;
+        font-weight: 950 !important;
+      }
+      body.home-page .home-primary-section .preview-subtitle {
+        font-size: 1rem !important;
+        line-height: 1.7 !important;
+      }
+      body.home-page .home-primary-section .tool-card h3 {
+        font-size: 1.45rem !important;
+        line-height: 1.55 !important;
+        margin-bottom: .85rem !important;
+      }
+      body.home-page .home-primary-section .tool-card p {
+        font-size: 1.05rem !important;
+        line-height: 1.9 !important;
+        margin-bottom: 1.35rem !important;
+      }
+      body.home-page .home-primary-section .tool-link {
+        font-size: 1rem !important;
+        padding: .82rem 1.35rem !important;
+        font-weight: 900 !important;
+      }
+      @media (max-width:700px) {
+        body.home-page .home-primary-section .tool-card { min-height: auto !important; padding: 1.55rem !important; }
+        body.home-page .home-primary-section .tool-preview { height: 160px !important; }
+        body.home-page .home-primary-section .tool-card h3 { font-size: 1.25rem !important; }
+        body.home-page .home-primary-section .tool-card p { font-size: .98rem !important; }
+      }
+    `;
+    document.head.appendChild(style);
+  }
+
   function injectThumb() {
     const item = thumbs[location.pathname];
     if (item && !document.querySelector('.article-featured-thumbnail')) {
@@ -109,6 +169,7 @@
   loadGoogleTagManager();
   document.addEventListener('DOMContentLoaded', function () {
     insertGtmNoscriptFallback();
+    injectHomeCardSizing();
     injectThumb();
     const saved = localStorage.getItem(STORAGE_KEY);
     if (saved === 'accepted') loadAnalytics();
