@@ -46,12 +46,19 @@
     });
   }
 
+  function removeEmptyCardImages() {
+    document.querySelectorAll('.article-image, .post-image').forEach(function (imageBox) {
+      imageBox.remove();
+    });
+  }
+
   function cleanHomepageDirectory() {
     document.querySelectorAll('.home-page .article-directory img.link-thumb').forEach(function (img) { img.remove(); });
   }
 
   function init() {
     normalizeBranding();
+    removeEmptyCardImages();
     fixImages();
     cleanHomepageDirectory();
   }
