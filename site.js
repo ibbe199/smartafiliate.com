@@ -1,15 +1,68 @@
 (function () {
   const BRAND = 'Smartafiliate';
-  const DEFAULT_CARD_IMAGE = '/assets/generated-covers/posts-ai-ollama-guide.svg';
+
+  function escapeSvgText(value) {
+    return String(value || '').replace(/[&<>"]/g, function (char) {
+      return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[char];
+    });
+  }
+
+  function cleanCardTitle(title) {
+    return String(title || 'مقال من Smartafiliate')
+      .replace(/\s*\|\s*Smartafiliate/gi, '')
+      .replace(/\s*\|\s*smartafiliate/gi, '')
+      .replace(/\s+/g, ' ')
+      .replace(/\s+([،؛:.؟])/g, '$1')
+      .replace(/([،؛:.؟])([^\s])/g, '$1 $2')
+      .replace(/[:؟?]+$/g, '')
+      .trim();
+  }
+
+  function splitTitleForCover(title) {
+    const words = cleanCardTitle(title).split(/\s+/).filter(Boolean);
+    if (words.length <= 3) return [words.join(' ')];
+    const targetLines = words.join('').length > 36 || words.length > 7 ? 3 : 2;
+    const targetLength = Math.ceil(words.join(' ').length / targetLines);
+    const lines = [];
+    let current = '';
+    words.forEach(function (word) {
+      const next = current ? current + ' ' + word : word;
+      if (next.length > targetLength && current && lines.length < targetLines - 1) {
+        lines.push(current);
+        current = word;
+      } else {
+        current = next;
+      }
+    });
+    if (current) lines.push(current);
+    return lines.slice(0, 3).map(function (line) {
+      return line.length > 34 ? line.slice(0, 33).trim() + '…' : line;
+    });
+  }
+
+  function createArticleCover(title, category) {
+    const lines = splitTitleForCover(title);
+    const fontSize = lines.length === 1 ? 64 : lines.length === 2 ? 58 : 52;
+    const lineGap = lines.length === 3 ? 66 : 74;
+    const yStart = lines.length === 1 ? 320 : lines.length === 2 ? 292 : 252;
+    const titleLines = lines.map(function (line, index) {
+      return '<tspan x="600" y="' + (yStart + index * lineGap) + '">' + escapeSvgText(line) + '</tspan>';
+    }).join('');
+
+    const svg = '<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">' +
+      '<defs><linearGradient id="bg" x1="0" y1="0" x2="1200" y2="630"><stop stop-color="#071426"/><stop offset="0.52" stop-color="#12305a"/><stop offset="1" stop-color="#ea580c"/></linearGradient><linearGradient id="accent" x1="110" y1="80" x2="520" y2="520"><stop stop-color="#f59e0b" stop-opacity="0.98"/><stop offset="1" stop-color="#ea580c" stop-opacity="0.12"/></linearGradient><linearGradient id="glass" x1="210" y1="140" x2="990" y2="510"><stop stop-color="#ffffff" stop-opacity="0.10"/><stop offset="1" stop-color="#ffffff" stop-opacity="0.035"/></linearGradient><filter id="shadow"><feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#000" flood-opacity="0.30"/></filter></defs>' +
+      '<rect width="1200" height="630" fill="url(#bg)"/><circle cx="160" cy="130" r="225" fill="url(#accent)"/><circle cx="1040" cy="540" r="205" fill="#ffffff" fill-opacity="0.075"/><rect x="92" y="74" width="1016" height="482" rx="42" fill="url(#glass)" stroke="#ffffff" stroke-opacity="0.15"/><rect x="398" y="94" width="404" height="56" rx="28" fill="#071426" fill-opacity="0.48"/>' +
+      '<text x="600" y="131" text-anchor="middle" direction="rtl" unicode-bidi="plaintext" font-family="Tahoma, Arial, sans-serif" font-size="26" font-weight="800" fill="#FDBA74">' + escapeSvgText(category || 'مقال من Smartafiliate') + '</text>' +
+      '<text text-anchor="middle" direction="rtl" unicode-bidi="plaintext" font-family="Tahoma, Arial, sans-serif" font-size="' + fontSize + '" font-weight="900" fill="#ffffff" filter="url(#shadow)">' + titleLines + '</text>' +
+      '<text x="600" y="530" text-anchor="middle" direction="ltr" font-family="Tahoma, Arial, sans-serif" font-size="32" font-weight="900" fill="#fff" fill-opacity="0.92">Smartafiliate</text></svg>';
+    return 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(svg);
+  }
 
   function normalizeBranding() {
     document.title = (document.title || '').replace(/smartafiliate/gi, BRAND);
     document.querySelectorAll('meta[content]').forEach(function (meta) {
       const value = meta.getAttribute('content') || '';
-      const next = value
-        .replace(/smartafiliate/gi, BRAND)
-        .replace(/homepage-ai-tools-reviews\.png/g, 'homepage-ai-tools-reviews.webp')
-        .replace(/homepage-ai-tools-guide\.png/g, 'homepage-ai-tools-guide.webp');
+      const next = value.replace(/smartafiliate/gi, BRAND);
       if (next !== value) meta.setAttribute('content', next);
     });
     document.querySelectorAll('.logo').forEach(function (logo) {
@@ -19,59 +72,26 @@
     });
   }
 
-  function isCardLike(el) {
-    return el && (
-      el.classList.contains('article-card') ||
-      el.classList.contains('post-card') ||
-      el.classList.contains('tool-card') ||
-      el.classList.contains('card') ||
-      el.closest('.articles-grid') ||
-      el.closest('.posts-grid') ||
-      el.closest('.tools-grid') ||
-      el.closest('.cards-grid')
-    );
-  }
-
-  function applyUnifiedCardImages() {
-    document.querySelectorAll('.article-card, .post-card, .tool-card, .cards-grid .card').forEach(function (card) {
+  function applyPerArticleCovers() {
+    document.querySelectorAll('.article-card, .post-card').forEach(function (card) {
+      const titleLink = card.querySelector('h3 a, .post-title a, h3, .post-title');
+      if (!titleLink) return;
+      const categoryEl = card.querySelector('.article-category, .post-category');
+      const title = cleanCardTitle(titleLink.textContent);
+      const category = categoryEl ? categoryEl.textContent.trim() : 'مقال من Smartafiliate';
       const imageClass = card.classList.contains('post-card') ? 'post-image' : 'article-image';
-      let imageBox = card.querySelector('.article-image, .post-image, .tool-image, .card-image');
+      let imageBox = card.querySelector('.article-image, .post-image');
       if (!imageBox) {
         imageBox = document.createElement('div');
         imageBox.className = imageClass;
         card.insertBefore(imageBox, card.firstChild);
       }
-      imageBox.innerHTML = '<img src="' + DEFAULT_CARD_IMAGE + '" alt="Smartafiliate" loading="lazy" decoding="async" width="1200" height="630">';
-    });
-
-    document.querySelectorAll('.article-image img, .post-image img, .tool-image img, .card-image img, .articles-grid img, .posts-grid img, .tools-grid img, .cards-grid img').forEach(function (img) {
-      img.setAttribute('src', DEFAULT_CARD_IMAGE);
-      img.setAttribute('width', '1200');
-      img.setAttribute('height', '630');
-      img.setAttribute('decoding', 'async');
-      if (!img.hasAttribute('loading')) img.setAttribute('loading', 'lazy');
+      imageBox.innerHTML = '<img src="' + createArticleCover(title, category) + '" alt="' + title + '" loading="lazy" decoding="async" width="1200" height="630">';
     });
   }
 
   function fixImages() {
-    const replacements = {
-      '/assets/images/homepage-ai-tools-reviews.png': '/assets/images/homepage-ai-tools-reviews.webp',
-      '/assets/images/homepage-ai-tools-guide.png': '/assets/images/homepage-ai-tools-guide.webp',
-      'assets/images/homepage-ai-tools-reviews.png': '/assets/images/homepage-ai-tools-reviews.webp',
-      'assets/images/homepage-ai-tools-guide.png': '/assets/images/homepage-ai-tools-guide.webp'
-    };
     document.querySelectorAll('img').forEach(function (img, index) {
-      const src = img.getAttribute('src') || '';
-      if (img.closest('.article-image, .post-image, .tool-image, .card-image, .articles-grid, .posts-grid, .tools-grid, .cards-grid')) {
-        img.setAttribute('src', DEFAULT_CARD_IMAGE);
-      } else if (replacements[src]) img.setAttribute('src', replacements[src]);
-      else if (src.indexOf('homepage-ai-tools-reviews.png') !== -1) img.setAttribute('src', '/assets/images/homepage-ai-tools-reviews.webp');
-      else if (src.indexOf('homepage-ai-tools-guide.png') !== -1) img.setAttribute('src', '/assets/images/homepage-ai-tools-guide.webp');
-
-      img.addEventListener('error', function () {
-        if (isCardLike(img.closest('article, .card, .tool-card'))) img.setAttribute('src', DEFAULT_CARD_IMAGE);
-      });
-
       if (!img.hasAttribute('width')) img.setAttribute('width', '1200');
       if (!img.hasAttribute('height')) img.setAttribute('height', '630');
       if (!img.hasAttribute('decoding')) img.setAttribute('decoding', 'async');
@@ -84,17 +104,10 @@
     });
   }
 
-  function cleanHomepageDirectory() {
-    document.querySelectorAll('.home-page .article-directory img.link-thumb').forEach(function (img) {
-      img.setAttribute('src', DEFAULT_CARD_IMAGE);
-    });
-  }
-
   function init() {
     normalizeBranding();
-    applyUnifiedCardImages();
+    applyPerArticleCovers();
     fixImages();
-    cleanHomepageDirectory();
   }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init, { once: true });
