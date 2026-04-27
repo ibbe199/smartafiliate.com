@@ -3,6 +3,23 @@
   const AFFILIATE_LINK = 'https://9e507bq9nsow4n57d9tap0ohpd.hop.clickbank.net';
   const AFFILIATE_LINK_EXTRA = 'https://f21555c3kvj-1zc-zxjkslrl96.hop.clickbank.net';
 
+  function loadScriptOnce(src, id) {
+    if (document.getElementById(id)) return;
+    const script = document.createElement('script');
+    script.id = id;
+    script.src = src;
+    script.defer = true;
+    document.head.appendChild(script);
+  }
+
+  function loadLibrarySupportScripts() {
+    const path = window.location.pathname.replace(/\/$/, '').toLowerCase();
+    if (path.endsWith('/ai-articles.html') || path.endsWith('/posts-ai.html') || path.endsWith('/articles.html')) {
+      loadScriptOnce('/publish-all-posts-fix.js', 'publish-all-posts-fix-loader');
+    }
+    loadScriptOnce('/seo-internal-links.js', 'seo-internal-links-loader');
+  }
+
   function injectSingleImageCss() {
     if (document.getElementById('single-tool-image-fix')) return;
     const style = document.createElement('style');
@@ -174,6 +191,7 @@
 
   function init() {
     normalizeBranding();
+    loadLibrarySupportScripts();
     applyPerCardCovers();
     applyAffiliateLinks();
     fixImages();
