@@ -5,7 +5,9 @@
     {keys:['تصميم','Canva','Midjourney','DALL'],links:[['/posts-ai/best-ai-design-tools.html','أفضل أدوات التصميم'],['/posts-ai/canva-ai-review.html','مراجعة Canva AI'],['/posts-ai/midjourney-guide.html','دليل Midjourney']]}
   ];
 
-  function loadScriptOnce(src,id){if(document.getElementById(id))return;const s=document.createElement('script');s.id=id;s.src=src;s.defer=true;document.head.appendChild(s);}
+  function loadScriptOnce(src,id){if(document.getElementById(id))return;const s=document.createElement('script');s.id=id;s.src=src;s.defer=true;document.head.appendChild(s);} 
+
+  function loadStyleOnce(href,id){if(document.getElementById(id))return;const l=document.createElement('link');l.id=id;l.rel='stylesheet';l.href=href;document.head.appendChild(l);} 
 
   function pageText(){return (document.title+' '+document.body.innerText).toLowerCase();}
 
@@ -30,15 +32,13 @@
   function init(){
     injectRelated();
 
-    // تشغيل الربح فقط داخل المقالات
     if(location.pathname.includes('/posts-ai/')){
       loadScriptOnce('/profit-system.js','profit-system');
       loadScriptOnce('/conversion-booster.js','conversion');
       loadScriptOnce('/profit-tracker.js','tracker');
     }
 
-    // تحميل تحسين التصميم
-    loadScriptOnce('/site-cleanup.css','cleanup-style');
+    loadStyleOnce('/site-cleanup.css','cleanup-style');
   }
 
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
