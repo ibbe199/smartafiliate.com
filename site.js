@@ -3,136 +3,27 @@
   const AFFILIATE_LINK = 'https://9e507bq9nsow4n57d9tap0ohpd.hop.clickbank.net';
   const AFFILIATE_LINK_EXTRA = 'https://f21555c3kvj-1zc-zxjkslrl96.hop.clickbank.net';
 
-  function loadScriptOnce(src, id) {
+  function loadScriptOnce(src, id, delay) {
     if (document.getElementById(id)) return;
-    const script = document.createElement('script');
-    script.id = id;
-    script.src = src;
-    script.defer = true;
-    document.head.appendChild(script);
+    const run = function () {
+      if (document.getElementById(id)) return;
+      const script = document.createElement('script');
+      script.id = id;
+      script.src = src;
+      script.defer = true;
+      document.head.appendChild(script);
+    };
+    if (delay) setTimeout(run, delay);
+    else run();
   }
 
-  function loadLibrarySupportScripts() {
-    const path = window.location.pathname.replace(/\/$/, '').toLowerCase();
-    const isArticlePage = path.includes('/posts-ai/');
-    const isLibraryPage =
-      path.endsWith('/ai-articles.html') ||
-      path.endsWith('/posts-ai.html') ||
-      path.endsWith('/articles.html');
-
-    if (isLibraryPage) {
-      loadScriptOnce('/publish-all-posts-fix.js', 'publish-all-posts-fix-loader');
-    }
-
-    if (isArticlePage || isLibraryPage) {
-      loadScriptOnce('/seo-internal-links.js', 'seo-internal-links-loader');
-    }
-  }
-
-  function injectSingleImageCss() {
-    if (document.getElementById('single-tool-image-fix')) return;
-    const style = document.createElement('style');
-    style.id = 'single-tool-image-fix';
-    style.textContent = '.tool-card{padding:0!important;overflow:hidden!important}.tool-card .tool-preview,.tool-card .tool-icon{display:none!important}.tool-card>.article-image{display:block!important;margin:0!important;border-radius:22px 22px 0 0!important;overflow:hidden!important}.tool-card>.article-image img{width:100%!important;height:200px!important;object-fit:cover!important;display:block!important}.tool-card h3{padding:1rem 1.25rem 0!important}.tool-card p{padding:0 1.25rem!important}.tool-card .tool-link{margin:0 1.25rem .65rem!important}.tool-card .extra-affiliate-link{margin:.25rem 1.25rem 1rem!important;background:#ea580c!important}.tool-card .mini-links{padding:0 1.25rem 1.25rem!important}';
-    document.head.appendChild(style);
-  }
-
-  function getProfitLinks(title) {
-    const t = String(title || '').toLowerCase();
-    const writingTools = ['chatgpt', 'jasper', 'copy.ai', 'copy ai', 'writesonic'];
-    const visualTools = ['midjourney', 'dall-e', 'dalle', 'canva', 'leonardo', 'pictory', 'runway', 'synthesia'];
-    const localTools = ['ollama', 'llama', 'mistral', 'falcon'];
-
-    if (visualTools.some(function (key) { return t.includes(key); })) {
-      return { primary: AFFILIATE_LINK_EXTRA, secondary: AFFILIATE_LINK, primaryText: 'جرّب أداة التصميم →', secondaryText: 'عرض إضافي →' };
-    }
-    if (localTools.some(function (key) { return t.includes(key); })) {
-      return { primary: AFFILIATE_LINK_EXTRA, secondary: AFFILIATE_LINK, primaryText: 'عرض تعلّم AI →', secondaryText: 'أداة بديلة →' };
-    }
-    if (writingTools.some(function (key) { return t.includes(key); })) {
-      return { primary: AFFILIATE_LINK, secondary: AFFILIATE_LINK_EXTRA, primaryText: 'جرب أداة الكتابة →', secondaryText: 'عرض إضافي →' };
-    }
-    return { primary: AFFILIATE_LINK, secondary: AFFILIATE_LINK_EXTRA, primaryText: 'زيارة الموقع →', secondaryText: 'عرض إضافي →' };
-  }
-
-  function applyAffiliateLinks() {
-    document.querySelectorAll('.tool-card').forEach(function (card) {
-      const title = getCardTitle(card);
-      const links = getProfitLinks(title);
-      const mainLink = card.querySelector('.tool-link');
-      if (!mainLink) return;
-      mainLink.href = links.primary;
-      mainLink.textContent = links.primaryText;
-      mainLink.target = '_blank';
-      mainLink.rel = 'nofollow sponsored noopener noreferrer';
-      let extraLink = card.querySelector('.extra-affiliate-link');
-      if (!extraLink) {
-        extraLink = mainLink.cloneNode(true);
-        extraLink.classList.add('extra-affiliate-link');
-        mainLink.insertAdjacentElement('afterend', extraLink);
-      }
-      extraLink.href = links.secondary;
-      extraLink.textContent = links.secondaryText;
-      extraLink.target = '_blank';
-      extraLink.rel = 'nofollow sponsored noopener noreferrer';
-    });
-  }
-
-  function escapeSvgText(value) {
-    return String(value || '').replace(/[&<>"]/g, function (char) {
-      return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[char];
-    });
-  }
-
-  function cleanCardTitle(title) {
-    return String(title || 'مقال من Smartafiliate')
-      .replace(/\s*\|\s*Smartafiliate/gi, '')
-      .replace(/\s*\|\s*smartafiliate/gi, '')
-      .replace(/\s+/g, ' ')
-      .replace(/\s+([،؛:.؟])/g, '$1')
-      .replace(/([،؛:.؟])([^\s])/g, '$1 $2')
-      .replace(/[:؟?]+$/g, '')
-      .trim();
-  }
-
-  function splitTitleForCover(title) {
-    const words = cleanCardTitle(title).split(/\s+/).filter(Boolean);
-    if (words.length <= 3) return [words.join(' ')];
-    const targetLines = words.join('').length > 36 || words.length > 7 ? 3 : 2;
-    const targetLength = Math.ceil(words.join(' ').length / targetLines);
-    const lines = [];
-    let current = '';
-    words.forEach(function (word) {
-      const next = current ? current + ' ' + word : word;
-      if (next.length > targetLength && current && lines.length < targetLines - 1) {
-        lines.push(current);
-        current = word;
-      } else {
-        current = next;
-      }
-    });
-    if (current) lines.push(current);
-    return lines.slice(0, 3).map(function (line) {
-      return line.length > 34 ? line.slice(0, 33).trim() + '…' : line;
-    });
-  }
-
-  function createArticleCover(title, category) {
-    const lines = splitTitleForCover(title);
-    const fontSize = lines.length === 1 ? 64 : lines.length === 2 ? 58 : 52;
-    const lineGap = lines.length === 3 ? 66 : 74;
-    const yStart = lines.length === 1 ? 320 : lines.length === 2 ? 292 : 252;
-    const titleLines = lines.map(function (line, index) {
-      return '<tspan x="600" y="' + (yStart + index * lineGap) + '">' + escapeSvgText(line) + '</tspan>';
-    }).join('');
-
-    const svg = '<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">' +
-      '<defs><linearGradient id="bg" x1="0" y1="0" x2="1200" y2="630"><stop stop-color="#071426"/><stop offset="0.52" stop-color="#12305a"/><stop offset="1" stop-color="#ea580c"/></linearGradient><linearGradient id="accent" x1="110" y1="80" x2="520" y2="520"><stop stop-color="#f59e0b" stop-opacity="0.98"/><stop offset="1" stop-color="#ea580c" stop-opacity="0.12"/></linearGradient><linearGradient id="glass" x1="210" y1="140" x2="990" y2="510"><stop stop-color="#ffffff" stop-opacity="0.10"/><stop offset="1" stop-color="#ffffff" stop-opacity="0.035"/></linearGradient><filter id="shadow"><feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#000" flood-opacity="0.30"/></filter></defs>' +
-      '<rect width="1200" height="630" fill="url(#bg)"/><circle cx="160" cy="130" r="225" fill="url(#accent)"/><circle cx="1040" cy="540" r="205" fill="#ffffff" fill-opacity="0.075"/><rect x="92" y="74" width="1016" height="482" rx="42" fill="url(#glass)" stroke="#ffffff" stroke-opacity="0.15"/><rect x="398" y="94" width="404" height="56" rx="28" fill="#071426" fill-opacity="0.48"/>' +
-      '<text x="600" y="131" text-anchor="middle" direction="rtl" unicode-bidi="plaintext" font-family="Tahoma, Arial, sans-serif" font-size="26" font-weight="800" fill="#FDBA74">' + escapeSvgText(category || 'Smartafiliate') + '</text>' +
-      '<text text-anchor="middle" direction="rtl" unicode-bidi="plaintext" font-family="Tahoma, Arial, sans-serif" font-size="' + fontSize + '" font-weight="900" fill="#ffffff" filter="url(#shadow)">' + titleLines + '</text>' +
-      '<text x="600" y="530" text-anchor="middle" direction="ltr" font-family="Tahoma, Arial, sans-serif" font-size="32" font-weight="900" fill="#fff" fill-opacity="0.92">Smartafiliate</text></svg>';
-    return 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(svg);
+  function loadStyleOnce(href, id) {
+    if (document.getElementById(id)) return;
+    const link = document.createElement('link');
+    link.id = id;
+    link.rel = 'stylesheet';
+    link.href = href;
+    document.head.appendChild(link);
   }
 
   function normalizeBranding() {
@@ -149,38 +40,64 @@
     });
   }
 
+  function cleanText(value) {
+    return String(value || '')
+      .replace(/\s*\|\s*Smartafiliate/gi, '')
+      .replace(/\s*\|\s*smartafiliate/gi, '')
+      .replace(/\s+/g, ' ')
+      .trim();
+  }
+
   function getCardTitle(card) {
-    const titleEl = card.querySelector('h3 a, .post-title a, .tool-card h3, .tool-card h3 a, h3, .post-title, .tool-title');
-    return titleEl ? cleanCardTitle(titleEl.textContent) : 'Smartafiliate';
+    const titleEl = card.querySelector('h3 a, h3, .post-title a, .post-title, .tool-title');
+    return titleEl ? cleanText(titleEl.textContent) : 'Smartafiliate';
   }
 
-  function getCardCategory(card) {
-    const categoryEl = card.querySelector('.article-category, .post-category, .tool-preview span, .tool-card p, .card p');
-    if (card.classList.contains('tool-card')) return 'أداة ذكاء اصطناعي';
-    return categoryEl ? cleanCardTitle(categoryEl.textContent) : 'مقال من Smartafiliate';
-  }
-
-  function applyPerCardCovers() {
-    injectSingleImageCss();
-    document.querySelectorAll('.article-card, .post-card, .tool-card').forEach(function (card) {
+  function prepareLightCards() {
+    document.querySelectorAll('.article-card, .post-card').forEach(function (card) {
       const title = getCardTitle(card);
-      const category = getCardCategory(card);
-      const isToolCard = card.classList.contains('tool-card');
-
-      if (isToolCard) {
-        card.querySelectorAll('.tool-preview, .tool-icon').forEach(function (duplicateBox) {
-          duplicateBox.remove();
+      const box = card.querySelector('.article-image, .post-image');
+      if (box) {
+        box.setAttribute('data-title', title);
+        box.querySelectorAll('img').forEach(function (img) {
+          img.loading = 'lazy';
+          img.decoding = 'async';
+          img.setAttribute('fetchpriority', 'low');
         });
       }
+    });
+  }
 
-      const imageClass = card.classList.contains('post-card') ? 'post-image' : 'article-image';
-      let imageBox = card.querySelector('.article-image, .post-image, .tool-image');
-      if (!imageBox) {
-        imageBox = document.createElement('div');
-        imageBox.className = imageClass;
-        card.insertBefore(imageBox, card.firstChild);
+  function getProfitLinks(title) {
+    const t = String(title || '').toLowerCase();
+    if (['midjourney', 'dall-e', 'dalle', 'canva', 'leonardo', 'تصميم'].some(function (k) { return t.includes(k); })) {
+      return { primary: AFFILIATE_LINK_EXTRA, secondary: AFFILIATE_LINK, primaryText: 'جرّب أداة التصميم →', secondaryText: 'عرض إضافي →' };
+    }
+    if (['ollama', 'llama', 'mistral', 'falcon'].some(function (k) { return t.includes(k); })) {
+      return { primary: AFFILIATE_LINK_EXTRA, secondary: AFFILIATE_LINK, primaryText: 'عرض تعلّم AI →', secondaryText: 'أداة بديلة →' };
+    }
+    return { primary: AFFILIATE_LINK, secondary: AFFILIATE_LINK_EXTRA, primaryText: 'جرّب الأداة →', secondaryText: 'عرض إضافي →' };
+  }
+
+  function applyAffiliateLinks() {
+    document.querySelectorAll('.tool-card').forEach(function (card) {
+      const mainLink = card.querySelector('.tool-link');
+      if (!mainLink) return;
+      const links = getProfitLinks(getCardTitle(card));
+      mainLink.href = links.primary;
+      mainLink.textContent = links.primaryText;
+      mainLink.target = '_blank';
+      mainLink.rel = 'nofollow sponsored noopener noreferrer';
+      let extra = card.querySelector('.extra-affiliate-link');
+      if (!extra) {
+        extra = mainLink.cloneNode(true);
+        extra.classList.add('extra-affiliate-link');
+        mainLink.insertAdjacentElement('afterend', extra);
       }
-      imageBox.innerHTML = '<img src="' + createArticleCover(title, category) + '" alt="' + escapeSvgText(title) + '" loading="lazy" decoding="async" width="1200" height="630">';
+      extra.href = links.secondary;
+      extra.textContent = links.secondaryText;
+      extra.target = '_blank';
+      extra.rel = 'nofollow sponsored noopener noreferrer';
     });
   }
 
@@ -188,30 +105,35 @@
     document.querySelectorAll('img').forEach(function (img, index) {
       if (!img.hasAttribute('width')) img.setAttribute('width', '1200');
       if (!img.hasAttribute('height')) img.setAttribute('height', '630');
-      if (!img.hasAttribute('decoding')) img.setAttribute('decoding', 'async');
-      if (index === 0 || img.hasAttribute('fetchpriority')) {
-        img.setAttribute('fetchpriority', img.getAttribute('fetchpriority') || 'high');
-        img.removeAttribute('loading');
-      } else if (!img.hasAttribute('loading')) {
-        img.setAttribute('loading', 'lazy');
+      img.decoding = 'async';
+      if (index > 0) {
+        img.loading = 'lazy';
+        img.setAttribute('fetchpriority', 'low');
       }
     });
   }
 
-  function init() {
-    normalizeBranding();
-    loadLibrarySupportScripts();
+  function loadSupportScripts() {
+    const path = location.pathname.replace(/\/$/, '').toLowerCase();
+    const isArticle = path.includes('/posts-ai/');
+    const isLibrary = path.endsWith('/ai-articles.html') || path.endsWith('/posts-ai.html') || path.endsWith('/articles.html');
 
-    if (document.querySelector('.article-card, .post-card, .tool-card')) {
-      applyPerCardCovers();
-      applyAffiliateLinks();
-    }
-
-    fixImages();
+    if (isLibrary) loadScriptOnce('/publish-all-posts-fix.js', 'publish-all-posts-fix-loader', 1200);
+    if (isArticle || isLibrary) loadScriptOnce('/seo-internal-links.js', 'seo-internal-links-loader', 1500);
+    if (isArticle) loadScriptOnce('/profit-tracker.js', 'profit-tracker-loader', 2200);
   }
 
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init, { once: true });
-  else init();
+  function initFast() {
+    loadStyleOnce('/site-cleanup.css', 'site-cleanup-css');
+    normalizeBranding();
+    prepareLightCards();
+    applyAffiliateLinks();
+    fixImages();
+    loadSupportScripts();
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initFast, { once: true });
+  else initFast();
 })();
 
 function closeMenu() {
@@ -227,9 +149,9 @@ function toggleMenu() {
   const nav = document.getElementById('mainNav');
   const button = document.querySelector('.menu-toggle');
   if (!nav || !button) return;
-  const isOpen = nav.classList.toggle('active');
-  button.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-  document.body.classList.toggle('menu-open', isOpen);
+  const open = nav.classList.toggle('active');
+  button.setAttribute('aria-expanded', open ? 'true' : 'false');
+  document.body.classList.toggle('menu-open', open);
 }
 
 document.addEventListener('click', function (event) {
@@ -242,6 +164,5 @@ document.addEventListener('click', function (event) {
 window.addEventListener('resize', function () { if (window.innerWidth > 900) closeMenu(); }, { passive: true });
 window.addEventListener('scroll', function () {
   const header = document.querySelector('.site-header');
-  if (!header) return;
-  header.classList.toggle('header-scrolled', window.scrollY > 50);
+  if (header) header.classList.toggle('header-scrolled', window.scrollY > 50);
 }, { passive: true });
