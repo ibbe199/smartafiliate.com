@@ -38,20 +38,33 @@
     document.head.appendChild(s);
   }
 
-  function loadAdsenseAfterPageIsUsable() {
-    const run = function () {
-      if ('requestIdleCallback' in window) requestIdleCallback(injectAdSense, { timeout: 4500 });
-      else setTimeout(injectAdSense, 3500);
-    };
-    if (document.readyState === 'complete') run();
-    else window.addEventListener('load', run, { once: true, passive: true });
+  function runWhenIdle(callback, timeout) {
+    if ('requestIdleCallback' in window) {
+      requestIdleCallback(callback, { timeout: timeout || 6000 });
+    } else {
+      setTimeout(callback, timeout || 3500);
+    }
+  }
 
-    ['scroll', 'touchstart', 'mousemove', 'keydown'].forEach(function (eventName) {
-      window.addEventListener(eventName, injectAdSense, { once: true, passive: true });
+  function loadGTMAfterPageIsUsable() {
+    window.addEventListener('load', function () {
+      runWhenIdle(injectGTM, 5000);
+      runWhenIdle(injectGTMNoScript, 5500);
+    }, { once: true, passive: true });
+  }
+
+  function loadAdsenseAfterPageIsUsable() {
+    window.addEventListener('load', function () {
+      runWhenIdle(injectAdSense, 7000);
+    }, { once: true, passive: true });
+
+    ['scroll', 'touchstart', 'keydown'].forEach(function (eventName) {
+      window.addEventListener(eventName, function () {
+        setTimeout(injectAdSense, 1200);
+      }, { once: true, passive: true });
     });
   }
 
-  injectGTM();
-  document.addEventListener('DOMContentLoaded', injectGTMNoScript, { once: true });
+  loadGTMAfterPageIsUsable();
   loadAdsenseAfterPageIsUsable();
 })();
