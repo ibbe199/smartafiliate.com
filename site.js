@@ -14,10 +14,19 @@
 
   function loadLibrarySupportScripts() {
     const path = window.location.pathname.replace(/\/$/, '').toLowerCase();
-    if (path.endsWith('/ai-articles.html') || path.endsWith('/posts-ai.html') || path.endsWith('/articles.html')) {
+    const isArticlePage = path.includes('/posts-ai/');
+    const isLibraryPage =
+      path.endsWith('/ai-articles.html') ||
+      path.endsWith('/posts-ai.html') ||
+      path.endsWith('/articles.html');
+
+    if (isLibraryPage) {
       loadScriptOnce('/publish-all-posts-fix.js', 'publish-all-posts-fix-loader');
     }
-    loadScriptOnce('/seo-internal-links.js', 'seo-internal-links-loader');
+
+    if (isArticlePage || isLibraryPage) {
+      loadScriptOnce('/seo-internal-links.js', 'seo-internal-links-loader');
+    }
   }
 
   function injectSingleImageCss() {
@@ -192,8 +201,12 @@
   function init() {
     normalizeBranding();
     loadLibrarySupportScripts();
-    applyPerCardCovers();
-    applyAffiliateLinks();
+
+    if (document.querySelector('.article-card, .post-card, .tool-card')) {
+      applyPerCardCovers();
+      applyAffiliateLinks();
+    }
+
     fixImages();
   }
 
