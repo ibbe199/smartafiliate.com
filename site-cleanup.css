@@ -1,0 +1,16 @@
+/* Smartafiliate cleanup layer */
+:root{--smart-dark:#071426;--smart-blue:#12305a;--smart-orange:#ea580c;--smart-soft:#fff7ed;--smart-border:#d9e4f2;--smart-text:#0b1f3a}
+.logo-text-light{text-transform:none!important}.logo-text-accent{text-transform:none!important}
+.article-card,.tool-card,.post-card{border-radius:22px!important;overflow:hidden!important;background:#fff!important;border:1px solid var(--smart-border)!important;box-shadow:0 10px 26px rgba(15,23,42,.06)!important}
+.article-card .article-image,.post-card .post-image{height:150px!important;background:linear-gradient(135deg,var(--smart-dark),var(--smart-blue) 65%,var(--smart-orange))!important;display:flex!important;align-items:center!important;justify-content:center!important;text-align:center!important;color:#fff!important;padding:1rem!important}
+.article-card .article-image img,.post-card .post-image img{display:none!important}
+.article-card .article-image::before,.post-card .post-image::before{content:attr(data-title);font-weight:900;font-size:1.02rem;line-height:1.6;max-width:95%}
+.article-card .article-content,.post-card .article-content,.tool-card .article-content{padding:1.15rem!important}
+.article-card h3,.post-card h3,.tool-card h3{line-height:1.55!important;margin:.4rem 0 .65rem!important;color:var(--smart-text)!important}
+.article-excerpt,.tool-card p,.post-card p{line-height:1.85!important;color:#475569!important}
+.article-shortcuts{display:flex;flex-wrap:wrap;gap:.45rem;margin:.75rem 0}.article-shortcuts a{background:var(--smart-soft);color:#c2410c;border:1px solid #fed7aa;border-radius:999px;padding:.32rem .65rem;font-weight:800;font-size:.82rem}
+.read-more,.tool-link,.profit-btn{border-radius:999px!important;font-weight:900!important;text-decoration:none!important}
+.site-header{backdrop-filter:saturate(140%) blur(12px)}
+main img{max-width:100%;height:auto}.article-body,.post-body,.article-container{line-height:1.95;font-size:1.04rem}.article-body h2,.post-body h2,.article-container h2{margin-top:2rem;color:var(--smart-text)}
+.smart-profit-box,.comparison-profit-box,.smart-related-links{break-inside:avoid}
+@media(max-width:700px){.article-card .article-image,.post-card .post-image{height:125px!important}.article-card .article-content{padding:1rem!important}}
