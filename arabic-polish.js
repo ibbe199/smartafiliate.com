@@ -39,6 +39,67 @@
     setMeta('meta[property="og:title"], meta[name="twitter:title"]', data.title);
   }
 
+  function removeRealImages(){
+    if(document.getElementById('remove-real-images-style')) return;
+    const css = `
+      img:not([src^="data:image/svg+xml"]),
+      picture,
+      .article-image img,
+      .post-image img,
+      .hero-image img,
+      .card-image img,
+      .tool-image img,
+      .featured-image img{
+        display:none!important;
+        visibility:hidden!important;
+      }
+      .article-image,
+      .post-image,
+      .hero-image,
+      .card-image,
+      .tool-image,
+      .featured-image,
+      .home-card-visual,
+      .tool-preview{
+        background:radial-gradient(circle at 18% 18%,rgba(255,255,255,.24),transparent 28%),linear-gradient(135deg,#071426,#12305a 62%,#ea580c)!important;
+        color:#fff!important;
+      }
+      .article-image:empty::before,
+      .post-image:empty::before,
+      .hero-image:empty::before,
+      .card-image:empty::before,
+      .tool-image:empty::before,
+      .featured-image:empty::before{
+        content:'AI';
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        width:100%;
+        height:100%;
+        min-height:84px;
+        font-weight:900;
+        letter-spacing:.06em;
+        color:#fff;
+      }
+      .article-image::before,
+      .post-image::before{
+        color:#fff!important;
+      }
+    `;
+    const style = document.createElement('style');
+    style.id = 'remove-real-images-style';
+    style.textContent = css;
+    document.head.appendChild(style);
+
+    document.querySelectorAll('img:not([src^="data:image/svg+xml"])').forEach(function(img){
+      img.setAttribute('aria-hidden','true');
+      img.loading = 'lazy';
+      img.decoding = 'async';
+      img.removeAttribute('srcset');
+      img.removeAttribute('sizes');
+    });
+  }
+
   const replacements = [
     [/محلياً/g, 'محليًا'],
     [/مجانياً/g, 'مجانيًا'],
@@ -97,6 +158,7 @@
 
   function run(){
     applySeo();
+    removeRealImages();
     polishVisibleText();
     improveHomeHero();
   }
