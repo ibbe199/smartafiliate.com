@@ -13,30 +13,28 @@
   };
 
   const officialLinks = {
-    'mistral': 'https://mistral.ai/',
-    'falcon': 'https://falconllm.tii.ae/',
-    'ollama': 'https://ollama.com/',
-    'llama 3': 'https://www.llama.com/',
-    'llama': 'https://www.llama.com/',
-    'deepseek': 'https://www.deepseek.com/',
-    'hugging face': 'https://huggingface.co/',
-    'lm studio': 'https://lmstudio.ai/',
-    'open webui': 'https://github.com/open-webui/open-webui',
-    'gpt4all': 'https://www.nomic.ai/gpt4all'
+    'mistral': 'https://mistral.ai/', 'falcon': 'https://falconllm.tii.ae/', 'ollama': 'https://ollama.com/', 'llama 3': 'https://www.llama.com/', 'llama': 'https://www.llama.com/', 'deepseek': 'https://www.deepseek.com/', 'hugging face': 'https://huggingface.co/', 'lm studio': 'https://lmstudio.ai/', 'open webui': 'https://github.com/open-webui/open-webui', 'gpt4all': 'https://www.nomic.ai/gpt4all'
   };
 
   const internalPages = {
-    'mistral': '/tools/mistral.html',
-    'falcon': '/tools/falcon.html',
-    'ollama': '/tools/ollama.html',
-    'llama 3': '/tools/llama.html',
-    'llama': '/tools/llama.html',
-    'deepseek': '/tools/deepseek.html',
-    'hugging face': '/tools/huggingface.html',
-    'lm studio': '/tools/lmstudio.html',
-    'open webui': '/tools/openwebui.html',
-    'gpt4all': '/tools/gpt4all.html'
+    'mistral': '/tools/mistral.html', 'falcon': '/tools/falcon.html', 'ollama': '/tools/ollama.html', 'llama 3': '/tools/llama.html', 'llama': '/tools/llama.html', 'deepseek': '/tools/deepseek.html', 'hugging face': '/tools/huggingface.html', 'lm studio': '/tools/lmstudio.html', 'open webui': '/tools/openwebui.html', 'gpt4all': '/tools/gpt4all.html'
   };
+
+  const homeLinks = [
+    ['best-ai-tools.html', 'أفضل أدوات الذكاء الاصطناعي'],
+    ['ai-articles.html', 'مكتبة الذكاء الاصطناعي'],
+    ['learn-ai.html', 'تعلم الذكاء الاصطناعي'],
+    ['open-source.html', 'أدوات مفتوحة المصدر'],
+    ['articles.html', 'المقالات'],
+    ['posts-ai.html', 'جميع المقالات'],
+    ['posts-ai/google-ai-content-acceptance.html', 'Google ومحتوى الذكاء الاصطناعي'],
+    ['posts-ai/future-arab-websites-ai.html', 'مستقبل المواقع العربية مع الذكاء الاصطناعي'],
+    ['posts-ai/30-best-ai-writing-tools.html', 'أفضل أدوات الكتابة بالذكاء الاصطناعي'],
+    ['posts-ai/latest-ai-news-2026.html', 'جديد الذكاء الاصطناعي'],
+    ['posts-ai/chatgpt-review.html', 'مراجعة ChatGPT'],
+    ['posts-ai/canva-ai-review.html', 'مراجعة Canva AI'],
+    ['posts-ai/complete-ai-learning-path.html', 'مسار تعلم الذكاء الاصطناعي']
+  ];
 
   function getToolKey(card){
     const titleEl = card && card.querySelector('h3');
@@ -58,7 +56,7 @@
 
   function removeRealImages(){
     if(document.getElementById('remove-real-images-style')) return;
-    const css = `img:not([src^="data:image/svg+xml"]),picture,.article-image img,.post-image img,.hero-image img,.card-image img,.tool-image img,.featured-image img{display:none!important;visibility:hidden!important}.article-image,.post-image,.hero-image,.card-image,.tool-image,.featured-image,.home-card-visual,.tool-preview{background:radial-gradient(circle at 18% 18%,rgba(255,255,255,.24),transparent 28%),linear-gradient(135deg,#071426,#12305a 62%,#ea580c)!important;color:#fff!important}.article-image:empty::before,.post-image:empty::before,.hero-image:empty::before,.card-image:empty::before,.tool-image:empty::before,.featured-image:empty::before{content:'AI';display:flex;align-items:center;justify-content:center;width:100%;height:100%;min-height:84px;font-weight:900;letter-spacing:.06em;color:#fff}.article-image::before,.post-image::before{color:#fff!important}.open-source-official-btn{margin-inline-start:.45rem;background:#fff!important;color:#0b1f3a!important;border:1px solid #d9e4f2!important}@media(max-width:760px){.open-source-official-btn{margin-inline-start:0;margin-top:.45rem;width:100%}}`;
+    const css = `img:not([src^="data:image/svg+xml"]),picture,.article-image img,.post-image img,.hero-image img,.card-image img,.tool-image img,.featured-image img{display:none!important;visibility:hidden!important}.article-image,.post-image,.hero-image,.card-image,.tool-image,.featured-image,.home-card-visual,.tool-preview{background:radial-gradient(circle at 18% 18%,rgba(255,255,255,.24),transparent 28%),linear-gradient(135deg,#071426,#12305a 62%,#ea580c)!important;color:#fff!important}.article-image:empty::before,.post-image:empty::before,.hero-image:empty::before,.card-image:empty::before,.tool-image:empty::before,.featured-image:empty::before{content:'AI';display:flex;align-items:center;justify-content:center;width:100%;height:100%;min-height:84px;font-weight:900;letter-spacing:.06em;color:#fff}.article-image::before,.post-image::before{color:#fff!important}.open-source-official-btn{margin-inline-start:.45rem;background:#fff!important;color:#0b1f3a!important;border:1px solid #d9e4f2!important}.home-locked-link{background:#0b1f3a!important;color:#fff!important;border-color:#0b1f3a!important}@media(max-width:760px){.open-source-official-btn{margin-inline-start:0;margin-top:.45rem;width:100%}}`;
     const style = document.createElement('style');
     style.id = 'remove-real-images-style';
     style.textContent = css;
@@ -75,23 +73,14 @@
       const officialHref = officialLinks[key];
       const titleEl = card.querySelector('h3');
       let main = card.querySelector('a.tool-link:not(.open-source-official-btn)');
-      if(!main){
-        main = document.createElement('a');
-        main.className = 'tool-link';
-        card.appendChild(main);
-      }
+      if(!main){ main = document.createElement('a'); main.className = 'tool-link'; card.appendChild(main); }
       main.href = target;
       main.removeAttribute('target');
       main.removeAttribute('rel');
       main.textContent = 'اقرأ الشرح العملي →';
       main.setAttribute('aria-label', 'اقرأ الشرح العملي عن ' + (titleEl ? titleEl.textContent.trim() : 'الأداة'));
-
       let official = card.querySelector('.open-source-official-btn');
-      if(!official){
-        official = document.createElement('a');
-        official.className = 'tool-link open-source-official-btn';
-        main.insertAdjacentElement('afterend', official);
-      }
+      if(!official){ official = document.createElement('a'); official.className = 'tool-link open-source-official-btn'; main.insertAdjacentElement('afterend', official); }
       official.href = officialHref;
       official.target = '_blank';
       official.rel = 'noopener noreferrer nofollow';
@@ -112,12 +101,47 @@
     }, true);
   }
 
-  const replacements = [[/محلياً/g,'محليًا'],[/مجانياً/g,'مجانيًا'],[/عملياً/g,'عمليًا'],[/حقاً/g,'حقًا'],[/أولاً/g,'أولًا'],[/جهازاً/g,'جهازًا'],[/قوياً/g,'قويًا'],[/بدون تعقيد/g,'دون تعقيد'],[/بدون صور/g,'دون صور'],[/بدون تحميل/g,'دون تحميل'],[/بدون تضييع وقت/g,'دون تضييع وقت'],[/يمكن تشغيلها محليًا/g,'يمكنك تشغيلها محليًا'],[/ماذا تريد أن تفعل اليوم\؟/g,'ماذا تريد أن تفعل اليوم باستخدام الذكاء الاصطناعي؟'],[/مكتبة وأدوات الذكاء الاصطناعي/g,'دليلك العملي لاستخدام الذكاء الاصطناعي'],[/منصة عربية منظمة تجمع أفضل أدوات AI، المقالات، خطط التعلم، والمصادر المفتوحة في مكان واحد\./g,'منصة عربية عملية تساعدك على اختيار أدوات الذكاء الاصطناعي، قراءة شروحات واضحة، وبناء مشروع رقمي خطوة بخطوة.'],[/ابدأ من القسم الأقرب لك: أدوات جاهزة، مقالات تعليمية، أو خطة تعلم عملية\./g,'اختر هدفك وابدأ باستخدام أدوات الذكاء الاصطناعي بطريقة واضحة وعملية.'],[/أفضل أدوات AI/g,'أفضل أدوات الذكاء الاصطناعي'],[/مكتبة AI/g,'مكتبة الذكاء الاصطناعي'],[/جديد AI/g,'جديد الذكاء الاصطناعي'],[/SEO وAI/g,'SEO والذكاء الاصطناعي'],[/ما هو AI\؟/g,'ما هو الذكاء الاصطناعي؟'],[/كورسات AI مجانية/g,'دورات ذكاء اصطناعي مجانية']];
+  function enhanceHomeButtons(){
+    if(!isHome) return;
+    homeLinks.forEach(function(item){
+      const href = item[0];
+      const label = item[1];
+      document.querySelectorAll('a').forEach(function(a){
+        const current = (a.getAttribute('href') || '').replace(/^\//,'');
+        if(current === href || current.endsWith('/' + href)){
+          a.href = '/' + href;
+          a.removeAttribute('target');
+          a.removeAttribute('rel');
+          a.setAttribute('data-internal-locked','true');
+          if(a.classList.contains('tool-link') || a.classList.contains('read-more') || a.classList.contains('cta-primary') || a.classList.contains('cta-secondary')){
+            a.classList.add('home-locked-link');
+          }
+          if(a.classList.contains('tool-link')) a.textContent = 'افتح القسم →';
+          if(a.classList.contains('read-more')) a.textContent = 'اقرأ الآن →';
+          if(a.classList.contains('cta-primary')) a.textContent = 'استكشف الأدوات →';
+          if(a.classList.contains('cta-secondary')) a.textContent = 'اقرأ المقالات →';
+          a.setAttribute('aria-label', label);
+        }
+      });
+    });
+  }
 
+  function keepHomeButtonsLocked(){
+    if(!isHome) return;
+    enhanceHomeButtons();
+    [300,1200,3000,7000].forEach(function(ms){ setTimeout(enhanceHomeButtons, ms); });
+    document.addEventListener('click', function(e){
+      const a = e.target.closest && e.target.closest('a[data-internal-locked="true"]');
+      if(!a) return;
+      const match = homeLinks.find(function(item){ return a.getAttribute('aria-label') === item[1]; });
+      if(match) a.href = '/' + match[0];
+    }, true);
+  }
+
+  const replacements = [[/محلياً/g,'محليًا'],[/مجانياً/g,'مجانيًا'],[/عملياً/g,'عمليًا'],[/حقاً/g,'حقًا'],[/أولاً/g,'أولًا'],[/جهازاً/g,'جهازًا'],[/قوياً/g,'قويًا'],[/بدون تعقيد/g,'دون تعقيد'],[/بدون صور/g,'دون صور'],[/بدون تحميل/g,'دون تحميل'],[/بدون تضييع وقت/g,'دون تضييع وقت'],[/يمكن تشغيلها محليًا/g,'يمكنك تشغيلها محليًا'],[/ماذا تريد أن تفعل اليوم\؟/g,'ماذا تريد أن تفعل اليوم باستخدام الذكاء الاصطناعي؟'],[/مكتبة وأدوات الذكاء الاصطناعي/g,'دليلك العملي لاستخدام الذكاء الاصطناعي'],[/منصة عربية منظمة تجمع أفضل أدوات AI، المقالات، خطط التعلم، والمصادر المفتوحة في مكان واحد\./g,'منصة عربية عملية تساعدك على اختيار أدوات الذكاء الاصطناعي، قراءة شروحات واضحة، وبناء مشروع رقمي خطوة بخطوة.'],[/ابدأ من القسم الأقرب لك: أدوات جاهزة، مقالات تعليمية، أو خطة تعلم عملية\./g,'اختر هدفك وابدأ باستخدام أدوات الذكاء الاصطناعي بطريقة واضحة وعملية.'],[/أفضل أدوات AI/g,'أفضل أدوات الذكاء الاصطناعي'],[/مكتبة AI/g,'مكتبة الذكاء الاصطناعي'],[/جديد AI/g,'جديد الذكاء الاصطناعي'],[/SEO وAI/g,'SEO والذكاء الاصطناعي'],[/ما هو AI\؟/g,'ما هو الذكاء الاصطناعي؟'],[/كورسات AI مجانية/g,'دورات ذكاء اصطناعي مجانية']];
   function polishTextNode(node){ let text=node.nodeValue; let next=text; replacements.forEach(function(pair){ next=next.replace(pair[0],pair[1]); }); if(next!==text) node.nodeValue=next; }
   function polishVisibleText(){ if(!document.body) return; const walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT,{acceptNode:function(node){ if(!node.nodeValue||!node.nodeValue.trim()) return NodeFilter.FILTER_REJECT; const parent=node.parentElement; if(!parent) return NodeFilter.FILTER_REJECT; if(['SCRIPT','STYLE','CODE','PRE','TEXTAREA','NOSCRIPT'].includes(parent.tagName)) return NodeFilter.FILTER_REJECT; return NodeFilter.FILTER_ACCEPT; }}); const nodes=[]; while(walker.nextNode()) nodes.push(walker.currentNode); nodes.forEach(polishTextNode); }
   function improveHomeHero(){ if(!isHome) return; const h1=document.querySelector('.page-hero h1'); const heroP=document.querySelector('.page-hero > .container > p'); if(h1) h1.textContent='دليلك العملي لاستخدام الذكاء الاصطناعي'; if(heroP) heroP.textContent='اختر الأدوات المناسبة، اقرأ شروحات واضحة، وابدأ بناء مشروع رقمي خطوة بخطوة.'; }
-
-  function run(){ applySeo(); removeRealImages(); polishVisibleText(); improveHomeHero(); keepOpenSourceButtonsLocked(); }
+  function run(){ applySeo(); removeRealImages(); polishVisibleText(); improveHomeHero(); keepOpenSourceButtonsLocked(); keepHomeButtonsLocked(); }
   if(document.readyState==='loading') document.addEventListener('DOMContentLoaded', run, {once:true}); else run();
 })();
