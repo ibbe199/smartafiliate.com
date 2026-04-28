@@ -30,8 +30,11 @@
       img:not([src^="data:image/svg+xml"]),picture,.article-image img,.post-image img,.hero-image img,.card-image img,.tool-image img,.featured-image img{display:none!important;visibility:hidden!important}
       .article-image,.post-image,.hero-image,.card-image,.tool-image,.featured-image,.home-card-visual,.tool-preview{background:radial-gradient(circle at 18% 18%,rgba(255,255,255,.24),transparent 28%),linear-gradient(135deg,#071426,#12305a 62%,#ea580c)!important;color:#fff!important}
       .article-image:empty::before,.post-image:empty::before,.hero-image:empty::before,.card-image:empty::before,.tool-image:empty::before,.featured-image:empty::before{content:'AI';display:flex;align-items:center;justify-content:center;width:100%;height:100%;min-height:84px;font-weight:900;letter-spacing:.06em;color:#fff}
-      .open-source-official-btn{margin-inline-start:.45rem;background:#fff!important;color:#0b1f3a!important;border:1px solid #d9e4f2!important}
-      @media(max-width:760px){.open-source-official-btn{margin-inline-start:0;margin-top:.45rem;width:100%}}
+      .smart-btn-row{display:flex;flex-wrap:wrap;gap:.55rem;margin-top:.8rem}
+      .smart-primary-btn,.smart-secondary-btn{display:inline-flex!important;align-items:center;justify-content:center;min-height:40px;padding:.62rem 1rem;border-radius:999px;text-decoration:none!important;font-weight:900;line-height:1.2;cursor:pointer;pointer-events:auto!important}
+      .smart-primary-btn{background:#0b1f3a!important;color:#fff!important;border:1px solid #0b1f3a!important}
+      .smart-secondary-btn{background:#fff!important;color:#0b1f3a!important;border:1px solid #d9e4f2!important}
+      @media(max-width:760px){.smart-btn-row{display:grid}.smart-primary-btn,.smart-secondary-btn{width:100%}}
     `;
     const style = document.createElement('style'); style.id = 'smart-light-polish-style'; style.textContent = css; document.head.appendChild(style);
   }
@@ -40,15 +43,45 @@
 
   function keyFromCard(card){ const h3 = card && card.querySelector('h3'); const title = h3 ? h3.textContent.trim().toLowerCase() : ''; return Object.keys(internalPages).find(function(k){ return title.includes(k); }); }
 
-  function fixOpenSourceButtons(){
+  function makeButton(href, text, cls, external){
+    const a = document.createElement('a');
+    a.href = href;
+    a.textContent = text;
+    a.className = cls;
+    if(external){ a.target = '_blank'; a.rel = 'noopener noreferrer nofollow'; }
+    return a;
+  }
+
+  function addToolButtons(){
     if(!isOpenSource) return;
     document.querySelectorAll('.tool-card').forEach(function(card){
-      const key = keyFromCard(card); if(!key) return;
-      const main = card.querySelector('a.tool-link:not(.open-source-official-btn)'); if(!main) return;
-      main.href = internalPages[key]; main.removeAttribute('target'); main.removeAttribute('rel'); main.textContent = 'اقرأ الشرح العملي →';
-      let official = card.querySelector('.open-source-official-btn');
-      if(!official){ official = document.createElement('a'); official.className = 'tool-link open-source-official-btn'; main.insertAdjacentElement('afterend', official); }
-      official.href = officialLinks[key]; official.target = '_blank'; official.rel = 'noopener noreferrer nofollow'; official.textContent = 'الموقع الرسمي ↗';
+      const key = keyFromCard(card); if(!key || card.querySelector('.smart-btn-row')) return;
+      const old = card.querySelector('a.tool-link');
+      if(old) old.style.display = 'none';
+      const row = document.createElement('div');
+      row.className = 'smart-btn-row';
+      row.appendChild(makeButton(internalPages[key], 'اقرأ المقال →', 'smart-primary-btn', false));
+      row.appendChild(makeButton(officialLinks[key], 'الموقع الرسمي ↗', 'smart-secondary-btn', true));
+      card.appendChild(row);
+    });
+  }
+
+  function addHomeButtons(){
+    if(!isHome) return;
+    const targets = [
+      ['.page-hero .cta-actions', [['/best-ai-tools.html','استكشف الأدوات →','smart-primary-btn'],['/ai-articles.html','اقرأ المقالات →','smart-secondary-btn']]],
+      ['.home-primary-section .tools-grid .tool-card:nth-child(1)', [['/best-ai-tools.html','افتح القسم →','smart-primary-btn']]],
+      ['.home-primary-section .tools-grid .tool-card:nth-child(2)', [['/ai-articles.html','افتح المكتبة →','smart-primary-btn']]],
+      ['.home-primary-section .tools-grid .tool-card:nth-child(3)', [['/learn-ai.html','ابدأ التعلم →','smart-primary-btn']]],
+      ['.home-primary-section .tools-grid .tool-card:nth-child(4)', [['/open-source.html','افتح المصادر →','smart-primary-btn']]]
+    ];
+    targets.forEach(function(item){
+      const holder = document.querySelector(item[0]);
+      if(!holder || holder.querySelector('.smart-primary-btn,.smart-secondary-btn')) return;
+      const row = holder.classList.contains('cta-actions') ? holder : document.createElement('div');
+      if(!holder.classList.contains('cta-actions')) row.className = 'smart-btn-row';
+      item[1].forEach(function(btn){ row.appendChild(makeButton(btn[0], btn[1], btn[2], false)); });
+      if(!holder.classList.contains('cta-actions')) holder.appendChild(row);
     });
   }
 
@@ -57,6 +90,6 @@
   const replacements = [[/محلياً/g,'محليًا'],[/مجانياً/g,'مجانيًا'],[/عملياً/g,'عمليًا'],[/حقاً/g,'حقًا'],[/أولاً/g,'أولًا'],[/جهازاً/g,'جهازًا'],[/قوياً/g,'قويًا'],[/بدون تعقيد/g,'دون تعقيد'],[/بدون صور/g,'دون صور'],[/بدون تحميل/g,'دون تحميل'],[/بدون تضييع وقت/g,'دون تضييع وقت'],[/أفضل أدوات AI/g,'أفضل أدوات الذكاء الاصطناعي'],[/مكتبة AI/g,'مكتبة الذكاء الاصطناعي'],[/جديد AI/g,'جديد الذكاء الاصطناعي'],[/SEO وAI/g,'SEO والذكاء الاصطناعي'],[/ما هو AI\؟/g,'ما هو الذكاء الاصطناعي؟'],[/كورسات AI مجانية/g,'دورات ذكاء اصطناعي مجانية']];
   function polishText(){ if(!document.body) return; const walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT,{acceptNode:function(node){ const parent=node.parentElement; if(!node.nodeValue || !node.nodeValue.trim() || !parent || ['SCRIPT','STYLE','CODE','PRE','TEXTAREA','NOSCRIPT'].includes(parent.tagName)) return NodeFilter.FILTER_REJECT; return NodeFilter.FILTER_ACCEPT; }}); const nodes=[]; while(walker.nextNode()) nodes.push(walker.currentNode); nodes.forEach(function(n){ let v=n.nodeValue; replacements.forEach(function(r){ v=v.replace(r[0],r[1]); }); n.nodeValue=v; }); }
 
-  function run(){ applySeo(); addLightStyle(); hideRealImages(); polishText(); improveHomeHero(); fixOpenSourceButtons(); }
+  function run(){ applySeo(); addLightStyle(); hideRealImages(); polishText(); improveHomeHero(); addToolButtons(); addHomeButtons(); }
   if(document.readyState==='loading') document.addEventListener('DOMContentLoaded', run, {once:true}); else run();
 })();
