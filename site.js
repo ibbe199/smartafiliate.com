@@ -19,7 +19,8 @@
       .site-header.header-scrolled{box-shadow:0 12px 28px rgba(2,6,23,.22)}
       .article-card,.post-card,.tool-card,.decision-card,.directory-card,.fast-feature-card{transition:transform .16s ease,box-shadow .16s ease!important;contain:layout paint style}
       .article-card:active,.post-card:active,.tool-card:active,.decision-card:active,.directory-card:active,.fast-feature-card:active,a:active,button:active{transform:scale(.985)}
-      .smart-app-bottom-nav{display:none}
+      .extra-affiliate-link{display:none!important}.tool-card.smart-affiliate-card .extra-affiliate-link{margin-inline-start:.35rem}.tool-card.smart-affiliate-muted .tool-link{background:#fff!important;color:#0b1f3a!important;border:1px solid #d9e4f2!important}.smart-app-bottom-nav{display:none}
+      @media(hover:hover) and (min-width:900px){.tool-card.smart-affiliate-card:hover .extra-affiliate-link{display:inline-flex!important}}
       @media(max-width:760px){
         html{-webkit-text-size-adjust:100%}body{background:var(--app-bg)!important;padding-bottom:calc(92px + env(safe-area-inset-bottom))!important;overflow-x:hidden}.container{width:min(100% - 20px,1120px)!important}.site-header .header-inner{min-height:54px!important;padding:.42rem 0!important}.logo{font-size:1rem!important}.header-actions{display:none!important}.menu-toggle{display:flex!important;width:36px!important;height:36px!important;border-radius:13px!important;background:rgba(255,255,255,.08)!important;border:1px solid rgba(255,255,255,.12)!important;color:#fff!important}.main-nav{border-radius:20px!important;margin-top:.55rem!important}.main-nav.active{display:grid!important;gap:.35rem!important;background:#fff!important;padding:.7rem!important;box-shadow:0 16px 36px rgba(15,23,42,.14)!important}.main-nav.active a{border-radius:14px!important;padding:.75rem!important;color:var(--app-text)!important;background:#f8fafc!important}
         main{overflow:hidden}.page-hero{background:linear-gradient(180deg,var(--app-navy) 0%,var(--app-navy-2) 58%,var(--app-bg) 58%,var(--app-bg) 100%)!important;color:#fff!important;padding:1rem 0 .8rem!important}.page-hero>.container{background:rgba(255,255,255,.06)!important;border:1px solid rgba(255,255,255,.10)!important;border-radius:24px!important;padding:1rem!important;box-shadow:0 16px 34px rgba(2,6,23,.18)!important}.page-hero h1{color:#fff!important;text-align:right!important;font-size:1.38rem!important;line-height:1.45!important}.page-hero p{color:rgba(255,255,255,.84)!important;font-size:.83rem!important;line-height:1.8!important}.page-badge,.section-tag{font-size:.72rem!important;padding:.22rem .7rem!important;border-radius:999px!important}.page-badge{background:rgba(234,88,12,.18)!important;color:#fed7aa!important;border:1px solid rgba(253,186,116,.25)!important}
@@ -120,15 +121,65 @@
     return { primary: AFFILIATE_LINK, secondary: AFFILIATE_LINK_EXTRA, primaryText: 'جرّب الأداة →', secondaryText: 'عرض إضافي →' };
   }
 
+  function getAffiliateLimit() {
+    const path = location.pathname.toLowerCase();
+    if (path.includes('/posts-ai/')) return isMobile() ? 3 : 4;
+    if (path.endsWith('/best-ai-tools.html')) return isMobile() ? 8 : 12;
+    if (path.endsWith('/index.html') || path === '/' || path === '') return isMobile() ? 5 : 7;
+    return isMobile() ? 4 : 6;
+  }
+
   function applyAffiliateLinks() {
-    document.querySelectorAll('.tool-card').forEach(function (card) {
+    const cards = Array.from(document.querySelectorAll('.tool-card'));
+    if (!cards.length) return;
+    const maxLinks = getAffiliateLimit();
+    const usedTitles = new Set();
+    let applied = 0;
+
+    cards.forEach(function (card) {
       const mainLink = card.querySelector('.tool-link');
       if (!mainLink) return;
-      const links = getProfitLinks(getCardTitle(card));
-      mainLink.href = links.primary; mainLink.textContent = links.primaryText; mainLink.target = '_blank'; mainLink.rel = 'nofollow sponsored noopener noreferrer';
+      const originalHref = mainLink.getAttribute('data-original-href') || mainLink.getAttribute('href') || '#';
+      const originalText = mainLink.getAttribute('data-original-text') || cleanText(mainLink.textContent) || 'افتح القسم →';
+      const title = getCardTitle(card).toLowerCase();
+      const key = title.replace(/[^\u0600-\u06FFa-z0-9]+/gi, '-').slice(0, 70);
+      const shouldMonetize = applied < maxLinks && !usedTitles.has(key);
+
+      card.classList.remove('smart-affiliate-card', 'smart-affiliate-muted');
+      mainLink.setAttribute('data-original-href', originalHref);
+      mainLink.setAttribute('data-original-text', originalText);
+
+      if (!shouldMonetize) {
+        card.classList.add('smart-affiliate-muted');
+        mainLink.href = originalHref;
+        mainLink.textContent = originalText;
+        mainLink.removeAttribute('target');
+        mainLink.removeAttribute('rel');
+        const oldExtra = card.querySelector('.extra-affiliate-link');
+        if (oldExtra) oldExtra.remove();
+        return;
+      }
+
+      const links = getProfitLinks(title);
+      usedTitles.add(key);
+      applied += 1;
+      card.classList.add('smart-affiliate-card');
+      mainLink.href = links.primary;
+      mainLink.textContent = links.primaryText;
+      mainLink.target = '_blank';
+      mainLink.rel = 'nofollow sponsored noopener noreferrer';
+
       let extra = card.querySelector('.extra-affiliate-link');
-      if (!extra) { extra = mainLink.cloneNode(true); extra.classList.add('extra-affiliate-link'); mainLink.insertAdjacentElement('afterend', extra); }
-      extra.href = links.secondary; extra.textContent = links.secondaryText; extra.target = '_blank'; extra.rel = 'nofollow sponsored noopener noreferrer';
+      if (!isMobile()) {
+        if (!extra) { extra = mainLink.cloneNode(true); extra.classList.add('extra-affiliate-link'); mainLink.insertAdjacentElement('afterend', extra); }
+        extra.href = links.secondary;
+        extra.textContent = links.secondaryText;
+        extra.target = '_blank';
+        extra.rel = 'nofollow sponsored noopener noreferrer';
+        extra.setAttribute('aria-label', 'رابط عرض إضافي يظهر عند تمرير المؤشر');
+      } else if (extra) {
+        extra.remove();
+      }
     });
   }
 
@@ -144,9 +195,9 @@
     const path = location.pathname.replace(/\/$/, '').toLowerCase();
     const isArticle = path.includes('/posts-ai/');
     const isLibrary = path.endsWith('/ai-articles.html') || path.endsWith('/posts-ai.html') || path.endsWith('/articles.html');
-    if (isLibrary) loadScriptOnce('/publish-all-posts-fix.js', 'publish-all-posts-fix-loader', 4200);
-    if (isArticle || isLibrary) loadScriptOnce('/seo-internal-links.js', 'seo-internal-links-loader', 5200);
-    if (isArticle) loadScriptOnce('/profit-tracker.js', 'profit-tracker-loader', 6200);
+    if (isLibrary) loadScriptOnce('/publish-all-posts-fix.js', 'publish-all-posts-fix-loader', 4800);
+    if (isArticle || isLibrary) loadScriptOnce('/seo-internal-links.js', 'seo-internal-links-loader', 6200);
+    if (isArticle) loadScriptOnce('/profit-tracker.js', 'profit-tracker-loader', 7600);
   }
 
   function initFast() {
@@ -155,7 +206,8 @@
     prepareLightCards();
     fixImages();
     if(isMobile()) ensureAppBottomNav();
-    idle(function(){ applyAffiliateLinks(); loadStyleOnce('/site-cleanup.css', 'site-cleanup-css', 2600); loadSupportScripts(); }, 2200);
+    idle(function(){ applyAffiliateLinks(); }, 1800);
+    idle(function(){ loadStyleOnce('/site-cleanup.css', 'site-cleanup-css', 3200); loadSupportScripts(); }, 3200);
   }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initFast, { once: true }); else initFast();
