@@ -65,6 +65,15 @@
     document.head.appendChild(s);
   }
 
+  function injectFooterTopics(){
+    if (document.getElementById('footer-topics-loader')) return;
+    const s = document.createElement('script');
+    s.id = 'footer-topics-loader';
+    s.defer = true;
+    s.src = '/homepage-footer-topics.js';
+    document.head.appendChild(s);
+  }
+
   function runWhenIdle(callback, timeout) {
     if ('requestIdleCallback' in window) {
       requestIdleCallback(callback, { timeout: timeout || 6000 });
@@ -95,6 +104,7 @@
   injectArabicPolish();
   injectHeaderPolish();
   injectGlobalUnify();
+  injectFooterTopics();
   loadGTMAfterPageIsUsable();
   loadAdsenseAfterPageIsUsable();
 })();
