@@ -1,7 +1,7 @@
 (function () {
   const BRAND = 'Smartafiliate';
-  const AFFILIATE_LINK = 'https://9e507bq9nsow4n57d9tap0ohpd.hop.clickbank.net';
-  const AFFILIATE_LINK_EXTRA = 'https://f21555c3kvj-1zc-zxjkslrl96.hop.clickbank.net';
+  const AFFILIATE_LINK = 'https://b4d0beh1gxdw5zf44gog473s4b.hop.clickbank.net';
+  const AFFILIATE_LINK_EXTRA = 'https://b4d0beh1gxdw5zf44gog473s4b.hop.clickbank.net';
   const isMobile = () => window.matchMedia('(max-width:760px)').matches;
   const idle = (fn, timeout) => ('requestIdleCallback' in window ? requestIdleCallback(fn, { timeout: timeout || 1600 }) : setTimeout(fn, timeout || 1600));
 
@@ -85,9 +85,9 @@
 
   function getProfitLinks(title) {
     const t = String(title || '').toLowerCase();
-    if (['midjourney', 'dall-e', 'dalle', 'canva', 'leonardo', 'تصميم'].some(k => t.includes(k))) return { primary: AFFILIATE_LINK_EXTRA, secondary: AFFILIATE_LINK, primaryText: 'جرّب أداة التصميم →', secondaryText: 'عرض إضافي →' };
-    if (['ollama', 'llama', 'mistral', 'falcon'].some(k => t.includes(k))) return { primary: AFFILIATE_LINK_EXTRA, secondary: AFFILIATE_LINK, primaryText: 'عرض تعلّم AI →', secondaryText: 'أداة بديلة →' };
-    return { primary: AFFILIATE_LINK, secondary: AFFILIATE_LINK_EXTRA, primaryText: 'جرّب الأداة →', secondaryText: 'عرض إضافي →' };
+    if (['midjourney', 'dall-e', 'dalle', 'canva', 'leonardo', 'تصميم'].some(k => t.includes(k))) return { primary: AFFILIATE_LINK, secondary: AFFILIATE_LINK_EXTRA, primaryText: 'احصل على أداة التصميم الآن →', secondaryText: 'شاهد العرض →' };
+    if (['ollama', 'llama', 'mistral', 'falcon', 'تعلم'].some(k => t.includes(k))) return { primary: AFFILIATE_LINK, secondary: AFFILIATE_LINK_EXTRA, primaryText: 'ابدأ التعلم العملي الآن →', secondaryText: 'شاهد العرض →' };
+    return { primary: AFFILIATE_LINK, secondary: AFFILIATE_LINK_EXTRA, primaryText: 'شاهد العرض المناسب →', secondaryText: 'عرض إضافي →' };
   }
 
   function getAffiliateLimit() {
