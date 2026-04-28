@@ -1,7 +1,7 @@
 (function () {
   const BRAND = 'Smartafiliate';
-  const AFFILIATE_LINK = 'https://b4d0beh1gxdw5zf44gog473s4b.hop.clickbank.net';
-  const AFFILIATE_LINK_EXTRA = 'https://b4d0beh1gxdw5zf44gog473s4b.hop.clickbank.net';
+  const AFFILIATE_LINK = 'https://568c33r-ouavcya3kf-f44g5qs.hop.clickbank.net';
+  const AFFILIATE_LINK_EXTRA = 'https://568c33r-ouavcya3kf-f44g5qs.hop.clickbank.net';
   const isMobile = () => window.matchMedia('(max-width:760px)').matches;
   const idle = (fn, timeout) => ('requestIdleCallback' in window ? requestIdleCallback(fn, { timeout: timeout || 1600 }) : setTimeout(fn, timeout || 1600));
 
