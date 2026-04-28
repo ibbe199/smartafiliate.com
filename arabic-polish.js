@@ -4,6 +4,8 @@
   const page = (location.pathname.split('/').pop() || 'index.html').toLowerCase();
   const isHome = page === 'index.html' || page === '' || location.pathname === '/';
   const isOpenSource = page === 'open-source.html';
+  const isToolPage = location.pathname.indexOf('/tools/') === 0;
+  const AFFILIATE_LINK = 'https://568c33r-ouavcya3kf-f44g5qs.hop.clickbank.net';
 
   const seo = {
     'index.html': { title: 'دليلك العملي لاستخدام الذكاء الاصطناعي وبناء مشروع رقمي | Smartafiliate', description: 'موقع عربي عملي يساعدك على اختيار أدوات الذكاء الاصطناعي، قراءة شروحات واضحة، وبناء مشروع رقمي خطوة بخطوة دون تعقيد.' },
@@ -34,6 +36,8 @@
       .smart-primary-btn,.smart-secondary-btn{display:inline-flex!important;align-items:center;justify-content:center;min-height:40px;padding:.62rem 1rem;border-radius:999px;text-decoration:none!important;font-weight:900;line-height:1.2;cursor:pointer;pointer-events:auto!important}
       .smart-primary-btn{background:#0b1f3a!important;color:#fff!important;border:1px solid #0b1f3a!important}
       .smart-secondary-btn{background:#fff!important;color:#0b1f3a!important;border:1px solid #d9e4f2!important}
+      .profit-cta{margin:18px 0;padding:18px;border-radius:22px;background:linear-gradient(135deg,#071426,#12305a 60%,#ea580c);color:#fff;text-align:center;box-shadow:0 10px 24px rgba(15,23,42,.12)}
+      .profit-cta h2{margin:.2rem 0 .5rem;color:#fff}.profit-cta p{color:rgba(255,255,255,.84);line-height:1.8}.profit-cta .smart-primary-btn{background:#16a34a!important;border-color:#16a34a!important}
       @media(max-width:760px){.smart-btn-row{display:grid}.smart-primary-btn,.smart-secondary-btn{width:100%}}
     `;
     const style = document.createElement('style'); style.id = 'smart-light-polish-style'; style.textContent = css; document.head.appendChild(style);
@@ -85,11 +89,20 @@
     });
   }
 
+  function addToolProfitCta(){
+    if(!isToolPage || document.querySelector('.profit-cta')) return;
+    const main = document.querySelector('main') || document.body;
+    const top = document.createElement('section');
+    top.className = 'profit-cta';
+    top.innerHTML = '<h2>حوّل معرفتك بالأداة إلى تطبيق عملي</h2><p>ابدأ بخطة واضحة لتعلم الذكاء الاصطناعي واستخدامه في مشروع رقمي بدل التجربة العشوائية.</p><div class="smart-btn-row" style="justify-content:center"><a class="smart-primary-btn" href="'+AFFILIATE_LINK+'" target="_blank" rel="nofollow sponsored noopener noreferrer">ابدأ التعلم العملي الآن</a><a class="smart-secondary-btn" href="/open-source.html">رجوع إلى الأدوات</a></div>';
+    main.appendChild(top);
+  }
+
   function improveHomeHero(){ if(!isHome) return; const h1=document.querySelector('.page-hero h1'); const p=document.querySelector('.page-hero > .container > p'); if(h1) h1.textContent='دليلك العملي لاستخدام الذكاء الاصطناعي'; if(p) p.textContent='اختر الأدوات المناسبة، اقرأ شروحات واضحة، وابدأ بناء مشروع رقمي خطوة بخطوة.'; }
 
   const replacements = [[/محلياً/g,'محليًا'],[/مجانياً/g,'مجانيًا'],[/عملياً/g,'عمليًا'],[/حقاً/g,'حقًا'],[/أولاً/g,'أولًا'],[/جهازاً/g,'جهازًا'],[/قوياً/g,'قويًا'],[/بدون تعقيد/g,'دون تعقيد'],[/بدون صور/g,'دون صور'],[/بدون تحميل/g,'دون تحميل'],[/بدون تضييع وقت/g,'دون تضييع وقت'],[/أفضل أدوات AI/g,'أفضل أدوات الذكاء الاصطناعي'],[/مكتبة AI/g,'مكتبة الذكاء الاصطناعي'],[/جديد AI/g,'جديد الذكاء الاصطناعي'],[/SEO وAI/g,'SEO والذكاء الاصطناعي'],[/ما هو AI\؟/g,'ما هو الذكاء الاصطناعي؟'],[/كورسات AI مجانية/g,'دورات ذكاء اصطناعي مجانية']];
   function polishText(){ if(!document.body) return; const walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT,{acceptNode:function(node){ const parent=node.parentElement; if(!node.nodeValue || !node.nodeValue.trim() || !parent || ['SCRIPT','STYLE','CODE','PRE','TEXTAREA','NOSCRIPT'].includes(parent.tagName)) return NodeFilter.FILTER_REJECT; return NodeFilter.FILTER_ACCEPT; }}); const nodes=[]; while(walker.nextNode()) nodes.push(walker.currentNode); nodes.forEach(function(n){ let v=n.nodeValue; replacements.forEach(function(r){ v=v.replace(r[0],r[1]); }); n.nodeValue=v; }); }
 
-  function run(){ applySeo(); addLightStyle(); hideRealImages(); polishText(); improveHomeHero(); addToolButtons(); addHomeButtons(); }
+  function run(){ applySeo(); addLightStyle(); hideRealImages(); polishText(); improveHomeHero(); addToolButtons(); addHomeButtons(); addToolProfitCta(); }
   if(document.readyState==='loading') document.addEventListener('DOMContentLoaded', run, {once:true}); else run();
 })();
