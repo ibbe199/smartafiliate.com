@@ -38,6 +38,15 @@
     document.head.appendChild(s);
   }
 
+  function injectArabicPolish() {
+    if (document.getElementById('arabic-polish-loader')) return;
+    const s = document.createElement('script');
+    s.id = 'arabic-polish-loader';
+    s.defer = true;
+    s.src = '/arabic-polish.js';
+    document.head.appendChild(s);
+  }
+
   function runWhenIdle(callback, timeout) {
     if ('requestIdleCallback' in window) {
       requestIdleCallback(callback, { timeout: timeout || 6000 });
@@ -65,6 +74,7 @@
     });
   }
 
+  injectArabicPolish();
   loadGTMAfterPageIsUsable();
   loadAdsenseAfterPageIsUsable();
 })();
