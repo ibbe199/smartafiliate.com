@@ -4,16 +4,16 @@
   const AFFILIATE_LINK = 'https://568c33r-ouavcya3kf-f44g5qs.hop.clickbank.net';
 
   const toolMap = {
-    'mistral': ['/tools/mistral.html', 'https://mistral.ai/'],
-    'falcon': ['/tools/falcon.html', 'https://falconllm.tii.ae/'],
-    'ollama': ['/tools/ollama.html', 'https://ollama.com/'],
-    'llama 3': ['/tools/llama.html', 'https://www.llama.com/'],
-    'llama': ['/tools/llama.html', 'https://www.llama.com/'],
-    'deepseek': ['/tools/deepseek.html', 'https://www.deepseek.com/'],
-    'hugging face': ['/tools/huggingface.html', 'https://huggingface.co/'],
-    'lm studio': ['/tools/lmstudio.html', 'https://lmstudio.ai/'],
-    'open webui': ['/tools/openwebui.html', 'https://github.com/open-webui/open-webui'],
-    'gpt4all': ['/tools/gpt4all.html', 'https://www.nomic.ai/gpt4all']
+    'mistral': ['/posts-ai/mistral-guide.html', 'https://mistral.ai/'],
+    'falcon': ['/posts-ai/falcon-guide.html', 'https://falconllm.tii.ae/'],
+    'ollama': ['/posts-ai/ollama-guide.html', 'https://ollama.com/'],
+    'llama 3': ['/posts-ai/llama3-guide.html', 'https://www.llama.com/'],
+    'llama': ['/posts-ai/llama3-guide.html', 'https://www.llama.com/'],
+    'deepseek': ['/posts-ai/deepseek-guide.html', 'https://www.deepseek.com/'],
+    'hugging face': ['/posts-ai/huggingface-guide.html', 'https://huggingface.co/'],
+    'lm studio': ['/posts-ai/lmstudio-guide.html', 'https://lmstudio.ai/'],
+    'open webui': ['/posts-ai/openwebui-guide.html', 'https://github.com/open-webui/open-webui'],
+    'gpt4all': ['/posts-ai/gpt4all-guide.html', 'https://www.nomic.ai/gpt4all']
   };
 
   function addStyle(){
