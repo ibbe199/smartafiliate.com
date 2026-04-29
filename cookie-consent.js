@@ -1,7 +1,4 @@
 (function () {
-  const ADSENSE_CLIENT = 'ca-pub-8104771152321322';
-  const GTM_ID = 'GTM-P96QVPT3';
-
   function injectScript(src, id){
     if (document.getElementById(id)) return;
     const s = document.createElement('script');
@@ -18,6 +15,7 @@
     injectScript('/homepage-footer-topics.js','footer-topics-loader');
     injectScript('/auto-internal-links.js','auto-internal-links-loader');
     injectScript('/button-polish.js','button-polish-loader');
+    injectScript('/mobile-menu-fix.js','mobile-menu-fix-loader');
   }
 
   injectAll();
