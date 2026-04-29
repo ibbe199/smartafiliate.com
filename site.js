@@ -1,8 +1,8 @@
 (function () {
   const BRAND = 'Smartafiliate';
-  const SYSTEM_PAGE = '/free-affiliate-system.html';
+  const SYSTEM_PAGE = 'https://alishede.systeme.io/affiliate';
   const SYSTEM_LABEL = 'نظام Affiliate';
-  const CLICKBANK_LINK = 'https://568c33r-ouavcya3kf-f44g5qs.hop.clickbank.net';
+  const CLICKBANK_LINK = 'https://alishede.systeme.io/affiliate';
   const isMobile = () => window.matchMedia('(max-width:760px)').matches;
   const idle = (fn, timeout) => ('requestIdleCallback' in window ? requestIdleCallback(fn, { timeout: timeout || 1600 }) : setTimeout(fn, timeout || 1600));
 
@@ -36,21 +36,25 @@
 
   function addSystemLinks() {
     document.querySelectorAll('.main-nav').forEach(function (nav) {
-      if (!nav.querySelector('a[href$="free-affiliate-system.html"]')) {
+      if (!nav.querySelector('a[href="'+SYSTEM_PAGE+'"]')) {
         const a = document.createElement('a');
         a.href = SYSTEM_PAGE;
         a.textContent = SYSTEM_LABEL;
         a.className = 'smart-system-nav-link';
+        a.target = '_blank';
+        a.rel = 'noopener noreferrer';
         nav.appendChild(a);
       }
     });
 
     document.querySelectorAll('.header-actions').forEach(function (wrap) {
-      if (!wrap.querySelector('a[href$="free-affiliate-system.html"]')) {
+      if (!wrap.querySelector('a[href="'+SYSTEM_PAGE+'"]')) {
         const a = document.createElement('a');
         a.href = SYSTEM_PAGE;
         a.textContent = 'ابدأ Affiliate';
         a.className = 'btn-primary-light smart-system-nav-link';
+        a.target = '_blank';
+        a.rel = 'noopener noreferrer';
         wrap.appendChild(a);
       }
     });
@@ -64,7 +68,7 @@
     if (!target) return;
     const banner = document.createElement('div');
     banner.className = 'smart-affiliate-banner';
-    banner.innerHTML = '<strong>🚀 ابدأ نظام Affiliate بالأتمتة</strong><p>صفحة جاهزة تشرح ClickBank + Systeme.io + جمع الإيميلات + رسائل تلقائية.</p><a href="'+SYSTEM_PAGE+'">افتح نظام Affiliate الآن →</a>';
+    banner.innerHTML = '<strong>🚀 ابدأ نظام Affiliate بالأتمتة</strong><p>سجل إيميلك أولاً، ثم تصلك رسائل المتابعة تلقائيًا من Systeme.io.</p><a href="'+SYSTEM_PAGE+'" target="_blank" rel="noopener noreferrer">افتح صفحة التسجيل الآن →</a>';
     target.appendChild(banner);
   }
 
@@ -75,14 +79,17 @@
       ['index.html', '🏠', 'الرئيسية'],
       ['best-ai-tools.html', '🤖', 'الأدوات'],
       ['ai-articles.html', '📚', 'المقالات'],
-      ['free-affiliate-system.html', '💰', 'Affiliate']
+      [SYSTEM_PAGE, '💰', 'Affiliate']
     ];
     const nav = document.createElement('nav');
     nav.className = 'smart-app-bottom-nav';
     nav.setAttribute('aria-label', 'تنقل سريع');
     nav.innerHTML = items.map(function (item) {
-      const active = path === item[0] || (path === '' && item[0] === 'index.html') ? ' class="is-active" aria-current="page"' : '';
-      return '<a href="/'+item[0]+'"'+active+'><strong>'+item[1]+'</strong><span>'+item[2]+'</span></a>';
+      const external = item[0].indexOf('http') === 0;
+      const href = external ? item[0] : '/' + item[0];
+      const active = !external && (path === item[0] || (path === '' && item[0] === 'index.html')) ? ' class="is-active" aria-current="page"' : '';
+      const attrs = external ? ' target="_blank" rel="noopener noreferrer"' : '';
+      return '<a href="'+href+'"'+active+attrs+'><strong>'+item[1]+'</strong><span>'+item[2]+'</span></a>';
     }).join('');
     document.body.appendChild(nav);
   }
@@ -103,8 +110,8 @@
       link.dataset.smartLinked = '1';
       link.href = CLICKBANK_LINK;
       link.target = '_blank';
-      link.rel = 'nofollow sponsored noopener noreferrer';
-      if (!/العرض|ابدأ|شاهد/.test(link.textContent)) link.textContent = 'شاهد العرض المناسب →';
+      link.rel = 'noopener noreferrer';
+      if (!/العرض|ابدأ|شاهد/.test(link.textContent)) link.textContent = 'ابدأ من صفحة التسجيل →';
     });
   }
 
