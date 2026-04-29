@@ -38,40 +38,21 @@
     document.head.appendChild(s);
   }
 
-  function injectArabicPolish() {
-    if (document.getElementById('arabic-polish-loader')) return;
+  function injectScript(src, id){
+    if (document.getElementById(id)) return;
     const s = document.createElement('script');
-    s.id = 'arabic-polish-loader';
+    s.id = id;
     s.defer = true;
-    s.src = '/arabic-polish.js';
+    s.src = src;
     document.head.appendChild(s);
   }
 
-  function injectHeaderPolish(){
-    if (document.getElementById('header-polish-loader')) return;
-    const s = document.createElement('script');
-    s.id = 'header-polish-loader';
-    s.defer = true;
-    s.src = '/header-polish.js';
-    document.head.appendChild(s);
-  }
-
-  function injectGlobalUnify(){
-    if (document.getElementById('global-unify-loader')) return;
-    const s = document.createElement('script');
-    s.id = 'global-unify-loader';
-    s.defer = true;
-    s.src = '/global-unify.js';
-    document.head.appendChild(s);
-  }
-
-  function injectFooterTopics(){
-    if (document.getElementById('footer-topics-loader')) return;
-    const s = document.createElement('script');
-    s.id = 'footer-topics-loader';
-    s.defer = true;
-    s.src = '/homepage-footer-topics.js';
-    document.head.appendChild(s);
+  function injectAll(){
+    injectScript('/arabic-polish.js','arabic-polish-loader');
+    injectScript('/header-polish.js','header-polish-loader');
+    injectScript('/global-unify.js','global-unify-loader');
+    injectScript('/homepage-footer-topics.js','footer-topics-loader');
+    injectScript('/auto-internal-links.js','auto-internal-links-loader');
   }
 
   function runWhenIdle(callback, timeout) {
@@ -101,10 +82,7 @@
     });
   }
 
-  injectArabicPolish();
-  injectHeaderPolish();
-  injectGlobalUnify();
-  injectFooterTopics();
+  injectAll();
   loadGTMAfterPageIsUsable();
   loadAdsenseAfterPageIsUsable();
 })();
