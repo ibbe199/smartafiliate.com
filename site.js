@@ -3,6 +3,7 @@
   const SYSTEM_PAGE = 'https://alishede.systeme.io/affiliate';
   const SYSTEM_LABEL = 'نظام Affiliate';
   const CLICKBANK_LINK = 'https://alishede.systeme.io/affiliate';
+  const POPUP_KEY = 'smart_affiliate_popup_seen_v1';
   const isMobile = () => window.matchMedia('(max-width:760px)').matches;
   const idle = (fn, timeout) => ('requestIdleCallback' in window ? requestIdleCallback(fn, { timeout: timeout || 1600 }) : setTimeout(fn, timeout || 1600));
 
@@ -26,7 +27,8 @@
       .smart-affiliate-banner{margin:1rem 0 0;padding:1rem;border-radius:20px;background:linear-gradient(135deg,#fff7ed,#ffffff);border:1px solid #fed7aa;box-shadow:0 10px 24px rgba(15,23,42,.06);display:grid;gap:.65rem;color:#0f172a}
       .smart-affiliate-banner strong{font-size:1.05rem;color:#0b1f3a}.smart-affiliate-banner p{margin:0!important;color:#475569!important;line-height:1.75!important}.smart-affiliate-banner a{display:inline-flex;width:max-content;align-items:center;justify-content:center;border-radius:999px;background:#ea580c;color:#fff!important;text-decoration:none!important;font-weight:900;padding:.75rem 1rem}
       .smart-system-nav-link{font-weight:900!important}.smart-app-bottom-nav{display:none}
-      @media(max-width:760px){body{padding-bottom:calc(84px + env(safe-area-inset-bottom))}.smart-affiliate-banner{border-radius:18px;padding:.9rem;margin-top:.85rem}.smart-affiliate-banner strong{font-size:.95rem}.smart-affiliate-banner p{font-size:.78rem!important}.smart-affiliate-banner a{width:100%;min-height:40px}.smart-app-bottom-nav{position:fixed;right:10px;left:10px;bottom:calc(10px + env(safe-area-inset-bottom));height:62px;z-index:1600;display:grid;grid-template-columns:repeat(4,1fr);gap:.3rem;align-items:center;background:#fff;border:1px solid rgba(148,163,184,.24);border-radius:22px;box-shadow:0 10px 24px rgba(15,23,42,.15);padding:.32rem}.smart-app-bottom-nav a{min-width:0;height:50px;border-radius:16px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.1rem;text-decoration:none!important;color:#334155!important;font-size:.65rem;font-weight:900}.smart-app-bottom-nav a strong{font-size:1.08rem;line-height:1}.smart-app-bottom-nav a.is-active{background:#0b1f3a!important;color:#fff!important}}
+      .smart-popup-overlay{position:fixed;inset:0;background:rgba(2,6,23,.62);z-index:9999;display:flex;align-items:center;justify-content:center;padding:1rem}.smart-popup-card{width:min(94vw,430px);background:#fff;border-radius:24px;border:1px solid #fed7aa;box-shadow:0 24px 70px rgba(0,0,0,.32);padding:1.25rem;display:grid;gap:.75rem;color:#0f172a;text-align:right}.smart-popup-card h2{margin:0;color:#0b1f3a;font-size:1.25rem;line-height:1.45}.smart-popup-card p{margin:0;color:#475569;line-height:1.75}.smart-popup-actions{display:grid;gap:.55rem}.smart-popup-primary{display:flex;align-items:center;justify-content:center;border-radius:999px;background:#ea580c;color:#fff!important;text-decoration:none!important;font-weight:900;padding:.85rem 1rem}.smart-popup-close{border:0;background:#f8fafc;color:#475569;border-radius:999px;padding:.75rem 1rem;font-weight:900;cursor:pointer}.smart-popup-x{position:absolute;top:.7rem;left:.7rem;width:36px;height:36px;border:0;border-radius:999px;background:#f1f5f9;color:#0f172a;font-size:1.2rem;cursor:pointer}.smart-popup-card{position:relative}
+      @media(max-width:760px){body{padding-bottom:calc(84px + env(safe-area-inset-bottom))}.smart-affiliate-banner{border-radius:18px;padding:.9rem;margin-top:.85rem}.smart-affiliate-banner strong{font-size:.95rem}.smart-affiliate-banner p{font-size:.78rem!important}.smart-affiliate-banner a{width:100%;min-height:40px}.smart-popup-card{border-radius:20px;padding:1rem}.smart-popup-card h2{font-size:1.08rem}.smart-app-bottom-nav{position:fixed;right:10px;left:10px;bottom:calc(10px + env(safe-area-inset-bottom));height:62px;z-index:1600;display:grid;grid-template-columns:repeat(4,1fr);gap:.3rem;align-items:center;background:#fff;border:1px solid rgba(148,163,184,.24);border-radius:22px;box-shadow:0 10px 24px rgba(15,23,42,.15);padding:.32rem}.smart-app-bottom-nav a{min-width:0;height:50px;border-radius:16px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.1rem;text-decoration:none!important;color:#334155!important;font-size:.65rem;font-weight:900}.smart-app-bottom-nav a strong{font-size:1.08rem;line-height:1}.smart-app-bottom-nav a.is-active{background:#0b1f3a!important;color:#fff!important}}
     `;
     const style = document.createElement('style');
     style.id = 'smart-affiliate-system-css';
@@ -70,6 +72,23 @@
     banner.className = 'smart-affiliate-banner';
     banner.innerHTML = '<strong>🚀 ابدأ نظام Affiliate بالأتمتة</strong><p>سجل إيميلك أولاً، ثم تصلك رسائل المتابعة تلقائيًا من Systeme.io.</p><a href="'+SYSTEM_PAGE+'" target="_blank" rel="noopener noreferrer">افتح صفحة التسجيل الآن →</a>';
     target.appendChild(banner);
+  }
+
+  function showOneTimePopup() {
+    try { if (localStorage.getItem(POPUP_KEY) === '1') return; } catch (e) {}
+    if (document.querySelector('.smart-popup-overlay')) return;
+    const overlay = document.createElement('div');
+    overlay.className = 'smart-popup-overlay';
+    overlay.innerHTML = '<div class="smart-popup-card" role="dialog" aria-modal="true" aria-label="عرض Affiliate"><button class="smart-popup-x" type="button" aria-label="إغلاق">×</button><h2>🔥 تريد طريقة بسيطة للبدء في Affiliate؟</h2><p>سجل إيميلك في صفحة Systeme.io وستصلك التفاصيل والمتابعة تلقائيًا.</p><div class="smart-popup-actions"><a class="smart-popup-primary" href="'+SYSTEM_PAGE+'" target="_blank" rel="noopener noreferrer">افتح صفحة التسجيل الآن →</a><button class="smart-popup-close" type="button">لاحقًا</button></div></div>';
+    function closePopup() {
+      try { localStorage.setItem(POPUP_KEY, '1'); } catch (e) {}
+      overlay.remove();
+    }
+    overlay.addEventListener('click', function (event) { if (event.target === overlay) closePopup(); });
+    overlay.querySelector('.smart-popup-x').addEventListener('click', closePopup);
+    overlay.querySelector('.smart-popup-close').addEventListener('click', closePopup);
+    overlay.querySelector('.smart-popup-primary').addEventListener('click', closePopup);
+    document.body.appendChild(overlay);
   }
 
   function addMobileBottomNav() {
@@ -123,6 +142,7 @@
     addMobileBottomNav();
     prepareImages();
     idle(applyBasicAffiliateLinks, 2500);
+    setTimeout(showOneTimePopup, 5000);
   }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init, { once: true }); else init();
