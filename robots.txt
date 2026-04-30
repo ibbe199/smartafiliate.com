@@ -2,3 +2,5 @@ User-agent: *
 Allow: /
 
 Sitemap: https://www.smartafiliate.com/sitemap.xml
+# RSS Feed
+# https://www.smartafiliate.com/feed.xml
