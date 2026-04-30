@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 
 const ROOT = process.cwd();
-const SITE_URL = 'https://smartafiliate.com';
+const SITE_URL = 'https://www.smartafiliate.com';
 const BRAND = 'smartafiliate';
 const DEFAULT_IMAGE = `${SITE_URL}/assets/images/seo-card.png`;
 const GENERATED_COVERS_DIR = 'assets/generated-covers';
@@ -100,7 +100,7 @@ function slugFromPath(filePath) {
 
 function toAbsoluteUrl(rawUrl, filePath) {
   if (!rawUrl) return DEFAULT_IMAGE;
-  if (/^https?:\/\//i.test(rawUrl)) return rawUrl;
+  if (/^https?:\/\//i.test(rawUrl)) return rawUrl.replace('https://smartafiliate.com', SITE_URL);
   const normalized = rawUrl.replace(/^\.\//, '');
   if (normalized.startsWith('/')) return `${SITE_URL}${normalized}`;
   const baseDir = filePath.includes('/') ? filePath.split('/').slice(0, -1).join('/') : '';
@@ -110,7 +110,7 @@ function toAbsoluteUrl(rawUrl, filePath) {
 }
 
 function toSiteRelativeUrl(absoluteUrl) {
-  return absoluteUrl.replace(SITE_URL, '');
+  return absoluteUrl.replace(SITE_URL, '').replace('https://smartafiliate.com', '');
 }
 
 function replaceOrInsert(head, regex, replacement) {
@@ -246,6 +246,7 @@ function updateHtml(filePath) {
   }
 
   content = content.replace(/<head>[\s\S]*?<\/head>/i, `<head>\n${head.trim()}\n</head>`);
+  content = content.replace(/https:\/\/smartafiliate\.com/g, SITE_URL);
   if (content !== original) {
     writeFile(filePath, content);
     return true;
