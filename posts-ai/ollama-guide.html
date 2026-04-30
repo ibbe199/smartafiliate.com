@@ -2,116 +2,64 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          <title>دليل Ollama: تشغيل النماذج المحلية بسهولة | smartafiliate</title>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          <meta name="description" content="دليل شامل لـ Ollama: أداة مجانية لتشغيل النماذج اللغوية المحلية بسهولة على جهازك." />
-  <link rel="stylesheet" href="../styles.css" />
-  <script defer src="../cookie-consent.js"></script>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          <link rel="canonical" href="https://www.smartafiliate.com/posts-ai/ollama-guide.html" />
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          <meta property="og:type" content="article" />
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          <meta property="og:title" content="دليل Ollama: تشغيل النماذج المحلية بسهولة | smartafiliate" />
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          <meta property="og:description" content="دليل شامل لـ Ollama: أداة مجانية لتشغيل النماذج اللغوية المحلية بسهولة على جهازك." />
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          <meta property="og:url" content="https://www.smartafiliate.com/posts-ai/ollama-guide.html" />
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          <meta property="og:image" content="https://www.smartafiliate.com/assets/generated-covers/posts-ai-ollama-guide.svg" />
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          <meta name="twitter:card" content="summary_large_image" />
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          <meta name="twitter:title" content="دليل Ollama: تشغيل النماذج المحلية بسهولة | smartafiliate" />
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          <meta name="twitter:description" content="دليل شامل لـ Ollama: أداة مجانية لتشغيل النماذج اللغوية المحلية بسهولة على جهازك." />
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          <meta name="twitter:image" content="https://www.smartafiliate.com/assets/generated-covers/posts-ai-ollama-guide.svg" />
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"دليل Ollama: تشغيل النماذج المحلية بسهولة","description":"دليل شامل لـ Ollama: أداة مجانية لتشغيل النماذج اللغوية المحلية بسهولة على جهازك.","mainEntityOfPage":"https://www.smartafiliate.com/posts-ai/ollama-guide.html","image":["https://www.smartafiliate.com/assets/generated-covers/posts-ai-ollama-guide.svg"],"author":{"@type":"Organization","name":"smartafiliate"},"publisher":{"@type":"Organization","name":"smartafiliate"},"inLanguage":"ar"}</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Ollama Guide | دليل Ollama لتشغيل نماذج AI محليًا | smartafiliate</title>
+<meta name="description" content="دليل طويل ومنظم عن Ollama: ما هو، كيف تثبته، أفضل النماذج، أوامر التشغيل، حالات الاستخدام، المميزات، العيوب، وروابط داخلية لأدوات AI مفتوحة المصدر." />
+<link rel="stylesheet" href="../styles.css" />
+<link rel="stylesheet" href="../article-enhancements.css" />
+<script defer src="../cookie-consent.js"></script>
+<link rel="canonical" href="https://www.smartafiliate.com/posts-ai/ollama-guide.html" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Ollama Guide | دليل Ollama لتشغيل نماذج AI محليًا | smartafiliate" />
+<meta property="og:description" content="دليل شامل لتشغيل نماذج Llama وMistral وDeepSeek محليًا باستخدام Ollama." />
+<meta property="og:url" content="https://www.smartafiliate.com/posts-ai/ollama-guide.html" />
+<meta property="og:image" content="https://www.smartafiliate.com/assets/generated-covers/posts-ai-ollama-guide.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Ollama Guide | دليل Ollama" />
+<meta name="twitter:description" content="تشغيل نماذج الذكاء الاصطناعي محليًا بخطوات عملية." />
+<meta name="twitter:image" content="https://www.smartafiliate.com/assets/generated-covers/posts-ai-ollama-guide.svg" />
+<style>
+.decision-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;margin:1rem 0}.decision-card{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:1rem}.decision-card h3{margin-bottom:.4rem}.quick-links{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:.8rem}.quick-links a{color:var(--primary);font-weight:800}.faq-box{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:1rem;margin-top:1rem}.code-box{background:#0b1f3a;color:#fff;padding:1rem;border-radius:12px;overflow-x:auto;direction:ltr;text-align:left}.article-body a{font-weight:800}.note-box{background:#fff7ed;border:1px solid #fed7aa;border-radius:18px;padding:1rem;margin:1rem 0}@media(max-width:640px){.quick-links{justify-content:center}.decision-grid{grid-template-columns:1fr}}
+</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Ollama Guide | دليل Ollama لتشغيل نماذج AI محليًا","description":"دليل طويل ومنظم عن Ollama وتشغيل نماذج الذكاء الاصطناعي محليًا.","mainEntityOfPage":"https://www.smartafiliate.com/posts-ai/ollama-guide.html","image":["https://www.smartafiliate.com/assets/generated-covers/posts-ai-ollama-guide.svg"],"author":{"@type":"Organization","name":"smartafiliate"},"publisher":{"@type":"Organization","name":"smartafiliate"},"inLanguage":"ar"}</script>
 </head>
 <body>
-
-  <header class="site-header">
-    <div class="container header-inner">
-      <div class="logo">
-        <span class="logo-text logo-text-light">smart</span>
-        <span class="logo-text logo-text-accent">afiliate</span>
-      </div>
-      <button class="menu-toggle" onclick="toggleMenu()">☰</button>
-      <nav class="main-nav" id="mainNav">
-        <a href="../index.html">الرئيسية</a>
-        <a href="../best-ai-tools.html">أفضل أدوات AI</a>
-        <a href="../ai-articles.html">مكتبة AI</a>
-        <a href="../learn-ai.html">تعلم AI</a>
-        <a href="../open-source.html">أدوات مفتوحة المصدر</a>
-        <a href="../articles.html">المقالات</a>
-        <a href="../posts-ai.html">جميع المقالات</a>
-        <a href="../about.html">من نحن</a>
-        <a href="../contact.html">تواصل</a>
-      </nav>
-      <div class="header-actions">
-        <a href="../ai-articles.html" class="btn-outline-light">مكتبة AI</a>
-        <a href="../best-ai-tools.html" class="btn-primary-light">أفضل أدوات AI</a>
-      </div>
-    </div>
-  </header>
-
-  <main>
-    <section class="page-hero">
-      <div class="container">
-        <span class="page-badge">🧠 دليل أداة</span>
-        <h1>دليل Ollama: تشغيل النماذج المحلية بسهولة</h1>
-        <p>أسهل طريقة لتشغيل نماذج Llama و Mistral و Falcon محلياً على جهازك</p>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container">
-        <div class="article-container">
-          <div class="article-body" style="padding: 2rem;">
-            
-            <div class="toc">
-              <h3>📑 في هذا المقال</h3>
-              <ul>
-                <li><a href="#intro">ما هو Ollama؟</a></li>
-                <li><a href="#installation">التثبيت</a></li>
-                <li><a href="#commands">الأوامر الأساسية</a></li>
-                <li><a href="#models">النماذج المتاحة</a></li>
-                <li><a href="#conclusion">الخلاصة</a></li>
-              </ul>
-            </div>
-
-            <h2 id="intro">🧠 ما هو Ollama؟</h2>
-            <p><strong>Ollama</strong> هو أداة مجانية ومفتوحة المصدر تتيح لك تشغيل نماذج اللغة الكبيرة محلياً على جهازك بسهولة.</p>
-
-            <h2 id="installation">📥 التثبيت</h2>
-            <p>حمّل Ollama من <a href="https://ollama.ai" target="_blank">ollama.ai</a> لنظامك (Windows، Mac، Linux).</p>
-
-            <h2 id="commands">⚙️ الأوامر الأساسية</h2>
-            <pre style="background:#0b1f3a; color:#fff; padding:1rem; border-radius:12px;"># تشغيل Llama 3
+<header class="site-header"><div class="container header-inner"><div class="logo"><span class="logo-text logo-text-light">smart</span><span class="logo-text logo-text-accent">afiliate</span></div><button class="menu-toggle" aria-label="فتح وإغلاق القائمة" aria-expanded="false" aria-controls="mainNav" onclick="toggleMenu()">☰</button><nav class="main-nav" id="mainNav"><a href="../index.html">الرئيسية</a><a href="../best-ai-tools.html">أفضل أدوات AI</a><a href="../ai-articles.html">مكتبة AI</a><a href="../learn-ai.html">تعلم AI</a><a href="../open-source.html">أدوات مفتوحة المصدر</a><a href="../articles.html">المقالات</a><a href="../posts-ai.html">جميع المقالات</a><a href="../about.html">من نحن</a><a href="../contact.html">تواصل</a></nav><div class="header-actions"><a href="../ai-articles.html" class="btn-outline-light">مكتبة AI</a><a href="../best-ai-tools.html" class="btn-primary-light">أفضل أدوات AI</a></div></div></header>
+<main>
+<section class="page-hero"><div class="container"><span class="page-badge">🧠 Open Source AI</span><h1>Ollama Guide | دليل Ollama لتشغيل نماذج AI محليًا</h1><p>دليل عملي طويل يشرح كيف تستخدم Ollama لتشغيل Llama وMistral وDeepSeek ونماذج أخرى على جهازك بدون الاعتماد الكامل على الخدمات السحابية.</p><div class="review-cta"><p>إذا كنت تريد الخصوصية، التجربة المحلية، أو بناء مشروع AI بدون إرسال كل شيء إلى السحابة، فـ Ollama من أهم الأدوات التي يجب أن تعرفها.</p><div class="review-actions"><a href="https://ollama.com" target="_blank" rel="noopener noreferrer nofollow" class="review-btn-primary">افتح Ollama الرسمي</a><a href="../open-source.html" class="review-btn-secondary">أدوات مفتوحة المصدر</a></div><div class="mini-compare"><a href="llama3-guide.html">Llama 3</a><a href="mistral-guide.html">Mistral</a><a href="deepseek-guide.html">DeepSeek</a></div></div></div></section>
+<section class="section"><div class="container"><div class="article-container"><div class="article-body">
+<div class="toc"><h3>📑 محتوى المقال</h3><ul><li><a href="#quick-decision">قرار سريع</a></li><li><a href="#intro">ما هو Ollama؟</a></li><li><a href="#why-local">لماذا تشغيل AI محليًا؟</a></li><li><a href="#install">التثبيت</a></li><li><a href="#commands">الأوامر الأساسية</a></li><li><a href="#models">أفضل النماذج</a></li><li><a href="#use-cases">الاستخدامات العملية</a></li><li><a href="#pros-cons">المميزات والعيوب</a></li><li><a href="#workflow">نظام عمل مقترح</a></li><li><a href="#faq">أسئلة شائعة</a></li><li><a href="#conclusion">الخلاصة</a></li></ul></div>
+<h2 id="quick-decision">🎯 قرار سريع: هل يناسبك Ollama؟</h2><div class="decision-grid"><div class="decision-card"><h3>نعم، إذا تهتم بالخصوصية</h3><p>تشغيل النموذج محليًا يعني أن كثيرًا من التجارب والملفات لا تحتاج أن تخرج من جهازك.</p></div><div class="decision-card"><h3>نعم، إذا تحب التجربة التقنية</h3><p>Ollama ممتاز لمن يريد اختبار نماذج متعددة بسرعة من الطرفية أو عبر API محلي.</p></div><div class="decision-card"><h3>قد لا يناسبك إذا...</h3><p>جهازك ضعيف جدًا أو تريد تجربة سهلة جدًا بدون أوامر أو إعدادات.</p></div></div><div class="quick-links"><a href="llama3-guide.html">ابدأ مع Llama</a><a href="mistral-guide.html">جرّب Mistral</a><a href="deepseek-guide.html">اقرأ عن DeepSeek</a></div>
+<div class="article-links-box"><strong>روابط داخلية وخارجية سريعة</strong><div class="article-links-grid"><a href="../open-source.html">أدوات مفتوحة المصدر</a><a href="llama3-guide.html">دليل Llama 3</a><a href="mistral-guide.html">دليل Mistral</a><a href="https://ollama.com" target="_blank" rel="noopener noreferrer nofollow">الموقع الرسمي لـ Ollama</a></div></div>
+<h2 id="intro">🧠 ما هو Ollama؟</h2><p><strong>Ollama</strong> أداة تسمح بتشغيل نماذج اللغة الكبيرة محليًا على جهازك بطريقة أبسط بكثير من تنزيل ملفات النماذج يدويًا وضبط بيئات معقدة. بدل أن تبحث عن النموذج، وتحمل ملفاته، وتضبط مكتبات التشغيل، يمكنك كتابة أمر واحد مثل <code>ollama run llama3</code> ليبدأ النظام بتنزيل النموذج وتشغيله.</p><p>الفكرة الأساسية ليست أن Ollama بديل كامل لكل منصات الذكاء الاصطناعي السحابية، بل أنه طبقة عملية تجعل تجربة النماذج المحلية أسهل. هذا مهم للمطورين، صناع المحتوى، أصحاب المواقع، وأي شخص يريد فهم الذكاء الاصطناعي من الداخل بدل استخدامه فقط عبر واجهة جاهزة.</p>
+<div class="note-box"><strong>ملاحظة عملية:</strong> Ollama ليس نموذجًا واحدًا، بل أداة لتشغيل نماذج مختلفة مثل Llama وMistral وDeepSeek وغيرها.</div>
+<h2 id="why-local">🔒 لماذا تشغيل AI محليًا مهم؟</h2><p>تشغيل الذكاء الاصطناعي محليًا يعطيك ثلاث فوائد رئيسية: الخصوصية، التحكم، والتجربة الحرة. عندما تعمل على محتوى حساس، أفكار مشاريع، ملفات عملاء، أو بيانات داخلية، قد لا ترغب في إرسال كل شيء إلى أداة خارجية. التشغيل المحلي يقلل هذا الاعتماد.</p><p>الفائدة الثانية هي التحكم. يمكنك اختبار أكثر من نموذج ومقارنة النتائج بنفسك. بعض النماذج أفضل في العربية، بعضها أسرع، بعضها أفضل في البرمجة أو التلخيص. بدل أن تعتمد على اسم تجاري واحد، تستطيع بناء حكم عملي من التجربة.</p><p>الفائدة الثالثة هي التعلم. إذا كان هدفك بناء موقع أو مشروع يعتمد على AI، ففهم التشغيل المحلي يفتح لك أبوابًا كثيرة: chatbot داخلي، أدوات تلخيص خاصة، بحث ذكي، أو مساعد كتابة داخل لوحة تحكم.</p>
+<h2 id="install">📥 طريقة تثبيت Ollama</h2><p>الخطوة الأولى هي فتح الموقع الرسمي وتنزيل النسخة المناسبة لنظامك. Ollama يدعم أنظمة شائعة مثل macOS وWindows وLinux. بعد التثبيت، افتح الطرفية أو Terminal وجرب أمر التشغيل.</p><pre class="code-box">ollama --version</pre><p>إذا ظهر رقم الإصدار، فهذا يعني أن التثبيت يعمل. بعدها يمكنك تشغيل أول نموذج. للمبتدئ، أنصح بالبدء بنموذج معروف وخفيف نسبيًا قبل الانتقال إلى نماذج أكبر.</p><pre class="code-box">ollama run llama3</pre><p>عند أول تشغيل، سيقوم Ollama بتنزيل النموذج ثم تشغيله. بعد ذلك يمكنك محاورته مباشرة من الطرفية.</p>
+<h2 id="commands">⚙️ الأوامر الأساسية في Ollama</h2><p>هذه أهم الأوامر التي تحتاجها في البداية:</p><pre class="code-box"># تشغيل نموذج
 ollama run llama3
 
 # تشغيل Mistral
 ollama run mistral
 
-# تشغيل Falcon
-ollama run falcon
+# عرض النماذج المثبتة
+ollama list
 
-# قائمة النماذج المحملة
-ollama list</pre>
+# حذف نموذج من جهازك
+ollama rm llama3
 
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <div class="container footer-grid">
-      <div class="footer-col"><div class="logo"><span class="logo-text logo-text-light">smart</span><span class="logo-text logo-text-accent">afiliate</span></div></div>
-      <div class="footer-col"><h4>من نحن</h4><a href="../about.html">من نحن</a><a href="../contact.html">تواصل</a></div>
-      <div class="footer-col"><h4>سياسة الخصوصية</h4><a href="../privacy.html">الخصوصية</a><a href="../cookie-policy.html">سياسة الكوكيز</a><a href="../terms.html">الشروط</a></div>
-    </div>
-    <div class="container footer-bottom"><span>smartafiliate © 2026</span></div>
-  </footer>
-
-  <script>
-    function toggleMenu() { document.getElementById('mainNav').classList.toggle('active'); }
-    window.onscroll = function() {
-      const header = document.querySelector('.site-header');
-      if (window.scrollY > 50) header.classList.add('header-scrolled');
-      else header.classList.remove('header-scrolled');
-    };
-  </script>
-</body>
-</html>
+# عرض النماذج التي تعمل حاليًا
+ollama ps</pre><p>الأوامر بسيطة، وهذا هو سبب انتشار Ollama بين المبتدئين والمطورين. بدل أن تبدأ من إعدادات معقدة، تبدأ من أمر واضح ثم تتوسع تدريجيًا.</p>
+<h2 id="models">🧩 أفضل النماذج التي يمكنك تجربتها</h2><ul><li><strong>Llama 3:</strong> اختيار جيد كبداية عامة، مناسب للتلخيص والكتابة والأسئلة.</li><li><strong>Mistral:</strong> سريع وخفيف نسبيًا، جيد للاستخدامات اليومية والتجارب.</li><li><strong>DeepSeek:</strong> مفيد خصوصًا في البرمجة والتحليل حسب النسخة المستخدمة.</li><li><strong>Falcon:</strong> خيار إضافي للتجارب والمقارنة بين النتائج.</li></ul><p>لا يوجد نموذج واحد هو الأفضل في كل شيء. الأفضل أن تختبر نفس السؤال أو المهمة على أكثر من نموذج ثم تقارن: من يعطيك إجابة أوضح؟ من يلتزم باللغة العربية؟ من يرتكب أخطاء أقل؟</p>
+<h2 id="use-cases">💼 استخدامات عملية لـ Ollama</h2><p>يمكن استخدام Ollama في أكثر من سيناريو عملي. لصاحب موقع محتوى، يمكن استخدامه لتوليد أفكار أولية، تلخيص مقالات طويلة، استخراج عناوين فرعية، أو مراجعة نصوص قبل نشرها. المهم ألا تنشر المخرجات كما هي بدون مراجعة بشرية.</p><p>للمطور، يمكن استخدامه كمساعد محلي لشرح الأكواد أو اقتراح تحسينات أو بناء نماذج أولية. يمكن أيضًا ربطه بتطبيقات محلية من خلال API، مما يسمح بإنشاء أدوات مخصصة.</p><p>لمن يعمل في التسويق بالعمولة، يمكن استخدامه لتحليل صفحات المنتجات، توليد أسئلة FAQ، مقارنة مزايا أدوات مختلفة، أو بناء مسودات مراجعات طويلة ثم تحسينها يدويًا.</p>
+<h2 id="pros-cons">✅ المميزات و ❌ العيوب</h2><div class="decision-grid"><div class="decision-card"><h3>المميزات</h3><p>خصوصية أعلى، تحكم أكبر، تشغيل محلي، تجربة نماذج كثيرة، مناسب للتعلم وبناء المشاريع.</p></div><div class="decision-card"><h3>العيوب</h3><p>يحتاج جهازًا جيدًا نسبيًا، بعض النماذج كبيرة، النتائج تختلف حسب النموذج، وقد تحتاج خبرة بسيطة بالطرفية.</p></div></div>
+<h2 id="workflow">🧭 نظام عمل مقترح لاستخدام Ollama في موقع محتوى</h2><ol><li>اختر موضوع المقال أو الأداة التي تريد تحليلها.</li><li>استخدم Ollama لتوليد أسئلة بحث أولية.</li><li>ابحث يدويًا عن المعلومات المهمة وتأكد منها.</li><li>اطلب من النموذج اقتراح بنية H2/H3.</li><li>اكتب المقال أو راجعه بأسلوبك.</li><li>أضف روابط داخلية مثل <a href="../posts-ai.html">جميع المقالات</a> و<a href="../best-ai-tools.html">أفضل أدوات AI</a>.</li><li>راجع الجودة، الأخطاء، والفائدة الفعلية للقارئ قبل النشر.</li></ol>
+<div class="review-cta"><p>أفضل استخدام لـ Ollama ليس النسخ واللصق، بل بناء مساعد محلي يساعدك في التفكير والتنظيم والمراجعة.</p><div class="review-actions"><a href="https://ollama.com" target="_blank" rel="noopener noreferrer nofollow" class="review-btn-primary">جرّب Ollama</a><a href="../open-source.html" class="review-btn-secondary">شاهد أدوات مفتوحة المصدر</a></div></div>
+<h2 id="faq">❓ أسئلة شائعة</h2><div class="faq-box"><strong>هل Ollama مجاني؟</strong><p>نعم، Ollama مجاني للاستخدام، لكن تشغيل النماذج محليًا يعتمد على إمكانيات جهازك.</p></div><div class="faq-box"><strong>هل يحتاج إنترنت؟</strong><p>تحتاج الإنترنت عند تنزيل النموذج أول مرة، وبعدها يمكن تشغيل النموذج محليًا حسب الإعداد والنموذج.</p></div><div class="faq-box"><strong>هل يناسب المبتدئين؟</strong><p>نعم إذا كان المستخدم مستعدًا لتجربة أوامر بسيطة. ليس صعبًا، لكنه أقل بساطة من أدوات الويب الجاهزة.</p></div><div class="faq-box"><strong>ما أفضل نموذج أبدأ به؟</strong><p>ابدأ بـ Llama أو Mistral ثم جرب DeepSeek إذا كان اهتمامك بالبرمجة أو التحليل.</p></div>
+<h2 id="conclusion">🎯 الخلاصة</h2><p>Ollama أداة مهمة لكل شخص يريد فهم الذكاء الاصطناعي خارج واجهات الدردشة الجاهزة. قوته ليست فقط في تشغيل نموذج محلي، بل في جعلك تتحكم في التجربة: تختار النموذج، تختبره، تقارنه، وتبني عليه أدوات صغيرة تناسب مشروعك.</p><p>إذا كنت صاحب موقع أو تعمل في المحتوى أو التسويق بالعمولة، فتعلم Ollama يمنحك ميزة عملية: يمكنك بناء سير عمل داخلي يساعدك في البحث، التنظيم، المقارنة، والتلخيص. لكن تذكر أن الجودة النهائية تأتي من المراجعة البشرية، لا من النموذج وحده.</p>
+<div class="review-cta"><p>ابدأ بتجربة نموذج واحد، ثم قارن بين Llama وMistral وDeepSeek. بعد ذلك اربط ما تتعلمه بمقالاتك وأدواتك.</p><div class="review-actions"><a href="https://ollama.com" target="_blank" rel="noopener noreferrer nofollow" class="review-btn-primary">انتقل إلى Ollama</a><a href="../posts-ai.html" class="review-btn-secondary">ارجع إلى جميع المقالات</a></div><div class="mini-compare"><a href="llama3-guide.html">Llama 3</a><a href="mistral-guide.html">Mistral</a><a href="deepseek-guide.html">DeepSeek</a></div></div>
+<section class="share-section"><div class="share-box"><span class="share-badge">📢 شارك المقال</span><h2>إذا أعجبك هذا الدليل، شاركه</h2><p>ساعد غيرك يتعلم تشغيل نماذج AI محليًا باستخدام Ollama.</p><div class="share-buttons"><a class="share-btn share-whatsapp" href="https://wa.me/?text=https://www.smartafiliate.com/posts-ai/ollama-guide.html" target="_blank" rel="noopener noreferrer">واتساب</a><a class="share-btn share-telegram" href="https://t.me/share/url?url=https://www.smartafiliate.com/posts-ai/ollama-guide.html&amp;text=دليل Ollama العربي" target="_blank" rel="noopener noreferrer">تيليجرام</a><a class="share-btn share-x" href="https://twitter.com/intent/tweet?url=https://www.smartafiliate.com/posts-ai/ollama-guide.html&amp;text=دليل Ollama العربي" target="_blank" rel="noopener noreferrer">X</a><button class="share-btn share-copy" onclick="copyArticleLink('https://www.smartafiliate.com/posts-ai/ollama-guide.html')">نسخ الرابط</button></div><p id="shareMessage" class="share-message" aria-live="polite"></p></div></section>
+</div></div></div></section>
+</main>
+<footer class="site-footer"><div class="container footer-grid"><div class="footer-col"><div class="logo"><span class="logo-text logo-text-light">smart</span><span class="logo-text logo-text-accent">afiliate</span></div><p class="footer-description">منصة عربية تساعدك على فهم الذكاء الاصطناعي، التسويق بالعمولة، وبناء مشروع رقمي أوضح وأكثر قابلية للنمو.</p></div><div class="footer-col"><h4>استكشف</h4><a href="../best-ai-tools.html">⭐ أفضل أدوات AI</a><a href="../ai-articles.html">📚 مكتبة AI</a><a href="../learn-ai.html">📖 تعلم AI</a></div><div class="footer-col"><h4>المساعدة</h4><a href="../about.html">من نحن</a><a href="../contact.html">اتصل بنا</a><a href="../privacy.html">سياسة الخصوصية</a><a href="../cookie-policy.html">سياسة الكوكيز</a></div></div><div class="container footer-bottom"><span>smartafiliate © 2026 – جميع الحقوق محفوظة</span><span>🌐 بناء محتوى عربي عملي للمستقبل</span></div></footer>
+<script>function closeMenu(){const nav=document.getElementById('mainNav');const button=document.querySelector('.menu-toggle');if(!nav||!button)return;nav.classList.remove('active');button.setAttribute('aria-expanded','false');document.body.classList.remove('menu-open');}function toggleMenu(){const nav=document.getElementById('mainNav');const button=document.querySelector('.menu-toggle');if(!nav||!button)return;const isOpen=nav.classList.toggle('active');button.setAttribute('aria-expanded',isOpen?'true':'false');document.body.classList.toggle('menu-open',isOpen);}function copyArticleLink(url){const message=document.getElementById('shareMessage');navigator.clipboard.writeText(url).then(()=>{if(message)message.textContent='تم نسخ رابط المقال ✅';}).catch(()=>{if(message)message.textContent='تعذر نسخ الرابط، انسخه يدويًا: '+url;});}window.onscroll=function(){const header=document.querySelector('.site-header');if(window.scrollY>50){header.classList.add('header-scrolled')}else{header.classList.remove('header-scrolled')}};document.addEventListener('click',function(event){const nav=document.getElementById('mainNav');const button=document.querySelector('.menu-toggle');if(!nav||!button)return;if(nav.classList.contains('active')&&!nav.contains(event.target)&&!button.contains(event.target)){closeMenu();}});window.addEventListener('resize',function(){if(window.innerWidth>900)closeMenu();});</script>
+</body></html>
