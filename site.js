@@ -27,6 +27,7 @@
       .smart-affiliate-banner{margin:1rem 0 0;padding:1rem;border-radius:20px;background:linear-gradient(135deg,#fff7ed,#ffffff);border:1px solid #fed7aa;box-shadow:0 10px 24px rgba(15,23,42,.06);display:grid;gap:.65rem;color:#0f172a}
       .smart-affiliate-banner strong{font-size:1.05rem;color:#0b1f3a}.smart-affiliate-banner p{margin:0!important;color:#475569!important;line-height:1.75!important}.smart-affiliate-banner a{display:inline-flex;width:max-content;align-items:center;justify-content:center;border-radius:999px;background:#ea580c;color:#fff!important;text-decoration:none!important;font-weight:900;padding:.75rem 1rem}
       .smart-system-nav-link{font-weight:900!important}.smart-app-bottom-nav{display:none}
+      .smart-breadcrumb{width:min(1100px,calc(100% - 32px));margin:1rem auto 0;padding:.75rem 1rem;border:1px solid #dbeafe;border-radius:999px;background:#f8fafc;color:#334155;font-size:.9rem;font-weight:800;display:flex;gap:.45rem;align-items:center;flex-wrap:wrap}.smart-breadcrumb a{color:#1d4ed8!important;text-decoration:none!important;font-weight:900}.smart-breadcrumb span{color:#64748b}.smart-breadcrumb .current{color:#0f172a;max-width:520px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
       .home-card-visual,.article-image,.post-image{position:relative;overflow:hidden;text-align:center}.home-card-visual .smart-visual-title,.article-image .smart-visual-title,.post-image .smart-visual-title{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:1rem;color:#fff;font-weight:900;font-size:clamp(.82rem,2.4vw,1.08rem);line-height:1.55;text-shadow:0 2px 12px rgba(0,0,0,.38);background:linear-gradient(180deg,rgba(2,6,23,.12),rgba(2,6,23,.38));z-index:2}.home-card-visual>span:not(.smart-visual-title){opacity:.15;transform:scale(1.15)}
       .smart-popup-overlay{position:fixed;inset:0;background:rgba(2,6,23,.62);z-index:9999;display:flex;align-items:center;justify-content:center;padding:1rem}.smart-popup-card{width:min(94vw,430px);background:#fff;border-radius:24px;border:1px solid #fed7aa;box-shadow:0 24px 70px rgba(0,0,0,.32);padding:1.25rem;display:grid;gap:.75rem;color:#0f172a;text-align:right}.smart-popup-card h2{margin:0;color:#0b1f3a;font-size:1.25rem;line-height:1.45}.smart-popup-card p{margin:0;color:#475569;line-height:1.75}.smart-popup-actions{display:grid;gap:.55rem}.smart-popup-primary{display:flex;align-items:center;justify-content:center;border-radius:999px;background:#ea580c;color:#fff!important;text-decoration:none!important;font-weight:900;padding:.85rem 1rem}.smart-popup-close{border:0;background:#f8fafc;color:#475569;border-radius:999px;padding:.75rem 1rem;font-weight:900;cursor:pointer}.smart-popup-x{position:absolute;top:.7rem;left:.7rem;width:36px;height:36px;border:0;border-radius:999px;background:#f1f5f9;color:#0f172a;font-size:1.2rem;cursor:pointer}.smart-popup-card{position:relative}
       @media(max-width:760px){
@@ -42,6 +43,7 @@
         .site-header .main-nav.active{display:grid!important}
         .site-header .main-nav a{display:flex!important;align-items:center!important;justify-content:space-between!important;color:#0f172a!important;background:#f8fafc!important;border:1px solid #e2e8f0!important;border-radius:14px!important;padding:.82rem .9rem!important;font-size:.92rem!important;font-weight:900!important;text-decoration:none!important;line-height:1.2!important}
         .site-header .main-nav a:hover{background:#fff7ed!important;color:#c2410c!important;border-color:#fed7aa!important}
+        .smart-breadcrumb{width:calc(100% - 24px);border-radius:18px;margin:.75rem auto 0;font-size:.78rem;line-height:1.5}.smart-breadcrumb .current{max-width:220px}
         .smart-affiliate-banner{border-radius:18px;padding:.9rem;margin-top:.85rem}.smart-affiliate-banner strong{font-size:.95rem}.smart-affiliate-banner p{font-size:.78rem!important}.smart-affiliate-banner a{width:100%;min-height:40px}.home-card-visual .smart-visual-title,.article-image .smart-visual-title,.post-image .smart-visual-title{font-size:.78rem;padding:.65rem;line-height:1.45}.smart-popup-card{border-radius:20px;padding:1rem}.smart-popup-card h2{font-size:1.08rem}.smart-app-bottom-nav{position:fixed;right:10px;left:10px;bottom:calc(10px + env(safe-area-inset-bottom));height:62px;z-index:1600;display:grid;grid-template-columns:repeat(4,1fr);gap:.3rem;align-items:center;background:#fff;border:1px solid rgba(148,163,184,.24);border-radius:22px;box-shadow:0 10px 24px rgba(15,23,42,.15);padding:.32rem}.smart-app-bottom-nav a{min-width:0;height:50px;border-radius:16px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.1rem;text-decoration:none!important;color:#334155!important;font-size:.65rem;font-weight:900}.smart-app-bottom-nav a strong{font-size:1.08rem;line-height:1}.smart-app-bottom-nav a.is-active{background:#0b1f3a!important;color:#fff!important}
       }
     `;
@@ -68,6 +70,50 @@
       visual.appendChild(span);
       visual.setAttribute('aria-label', title);
     });
+  }
+
+  function getPageTitle() {
+    const h1 = document.querySelector('h1');
+    return (h1 ? h1.textContent : document.title).replace(/\s+/g, ' ').replace(/\|\s*Smartafiliate/i, '').trim();
+  }
+
+  function addBreadcrumbs() {
+    if (document.querySelector('.smart-breadcrumb')) return;
+    const path = location.pathname.toLowerCase();
+    const isPost = path.includes('/posts-ai/') || path.includes('/articles/');
+    const isHub = path.endsWith('/posts-ai.html') || path.endsWith('/blog.html') || path.endsWith('/articles.html') || path.endsWith('/ai-articles.html');
+    if (!isPost && !isHub) return;
+
+    const currentTitle = getPageTitle();
+    const parentHref = isPost ? '/posts-ai.html' : '/blog.html';
+    const parentLabel = isPost ? 'جميع المقالات' : 'المدونة';
+    const nav = document.createElement('nav');
+    nav.className = 'smart-breadcrumb';
+    nav.setAttribute('aria-label', 'Breadcrumb');
+    nav.innerHTML = '<a href="/index.html">الرئيسية</a><span>›</span><a href="'+parentHref+'">'+parentLabel+'</a><span>›</span><span class="current">'+currentTitle+'</span>';
+
+    const main = document.querySelector('main');
+    const hero = document.querySelector('.page-hero, .article-hero');
+    if (hero && hero.parentNode) hero.parentNode.insertBefore(nav, hero);
+    else if (main) main.insertBefore(nav, main.firstChild);
+    else document.body.insertBefore(nav, document.body.firstChild);
+
+    if (!document.querySelector('script[data-smart-breadcrumb-schema]')) {
+      const schema = {
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          {'@type': 'ListItem', position: 1, name: 'الرئيسية', item: 'https://www.smartafiliate.com/'},
+          {'@type': 'ListItem', position: 2, name: parentLabel, item: 'https://www.smartafiliate.com' + parentHref},
+          {'@type': 'ListItem', position: 3, name: currentTitle, item: location.href.split('#')[0]}
+        ]
+      };
+      const script = document.createElement('script');
+      script.type = 'application/ld+json';
+      script.dataset.smartBreadcrumbSchema = 'true';
+      script.textContent = JSON.stringify(schema);
+      document.head.appendChild(script);
+    }
   }
 
   function addSystemLinks() {
@@ -171,6 +217,7 @@
   function init() {
     injectAffiliateCss();
     normalizeBranding();
+    addBreadcrumbs();
     addSystemLinks();
     addHomepageBanner();
     addMobileBottomNav();
