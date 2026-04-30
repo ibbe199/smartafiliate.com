@@ -1,46 +1,19 @@
-# Smartafiliate
+# Smart Affiliate Design Pack
 
-[![Website](https://img.shields.io/badge/website-smartafiliate.com-orange)](https://smartafiliate.com)
-[![License](https://img.shields.io/badge/license-MIT-blue)](./LICENSE)
+هذا الملف يحتوي نسخة موقع HTML/CSS جاهزة للتجربة، مع صور WebP خفيفة.
 
-**Smartafiliate** - منصة عربية للذكاء الاصطناعي والتسويق بالعمولة.
+## الصفحات
+- index.html
+- blog.html
+- learn.html
+- open-source.html
+- article.html
 
----
+## الصور
+كل صورة موجودة بصيغتين:
+- WebP للموقع
+- PNG للرفع أو التعديل
 
-## 🌐 الموقع
-
-👉 [smartafiliate.com](https://smartafiliate.com)
-
----
-
-## 📖 المحتوى
-
-- 🤖 أفضل أدوات AI
-- 📚 مكتبة مقالات الذكاء الاصطناعي
-- 📈 شرح التسويق بالعمولة
-- 🛠️ أدوات مفتوحة المصدر
-- 📖 مسارات تعلم منظمة
-
----
-
-## 🛠️ التقنيات المستخدمة
-
-- HTML5 / CSS3
-- تصميم متجاوب (RTL)
-- Formspree للتواصل
-
----
-
-## 📄 الترخيص
-
-MIT License
-
----
-
-## 📧 التواصل
-
-info@smartafiliate.com
-
----
-
-⭐ **لا تنسى وضع نجمة إذا أعجبك المشروع!**
+## أفضل استخدام
+ارفع مجلد `assets/images` إلى موقعك، واستخدم روابط الصور من HTML.
+النصوص والأزرار داخل HTML وليست داخل الصورة، حتى تستطيع تعديلها بسهولة.
