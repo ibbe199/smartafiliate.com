@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://smartafiliate.com/sitemap.xml
+Sitemap: https://www.smartafiliate.com/sitemap.xml
