@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Smart Affiliate | مقالات الذكاء الاصطناعي</title>
+    <link>https://www.smartafiliate.com/</link>
+    <atom:link href="https://www.smartafiliate.com/feed.xml" rel="self" type="application/rss+xml" />
+    <description>أحدث مقالات Smart Affiliate عن الذكاء الاصطناعي، أدوات AI، السيو، والتسويق بالعمولة.</description>
+    <language>ar</language>
+    <lastBuildDate>Fri, 01 May 2026 00:00:00 +0000</lastBuildDate>
+    <item><title>ChatGPT Review | مراجعة ChatGPT</title><link>https://www.smartafiliate.com/posts-ai/chatgpt-review.html</link><guid>https://www.smartafiliate.com/posts-ai/chatgpt-review.html</guid><description>مراجعة شاملة لـ ChatGPT واستخدامه في الكتابة والتحليل والبرمجة.</description></item>
+    <item><title>Ollama Guide | دليل Ollama</title><link>https://www.smartafiliate.com/posts-ai/ollama-guide.html</link><guid>https://www.smartafiliate.com/posts-ai/ollama-guide.html</guid><description>دليل تشغيل نماذج الذكاء الاصطناعي محليًا باستخدام Ollama.</description></item>
+    <item><title>DeepSeek Guide | دليل DeepSeek</title><link>https://www.smartafiliate.com/posts-ai/deepseek-guide.html</link><guid>https://www.smartafiliate.com/posts-ai/deepseek-guide.html</guid><description>شرح DeepSeek للبرمجة والتحليل وحل المشكلات التقنية.</description></item>
+    <item><title>Midjourney Guide | دليل Midjourney</title><link>https://www.smartafiliate.com/posts-ai/midjourney-guide.html</link><guid>https://www.smartafiliate.com/posts-ai/midjourney-guide.html</guid><description>دليل توليد صور احترافية باستخدام Midjourney.</description></item>
+    <item><title>Best AI Writing Tools | أفضل أدوات الكتابة بالذكاء الاصطناعي</title><link>https://www.smartafiliate.com/posts-ai/30-best-ai-writing-tools.html</link><guid>https://www.smartafiliate.com/posts-ai/30-best-ai-writing-tools.html</guid><description>مقارنة أدوات الكتابة بالذكاء الاصطناعي لصناعة المحتوى.</description></item>
+    <item><title>AI Affiliate Tools | أدوات AI للتسويق بالعمولة</title><link>https://www.smartafiliate.com/posts-ai/ai-affiliate-tools.html</link><guid>https://www.smartafiliate.com/posts-ai/ai-affiliate-tools.html</guid><description>أدوات تساعد في بناء محتوى وتحويلات أفضل للأفلييت.</description></item>
+    <item><title>90 Day AI Plan | خطة 90 يوم</title><link>https://www.smartafiliate.com/posts-ai/90-day-ai-plan.html</link><guid>https://www.smartafiliate.com/posts-ai/90-day-ai-plan.html</guid><description>خطة عملية للتحول من تعلم AI إلى بناء أصل رقمي.</description></item>
+    <item><title>Latest AI News 2026 | جديد الذكاء الاصطناعي</title><link>https://www.smartafiliate.com/posts-ai/latest-ai-news-2026.html</link><guid>https://www.smartafiliate.com/posts-ai/latest-ai-news-2026.html</guid><description>أحدث التحولات العملية في الذكاء الاصطناعي.</description></item>
+    <item><title>Llama 3 Guide | دليل Llama 3</title><link>https://www.smartafiliate.com/posts-ai/llama3-guide.html</link><guid>https://www.smartafiliate.com/posts-ai/llama3-guide.html</guid><description>شرح Llama 3 واستخداماته العملية.</description></item>
+    <item><title>Mistral Guide | دليل Mistral</title><link>https://www.smartafiliate.com/posts-ai/mistral-guide.html</link><guid>https://www.smartafiliate.com/posts-ai/mistral-guide.html</guid><description>شرح Mistral واستخداماته ضمن أدوات AI مفتوحة المصدر.</description></item>
+  </channel>
+</rss>
