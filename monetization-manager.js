@@ -1,52 +1,30 @@
 (function(){
   const MAIN_OFFER='https://9e507bq9nsow4n57d9tap0ohpd.hop.clickbank.net';
   const EXTRA_OFFER='https://f21555c3kvj-1zc-zxjkslrl96.hop.clickbank.net';
+  const EXCLUDED_PAGES=new Set(['contact.html','about.html','privacy.html','privacy-policy.html','cookie-policy.html','terms.html','disclosure.html','sitemap.html','index.html']);
   const CONFIG={
     gtmId:'GTM-P96QVPT3',
-    affiliateLinks:{
-      default:MAIN_OFFER,
-      chatgpt:MAIN_OFFER,jasper:MAIN_OFFER,writesonic:MAIN_OFFER,copyai:MAIN_OFFER,
-      canva:EXTRA_OFFER,midjourney:EXTRA_OFFER,dalle:EXTRA_OFFER,
-      ollama:MAIN_OFFER,lmstudio:MAIN_OFFER,huggingface:MAIN_OFFER,langchain:MAIN_OFFER,n8n:MAIN_OFFER,deepseek:MAIN_OFFER,affiliate:EXTRA_OFFER
-    }
+    affiliateLinks:{default:MAIN_OFFER,chatgpt:MAIN_OFFER,jasper:MAIN_OFFER,writesonic:MAIN_OFFER,copyai:MAIN_OFFER,canva:EXTRA_OFFER,midjourney:EXTRA_OFFER,dalle:EXTRA_OFFER,ollama:MAIN_OFFER,lmstudio:MAIN_OFFER,huggingface:MAIN_OFFER,langchain:MAIN_OFFER,n8n:MAIN_OFFER,deepseek:MAIN_OFFER,affiliate:EXTRA_OFFER}
   };
   window.SMART_MONETIZATION_CONFIG=window.SMART_MONETIZATION_CONFIG||CONFIG;
   const cfg=window.SMART_MONETIZATION_CONFIG;
+  function file(){return location.pathname.toLowerCase().split('/').pop()||'index.html';}
   function page(){return location.pathname.toLowerCase();}
   function loadGTM(){
     const id=(cfg.gtmId||'').trim();
     if(!id||id==='GTM-XXXXXXX'||document.getElementById('smart-gtm-script'))return;
     window.dataLayer=window.dataLayer||[];
     window.dataLayer.push({'gtm.start':new Date().getTime(),event:'gtm.js'});
-    const s=document.createElement('script');
-    s.id='smart-gtm-script';
-    s.async=true;
-    s.src='https://www.googletagmanager.com/gtm.js?id='+encodeURIComponent(id);
-    document.head.appendChild(s);
-    const ns=document.createElement('noscript');
-    ns.id='smart-gtm-noscript';
-    ns.innerHTML='<iframe src="https://www.googletagmanager.com/ns.html?id='+id+'" height="0" width="0" style="display:none;visibility:hidden"></iframe>';
-    document.body.insertAdjacentElement('afterbegin',ns);
+    const s=document.createElement('script');s.id='smart-gtm-script';s.async=true;s.src='https://www.googletagmanager.com/gtm.js?id='+encodeURIComponent(id);document.head.appendChild(s);
+    const ns=document.createElement('noscript');ns.id='smart-gtm-noscript';ns.innerHTML='<iframe src="https://www.googletagmanager.com/ns.html?id='+id+'" height="0" width="0" style="display:none;visibility:hidden"></iframe>';document.body.insertAdjacentElement('afterbegin',ns);
   }
+  function isMonetizable(){const p=page(), f=file();if(EXCLUDED_PAGES.has(f))return false;return p.includes('/posts-ai/')||p.includes('/articles/')||['best-ai-tools.html','ai-tools-comparison.html','open-source.html','learn-ai.html','posts-ai.html','ai-articles.html','articles.html'].includes(f);}
   function keyFor(){const p=page();if(p.includes('chatgpt'))return'chatgpt';if(p.includes('jasper'))return'jasper';if(p.includes('writesonic'))return'writesonic';if(p.includes('copyai'))return'copyai';if(p.includes('canva'))return'canva';if(p.includes('midjourney'))return'midjourney';if(p.includes('dalle'))return'dalle';if(p.includes('ollama'))return'ollama';if(p.includes('lmstudio'))return'lmstudio';if(p.includes('huggingface'))return'huggingface';if(p.includes('langchain'))return'langchain';if(p.includes('n8n')||p.includes('automation')||p.includes('productivity'))return'n8n';if(p.includes('deepseek')||p.includes('coding'))return'deepseek';if(p.includes('affiliate')||p.includes('marketing')||p.includes('profit')||p.includes('income'))return'affiliate';return'default';}
   function affiliateUrl(key){return (cfg.affiliateLinks&&cfg.affiliateLinks[key])||cfg.affiliateLinks.default||MAIN_OFFER;}
-  function addStyle(){if(document.getElementById('smart-monetization-style'))return;const st=document.createElement('style');st.id='smart-monetization-style';st.textContent='.smart-affiliate-box{margin:1.5rem auto;padding:1.1rem;border-radius:22px;background:linear-gradient(135deg,#fff7ed,#eef5ff);border:1px solid #fed7aa;box-shadow:0 12px 28px rgba(15,23,42,.08)}.smart-affiliate-box h2{margin:.2rem 0 .5rem;color:#0b1f3a}.smart-affiliate-box p{color:#475569;line-height:1.8}.smart-affiliate-actions{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:.8rem}.smart-affiliate-btn{display:inline-flex;align-items:center;justify-content:center;gap:.35rem;min-height:42px;padding:.65rem 1rem;border-radius:999px;background:#ea580c;color:#fff!important;text-decoration:none!important;font-weight:900}.smart-affiliate-btn.secondary{background:#0b1f3a}.smart-affiliate-note{font-size:.84rem;color:#64748b;margin-top:.55rem}.smart-top-tools{margin:1rem 0;padding:1rem;border-radius:20px;background:#f8fafc;border:1px solid #dbeafe}.smart-top-tools a{display:inline-flex;margin:.25rem;padding:.55rem .8rem;border-radius:999px;background:#fff;border:1px solid #e2e8f0;text-decoration:none!important;font-weight:800;color:#0b1f3a!important}';document.head.appendChild(st);}
-  function injectAffiliateBox(){
-    const main=document.querySelector('main');if(!main||document.querySelector('.smart-affiliate-box'))return;
-    const key=keyFor(), url=affiliateUrl(key);
-    const title=document.querySelector('h1')?.textContent?.trim()||'الأداة المقترحة';
-    const box=document.createElement('section');box.className='smart-affiliate-box container';
-    box.innerHTML='<h2>جرّب الأداة أو البديل المناسب</h2><p>هذا القسم يساعد القارئ على الانتقال من القراءة إلى التجربة العملية حسب موضوع الصفحة.</p><div class="smart-affiliate-actions"><a class="smart-affiliate-btn" href="'+url+'" target="_blank" rel="noopener sponsored nofollow" data-affiliate="'+key+'">🔗 رابط أفلييت / تجربة</a><a class="smart-affiliate-btn secondary" href="https://www.google.com/search?q='+encodeURIComponent(title)+'" target="_blank" rel="noopener noreferrer nofollow">↗ بحث Google</a></div><div class="smart-affiliate-note">قد يحتوي هذا الموقع على روابط أفلييت. عند الشراء من خلالها قد نحصل على عمولة بدون تكلفة إضافية عليك.</div>';
-    const article=document.querySelector('article,.article-body,.post-content');
-    if(article)article.insertAdjacentElement('afterend',box);else main.appendChild(box);
-  }
-  function injectToolsHub(){
-    const main=document.querySelector('main');if(!main||document.querySelector('.smart-top-tools'))return;
-    const p=page();if(!(p.includes('articles')||p.includes('posts-ai')||p.includes('best-ai-tools')))return;
-    const hub=document.createElement('div');hub.className='smart-top-tools container';hub.innerHTML='<strong>روابط سريعة:</strong> <a href="/best-ai-tools.html">أفضل أدوات AI</a><a href="/ai-tools-comparison.html">مقارنة الأدوات</a><a href="/open-source.html">مصادر مفتوحة</a><a href="/learn-ai.html">تعلم AI</a><a href="/articles.html">كل المقالات</a>';
-    const hero=document.querySelector('.page-hero');if(hero)hero.insertAdjacentElement('afterend',hub);else main.insertAdjacentElement('afterbegin',hub);
-  }
+  function addStyle(){if(document.getElementById('smart-monetization-style'))return;const st=document.createElement('style');st.id='smart-monetization-style';st.textContent='.smart-affiliate-box{margin:1.5rem auto;padding:1.1rem;border-radius:22px;background:linear-gradient(135deg,#eff6ff,#f8fafc);border:1px solid #bfdbfe;box-shadow:0 12px 28px rgba(15,23,42,.08)}.smart-affiliate-box h2{margin:.2rem 0 .5rem;color:#0b1f3a}.smart-affiliate-box p{color:#475569;line-height:1.8}.smart-affiliate-actions{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:.8rem}.smart-affiliate-btn{display:inline-flex;align-items:center;justify-content:center;gap:.35rem;min-height:42px;padding:.65rem 1rem;border-radius:999px;background:#2563eb;color:#fff!important;text-decoration:none!important;font-weight:900}.smart-affiliate-btn.secondary{background:#0b1f3a}.smart-affiliate-note{font-size:.84rem;color:#64748b;margin-top:.55rem}.smart-top-tools{margin:1rem 0;padding:1rem;border-radius:20px;background:#f8fafc;border:1px solid #dbeafe}.smart-top-tools a{display:inline-flex;margin:.25rem;padding:.55rem .8rem;border-radius:999px;background:#fff;border:1px solid #e2e8f0;text-decoration:none!important;font-weight:800;color:#0b1f3a!important}';document.head.appendChild(st);}
+  function injectAffiliateBox(){if(!isMonetizable())return;const main=document.querySelector('main');if(!main||document.querySelector('.smart-affiliate-box'))return;const key=keyFor(),url=affiliateUrl(key);const title=document.querySelector('h1')?.textContent?.trim()||'الأداة المقترحة';const box=document.createElement('section');box.className='smart-affiliate-box container';box.innerHTML='<h2>جرّب الأداة أو البديل المناسب</h2><p>هذا القسم يساعد القارئ على الانتقال من القراءة إلى التجربة العملية حسب موضوع الصفحة.</p><div class="smart-affiliate-actions"><a class="smart-affiliate-btn" href="'+url+'" target="_blank" rel="noopener sponsored nofollow" data-affiliate="'+key+'">🔗 رابط أفلييت / تجربة</a><a class="smart-affiliate-btn secondary" href="https://www.google.com/search?q='+encodeURIComponent(title)+'" target="_blank" rel="noopener noreferrer nofollow">↗ بحث Google</a></div><div class="smart-affiliate-note">قد يحتوي هذا الموقع على روابط أفلييت. عند الشراء من خلالها قد نحصل على عمولة بدون تكلفة إضافية عليك.</div>';const article=document.querySelector('article,.article-body,.post-content');if(article)article.insertAdjacentElement('afterend',box);else main.appendChild(box);}
+  function injectToolsHub(){if(!isMonetizable())return;const main=document.querySelector('main');if(!main||document.querySelector('.smart-top-tools'))return;const p=page();if(!(p.includes('articles')||p.includes('posts-ai')||p.includes('best-ai-tools')))return;const hub=document.createElement('div');hub.className='smart-top-tools container';hub.innerHTML='<strong>روابط سريعة:</strong> <a href="/best-ai-tools.html">أفضل أدوات AI</a><a href="/ai-tools-comparison.html">مقارنة الأدوات</a><a href="/open-source.html">مصادر مفتوحة</a><a href="/learn-ai.html">تعلم AI</a><a href="/articles.html">كل المقالات</a>';const hero=document.querySelector('.page-hero');if(hero)hero.insertAdjacentElement('afterend',hub);else main.insertAdjacentElement('afterbegin',hub);}
   function trackAffiliateClicks(){document.addEventListener('click',function(e){const a=e.target.closest('a[data-affiliate]');if(!a)return;window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:'affiliate_click',affiliate_key:a.dataset.affiliate,affiliate_url:a.href,page:location.pathname});},true);}
-  function run(){addStyle();loadGTM();injectToolsHub();injectAffiliateBox();trackAffiliateClicks();}
+  function run(){loadGTM();if(isMonetizable()){addStyle();injectToolsHub();injectAffiliateBox();}trackAffiliateClicks();}
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run,{once:true});else run();
 })();
