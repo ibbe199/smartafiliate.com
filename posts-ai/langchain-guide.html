@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>دليل LangChain لبناء تطبيقات AI مفتوحة المصدر | smartafiliate</title>
+<meta name="description" content="شرح عملي لـ LangChain: متى تستخدمه، كيف يساعد في بناء تطبيقات AI، الربط مع النماذج، RAG، الوكلاء، والمميزات والعيوب." />
+<link rel="canonical" href="https://www.smartafiliate.com/posts-ai/langchain-guide.html" />
+<link rel="stylesheet" href="../styles.css" />
+<script defer src="../site.js"></script>
+<meta property="og:type" content="article" />
+<meta property="og:title" content="دليل LangChain لبناء تطبيقات AI مفتوحة المصدر | smartafiliate" />
+<meta property="og:description" content="شرح عملي لـ LangChain وبناء تطبيقات AI." />
+<meta property="og:url" content="https://www.smartafiliate.com/posts-ai/langchain-guide.html" />
+<meta property="og:image" content="https://www.smartafiliate.com/assets/images/best-ai-tools/open-source.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<style>.article-shell{max-width:920px;margin:auto;padding:2rem 1rem}.article-hero{background:linear-gradient(135deg,#071426,#12305a 62%,#ea580c);color:#fff;border-radius:28px;padding:2rem;margin-bottom:1.5rem}.article-body{background:#fff;border:1px solid #dbeafe;border-radius:24px;padding:1.4rem;box-shadow:0 12px 28px rgba(15,23,42,.07)}.article-body h2{color:#0b1f3a;margin-top:1.4rem}.article-body p,.article-body li{line-height:1.9;color:#334155}.info-box{background:#fff7ed;border:1px solid #fed7aa;border-radius:18px;padding:1rem;margin:1rem 0}.code-box{background:#0b1f3a;color:#fff;padding:1rem;border-radius:12px;overflow-x:auto;direction:ltr;text-align:left}.link-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:.7rem;margin:1rem 0}.link-grid a{background:#eef5ff;border:1px solid #dbeafe;border-radius:999px;padding:.75rem;text-align:center;font-weight:900;color:#0b1f3a!important}</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"دليل LangChain لبناء تطبيقات AI مفتوحة المصدر","description":"شرح عملي لـ LangChain وبناء تطبيقات AI.","mainEntityOfPage":"https://www.smartafiliate.com/posts-ai/langchain-guide.html","author":{"@type":"Organization","name":"smartafiliate"},"publisher":{"@type":"Organization","name":"smartafiliate"},"inLanguage":"ar"}</script>
+</head>
+<body>
+<header class="site-header"></header>
+<main class="article-shell">
+<section class="article-hero"><span class="page-badge">AI Framework</span><h1>دليل LangChain لبناء تطبيقات AI مفتوحة المصدر</h1><p>LangChain ليس روبوت دردشة، بل إطار عمل يساعدك على ربط النماذج بالملفات، قواعد البيانات، أدوات البحث، وسير العمل الذكي.</p></section>
+<article class="article-body">
+<div class="toc"><h3>محتوى المقال</h3><ul><li><a href="#what">ما هو LangChain؟</a></li><li><a href="#use">متى تحتاجه؟</a></li><li><a href="#rag">RAG والبحث داخل الملفات</a></li><li><a href="#workflow">Workflow عملي</a></li><li><a href="#pros">المميزات والعيوب</a></li></ul></div>
+<h2 id="what">ما هو LangChain؟</h2><p><strong>LangChain</strong> إطار عمل يساعد المطورين على بناء تطبيقات تعتمد على نماذج اللغة. بدل أن يكون النموذج مجرد صندوق محادثة، يمكنك ربطه بمصادر بيانات، ملفات، قواعد معرفة، أدوات خارجية، أو خطوات عمل متعددة.</p>
+<p>الفكرة المهمة هي أن تطبيقات AI الحقيقية لا تعتمد على النموذج وحده. تحتاج ذاكرة، سياق، مصادر موثوقة، واستدعاء أدوات. هنا تظهر فائدة LangChain.</p>
+<h2 id="use">متى تحتاج LangChain؟</h2><ul><li>عندما تريد بناء chatbot يقرأ ملفاتك أو مقالات موقعك.</li><li>عندما تريد تلخيص مستندات كثيرة مع الحفاظ على السياق.</li><li>عندما تريد ربط النموذج ببحث داخلي أو قاعدة بيانات.</li><li>عندما تريد بناء workflow فيه أكثر من خطوة.</li></ul>
+<div class="info-box"><strong>للمبتدئ:</strong> لا تبدأ بـ LangChain إذا كان هدفك فقط كتابة مقال. ابدأ به عندما تحتاج تطبيقًا أو ربطًا فعليًا بين AI وبيانات.</div>
+<h2 id="rag">ما معنى RAG؟</h2><p>RAG يعني أن النموذج لا يجيب من ذاكرته فقط، بل يبحث أولًا في مصدر بيانات تحدده أنت، ثم يستخدم النتائج لصناعة إجابة. هذا مفيد للمواقع، الوثائق، الأسئلة المتكررة، ومراكز الدعم.</p>
+<pre class="code-box">الفكرة العامة:
+سؤال المستخدم → بحث في ملفاتك → إرسال المقاطع المهمة للنموذج → إجابة مبنية على المصدر</pre>
+<h2 id="workflow">Workflow عملي لصاحب موقع</h2><ol><li>اجمع مقالاتك أو ملفات FAQ.</li><li>حوّل النصوص إلى أجزاء صغيرة.</li><li>خزنها في قاعدة بحث أو vector database.</li><li>عند السؤال، ابحث عن المقاطع الأقرب.</li><li>أرسل المقاطع للنموذج ليجيب بناءً عليها.</li></ol>
+<h2 id="pros">المميزات والعيوب</h2><p><strong>المميزات:</strong> قوي لبناء تطبيقات AI حقيقية، يدعم الربط مع أدوات كثيرة، مناسب لمشاريع RAG وchatbots.</p><p><strong>العيوب:</strong> قد يكون معقدًا للمبتدئ، ويتغير بسرعة، ويحتاج فهمًا برمجيًا جيدًا حتى لا يصبح المشروع ثقيلًا.</p>
+<h2>روابط مهمة</h2><div class="link-grid"><a href="../open-source.html">أدوات مفتوحة المصدر</a><a href="ollama-guide.html">دليل Ollama</a><a href="huggingface-guide.html">دليل Hugging Face</a><a href="https://www.langchain.com/" target="_blank" rel="noopener noreferrer nofollow">الموقع الرسمي</a></div>
+<h2>الخلاصة</h2><p>LangChain مناسب عندما تنتقل من استخدام AI كأداة كتابة إلى بناء تطبيقات تعتمد على البيانات والأدوات. استخدمه بحذر وبهدف واضح حتى لا تزيد التعقيد بلا حاجة.</p>
+</article>
+</main>
+</body>
+</html>
