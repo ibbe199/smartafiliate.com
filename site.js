@@ -27,6 +27,14 @@ function loadLinkEnhancer(){
   s.defer=true;
   document.body.appendChild(s);
 }
+function loadMonetizationManager(){
+  if(document.getElementById('monetization-manager-js'))return;
+  const s=document.createElement('script');
+  s.id='monetization-manager-js';
+  s.src='/monetization-manager.js?v=20260501_monetization';
+  s.defer=true;
+  document.body.appendChild(s);
+}
 function page(){return location.pathname.toLowerCase().split('/').pop()||'index.html';}
 function lockMobile(){document.documentElement.style.overflowX='hidden';document.body.style.overflowX='hidden';}
 function isLogoImg(img){const src=(img.getAttribute('src')||'').toLowerCase();return src.endsWith('logo.png')||src.includes('/assets/images/icons/logo.png');}
@@ -49,7 +57,7 @@ function buildHeader(){let header=document.querySelector('.site-header');if(!hea
 function addAiFeatured(){if(page()!=='ai-articles.html'||document.querySelector('.ai-featured-smart'))return;const hero=document.querySelector('main .page-hero');if(!hero)return;const html='<section class="section section-alt ai-featured-smart"><div class="container"><div class="section-header"><span class="section-tag">Featured</span><h2>ابدأ بهذه المقالات</h2><p>أهم مقالات مكتبة AI للبدء السريع.</p></div><div class="articles-grid"><article class="article-card"><a href="posts-ai/chatgpt-review.html"><div class="article-image"><img src="assets/images/best-ai-tools/ai-writing.svg" alt="مراجعة ChatGPT" loading="lazy" decoding="async" width="640" height="360"></div><div class="article-content"><span class="article-category">AI</span><h3>مراجعة ChatGPT</h3><p class="article-excerpt">استخدام عملي للكتابة والتحليل والعمل.</p></div></a></article><article class="article-card"><a href="posts-ai/midjourney-guide.html"><div class="article-image"><img src="assets/images/best-ai-tools/ai-design.svg" alt="دليل Midjourney" loading="lazy" decoding="async" width="640" height="360"></div><div class="article-content"><span class="article-category">Design</span><h3>دليل Midjourney</h3><p class="article-excerpt">إنشاء صور احترافية بالذكاء الاصطناعي.</p></div></a></article><article class="article-card"><a href="posts-ai/ollama-guide.html"><div class="article-image"><img src="assets/images/open-source/ollama.svg" alt="دليل Ollama" loading="lazy" decoding="async" width="640" height="360"></div><div class="article-content"><span class="article-category">Open Source</span><h3>دليل Ollama</h3><p class="article-excerpt">تشغيل النماذج محليًا على جهازك.</p></div></a></article><article class="article-card"><a href="posts-ai/ai-affiliate-tools.html"><div class="article-image"><img src="assets/images/articles/affiliate.svg" alt="AI Affiliate Tools" loading="lazy" decoding="async" width="640" height="360"></div><div class="article-content"><span class="article-category">Affiliate</span><h3>AI + Affiliate</h3><p class="article-excerpt">أدوات للربح والتحليل والتحويل.</p></div></a></article></div></div></section>';hero.insertAdjacentHTML('afterend',html);}
 function buildFooter(){document.querySelectorAll('.smart-final-footer').forEach(e=>e.remove());const footer=document.createElement('footer');footer.className='smart-final-footer defer-section';footer.innerHTML='<div class="container smart-final-footer-inner"><p class="smart-footer-contact">Contact: <a href="mailto:info@smartafiliate.com">info@smartafiliate.com</a></p><div class="smart-footer-policies"><h3>السياسات</h3><a href="privacy-policy.html">سياسة الخصوصية</a><a href="cookie-policy.html">سياسة الكوكيز</a><a href="terms.html">الشروط والأحكام</a></div></div>';const main=document.querySelector('main');if(main)main.insertAdjacentElement('afterend',footer);else document.body.appendChild(footer);}
 function finalPass(){cleanMisplacedFooterText();addAiFeatured();document.querySelectorAll('img').forEach(img=>{if(isLogoImg(img)&&!img.closest('.site-header'))img.remove();});optimizeImages();const footers=document.querySelectorAll('.smart-final-footer');footers.forEach((f,i)=>{if(i<footers.length-1)f.remove();});lockMobile();}
-function init(){loadCss();hardClean();buildHeader();optimizeImages();requestAnimationFrame(()=>{loadAllArticles();loadLinkEnhancer();addAiFeatured();buildFooter();finalPass();});setTimeout(finalPass,900);}
+function init(){loadCss();hardClean();buildHeader();optimizeImages();requestAnimationFrame(()=>{loadAllArticles();loadLinkEnhancer();loadMonetizationManager();addAiFeatured();buildFooter();finalPass();});setTimeout(finalPass,900);}
 window.toggleMenu=toggleMenu;window.closeMenu=closeMenu;
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
 })();
