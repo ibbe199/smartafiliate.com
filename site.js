@@ -4,23 +4,31 @@ if(!document.getElementById('header-fix-css')){
 const l=document.createElement('link');
 l.id='header-fix-css';
 l.rel='stylesheet';
-l.href='/header-fix.css?v=20260501d';
+l.href='/header-fix.css?v=20260501e';
 document.head.appendChild(l);
 }
 const LOGO='/assets/images/icons/logo.png';
 function page(){return location.pathname.toLowerCase().split('/').pop()||'index.html';}
-function closeMenu(){const nav=document.getElementById('mainNav');const btn=document.querySelector('.menu-toggle');if(nav)nav.classList.remove('active');if(btn)btn.setAttribute('aria-expanded','false');}
-function toggleMenu(){const nav=document.getElementById('mainNav');const btn=document.querySelector('.menu-toggle');if(!nav||!btn)return;const open=nav.classList.toggle('active');btn.setAttribute('aria-expanded',open?'true':'false');}
+function closeMenu(){const nav=document.getElementById('mainNav');const btn=document.querySelector('.menu-toggle');const header=document.querySelector('.site-header');if(nav){nav.classList.remove('active');nav.classList.remove('mobile-open');}if(header)header.classList.remove('menu-open');if(btn)btn.setAttribute('aria-expanded','false');}
+function toggleMenu(){const nav=document.getElementById('mainNav');const btn=document.querySelector('.menu-toggle');const header=document.querySelector('.site-header');if(!nav||!btn)return;const open=!nav.classList.contains('mobile-open');nav.classList.toggle('mobile-open',open);nav.classList.remove('active');if(header)header.classList.toggle('menu-open',open);btn.setAttribute('aria-expanded',open?'true':'false');}
 function init(){
 let header=document.querySelector('.site-header');
 if(!header){document.body.insertAdjacentHTML('afterbegin','<header class="site-header"><div class="container header-inner"><a class="logo" href="index.html"></a><nav class="main-nav" id="mainNav"></nav><div class="header-actions"></div><button class="menu-toggle" aria-expanded="false" aria-controls="mainNav">☰</button></div></header>');}
 document.querySelectorAll('.site-header').forEach((el,i)=>{if(i>0)el.remove();});
+header=document.querySelector('.site-header');
+let inner=header.querySelector('.header-inner');
+if(!inner){header.innerHTML='<div class="container header-inner"></div>';inner=header.querySelector('.header-inner');}
+if(!inner.querySelector('.logo'))inner.insertAdjacentHTML('afterbegin','<a class="logo" href="index.html"></a>');
+if(!inner.querySelector('.main-nav'))inner.insertAdjacentHTML('beforeend','<nav class="main-nav" id="mainNav"></nav>');
+if(!inner.querySelector('.header-actions'))inner.insertAdjacentHTML('beforeend','<div class="header-actions"></div>');
+if(!inner.querySelector('.menu-toggle'))inner.insertAdjacentHTML('beforeend','<button class="menu-toggle" aria-expanded="false" aria-controls="mainNav">☰</button>');
 const logo=document.querySelector('.site-header .logo');
-if(logo){logo.innerHTML='<img class="site-logo-img" src="'+LOGO+'" alt="Smart Affiliate"><span class="site-logo-word">Smart Affiliate</span>';}
+if(logo){logo.setAttribute('href','index.html');logo.innerHTML='<img class="site-logo-img" src="'+LOGO+'" alt="Smart Affiliate"><span class="site-logo-word">Smart Affiliate</span>';}
 const nav=document.getElementById('mainNav');
-if(nav){nav.innerHTML='<a href="index.html">الرئيسية</a><a href="best-ai-tools.html">أفضل أدوات AI</a><a href="ai-articles.html">مكتبة AI</a><a href="learn-ai.html">تعلم AI</a><a href="open-source.html">أدوات مفتوحة المصدر</a><a href="articles.html">المقالات</a>';nav.querySelectorAll('a').forEach(a=>{if(a.getAttribute('href')===page())a.classList.add('active');a.onclick=closeMenu;});}
+if(nav){nav.className='main-nav';nav.innerHTML='<a href="index.html">الرئيسية</a><a href="best-ai-tools.html">أفضل أدوات AI</a><a href="ai-articles.html">مكتبة AI</a><a href="learn-ai.html">تعلم AI</a><a href="open-source.html">أدوات مفتوحة المصدر</a><a href="articles.html">المقالات</a>';nav.querySelectorAll('a').forEach(a=>{if(a.getAttribute('href')===page())a.classList.add('active');a.onclick=closeMenu;});}
 const actions=document.querySelector('.header-actions');if(actions)actions.innerHTML='';
-const btn=document.querySelector('.menu-toggle');if(btn)btn.onclick=toggleMenu;
+const btn=document.querySelector('.menu-toggle');if(btn){btn.textContent='☰';btn.onclick=toggleMenu;btn.setAttribute('aria-controls','mainNav');btn.setAttribute('aria-expanded','false');}
+closeMenu();
 }
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
 window.closeMenu=closeMenu;window.toggleMenu=toggleMenu;
