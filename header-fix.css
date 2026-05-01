@@ -1,0 +1,169 @@
+/* Global mobile header fix */
+.site-header {
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 9999 !important;
+  width: 100% !important;
+  background: #061c35 !important;
+  border-bottom: 1px solid rgba(255,255,255,.08) !important;
+}
+
+.site-header .header-inner {
+  width: 100% !important;
+  max-width: 1200px !important;
+  margin: 0 auto !important;
+  padding: 0 16px !important;
+  min-height: 72px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 16px !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  position: relative !important;
+}
+
+.site-header .logo {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  text-decoration: none !important;
+  color: #fff !important;
+  flex: 0 0 auto !important;
+  min-width: 0 !important;
+  order: 1 !important;
+}
+
+.site-logo-img {
+  width: 50px !important;
+  height: 50px !important;
+  object-fit: contain !important;
+  display: block !important;
+  background: #fff !important;
+  border-radius: 12px !important;
+  padding: 2px !important;
+  flex: 0 0 auto !important;
+}
+
+.site-logo-word {
+  display: inline-block !important;
+  color: #fff !important;
+  font-weight: 900 !important;
+  font-size: 15px !important;
+  white-space: nowrap !important;
+  line-height: 1 !important;
+}
+
+.main-nav {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 6px !important;
+  flex: 1 1 auto !important;
+  order: 2 !important;
+}
+
+.main-nav a {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  color: #eaf2ff !important;
+  text-decoration: none !important;
+  font-weight: 900 !important;
+  font-size: 14px !important;
+  padding: 8px 12px !important;
+  border-radius: 999px !important;
+  white-space: nowrap !important;
+}
+
+.main-nav a.active,
+.main-nav a:hover {
+  background: #ea580c !important;
+  color: #fff !important;
+}
+
+.header-actions {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  flex: 0 0 auto !important;
+  order: 3 !important;
+}
+
+.menu-toggle {
+  display: none !important;
+  order: 4 !important;
+}
+
+@media (max-width: 900px) {
+  .site-header .header-inner {
+    min-height: 60px !important;
+    padding: 0 10px !important;
+  }
+
+  .site-logo-img {
+    width: 38px !important;
+    height: 38px !important;
+  }
+
+  .site-logo-word {
+    font-size: 12px !important;
+  }
+
+  .header-actions {
+    display: none !important;
+  }
+
+  .menu-toggle {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 42px !important;
+    height: 42px !important;
+    border-radius: 12px !important;
+    border: 1px solid rgba(255,255,255,.18) !important;
+    background: rgba(255,255,255,.08) !important;
+    color: #fff !important;
+    font-size: 24px !important;
+    line-height: 1 !important;
+    cursor: pointer !important;
+    flex: 0 0 42px !important;
+    order: 4 !important;
+    margin-inline-start: auto !important;
+  }
+
+  .main-nav {
+    display: none !important;
+    position: absolute !important;
+    top: calc(100% + 8px) !important;
+    left: 10px !important;
+    right: 10px !important;
+    width: auto !important;
+    flex: none !important;
+    order: 10 !important;
+    background: #061c35 !important;
+    border: 1px solid rgba(255,255,255,.14) !important;
+    border-radius: 16px !important;
+    padding: 8px !important;
+    box-shadow: 0 20px 35px rgba(0,0,0,.32) !important;
+    z-index: 10000 !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    justify-content: flex-start !important;
+    gap: 4px !important;
+  }
+
+  .main-nav.active {
+    display: flex !important;
+  }
+
+  .main-nav a {
+    width: 100% !important;
+    display: flex !important;
+    justify-content: flex-start !important;
+    text-align: right !important;
+    padding: 12px 14px !important;
+    font-size: 14px !important;
+    border-radius: 12px !important;
+  }
+}
