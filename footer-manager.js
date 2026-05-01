@@ -5,7 +5,7 @@
     const s=document.createElement('style');
     s.id='smart-footer-full-style';
     s.textContent=`
-.smart-final-footer{background:#071d35!important;color:#fff!important;padding:14px 0!important;margin-top:28px!important;border-top:1px solid rgba(147,197,253,.18)!important;direction:rtl!important;overflow:hidden!important}
+.smart-final-footer{background:#071d35!important;color:#fff!important;padding:14px 0!important;margin-top:28px!important;border-top:1px solid rgba(147,197,253,.18)!important;direction:rtl!important;overflow:hidden!important;content-visibility:auto!important;contain-intrinsic-size:90px!important}
 .smart-final-footer *{box-sizing:border-box!important}.smart-final-footer a{text-decoration:none!important}.smart-final-footer .container{max-width:1180px!important;margin:0 auto!important;padding-left:16px!important;padding-right:16px!important;width:100%!important}
 .smart-footer-layout{display:grid!important;grid-template-columns:1fr auto 1fr!important;align-items:center!important;gap:14px!important;width:100%!important}
 .smart-footer-side{display:flex!important;align-items:center!important;gap:7px!important;flex-wrap:wrap!important;min-width:0!important}.smart-footer-right{justify-content:flex-start!important;text-align:right!important}.smart-footer-left{justify-content:flex-end!important;text-align:left!important;direction:ltr!important}
@@ -38,14 +38,15 @@
       '</div>';
   }
   function build(){
+    if(document.querySelector('.smart-final-footer[data-managed="1"]'))return;
     style();
     document.querySelectorAll('footer,.site-footer,.smart-global-footer,.smart-final-footer,.smart-global-contact').forEach(function(f){f.remove();});
     var footer=document.createElement('footer');
     footer.className='smart-final-footer';
+    footer.dataset.managed='1';
     footer.innerHTML=footerHTML();
     var main=document.querySelector('main');
     if(main)main.insertAdjacentElement('afterend',footer);else document.body.appendChild(footer);
   }
-  function run(){build();setTimeout(build,1000);}
-  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run,{once:true});else run();
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',build,{once:true});else build();
 })();
