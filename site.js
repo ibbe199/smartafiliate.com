@@ -1,14 +1,21 @@
 const MOBILE_FIX=true;
 (function(){
 const LOGO='/assets/images/icons/logo.png';
-function loadCss(){let old=document.getElementById('header-fix-css');if(old)old.remove();const l=document.createElement('link');l.id='header-fix-css';l.rel='stylesheet';l.href='/header-fix.css?v=20260501_ONLY_HEADER_LOGO';document.head.appendChild(l);}
+function loadCss(){let old=document.getElementById('header-fix-css');if(old)old.remove();const l=document.createElement('link');l.id='header-fix-css';l.rel='stylesheet';l.href='/header-fix.css?v=20260501_CLEAN_POLICIES';document.head.appendChild(l);}
 function loadMenuScript(){if(document.getElementById('mobile-menu-js'))return;const s=document.createElement('script');s.id='mobile-menu-js';s.src='/mobile-menu.js?v=20260501a';document.body.appendChild(s);}
 function page(){return location.pathname.toLowerCase().split('/').pop()||'index.html';}
 function lockMobile(){document.documentElement.style.overflowX='hidden';document.body.style.overflowX='hidden';}
 function isLogoImg(img){const src=(img.getAttribute('src')||'').toLowerCase();return src.endsWith('logo.png')||src.includes('/assets/images/icons/logo.png');}
+function hasFooterText(el){const t=(el.textContent||'').replace(/\s+/g,' ').trim();return t.includes('Contact:')||t.includes('info@smartafiliate.com')||t.includes('السياسات')||t.includes('سياسة الخصوصية')||t.includes('سياسة الكوكيز')||t.includes('الشروط والأحكام');}
+function safeRemove(el){if(!el||el.closest('.smart-final-footer')||el.closest('.site-header'))return;const target=el.closest('section,footer,.footer-col,.footer-grid,.footer-bottom,.smart-global-contact,.smart-global-footer,.site-footer,div')||el;if(target&&target!==document.body&&target.tagName!=='MAIN')target.remove();}
+function cleanMisplacedFooterText(){
+  document.querySelectorAll('main a, main h1, main h2, main h3, main p, main div, main section, .hero a, .hero h3, .hero p, .page-hero a, .page-hero h3, .page-hero p').forEach(el=>{if(hasFooterText(el))safeRemove(el);});
+  document.querySelectorAll('footer,.site-footer,.smart-global-footer,.smart-global-contact').forEach(e=>{if(!e.classList.contains('smart-final-footer'))e.remove();});
+}
 function hardClean(){
   document.querySelectorAll('footer,.site-footer,.smart-global-footer,.smart-final-footer,.smart-global-contact').forEach(e=>e.remove());
   document.querySelectorAll('img').forEach(img=>{if(isLogoImg(img)&&!img.closest('.site-header'))img.remove();});
+  cleanMisplacedFooterText();
 }
 function buildHeader(){
   let header=document.querySelector('.site-header');
@@ -18,8 +25,19 @@ function buildHeader(){
   const nav=document.getElementById('mainNav');if(nav){nav.querySelectorAll('a').forEach(a=>{if(a.getAttribute('href')===page())a.classList.add('active-page');});}
 }
 function buildFooter(){
-  const html='<footer class="smart-final-footer"><div class="container smart-final-footer-inner"><p class="smart-footer-contact">Contact: <a href="mailto:info@smartafiliate.com">info@smartafiliate.com</a></p><div class="smart-footer-policies"><h3>السياسات</h3><a href="privacy-policy.html">سياسة الخصوصية</a><a href="cookie-policy.html">سياسة الكوكيز</a><a href="terms.html">الشروط والأحكام</a></div></div></footer>';
-  document.body.insertAdjacentHTML('beforeend',html);
+  document.querySelectorAll('.smart-final-footer').forEach(e=>e.remove());
+  const footer=document.createElement('footer');
+  footer.className='smart-final-footer';
+  footer.innerHTML='<div class="container smart-final-footer-inner"><p class="smart-footer-contact">Contact: <a href="mailto:info@smartafiliate.com">info@smartafiliate.com</a></p><div class="smart-footer-policies"><h3>السياسات</h3><a href="privacy-policy.html">سياسة الخصوصية</a><a href="cookie-policy.html">سياسة الكوكيز</a><a href="terms.html">الشروط والأحكام</a></div></div>';
+  const main=document.querySelector('main');
+  if(main)main.insertAdjacentElement('afterend',footer);else document.body.appendChild(footer);
+}
+function finalPass(){
+  cleanMisplacedFooterText();
+  document.querySelectorAll('img').forEach(img=>{if(isLogoImg(img)&&!img.closest('.site-header'))img.remove();});
+  const footers=document.querySelectorAll('.smart-final-footer');
+  footers.forEach((f,i)=>{if(i<footers.length-1)f.remove();});
+  lockMobile();
 }
 function init(){
   loadCss();
@@ -27,9 +45,9 @@ function init(){
   buildHeader();
   loadMenuScript();
   buildFooter();
-  setTimeout(function(){hardClean();buildHeader();buildFooter();lockMobile();},500);
-  setTimeout(function(){document.querySelectorAll('img').forEach(img=>{if(isLogoImg(img)&&!img.closest('.site-header'))img.remove();});lockMobile();},1500);
-  lockMobile();
+  finalPass();
+  setTimeout(function(){finalPass();buildFooter();finalPass();},500);
+  setTimeout(finalPass,1500);
 }
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
 })();
