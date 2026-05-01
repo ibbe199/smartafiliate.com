@@ -1,9 +1,13 @@
 (function(){
+  const MAIN_OFFER='https://9e507bq9nsow4n57d9tap0ohpd.hop.clickbank.net';
+  const EXTRA_OFFER='https://f21555c3kvj-1zc-zxjkslrl96.hop.clickbank.net';
   const CONFIG={
     gtmId:'',
     affiliateLinks:{
-      default:'#',
-      chatgpt:'#',jasper:'#',writesonic:'#',copyai:'#',canva:'#',midjourney:'#',dalle:'#',ollama:'#',lmstudio:'#',huggingface:'#',langchain:'#',n8n:'#',deepseek:'#',affiliate:'#'
+      default:MAIN_OFFER,
+      chatgpt:MAIN_OFFER,jasper:MAIN_OFFER,writesonic:MAIN_OFFER,copyai:MAIN_OFFER,
+      canva:EXTRA_OFFER,midjourney:EXTRA_OFFER,dalle:EXTRA_OFFER,
+      ollama:MAIN_OFFER,lmstudio:MAIN_OFFER,huggingface:MAIN_OFFER,langchain:MAIN_OFFER,n8n:MAIN_OFFER,deepseek:MAIN_OFFER,affiliate:EXTRA_OFFER
     }
   };
   window.SMART_MONETIZATION_CONFIG=window.SMART_MONETIZATION_CONFIG||CONFIG;
@@ -24,15 +28,15 @@
     ns.innerHTML='<iframe src="https://www.googletagmanager.com/ns.html?id='+id+'" height="0" width="0" style="display:none;visibility:hidden"></iframe>';
     document.body.insertAdjacentElement('afterbegin',ns);
   }
-  function keyFor(){const p=page();if(p.includes('chatgpt'))return'chatgpt';if(p.includes('jasper'))return'jasper';if(p.includes('writesonic'))return'writesonic';if(p.includes('copyai'))return'copyai';if(p.includes('canva'))return'canva';if(p.includes('midjourney'))return'midjourney';if(p.includes('dalle'))return'dalle';if(p.includes('ollama'))return'ollama';if(p.includes('lmstudio'))return'lmstudio';if(p.includes('huggingface'))return'huggingface';if(p.includes('langchain'))return'langchain';if(p.includes('n8n'))return'n8n';if(p.includes('deepseek'))return'deepseek';if(p.includes('affiliate'))return'affiliate';return'default';}
-  function affiliateUrl(key){return (cfg.affiliateLinks&&cfg.affiliateLinks[key])||cfg.affiliateLinks.default||'#';}
-  function addStyle(){if(document.getElementById('smart-monetization-style'))return;const st=document.createElement('style');st.id='smart-monetization-style';st.textContent='.smart-affiliate-box{margin:1.5rem auto;padding:1.1rem;border-radius:22px;background:linear-gradient(135deg,#fff7ed,#eef5ff);border:1px solid #fed7aa;box-shadow:0 12px 28px rgba(15,23,42,.08)}.smart-affiliate-box h2{margin:.2rem 0 .5rem;color:#0b1f3a}.smart-affiliate-box p{color:#475569;line-height:1.8}.smart-affiliate-actions{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:.8rem}.smart-affiliate-btn{display:inline-flex;align-items:center;justify-content:center;gap:.35rem;min-height:42px;padding:.65rem 1rem;border-radius:999px;background:#ea580c;color:#fff!important;text-decoration:none!important;font-weight:900}.smart-affiliate-note{font-size:.84rem;color:#64748b;margin-top:.55rem}.smart-top-tools{margin:1rem 0;padding:1rem;border-radius:20px;background:#f8fafc;border:1px solid #dbeafe}.smart-top-tools a{display:inline-flex;margin:.25rem;padding:.55rem .8rem;border-radius:999px;background:#fff;border:1px solid #e2e8f0;text-decoration:none!important;font-weight:800;color:#0b1f3a!important}';document.head.appendChild(st);}
+  function keyFor(){const p=page();if(p.includes('chatgpt'))return'chatgpt';if(p.includes('jasper'))return'jasper';if(p.includes('writesonic'))return'writesonic';if(p.includes('copyai'))return'copyai';if(p.includes('canva'))return'canva';if(p.includes('midjourney'))return'midjourney';if(p.includes('dalle'))return'dalle';if(p.includes('ollama'))return'ollama';if(p.includes('lmstudio'))return'lmstudio';if(p.includes('huggingface'))return'huggingface';if(p.includes('langchain'))return'langchain';if(p.includes('n8n')||p.includes('automation')||p.includes('productivity'))return'n8n';if(p.includes('deepseek')||p.includes('coding'))return'deepseek';if(p.includes('affiliate')||p.includes('marketing')||p.includes('profit')||p.includes('income'))return'affiliate';return'default';}
+  function affiliateUrl(key){return (cfg.affiliateLinks&&cfg.affiliateLinks[key])||cfg.affiliateLinks.default||MAIN_OFFER;}
+  function addStyle(){if(document.getElementById('smart-monetization-style'))return;const st=document.createElement('style');st.id='smart-monetization-style';st.textContent='.smart-affiliate-box{margin:1.5rem auto;padding:1.1rem;border-radius:22px;background:linear-gradient(135deg,#fff7ed,#eef5ff);border:1px solid #fed7aa;box-shadow:0 12px 28px rgba(15,23,42,.08)}.smart-affiliate-box h2{margin:.2rem 0 .5rem;color:#0b1f3a}.smart-affiliate-box p{color:#475569;line-height:1.8}.smart-affiliate-actions{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:.8rem}.smart-affiliate-btn{display:inline-flex;align-items:center;justify-content:center;gap:.35rem;min-height:42px;padding:.65rem 1rem;border-radius:999px;background:#ea580c;color:#fff!important;text-decoration:none!important;font-weight:900}.smart-affiliate-btn.secondary{background:#0b1f3a}.smart-affiliate-note{font-size:.84rem;color:#64748b;margin-top:.55rem}.smart-top-tools{margin:1rem 0;padding:1rem;border-radius:20px;background:#f8fafc;border:1px solid #dbeafe}.smart-top-tools a{display:inline-flex;margin:.25rem;padding:.55rem .8rem;border-radius:999px;background:#fff;border:1px solid #e2e8f0;text-decoration:none!important;font-weight:800;color:#0b1f3a!important}';document.head.appendChild(st);}
   function injectAffiliateBox(){
     const main=document.querySelector('main');if(!main||document.querySelector('.smart-affiliate-box'))return;
     const key=keyFor(), url=affiliateUrl(key);
     const title=document.querySelector('h1')?.textContent?.trim()||'الأداة المقترحة';
     const box=document.createElement('section');box.className='smart-affiliate-box container';
-    box.innerHTML='<h2>جرّب الأداة أو البديل المناسب</h2><p>هذا القسم يساعد القارئ على الانتقال من القراءة إلى التجربة العملية حسب موضوع الصفحة.</p><div class="smart-affiliate-actions"><a class="smart-affiliate-btn" href="'+url+'" target="_blank" rel="noopener sponsored nofollow" data-affiliate="'+key+'">🔗 رابط أفلييت / تجربة</a><a class="smart-affiliate-btn" href="https://www.google.com/search?q='+encodeURIComponent(title)+'" target="_blank" rel="noopener noreferrer nofollow">↗ بحث Google</a></div><div class="smart-affiliate-note">قد يحتوي هذا الموقع على روابط أفلييت. عند الشراء من خلالها قد نحصل على عمولة بدون تكلفة إضافية عليك.</div>';
+    box.innerHTML='<h2>جرّب الأداة أو البديل المناسب</h2><p>هذا القسم يساعد القارئ على الانتقال من القراءة إلى التجربة العملية حسب موضوع الصفحة.</p><div class="smart-affiliate-actions"><a class="smart-affiliate-btn" href="'+url+'" target="_blank" rel="noopener sponsored nofollow" data-affiliate="'+key+'">🔗 رابط أفلييت / تجربة</a><a class="smart-affiliate-btn secondary" href="https://www.google.com/search?q='+encodeURIComponent(title)+'" target="_blank" rel="noopener noreferrer nofollow">↗ بحث Google</a></div><div class="smart-affiliate-note">قد يحتوي هذا الموقع على روابط أفلييت. عند الشراء من خلالها قد نحصل على عمولة بدون تكلفة إضافية عليك.</div>';
     const article=document.querySelector('article,.article-body,.post-content');
     if(article)article.insertAdjacentElement('afterend',box);else main.appendChild(box);
   }
