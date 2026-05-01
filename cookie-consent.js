@@ -1,21 +1,26 @@
 (function () {
-  function injectScript(src, id){
+  'use strict';
+
+  function injectScript(src, id) {
     if (document.getElementById(id)) return;
     const s = document.createElement('script');
     s.id = id;
     s.defer = true;
-    s.src = src;
+    s.src = src + (src.includes('?') ? '&' : '?') + 'v=20260501-clean';
     document.head.appendChild(s);
   }
 
-  function injectAll(){
-    injectScript('/arabic-polish.js','arabic-polish-loader');
-    injectScript('/header-polish.js','header-polish-loader');
-    injectScript('/global-unify.js','global-unify-loader');
-    injectScript('/homepage-footer-topics.js','footer-topics-loader');
-    injectScript('/auto-internal-links.js','auto-internal-links-loader');
-    injectScript('/button-polish.js','button-polish-loader');
-    injectScript('/mobile-menu-fix.js','mobile-menu-fix-loader');
+  function injectAll() {
+    // Keep only safe scripts that do not rewrite the visual identity.
+    injectScript('/auto-internal-links.js', 'auto-internal-links-loader');
+    injectScript('/mobile-menu-fix.js', 'mobile-menu-fix-loader');
+
+    // Disabled legacy identity rewriters:
+    // /arabic-polish.js      hides images and rewrites page text/SEO
+    // /header-polish.js      adds AI Tool Finder / Find Tool / Start bar
+    // /global-unify.js       forces old cards and hidden images
+    // /homepage-footer-topics.js can duplicate footer links
+    // /button-polish.js      overrides all buttons globally
   }
 
   injectAll();
