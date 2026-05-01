@@ -1,7 +1,7 @@
 const MOBILE_FIX=true;
 (function(){
 const LOGO='/assets/images/icons/logo.png';
-function loadCss(){let old=document.getElementById('header-fix-css');if(old)old.remove();const l=document.createElement('link');l.id='header-fix-css';l.rel='stylesheet';l.href='/header-fix.css?v=20260501g';document.head.appendChild(l);}
+function loadCss(){let old=document.getElementById('header-fix-css');if(old)old.remove();const l=document.createElement('link');l.id='header-fix-css';l.rel='stylesheet';l.href='/header-fix.css?v=20260501h';document.head.appendChild(l);}
 function loadMenuScript(){if(document.getElementById('mobile-menu-js'))return;const s=document.createElement('script');s.id='mobile-menu-js';s.src='/mobile-menu.js?v=20260501a';document.body.appendChild(s);}
 function lockMobile(){document.documentElement.style.overflowX='hidden';document.body.style.overflowX='hidden';}
 function page(){return location.pathname.toLowerCase().split('/').pop()||'index.html';}
@@ -12,8 +12,12 @@ function addGlobalFooter(){
   if(footer) footer.insertAdjacentHTML('beforeend',block);
   else document.body.insertAdjacentHTML('beforeend',block);
 }
+function moveWrongTopFooterToBottom(){
+  document.querySelectorAll('main .footer-col, main .footer-bottom, main .smart-global-contact, .hero .footer-col, .page-hero .footer-col, .hero .footer-bottom, .page-hero .footer-bottom').forEach(e=>e.remove());
+}
 function init(){
 loadCss();
+moveWrongTopFooterToBottom();
 let header=document.querySelector('.site-header');
 if(!header){document.body.insertAdjacentHTML('afterbegin','<header class="site-header"></header>');}
 header=document.querySelector('.site-header');
