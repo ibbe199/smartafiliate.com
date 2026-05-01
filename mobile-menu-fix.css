@@ -1,0 +1,42 @@
+/* Mobile menu icon fix */
+.menu-toggle{
+  display:none;
+  width:46px;
+  height:46px;
+  border:1px solid rgba(255,255,255,.25);
+  background:rgba(255,255,255,.08);
+  color:#fff;
+  font-size:28px;
+  line-height:1;
+  cursor:pointer;
+  align-items:center;
+  justify-content:center;
+  border-radius:12px;
+  z-index:1300;
+}
+.menu-toggle:hover{background:rgba(255,255,255,.16)}
+@media(max-width:900px){
+  .menu-toggle{display:flex!important;}
+  .main-nav{display:none!important;}
+  .main-nav.active{
+    display:flex!important;
+    flex-direction:column!important;
+    position:fixed!important;
+    top:76px!important;
+    right:1rem!important;
+    left:1rem!important;
+    z-index:1250!important;
+    background:linear-gradient(135deg,#081426,#0b1f3a)!important;
+    padding:1rem!important;
+    border-radius:18px!important;
+    border:1px solid rgba(255,255,255,.14)!important;
+    box-shadow:0 18px 45px rgba(0,0,0,.28)!important;
+  }
+  .main-nav.active a{
+    display:block!important;
+    width:100%!important;
+    padding:.9rem 1rem!important;
+    text-align:center!important;
+  }
+  .header-actions{display:none!important;}
+}
