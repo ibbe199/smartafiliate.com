@@ -2,7 +2,7 @@
   const MAIN_OFFER='https://9e507bq9nsow4n57d9tap0ohpd.hop.clickbank.net';
   const EXTRA_OFFER='https://f21555c3kvj-1zc-zxjkslrl96.hop.clickbank.net';
   const CONFIG={
-    gtmId:'',
+    gtmId:'GTM-P96QVPT3',
     affiliateLinks:{
       default:MAIN_OFFER,
       chatgpt:MAIN_OFFER,jasper:MAIN_OFFER,writesonic:MAIN_OFFER,copyai:MAIN_OFFER,
