@@ -3,7 +3,7 @@ const MOBILE_FIX=true;
 'use strict';
 const LOGO='/assets/images/icons/logo.png';
 const PAGE=(location.pathname.toLowerCase().split('/').pop()||'index.html');
-const ARTICLE_INDEX=new Set(['articles.html','ai-articles.html','posts-ai.html']);
+const ARTICLE_INDEX=new Set(['index.html','articles.html','ai-articles.html','posts-ai.html']);
 const STATIC_NO_ENHANCE=new Set(['contact.html','about.html','privacy.html','privacy-policy.html','cookie-policy.html','terms.html','disclosure.html','sitemap.html']);
 function idle(fn){if('requestIdleCallback' in window)requestIdleCallback(fn,{timeout:1500});else setTimeout(fn,250);}
 function loadCss(){
@@ -12,7 +12,7 @@ function loadCss(){
 }
 function addPreload(){if(document.getElementById('logo-preload'))return;const p=document.createElement('link');p.id='logo-preload';p.rel='preload';p.as='image';p.href=LOGO;document.head.appendChild(p);}
 function loadScript(id,src){if(document.getElementById(id))return;const s=document.createElement('script');s.id=id;s.src=src;s.defer=true;document.body.appendChild(s);}
-function loadAllArticles(){if(ARTICLE_INDEX.has(PAGE)){loadScript('all-articles-js','/all-articles.js?v=20260501_all_articles2');loadScript('featured-health-article-js','/featured-health-article.js?v=20260501_health_article');}}
+function loadAllArticles(){if(ARTICLE_INDEX.has(PAGE)){loadScript('all-articles-js','/all-articles.js?v=20260502_all_articles_health');loadScript('featured-health-article-js','/featured-health-article.js?v=20260502_health_published');}}
 function loadLinkEnhancer(){if(!STATIC_NO_ENHANCE.has(PAGE))loadScript('link-enhancer-js','/link-enhancer.js?v=20260501_links_google2');}
 function loadMonetizationManager(){loadScript('monetization-manager-js','/monetization-manager.js?v=20260501_monetization2');}
 function loadFooterManager(){loadScript('footer-manager-js','/footer-manager.js?v=20260501_footer_perf');}
