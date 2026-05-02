@@ -23,27 +23,12 @@
     if(document.getElementById('smart-link-style'))return;
     const st=document.createElement('style');
     st.id='smart-link-style';
-    st.textContent='.smart-link-actions{display:flex;gap:.6rem;flex-wrap:wrap;margin:1rem 0}.smart-read-icon{display:inline-flex!important;align-items:center;justify-content:center;gap:.35rem;min-height:38px;padding:.55rem .8rem;border-radius:999px;text-decoration:none!important;font-weight:900;border:1px solid #2563eb;background:#2563eb!important;color:#fff!important}.smart-related-links{margin:2rem auto;padding:1.2rem;border-radius:22px;background:#fff;border:1px solid #dbeafe;box-shadow:0 12px 30px rgba(15,23,42,.07)}.smart-related-links h2{margin:.2rem 0 1rem;color:#0b1f3a}.smart-related-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:.7rem}.smart-related-grid a{display:block;padding:.8rem;border-radius:16px;background:#f8fafc;border:1px solid #e2e8f0;color:#0b1f3a!important;text-decoration:none!important;font-weight:800}.article-card .smart-card-actions{display:flex;gap:.45rem;flex-wrap:wrap;margin-top:.75rem}.article-card .smart-card-actions a{font-size:.82rem;min-height:34px;padding:.45rem .65rem}.external-link-mark::after{content:" ↗";font-weight:900;color:#1d4ed8}.tool-link.external-link-mark::after{content:""}@media(max-width:760px){.smart-related-links{margin:1.25rem .75rem}.smart-link-actions{padding:0 .75rem}}';
+    st.textContent='.smart-link-actions{display:flex;gap:.6rem;flex-wrap:wrap;margin:1rem 0}.smart-read-icon{display:inline-flex!important;align-items:center;justify-content:center;gap:.35rem;min-height:38px;padding:.55rem .8rem;border-radius:999px;text-decoration:none!important;font-weight:900;border:1px solid #2563eb;background:#2563eb!important;color:#fff!important}.smart-related-links{margin:2rem auto;padding:1.2rem;border-radius:22px;background:#fff;border:1px solid #dbeafe;box-shadow:0 12px 30px rgba(15,23,42,.07)}.smart-related-links h2{margin:.2rem 0 1rem;color:#0b1f3a}.smart-related-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:.7rem}.smart-related-grid a{display:block;padding:.8rem;border-radius:16px;background:#f8fafc;border:1px solid #e2e8f0;color:#0b1f3a!important;text-decoration:none!important;font-weight:800}.external-link-mark::after{content:" ↗";font-weight:900;color:#1d4ed8}.tool-link.external-link-mark::after{content:""}@media(max-width:760px){.smart-related-links{margin:1.25rem .75rem}.smart-link-actions{padding:0 .75rem}}';
     document.head.appendChild(st);
   }
-  function removeOldGoogleButtons(){
-    document.querySelectorAll('.smart-card-actions a.smart-external-icon, .article-card a.smart-external-icon').forEach(a=>a.remove());
-    document.querySelectorAll('.smart-card-actions').forEach(row=>{if(!row.querySelector('a'))row.remove();});
-  }
-  function enhanceCards(){
-    removeOldGoogleButtons();
-    document.querySelectorAll('.article-card').forEach(card=>{
-      if(card.dataset.smartLinked==='1')return;
-      if(card.querySelector('.smart-card-actions .smart-read-icon')){card.dataset.smartLinked='1';return;}
-      const a=card.querySelector('a[href]');if(!a)return;
-      card.dataset.smartLinked='1';
-      const href=a.getAttribute('href');
-      const target=card.querySelector('.article-content')||card;
-      const row=document.createElement('div');
-      row.className='smart-card-actions';
-      row.innerHTML='<a class="smart-read-icon" href="'+href+'" aria-label="قراءة المقال">📖 قراءة</a>';
-      target.appendChild(row);
-    });
+  function removeCardActionButtons(){
+    document.querySelectorAll('.article-card .smart-card-actions').forEach(row=>row.remove());
+    document.querySelectorAll('.article-card a.smart-external-icon,.article-card a.smart-read-icon').forEach(a=>a.remove());
   }
   function injectArticleLinks(){
     const current=norm();
@@ -75,6 +60,6 @@
       }
     });
   }
-  function run(){addStyle();removeOldGoogleButtons();enhanceCards();injectArticleLinks();fixExternalLinks();markToolLinks();setTimeout(()=>{removeOldGoogleButtons();enhanceCards();fixExternalLinks();markToolLinks();},900);}
+  function run(){addStyle();removeCardActionButtons();injectArticleLinks();fixExternalLinks();markToolLinks();setTimeout(()=>{removeCardActionButtons();fixExternalLinks();markToolLinks();},900);}
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run,{once:true});else run();
 })();
