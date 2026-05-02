@@ -12,7 +12,7 @@ function loadCss(){
 }
 function addPreload(){if(document.getElementById('logo-preload'))return;const p=document.createElement('link');p.id='logo-preload';p.rel='preload';p.as='image';p.href=LOGO;document.head.appendChild(p);}
 function loadScript(id,src){if(document.getElementById(id))return;const s=document.createElement('script');s.id=id;s.src=src;s.defer=true;document.body.appendChild(s);}
-function loadAllArticles(){if(ARTICLE_INDEX.has(PAGE)){loadScript('all-articles-js','/all-articles.js?v=20260502_all_articles_health');loadScript('featured-health-article-js','/featured-health-article.js?v=20260502_health_published');}}
+function loadAllArticles(){if(ARTICLE_INDEX.has(PAGE)){loadScript('all-articles-js','/all-articles.js?v=20260502_all_articles_health');loadScript('featured-health-article-js','/featured-health-article.js?v=20260502_health_published');loadScript('article-image-title-js','/article-image-title.js?v=20260502_titles_on_images');}}
 function loadLinkEnhancer(){if(!STATIC_NO_ENHANCE.has(PAGE))loadScript('link-enhancer-js','/link-enhancer.js?v=20260501_links_google2');}
 function loadMonetizationManager(){loadScript('monetization-manager-js','/monetization-manager.js?v=20260501_monetization2');}
 function loadFooterManager(){loadScript('footer-manager-js','/footer-manager.js?v=20260501_footer_perf');}
