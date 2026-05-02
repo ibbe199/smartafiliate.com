@@ -8,11 +8,13 @@ const STATIC_NO_ENHANCE=new Set(['contact.html','about.html','privacy.html','pri
 function idle(fn){if('requestIdleCallback' in window)requestIdleCallback(fn,{timeout:2000});else setTimeout(fn,600);}
 function afterLoad(fn,delay){if(document.readyState==='complete')setTimeout(fn,delay||0);else window.addEventListener('load',function(){setTimeout(fn,delay||0);},{once:true});}
 function addCss(id,href){if(document.getElementById(id))return;const l=document.createElement('link');l.id=id;l.rel='stylesheet';l.href=href;document.head.appendChild(l);}
-function loadCss(){addCss('cls-fix-css','/cls-fix.css?v=20260502_CLS1');addCss('header-fix-css','/header-fix.css?v=20260502_PAGESPEED_MENU_NORMAL');}
+function loadCss(){if(PAGE==='index.html')return;addCss('cls-fix-css','/cls-fix.css?v=20260502_CLS1');addCss('header-fix-css','/header-fix.css?v=20260502_PAGESPEED_MENU_NORMAL');}
 function addPreload(){
   if(!document.getElementById('logo-preload')){const p=document.createElement('link');p.id='logo-preload';p.rel='preload';p.as='image';p.href=LOGO;document.head.appendChild(p);}
-  if(!document.getElementById('cls-css-preload')){const x=document.createElement('link');x.id='cls-css-preload';x.rel='preload';x.as='style';x.href='/cls-fix.css?v=20260502_CLS1';document.head.appendChild(x);}
-  if(!document.getElementById('critical-css-preload')){const c=document.createElement('link');c.id='critical-css-preload';c.rel='preload';c.as='style';c.href='/header-fix.css?v=20260502_PAGESPEED_MENU_NORMAL';document.head.appendChild(c);}
+  if(PAGE!=='index.html'){
+    if(!document.getElementById('cls-css-preload')){const x=document.createElement('link');x.id='cls-css-preload';x.rel='preload';x.as='style';x.href='/cls-fix.css?v=20260502_CLS1';document.head.appendChild(x);}
+    if(!document.getElementById('critical-css-preload')){const c=document.createElement('link');c.id='critical-css-preload';c.rel='preload';c.as='style';c.href='/header-fix.css?v=20260502_PAGESPEED_MENU_NORMAL';document.head.appendChild(c);}
+  }
 }
 function loadScript(id,src){if(document.getElementById(id))return;const s=document.createElement('script');s.id=id;s.src=src;s.defer=true;document.body.appendChild(s);}
 function loadAllArticles(){if(ARTICLE_INDEX.has(PAGE)){loadScript('all-articles-js','/all-articles.js?v=20260502_all_articles_health');loadScript('featured-health-article-js','/featured-health-article.js?v=20260502_health_published');loadScript('article-image-title-js','/article-image-title.js?v=20260502_titles_on_images');}}
@@ -33,6 +35,7 @@ function optimizeImages(){
 function buildHeader(){
   let header=document.querySelector('.site-header');
   if(!header){document.body.insertAdjacentHTML('afterbegin','<header class="site-header"></header>');header=document.querySelector('.site-header');}
+  if(PAGE==='index.html'&&header.innerHTML.trim())return;
   header.innerHTML='<div class="container header-inner"><a class="logo" href="/index.html" aria-label="smartafiliate"><img class="site-logo-img" src="'+LOGO+'" alt="smartafiliate logo" width="50" height="50" decoding="async" fetchpriority="high"></a><nav class="main-nav" id="mainNav" aria-label="القائمة الرئيسية"><a href="/index.html">الرئيسية</a><a href="/best-ai-tools.html">أفضل أدوات AI</a><a href="/ai-articles.html">مكتبة AI</a><a href="/learn-ai.html">تعلم AI</a><a href="/open-source.html">أدوات مفتوحة المصدر</a><a href="/articles.html">المقالات</a><a href="/about.html">من نحن</a><a href="/contact.html">تواصل معنا</a></nav></div>';
   const nav=document.getElementById('mainNav');if(nav){nav.querySelectorAll('a').forEach(a=>{if(a.getAttribute('href').endsWith('/'+PAGE)||a.getAttribute('href').endsWith(PAGE))a.classList.add('active-page');});}
 }
