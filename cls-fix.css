@@ -1,0 +1,26 @@
+/* CLS stabilization fixes */
+.site-header{min-height:118px!important;background:#061c35!important;display:block!important;overflow:visible!important}
+.site-header:empty{min-height:118px!important}
+.header-inner{min-height:118px!important}
+.hero{min-height:260px!important}
+.article-image,.post-image{height:200px!important;aspect-ratio:16/9!important;background:linear-gradient(135deg,#06182d,#0b2748)!important}
+.article-image img,.post-image img{width:100%!important;height:100%!important;object-fit:cover!important}
+.article-card,.post-card{min-height:390px!important}
+.article-content,.post-content{min-height:170px!important}
+.articles-grid{min-height:420px!important}
+.site-logo-img{width:50px!important;height:50px!important;aspect-ratio:1/1!important}
+.smart-final-footer{min-height:300px!important}
+@media(max-width:1023px){
+  .site-header{min-height:118px!important}
+  .site-header:empty{min-height:118px!important}
+  .header-inner{min-height:118px!important}
+  .hero{min-height:260px!important}
+  .articles-grid{min-height:430px!important}
+  .article-card,.post-card{min-height:395px!important}
+}
+@media(min-width:1024px){
+  .site-header{min-height:72px!important}
+  .site-header:empty{min-height:72px!important}
+  .header-inner{min-height:72px!important}
+  .hero{min-height:300px!important}
+}
