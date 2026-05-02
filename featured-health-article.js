@@ -2,7 +2,7 @@
   'use strict';
   const ARTICLE_URL='posts-ai/ai-health-medicine-research.html';
   const CARD='<article class="article-card featured-health-ai-card"><a href="'+ARTICLE_URL+'"><div class="article-image"><img src="assets/images/articles/ai-general.svg" alt="الذكاء الاصطناعي في الصحة وصناعة الأدوية والبحث العلمي" loading="lazy" decoding="async" width="640" height="360"></div><div class="article-content"><span class="article-category">الصحة والبحث العلمي</span><h3>الذكاء الاصطناعي في الصحة وصناعة الأدوية والبحث العلمي</h3><p class="article-excerpt">مراجعة علمية عربية شاملة للتطبيقات والتحديات والآفاق المستقبلية مع مراجع وروابط مباشرة.</p><div class="article-meta"><span>📅 2026-05-01</span><span class="read-more">اقرأ المقال →</span></div></div></a></article>';
-  const VALID=new Set(['ai-articles.html','articles.html','posts-ai.html']);
+  const VALID=new Set(['index.html','ai-articles.html','articles.html','posts-ai.html']);
   function page(){return location.pathname.toLowerCase().split('/').pop()||'index.html';}
   function addCard(){
     if(!VALID.has(page()))return;
