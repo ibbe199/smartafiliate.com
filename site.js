@@ -8,7 +8,7 @@ const STATIC_NO_ENHANCE=new Set(['contact.html','about.html','privacy.html','pri
 function idle(fn){if('requestIdleCallback' in window)requestIdleCallback(fn,{timeout:1500});else setTimeout(fn,250);}
 function loadCss(){
   if(document.getElementById('header-fix-css'))return;
-  const l=document.createElement('link');l.id='header-fix-css';l.rel='stylesheet';l.href='/header-fix.css?v=20260501_PERF3';document.head.appendChild(l);
+  const l=document.createElement('link');l.id='header-fix-css';l.rel='stylesheet';l.href='/header-fix.css?v=20260502_MENU_FIXED';document.head.appendChild(l);
 }
 function addPreload(){if(document.getElementById('logo-preload'))return;const p=document.createElement('link');p.id='logo-preload';p.rel='preload';p.as='image';p.href=LOGO;document.head.appendChild(p);}
 function loadScript(id,src){if(document.getElementById(id))return;const s=document.createElement('script');s.id=id;s.src=src;s.defer=true;document.body.appendChild(s);}
