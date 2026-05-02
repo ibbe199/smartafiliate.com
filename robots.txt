@@ -1,6 +1,6 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.smartafiliate.com/sitemap.xml
+Sitemap: https://smartafiliate.com/sitemap.xml
 # RSS Feed
-# https://www.smartafiliate.com/feed.xml
+# https://smartafiliate.com/feed.xml
