@@ -3,20 +3,20 @@ const MOBILE_FIX=true;
 'use strict';
 const LOGO='/assets/images/icons/logo.png';
 const PAGE=(location.pathname.toLowerCase().split('/').pop()||'index.html');
-const ARTICLE_INDEX=new Set(['index.html','articles.html','ai-articles.html','posts-ai.html']);
+const ARTICLE_INDEX=new Set(['articles.html','ai-articles.html','posts-ai.html']);
 const STATIC_NO_ENHANCE=new Set(['contact.html','about.html','privacy.html','privacy-policy.html','cookie-policy.html','terms.html','disclosure.html','sitemap.html']);
 function idle(fn){if('requestIdleCallback' in window)requestIdleCallback(fn,{timeout:2000});else setTimeout(fn,600);}
 function afterLoad(fn,delay){if(document.readyState==='complete')setTimeout(fn,delay||0);else window.addEventListener('load',function(){setTimeout(fn,delay||0);},{once:true});}
-function loadCss(){
-  if(document.getElementById('header-fix-css'))return;
-  const l=document.createElement('link');l.id='header-fix-css';l.rel='stylesheet';l.href='/header-fix.css?v=20260502_PAGESPEED_MENU_NORMAL';document.head.appendChild(l);
-}
+function addCss(id,href){if(document.getElementById(id))return;const l=document.createElement('link');l.id=id;l.rel='stylesheet';l.href=href;document.head.appendChild(l);}
+function loadCss(){addCss('cls-fix-css','/cls-fix.css?v=20260502_CLS1');addCss('header-fix-css','/header-fix.css?v=20260502_PAGESPEED_MENU_NORMAL');}
 function addPreload(){
   if(!document.getElementById('logo-preload')){const p=document.createElement('link');p.id='logo-preload';p.rel='preload';p.as='image';p.href=LOGO;document.head.appendChild(p);}
+  if(!document.getElementById('cls-css-preload')){const x=document.createElement('link');x.id='cls-css-preload';x.rel='preload';x.as='style';x.href='/cls-fix.css?v=20260502_CLS1';document.head.appendChild(x);}
   if(!document.getElementById('critical-css-preload')){const c=document.createElement('link');c.id='critical-css-preload';c.rel='preload';c.as='style';c.href='/header-fix.css?v=20260502_PAGESPEED_MENU_NORMAL';document.head.appendChild(c);}
 }
 function loadScript(id,src){if(document.getElementById(id))return;const s=document.createElement('script');s.id=id;s.src=src;s.defer=true;document.body.appendChild(s);}
 function loadAllArticles(){if(ARTICLE_INDEX.has(PAGE)){loadScript('all-articles-js','/all-articles.js?v=20260502_all_articles_health');loadScript('featured-health-article-js','/featured-health-article.js?v=20260502_health_published');loadScript('article-image-title-js','/article-image-title.js?v=20260502_titles_on_images');}}
+function loadImageTitles(){if(PAGE==='index.html')loadScript('article-image-title-js','/article-image-title.js?v=20260502_titles_on_images');}
 function loadLinkEnhancer(){if(!STATIC_NO_ENHANCE.has(PAGE))loadScript('link-enhancer-js','/link-enhancer.js?v=20260501_links_google2');}
 function loadMonetizationManager(){loadScript('monetization-manager-js','/monetization-manager.js?v=20260501_monetization2');}
 function loadFooterManager(){loadScript('footer-manager-js','/footer-manager.js?v=20260502_footer_perf');}
@@ -43,8 +43,8 @@ function addAiFeatured(){
 }
 function init(){
   addPreload();loadCss();buildHeader();lockMobile();optimizeImages();
-  afterLoad(()=>{idle(()=>{loadFooterManager();loadAllArticles();addAiFeatured();optimizeImages();});},500);
-  afterLoad(()=>{idle(()=>{loadLinkEnhancer();loadMonetizationManager();});},2500);
+  afterLoad(()=>{idle(()=>{loadFooterManager();loadAllArticles();loadImageTitles();addAiFeatured();optimizeImages();});},700);
+  afterLoad(()=>{idle(()=>{loadLinkEnhancer();loadMonetizationManager();});},3000);
 }
 window.toggleMenu=function(){return true;};window.closeMenu=function(){return true;};
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
