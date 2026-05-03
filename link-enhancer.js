@@ -23,7 +23,7 @@
     if(document.getElementById('smart-link-style'))return;
     const st=document.createElement('style');
     st.id='smart-link-style';
-    st.textContent='.smart-link-actions{display:flex;gap:.6rem;flex-wrap:wrap;margin:1rem 0}.smart-read-icon{display:inline-flex!important;align-items:center;justify-content:center;gap:.35rem;min-height:38px;padding:.55rem .8rem;border-radius:999px;text-decoration:none!important;font-weight:900;border:1px solid #2563eb;background:#2563eb!important;color:#fff!important}.smart-related-links{margin:2rem auto;padding:1.2rem;border-radius:22px;background:#fff;border:1px solid #dbeafe;box-shadow:0 12px 30px rgba(15,23,42,.07)}.smart-related-links h2{margin:.2rem 0 1rem;color:#0b1f3a}.smart-related-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:.7rem}.smart-related-grid a{display:block;padding:.8rem;border-radius:16px;background:#f8fafc;border:1px solid #e2e8f0;color:#0b1f3a!important;text-decoration:none!important;font-weight:800}.external-link-mark::after{content:" ↗";font-weight:900;color:#1d4ed8}.tool-link.external-link-mark::after{content:""}@media(max-width:760px){.smart-related-links{margin:1.25rem .75rem}.smart-link-actions{padding:0 .75rem}}';
+    st.textContent='.smart-link-actions{display:flex;gap:.6rem;flex-wrap:wrap;margin:1rem 0}.smart-read-icon{display:inline-flex!important;align-items:center;justify-content:center;gap:.35rem;min-height:38px;padding:.55rem .8rem;border-radius:999px;text-decoration:none!important;font-weight:900;border:1px solid #2563eb;background:#2563eb!important;color:#fff!important}.smart-related-links{margin:2rem auto;padding:1.2rem;border-radius:22px;background:#fff;border:1px solid #dbeafe;box-shadow:0 12px 30px rgba(15,23,42,.07)}.smart-related-links h2{margin:.2rem 0 1rem;color:#0b1f3a}.smart-related-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:.7rem}.smart-related-grid a{display:block;padding:.8rem;border-radius:16px;background:#f8fafc;border:1px solid #e2e8f0;color:#0b1f3a!important;text-decoration:none!important;font-weight:800}.external-link-mark:not(.tool-button-clean)::after{content:" ↗";font-weight:900;color:#1d4ed8}.tool-link.external-link-mark::after,.tool-external-links a.external-link-mark::after{content:""!important}@media(max-width:760px){.smart-related-links{margin:1.25rem .75rem}.smart-link-actions{padding:0 .75rem}}';
     document.head.appendChild(st);
   }
   function removeCardActionButtons(){
@@ -40,6 +40,10 @@
     box.innerHTML='<h2>روابط مقالات مرتبطة</h2><div class="smart-link-actions"><a class="smart-read-icon" href="'+absLink(current)+'">📖 قراءة المقال</a></div><div class="smart-related-grid">'+related.map(x=>'<a href="'+absLink(x[0])+'">📌 '+x[1]+'</a>').join('')+'</div>';
     document.querySelector('main').appendChild(box);
   }
+  function cleanIconText(a){
+    let text=(a.textContent||'').replace(/↗/g,'').trim().replace(/\s+/g,' ');
+    if(text)a.textContent=text+' ↗';
+  }
   function fixExternalLinks(){
     document.querySelectorAll('a[href]').forEach(a=>{
       const href=a.getAttribute('href')||'';
@@ -48,15 +52,24 @@
         a.target='_blank';
         a.rel='noopener noreferrer nofollow';
         a.classList.add('external-link-mark');
+        if(a.closest('.tool-external-links')){
+          a.classList.add('tool-button-clean');
+          cleanIconText(a);
+        }
         if(!a.getAttribute('aria-label'))a.setAttribute('aria-label',(a.textContent||'رابط خارجي').trim()+' - يفتح في نافذة جديدة');
       }
     });
   }
   function markToolLinks(){
-    document.querySelectorAll('.tool-link,a[href*="openai.com"],a[href*="canva.com"],a[href*="jasper"],a[href*="midjourney"],a[href*="copy.ai"],a[href*="writesonic"],a[href*="github.com"],a[href*="huggingface.co"]').forEach(a=>{
+    document.querySelectorAll('.tool-link,a[href*="openai.com"],a[href*="canva.com"],a[href*="jasper"],a[href*="midjourney"],a[href*="copy.ai"],a[href*="writesonic"],a[href*="github.com"],a[href*="huggingface.co"],.tool-external-links a').forEach(a=>{
       if(isExternal(a)){
         a.classList.add('external-link-mark');
-        if(!/^↗/.test(a.textContent.trim()))a.textContent='↗ '+a.textContent.trim();
+        if(a.closest('.tool-external-links')){
+          a.classList.add('tool-button-clean');
+          cleanIconText(a);
+        }else if(!/↗/.test(a.textContent.trim())){
+          a.textContent=a.textContent.trim()+' ↗';
+        }
       }
     });
   }
