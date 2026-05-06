@@ -20,7 +20,7 @@ function loadScript(id,src){if(document.getElementById(id))return;const s=docume
 function loadAllArticles(){if(ARTICLE_INDEX.has(PAGE)){loadScript('all-articles-js','/all-articles.js?v=20260502_all_articles_health');loadScript('featured-health-article-js','/featured-health-article.js?v=20260502_health_published');loadScript('article-image-title-js','/article-image-title.js?v=20260502_titles_on_images');}}
 function loadImageTitles(){if(PAGE==='index.html')loadScript('article-image-title-js','/article-image-title.js?v=20260502_titles_on_images');}
 function loadLinkEnhancer(){if(!STATIC_NO_ENHANCE.has(PAGE))loadScript('link-enhancer-js','/link-enhancer.js?v=20260501_links_google2');}
-function loadShareEnhancer(){if(!STATIC_NO_ENHANCE.has(PAGE))loadScript('share-enhancer-js','/share-enhancer.js?v=20260506_fb_messenger');}
+function loadShareEnhancer(){loadScript('share-enhancer-js','/share-enhancer.js?v=20260506_fb_messenger_all_pages');}
 function loadMonetizationManager(){loadScript('monetization-manager-js','/monetization-manager.js?v=20260501_monetization2');}
 function loadFooterManager(){loadScript('footer-manager-js','/footer-manager.js?v=20260502_footer_perf');}
 function lockMobile(){document.documentElement.style.overflowX='hidden';document.body.style.overflowX='hidden';}
@@ -46,8 +46,8 @@ function addAiFeatured(){
   hero.insertAdjacentHTML('afterend','<section class="section section-alt ai-featured-smart"><div class="container"><div class="section-header"><span class="section-tag">Featured</span><h2>ابدأ بهذه المقالات</h2><p>أهم مقالات مكتبة AI للبدء السريع.</p></div><div class="articles-grid"><article class="article-card"><a href="posts-ai/chatgpt-review.html"><div class="article-image"><img src="assets/images/best-ai-tools/ai-writing.svg" alt="مراجعة ChatGPT" loading="lazy" decoding="async" width="640" height="360"></div><div class="article-content"><span class="article-category">AI</span><h3>مراجعة ChatGPT</h3><p class="article-excerpt">استخدام عملي للكتابة والتحليل والعمل.</p></div></a></article><article class="article-card"><a href="posts-ai/ollama-guide.html"><div class="article-image"><img src="assets/images/open-source/ollama.svg" alt="دليل Ollama" loading="lazy" decoding="async" width="640" height="360"></div><div class="article-content"><span class="article-category">Open Source</span><h3>دليل Ollama</h3><p class="article-excerpt">تشغيل النماذج محليًا على جهازك.</p></div></a></article></div></div></section>');
 }
 function init(){
-  addPreload();loadCss();buildHeader();lockMobile();optimizeImages();
-  afterLoad(()=>{idle(()=>{loadFooterManager();loadAllArticles();loadImageTitles();addAiFeatured();loadShareEnhancer();optimizeImages();});},700);
+  addPreload();loadCss();buildHeader();lockMobile();optimizeImages();loadShareEnhancer();
+  afterLoad(()=>{idle(()=>{loadFooterManager();loadAllArticles();loadImageTitles();addAiFeatured();optimizeImages();});},700);
   afterLoad(()=>{idle(()=>{loadLinkEnhancer();loadMonetizationManager();});},3000);
 }
 window.toggleMenu=function(){return true;};window.closeMenu=function(){return true;};
