@@ -1,6 +1,17 @@
 {
   "redirects": [
     {
+      "source": "/(.*)",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.smartafiliate.com"
+        }
+      ],
+      "destination": "https://smartafiliate.com/$1",
+      "permanent": true
+    },
+    {
       "source": "/",
       "has": [
         {
@@ -8,7 +19,7 @@
           "key": "page_id"
         }
       ],
-      "destination": "/",
+      "destination": "https://smartafiliate.com/",
       "permanent": true
     }
   ],
