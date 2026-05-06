@@ -20,6 +20,7 @@ function loadScript(id,src){if(document.getElementById(id))return;const s=docume
 function loadAllArticles(){if(ARTICLE_INDEX.has(PAGE)){loadScript('all-articles-js','/all-articles.js?v=20260502_all_articles_health');loadScript('featured-health-article-js','/featured-health-article.js?v=20260502_health_published');loadScript('article-image-title-js','/article-image-title.js?v=20260502_titles_on_images');}}
 function loadImageTitles(){if(PAGE==='index.html')loadScript('article-image-title-js','/article-image-title.js?v=20260502_titles_on_images');}
 function loadLinkEnhancer(){if(!STATIC_NO_ENHANCE.has(PAGE))loadScript('link-enhancer-js','/link-enhancer.js?v=20260501_links_google2');}
+function loadShareEnhancer(){if(!STATIC_NO_ENHANCE.has(PAGE))loadScript('share-enhancer-js','/share-enhancer.js?v=20260506_fb_messenger');}
 function loadMonetizationManager(){loadScript('monetization-manager-js','/monetization-manager.js?v=20260501_monetization2');}
 function loadFooterManager(){loadScript('footer-manager-js','/footer-manager.js?v=20260502_footer_perf');}
 function lockMobile(){document.documentElement.style.overflowX='hidden';document.body.style.overflowX='hidden';}
@@ -46,7 +47,7 @@ function addAiFeatured(){
 }
 function init(){
   addPreload();loadCss();buildHeader();lockMobile();optimizeImages();
-  afterLoad(()=>{idle(()=>{loadFooterManager();loadAllArticles();loadImageTitles();addAiFeatured();optimizeImages();});},700);
+  afterLoad(()=>{idle(()=>{loadFooterManager();loadAllArticles();loadImageTitles();addAiFeatured();loadShareEnhancer();optimizeImages();});},700);
   afterLoad(()=>{idle(()=>{loadLinkEnhancer();loadMonetizationManager();});},3000);
 }
 window.toggleMenu=function(){return true;};window.closeMenu=function(){return true;};
