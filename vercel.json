@@ -12,6 +12,51 @@
       "permanent": true
     },
     {
+      "source": "/posts-ai/chatgpt-vs-claude-vs-gemini.html",
+      "destination": "/posts-ai/chatgpt-review.html",
+      "permanent": true
+    },
+    {
+      "source": "/posts-ai/best-ai-writing-tools-2026.html",
+      "destination": "/posts-ai/30-best-ai-writing-tools.html",
+      "permanent": true
+    },
+    {
+      "source": "/posts-ai/best-ai-design-tools-2026.html",
+      "destination": "/posts-ai/best-ai-design-tools.html",
+      "permanent": true
+    },
+    {
+      "source": "/posts-ai/best-ai-affiliate-tools-2026.html",
+      "destination": "/posts-ai/ai-affiliate-tools.html",
+      "permanent": true
+    },
+    {
+      "source": "/posts-ai/best-ai-seo-tools-2026.html",
+      "destination": "/posts-ai/content-structure-seo.html",
+      "permanent": true
+    },
+    {
+      "source": "/posts-ai/best-ai-productivity-tools-2026.html",
+      "destination": "/posts-ai/ai-automation-productivity.html",
+      "permanent": true
+    },
+    {
+      "source": "/posts-ai/best-ai-ecommerce-tools-2026.html",
+      "destination": "/posts-ai/ai-content-sales-system.html",
+      "permanent": true
+    },
+    {
+      "source": "/posts-ai/best-ai-analytics-tools-2026.html",
+      "destination": "/ai-tools-comparison.html",
+      "permanent": true
+    },
+    {
+      "source": "/posts-ai/best-ai-customer-support-tools-2026.html",
+      "destination": "/posts-ai/ai-automation-productivity.html",
+      "permanent": true
+    },
+    {
       "source": "/",
       "has": [
         {
