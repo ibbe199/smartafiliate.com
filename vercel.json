@@ -22,6 +22,46 @@
       "permanent": true
     },
     {
+      "source": "/posts.html",
+      "destination": "/posts-ai.html",
+      "permanent": true
+    },
+    {
+      "source": "/posts-ai/best-ai-tools.html",
+      "destination": "/best-ai-tools.html",
+      "permanent": true
+    },
+    {
+      "source": "/discover-the-best-ai-tools/",
+      "destination": "/best-ai-tools.html",
+      "permanent": true
+    },
+    {
+      "source": "/discover-the-best-ai-tools",
+      "destination": "/best-ai-tools.html",
+      "permanent": true
+    },
+    {
+      "source": "/automation-tools-2026",
+      "destination": "/posts-ai/best-ai-automation-tools-2026.html",
+      "permanent": true
+    },
+    {
+      "source": "/automation-tools-2026/",
+      "destination": "/posts-ai/best-ai-automation-tools-2026.html",
+      "permanent": true
+    },
+    {
+      "source": "/i-marketing-guide",
+      "destination": "/posts-ai/ai-affiliate-tools.html",
+      "permanent": true
+    },
+    {
+      "source": "/i-marketing-guide/",
+      "destination": "/posts-ai/ai-affiliate-tools.html",
+      "permanent": true
+    },
+    {
       "source": "/articles/seo-for-afiliate-sites.html",
       "destination": "/articles/seo-for-affiliate-sites.html",
       "permanent": true
@@ -37,7 +77,7 @@
       "permanent": true
     },
     {
-      "source": "/wp-admin/admin-ajax.php",
+      "source": "/wp-admin/(.*)",
       "destination": "/",
       "permanent": true
     },
