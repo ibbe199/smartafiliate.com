@@ -12,6 +12,46 @@
       "permanent": true
     },
     {
+      "source": "/tools",
+      "destination": "/best-ai-tools.html",
+      "permanent": true
+    },
+    {
+      "source": "/tools/",
+      "destination": "/best-ai-tools.html",
+      "permanent": true
+    },
+    {
+      "source": "/articles/seo-for-afiliate-sites.html",
+      "destination": "/articles/seo-for-affiliate-sites.html",
+      "permanent": true
+    },
+    {
+      "source": "/articles/what-is-afiliate-marketing.html",
+      "destination": "/articles/what-is-affiliate-marketing.html",
+      "permanent": true
+    },
+    {
+      "source": "/articles/ai-tools-for-afiliate-marketing.html",
+      "destination": "/articles/ai-tools-for-affiliate-marketing.html",
+      "permanent": true
+    },
+    {
+      "source": "/wp-admin/admin-ajax.php",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/wp-content/(.*)",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/wp-(.*).php",
+      "destination": "/",
+      "permanent": true
+    },
+    {
       "source": "/posts-ai/chatgpt-vs-claude-vs-gemini.html",
       "destination": "/posts-ai/chatgpt-review.html",
       "permanent": true
